@@ -5,6 +5,10 @@ output: html_document
 
 Note that I only pulled the "Control" samples because I believe they are unstimulated
 
+Things to do:
+ - Confirm live gating
+ - Figure out CD3 gating
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -24,7 +28,7 @@ library(tibble)
 library(pheatmap)
 library(cytotypr)
 library(gridExtra)
-
+library(Biobase)
 ```
 
 Functions for use in the gating
@@ -345,8 +349,7 @@ for(i in files) {
          CD8_break = gate_mindensity_amy(., "CD8"),
          CD45RA_break = gate_mindensity_amy(., "CD45RA"),
          CD172_break = gate_mindensity_amy(., "CD172"),
-         SLADQ_break = gate_mindensity_amy(., "SLADQ"),
-         CCR7_break = gate_mindensity_amy(., "CCR7")) %>%
+         SLADQ_break = gate_mindensity_amy(., "SLADQ")) %>%
   select(filename, contains("break")) %>%
   unique() %>%
     print()
@@ -409,14 +412,32 @@ p5 <- separation_ggplot(pig_names, pig_names$CD172, "CD172",
                           pig_names$"CD172_break")
 p6 <- separation_ggplot(pig_names, pig_names$SLADQ, "SLADQ",
                           pig_names$"SLADQ_break")
-p7 <- separation_ggplot(pig_names, pig_names$CCR7, "CCR7",
-                          pig_names$"CCR7_break")
 
 
-grid.arrange(p1, p2, p3, p4, p5, p6, p7, 
+
+grid.arrange(p1, p2, p3, p4, p5, p6,  
              nrow = 3)
   
 }
 
+```
+
+Convert data to fe
+```{r}
+break_points <- corrected_data %>%
+  head(1) %>%
+  select(-filename) %>%
+  pivot_longer(everything(), names_to = "filename", values_to = "quantile_99") %>%
+  mutate(filename = str_replace(filename, "_break", ""))
+
+all_fe_12week <- all_data_breaks %>%
+  mutate(CD3 = fe(break_points, CD3, "CD3"),
+         CD4 = fe(break_points, CD4, "CD4"),
+         CD8 = fe(break_points, CD8, "CD8"),
+         CD45RA = fe(break_points, CD45RA, "CD45RA"),
+         SLADQ = fe(break_points, SLADQ, "SLADQ"),
+         CD172 = fe(break_points, CD172, "CD172")) %>%
+  select(filename, CD3, CD4, CD8, CD45RA, SLADQ, CD172) %>%
+  count_calc()
 ```
 
