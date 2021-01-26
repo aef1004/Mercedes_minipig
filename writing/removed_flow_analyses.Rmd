@@ -1,0 +1,92 @@
+---
+title: "Removed analyses"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r fig.width = 5.25, fig.height = 3}
+# clean up names
+all_gated_for_plot <- df_all_gated %>%
+  rename("CCR7" = "PE-Cy7-A",
+         "SLADQ" = "APC-A",
+         "CD3" = "Alexa Fluor 700-A",
+         "CD4" = "PE-Cy5-A",
+         "CD8" = "Alexa Fluor 405-A",
+         "CD172" = "Alexa Fluor 488-A",
+         "CD45RA" = "PE-A") 
+
+# initial look at CD4
+all_gated_for_plot %>%
+  filter(filename == "Pig 1817 Vaccinated_Surface_Control_001.fcs") %>%
+  ggplot(aes(x = CD4, y = `SSC-A`)) +
+   geom_hex(bins = 100) +
+   scale_fill_viridis_c() +
+  xlim(-500, 1E5)
+
+# check gate_mindensity
+
+# could add into the mindensity to not account for any values > a certain value (to remove outlier populations like in CD4)
+gate_mindensity_amy(all_gated_for_plot, "CD3") # looks ok if we only want most positive CD3
+gate_mindensity_amy(all_gated_for_plot, "CD4")
+gate_mindensity_amy(all_gated_for_plot, "CD8")
+gate_mindensity_amy(all_gated_for_plot, "CD45RA")
+gate_mindensity_amy(all_gated_for_plot, "CD172")
+gate_mindensity_amy(all_gated_for_plot, "CCR7")
+gate_mindensity_amy(all_gated_for_plot, "SLADQ")
+
+
+separation_ggplot <- function(df, x_axis, x_title) {
+  ggplot(df, aes(x = x_axis, y = `SSC-A`)) +
+   geom_hex(bins = 100) +
+   scale_fill_viridis_c() +
+   xlab(x_title) +
+   ylab("SSC-A") +
+   geom_vline(xintercept = gate_mindensity_amy(df, x_title), size = .7) +
+  theme_gray()
+}
+
+p1 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CD45RA, "CD45RA")
+p2 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CD3, "CD3")
+p3 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CD4, "CD4")
+p4 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CD8, "CD8")
+p5 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CCR7, "CCR7")
+p6 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$SLADQ, "SLADQ")
+p7 <- separation_ggplot(all_gated_for_plot, all_gated_for_plot$CD172, "CD172")
+
+
+grid.arrange(p1, p2, p3, p4, p5, p6, p7, 
+             nrow = 2)
+
+
+```
+
+
+
+
+```{r}
+# try pig 6
+
+df <- all_gated_for_plot
+channel <- "CD4"
+channel_w_o_quotes = CD4
+
+x <- df[, channel] 
+x %>%
+  filter(`CD4` >= 1E5)
+
+
+gate_mindensity_amy(all_gated_for_plot, "CD4")
+gate_mindensity_amy(all_gated_for_plot, "CD4", ignore_values = 2.4e4)
+```
+
+
+```{r}
+list_data <- all_data_breaks %>%
+  split(all_data_breaks$filename)
+
+map(list_data, ~separation_ggplot(.x, CD4, "CD4", "CD4_break"))
+```
+
