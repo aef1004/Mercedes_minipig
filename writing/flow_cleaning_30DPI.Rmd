@@ -7,7 +7,6 @@ Note that I only pulled the "Control" samples because I believe they are unstimu
 
 
 Things to do:
- - Confirm live gating
  - Figure out CD3, CD4, SLADQ gating
  
  ```{r setup, include=FALSE}
@@ -29,7 +28,7 @@ library(tibble)
 library(pheatmap)
 library(cytotypr)
 library(gridExtra)
-library(Biobasev )
+#library(Biobase)
 ```
 
 Functions for use in the gating
