@@ -3,10 +3,14 @@ title: "flow_cleaning"
 output: html_document
 ---
 
-Note that I only pulled the "Control" samples because I believe they are unstimulated
+Note that I only pulled the "Control" samples because they're unstimulated
+
+Looking at CD3 - 
+Pig 3273_Surface_Control_016.fcs
+Pig 4754_Surface_Control_028.fcs
+_016 and _028 are off based on manual gating (check initial lymph, singlet, etc.), but the other are pretty good
 
 Things to do:
- - Confirm live gating
  - Figure out CD3 gating
 
 ```{r setup, include=FALSE}
@@ -28,7 +32,7 @@ library(tibble)
 library(pheatmap)
 library(cytotypr)
 library(gridExtra)
-library(Biobase)
+#library(Biobase)
 ```
 
 Functions for use in the gating
@@ -263,7 +267,7 @@ gt_gating(initial_gate, gs)
 
 # You can plot the results of this gating with `autoplot`. For example, to plot
 # the gating for the first sample, run:
-autoplot(gs[[1]])
+autoplot(gs[[4]])
 ```
 
 ## Convert data to "tidy data" format
@@ -351,8 +355,7 @@ for(i in files) {
          CD172_break = gate_mindensity_amy(., "CD172"),
          SLADQ_break = gate_mindensity_amy(., "SLADQ")) %>%
   select(filename, contains("break")) %>%
-  unique() %>%
-    print()
+  unique() 
   
   saved_data <- rbind(saved_data, intermediate)
 }
@@ -366,8 +369,9 @@ for(i in files) {
 corrected_data <- saved_data %>%
   mutate(CD172_break = ifelse(CD172_break <2, NA, CD172_break),
          CD45RA_break = ifelse(CD45RA_break >3, NA, CD45RA_break),
-         CD4_break = ifelse(CD4_break >3, NA, CD4_break)) %>%
-  mutate(CD3_break = mean(CD3_break, na.rm = TRUE),
+         CD4_break = ifelse(CD4_break >3, NA, CD4_break),
+         CD3_break = ifelse(CD3_break <1, NA, CD3_break)) %>%
+  mutate(CD3_break = 2.2,
          CD4_break = mean(CD4_break, na.rm = TRUE),
          CD8_break = mean(CD8_break, na.rm = TRUE),
          CD45RA_break = mean(CD45RA_break, na.rm = TRUE),
@@ -380,6 +384,19 @@ Need to check each of the plots now
 ```{r}
 
 all_data_breaks <- left_join(all_gated_for_plot, corrected_data , by = "filename")
+
+
+# check the gating with the percentages
+all_data_breaks %>%
+  select(filename, CD3_break, CD3) %>%
+  group_by(filename) %>%
+  mutate(cells = 1) %>%
+  mutate(total_cells = sum(cells)) %>%
+  filter(CD3>CD3_break) %>%
+  mutate(CD3_percentage = 100*sum(cells)/total_cells) %>%
+    select(filename, CD3_percentage) %>%
+    unique()
+
 
 separation_ggplot <- function(df, x_axis, x_title, break_name) {
 
@@ -420,6 +437,7 @@ grid.arrange(p1, p2, p3, p4, p5, p6,
   
 }
 
+
 ```
 
 Convert data to fe
@@ -439,5 +457,140 @@ all_fe_12week <- all_data_breaks %>%
          CD172 = fe(break_points, CD172, "CD172")) %>%
   select(filename, CD3, CD4, CD8, CD45RA, SLADQ, CD172) %>%
   count_calc()
+
+```
+# Visulatizations
+
+Initial identification of populations plot
+
+We first want to view all of the different cell phenotypes within the data
+```{r}
+# this is the order of markers that we want for all of our plots
+order_of_markers <- c("CD3", "CD4", "CD8", "CD45RA", "SLADQ", "CD172")
+
+# to view all of the possible combinations
+total_phenotypes <- filter_for_total_pheno(all_fe_12week, marker_order = order_of_markers)
+
+heatmap_all_pheno(total_phenotypes)
+
+# gives the total number of populations
+nrow(total_phenotypes) 
+```
+
+After identifying all phenotypes, we can filter the data to see the ones that we’re interested in, for example, CD3+ cells that constitute >0.5% of total live leukocytes in a sample.
+
+
+```{r}
+# view the specific cell phenotypes we're interested in
+sample_populations <- all_fe_12week %>%
+  dplyr::filter(CD3 == 1 & percentage > 1) %>%
+  arrange(CD3, CD4, CD8) %>%
+  filter_pops() 
+
+sample_populations_all_groups <- identified_pop_perc(sample_populations, all_fe_12week, 
+                                                     marker_vector = order_of_markers) %>%
+  mutate(filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+simple_pop_df <- sample_populations %>%
+  column_to_rownames("population") 
+
+simple_pop_df %>%
+  dplyr::select(all_of(order_of_markers)) %>%
+  mutate_all(~convert_factor_numeric(.)) %>%
+    pheatmap::pheatmap(cluster_rows = FALSE, cluster_cols = FALSE,
+             labels_row = rownames(simple_pop_df),
+             cellwidth = 15, cellheight = 15, angle_col = 45, 
+             color = c("#3F4788FF", "#56C667FF"), cutree_rows = 2, legend = FALSE)
+```
+
+Correlation Plot
+```{r}
+corr <- calc_corr(sample_populations_all_groups)
+
+melted_corr <- format_corr(corr)
+  
+plot_corr(melted_corr) +
+    ggplot2::xlab("Populations") +
+    ggplot2::ylab("Populations") +
+    ggplot2::labs(fill = "Correlation") 
+```
+
+```{r}
+ggplot(sample_populations_all_groups, aes(x = vaccine_status, y = percentage, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_point() +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+
+pops_for_plots_average <- sample_populations_all_groups %>%
+  dplyr::group_by(population, vaccine_status) %>%
+  dplyr::summarise(average_percent = mean(percentage))
+
+ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_bar(stat = "identity") +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+```
+
+There are no statistically significant differences
+```{r}
+library(purrr)
+library(tidyr)
+library(broom)
+
+sample_populations_all_groups %>%
+  group_by(population) %>%
+  do(tidy(t.test(percentage ~ vaccine_status, data = .))) %>%
+  filter(p.value<0.05)
+```
+
+Singular Markers Expression
+```{r}
+expression <- all_fe_12week %>%
+  gather(key = marker, value = expression, -filename, -cell_no, -total_count_by_file, -percentage)%>%
+  group_by(filename, marker, expression) %>%
+  summarise(cells_per_marker = sum(cell_no)) %>%
+  ungroup %>%
+  group_by(filename, marker) %>%
+  mutate(total_cells = sum(cells_per_marker),
+         percent_per_marker = 100*cells_per_marker/total_cells) %>%
+  ungroup()%>%
+  mutate(filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+expression_plot <- expression %>%
+  dplyr::group_by(vaccine_status, marker, expression) %>%
+  dplyr::mutate(average_percent_per_marker = mean(percent_per_marker)) %>%
+  dplyr::filter(expression == 1) %>%
+  select( -cells_per_marker, -total_cells, -percent_per_marker) %>%
+  unique()
+
+
+# all groups together
+ggplot(expression_plot, aes(x = vaccine_status,
+                                 y = average_percent_per_marker, group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_point() +
+  facet_wrap("marker") +
+  xlab("Days Post-Infection") +
+  ylab("Average Percent of Cells Expressing Marker") +
+  theme_gray() +
+    theme(axis.text.x = element_text(angle = 45, size = 13, hjust = 1),
+        axis.text.y = element_text(size = 13),
+        strip.text.x = element_text(size = 10),
+        axis.title = element_text(size = 17),
+        title = element_text(size = 20),
+        legend.text = element_text(size=18),
+        legend.key.size = unit(1.5, "line"))
 ```
 
