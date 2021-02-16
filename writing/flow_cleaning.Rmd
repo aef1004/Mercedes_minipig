@@ -10,8 +10,6 @@ Pig 3273_Surface_Control_016.fcs
 Pig 4754_Surface_Control_028.fcs
 _016 and _028 are off based on manual gating (check initial lymph, singlet, etc.), but the other are pretty good
 
-Things to do:
- - Figure out CD3 gating
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -336,7 +334,6 @@ all_gated_for_plot <- all_gated_df %>%
 So I think we will need to gate each sample on it's own data (Gate Pig 1817 only on Pig 1817 data) rather than combining all of the samples together 
 
 Calculate the breaks for each sample
-**Looks like CD3 is the only potential problem right now..**
 ```{r}
 
 files <- unique(all_gated_for_plot$filename)
@@ -542,7 +539,7 @@ ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent,
 
 ```
 
-There are no statistically significant differences
+There are no statistically significant differences...
 ```{r}
 library(purrr)
 library(tidyr)

@@ -4,7 +4,9 @@ output: html_document
 ---
 
 Note that I only pulled the "Control" samples because I believe they are unstimulated
+*Remove CCR7*
 
+CD8 is different based on the sample
 
 Things to do:
  - Figure out CD3, CD4, SLADQ gating
@@ -369,7 +371,7 @@ corrected_data <- saved_data %>%
          CD172_break = ifelse(CD172_break <2, NA, CD172_break),
          CD45RA_break = ifelse(CD45RA_break <1 | CD45RA_break >4, NA, CD45RA_break),
          SLADQ_break = ifelse(SLADQ_break <2.5, NA, SLADQ_break)) %>%
-  mutate(CD3_break = mean(CD3_break, na.rm = TRUE),
+  mutate(CD3_break = 2.2,
          CD4_break = mean(CD4_break, na.rm = TRUE),
          CD8_break = mean(CD8_break, na.rm = TRUE),
          CD45RA_break = mean(CD45RA_break, na.rm = TRUE),
