@@ -455,6 +455,7 @@ all_fe_12week <- all_data_breaks %>%
   select(filename, CD3, CD4, CD8, CD45RA, SLADQ, CD172) %>%
   count_calc()
 
+save(all_fe_12week, file = "../data/all_fe_12week")
 ```
 # Visulatizations
 
@@ -539,11 +540,13 @@ ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent,
 
 ```
 
+T-test
 There are no statistically significant differences...
 ```{r}
 library(purrr)
 library(tidyr)
 library(broom)
+
 
 sample_populations_all_groups %>%
   group_by(population) %>%
