@@ -1,0 +1,183 @@
+---
+title: "Compare_timepoints"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+load("../data/all_fe_30DPI")
+load("../data/all_fe_12week")
+
+all_fe_30DPI
+all_fe_12week
+
+all_fe <- rbind(all_fe_12week, all_fe_30DPI)
+```
+
+# Visulatizations
+
+Initial identification of populations plot
+
+We first want to view all of the different cell phenotypes within the data
+```{r}
+# this is the order of markers that we want for all of our plots
+order_of_markers <- c("CD3", "CD4", "CD8", "CD45RA", "SLADQ", "CD172")
+
+# to view all of the possible combinations
+total_phenotypes <- filter_for_total_pheno(all_fe, marker_order = order_of_markers)
+
+heatmap_all_pheno(total_phenotypes)
+
+# gives the total number of populations
+nrow(total_phenotypes) 
+```
+
+After identifying all phenotypes, we can filter the data to see the ones that we’re interested in, for example, CD3+ cells that constitute >0.5% of total live leukocytes in a sample.
+
+
+```{r fig.height=2, fig.width = 1}
+# view the specific cell phenotypes we're interested in
+sample_populations <- all_fe %>%
+  dplyr::filter(CD3 == 1 & percentage > 1) %>%
+  arrange(CD3, CD4, CD8) %>%
+  filter_pops() 
+
+sample_populations_all_groups <- identified_pop_perc(sample_populations, all_fe, 
+                                                     marker_vector = order_of_markers) %>%
+  mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
+         timepoint = str_extract(filename, "[:alnum:]*_"),
+         timepoint = str_replace(timepoint, "_", ""),
+         filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+simple_pop_df <- sample_populations %>%
+  column_to_rownames("population") 
+
+simple_pop_df %>%
+  dplyr::select(all_of(order_of_markers)) %>%
+  mutate_all(~convert_factor_numeric(.)) %>%
+    pheatmap::pheatmap(cluster_rows = FALSE, cluster_cols = FALSE,
+             labels_row = rownames(simple_pop_df),
+             cellwidth = 15, cellheight = 15, angle_col = 45, 
+             color = c("#3F4788FF", "#56C667FF"), cutree_rows = 2, legend = FALSE)
+```
+
+Correlation Plot
+```{r}
+corr <- calc_corr(sample_populations_all_groups)
+
+melted_corr <- format_corr(corr)
+  
+plot_corr(melted_corr) +
+    ggplot2::xlab("Populations") +
+    ggplot2::ylab("Populations") +
+    ggplot2::labs(fill = "Correlation") 
+```
+
+Look at percentages
+**Note I need to separate out the time and vaccine status (4 groups)
+```{r}
+ggplot(sample_populations_all_groups, aes(x = timepoint, y = percentage, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_point() +
+  geom_line()
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Timepoint") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+
+pops_for_plots_average <- sample_populations_all_groups %>%
+  dplyr::group_by(population, vaccine_status) %>%
+  dplyr::summarise(average_percent = mean(percentage))
+
+ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_bar(stat = "identity") +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+```
+
+Anova and Tukey HSD
+
+There are differences between the timepoints
+
+**Note I might actually want to do a paired analysis here...**
+```{r}
+library(purrr)
+library(tidyr)
+library(broom)
+
+
+sample_populations_all_groups %>%
+  unite(group, c(timepoint, vaccine_status)) %>%
+  mutate(group = as.factor(group)) %>%
+  group_by(population) %>%
+  nest() %>%
+  mutate(aov_result = map(data, ~aov(percentage ~ group, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(population, contrast, adj.p.value) %>%
+  arrange(paste0("Pop", c(1:length(adj.p.value))))
+```
+
+Look at specific phenotypes (double negative, CD4+ CD8+ and double positive
+
+)
+```{r}
+
+save_for_phenotypes <- all_fe %>%
+  mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
+         timepoint = str_extract(filename, "[:alnum:]*_"),
+         timepoint = str_replace(timepoint, "_", ""),
+         filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+
+
+# look at specific phenotypes (multiple markers)
+look_multiple_markers <- function(df, marker, pheno_name) {
+  #marker = as.name(marker) # because calling a specific marker
+  
+  marker_alone <- maker_percent<- NULL # because creating a new column
+  
+  df %>%
+    rename(group = vaccine_status) %>%
+    group_by(group, filename, timepoint) %>%
+    filter_(marker) %>%
+    mutate(marker_alone = sum(cell_no)) %>%
+    select(group, filename, timepoint, marker_alone, total_count_by_file) %>%
+    unique() %>%
+    mutate(marker_percent = 100*marker_alone/total_count_by_file) %>%
+  ungroup() %>%
+  select(group, filename, timepoint, marker_percent) %>%
+    mutate(phenotype = pheno_name)
+}
+
+# CD4
+pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1"), "CD4_Tcell")
+
+
+save_for_phenotypes %>%
+    rename(group = vaccine_status) %>%
+    group_by(group, filename, timepoint) %>%
+    filter_(c("CD3 == 1 & CD4 == 1")) %>%
+    mutate(phenotype_cells = sum(cell_no)) %>%
+    select(group, filename, timepoint, phenotype_cells, total_count_by_file) %>%
+    unique() %>%
+    mutate(marker_percent = 100*phenotype_cells/total_count_by_file) %>%
+  ungroup() %>%
+  select(group, filename, timepoint, marker_percent) %>%
+    mutate(phenotype = pheno_name)
+```

@@ -557,7 +557,7 @@ expression_plot <- expression %>%
   dplyr::group_by(vaccine_status, marker, expression) %>%
   dplyr::mutate(average_percent_per_marker = mean(percent_per_marker)) %>%
   dplyr::filter(expression == 1) %>%
-  select( -cells_per_marker, -total_cells, -percent_per_marker) %>%
+  select(-filename, -cells_per_marker, -total_cells, -percent_per_marker) %>%
   unique()
 
 
