@@ -23,3 +23,11 @@ PE Cy5 = CD4
 Alexa 405 = CD8
 Alexa 488 = CD127 - IL-7  receptor
 PE = CD45RA
+
+Vaccine Status
+```{r}
+data.frame(Pig = c("Pig 9947", "Pig 1817", "Pig 6059", "Pig 4515", "Pig 5273", "Pig 3273", "Pig 4754", "Pig 7488", "Pig 7554", "Pig 9739"),
+           VaccineStatus = c(rep("vaccinated", 5), rep("control", 5)))
+
+```
+
