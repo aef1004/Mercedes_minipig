@@ -85,7 +85,7 @@ ggplot(sample_populations_all_groups, aes(x = timepoint, y = percentage,
                                    group = vaccine_status, color = vaccine_status)) +
   scale_fill_identity() +
   geom_point() +
-  geom_line()
+  geom_line() +
   facet_wrap("population", scales = "free",  labeller = label_both) +
   xlab("Timepoint") +
   ylab("Average Percent of Total Live Leukocytes") +
@@ -166,18 +166,107 @@ look_multiple_markers <- function(df, marker, pheno_name) {
 }
 
 # CD4
-pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1"), "CD4_Tcell")
+pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 0"), "CD4_Tcell")
+
+pheno_2 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 1"), "CD8_Tcell")
+
+pheno_3 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 0"), "DN_Tcell")
+
+pheno_4 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 1"), "DP_Tcell")
 
 
-save_for_phenotypes %>%
-    rename(group = vaccine_status) %>%
-    group_by(group, filename, timepoint) %>%
-    filter_(c("CD3 == 1 & CD4 == 1")) %>%
-    mutate(phenotype_cells = sum(cell_no)) %>%
-    select(group, filename, timepoint, phenotype_cells, total_count_by_file) %>%
-    unique() %>%
-    mutate(marker_percent = 100*phenotype_cells/total_count_by_file) %>%
-  ungroup() %>%
-  select(group, filename, timepoint, marker_percent) %>%
-    mutate(phenotype = pheno_name)
+all_phenotypes <- rbind(pheno_1, pheno_2, pheno_3, pheno_4)
 ```
+
+Look at statistical analysis
+```{r}
+
+
+all_phenotypes%>%
+  group_by(timepoint, phenotype) %>%
+  do(tidy(t.test(marker_percent ~ group, data = .))) %>%
+  filter(p.value<0.05)
+
+
+library(rstatix)
+
+all_phenotypes%>%
+  group_by(timepoint, phenotype) %>%
+  tukey_hsd(marker_percent ~ group) 
+
+all_phenotypes %>%
+  select(-filename) %>%
+  unique()
+
+
+```
+
+Try to tie in some data on metabolomics
+```{r}
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
+flow_metabolites <- all_phenotypes %>%
+  unite("full_name", c(filename, timepoint)) %>%
+  mutate(full_name = str_replace(full_name, " ", "_"),
+         full_name = str_replace(full_name, "Pig", "Minipig"),
+         full_name = str_replace(full_name, "Week12", "12wks"),
+         full_name = str_replace(full_name, "D30DPI", "30DPI")) %>%
+  left_join(metabolites, by = "full_name") 
+
+
+
+fitted_models <- flow_metabolites %>%
+  filter(phenotype == "CD4_Tcell") %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(marker_percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+  
+
+values_for_plot <- fitted_models %>%
+  mutate(p.val.adj = p.adjust(p.value, method = "BH", 
+                              n = length(fitted_models$p.value))) 
+
+values_for_plot %>%
+  mutate("Significance" = p.val.adj < 0.05) %>%
+  rename("p-value" = p.value,
+         "Adjusted p-value" = p.val.adj) 
+
+# Metabolites 663, 666, 863, 867, 1806
+save_for_plot <- fitted_models %>%
+  filter(adj.r.squared >0.5)
+
+r_labeling <- left_join(save_for_plot, flow_metabolites, by = "metaboliteID") %>%
+  group_by(metaboliteID) %>%
+  mutate(x_axis_label = min(marker_percent) + (max(marker_percent) - min(marker_percent))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID, group, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+
+# plot after I bring down the number of metabolites to a reasonable number
+flow_metabolites %>%
+  filter(phenotype == "CD4_Tcell") %>%
+  filter(metaboliteID == 663 | metaboliteID == 666 | metaboliteID == 863 | metaboliteID ==867 | metaboliteID ==1806) %>%
+ggplot(aes(x = marker_percent, y = metabolite_expression, color = group)) +
+  geom_point() +
+  geom_smooth(aes(x = marker_percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(data = r_labeling, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle("Metabolite Correlations with CD4 T Cell Percentages")
+
+values_for_plot %>%
+  filter(p.val.adj<0.05)
+```
+
