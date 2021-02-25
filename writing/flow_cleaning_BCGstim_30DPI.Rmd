@@ -1,0 +1,670 @@
+---
+title: "flow_cleaning_BCGstim_30DPI"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message = FALSE}
+library(data.table)
+library(openCyto)
+library(ncdfFlow)
+library(flowWorkspace)
+library(dplyr)
+library(ggcyto)
+library(stringr) 
+library(scales)
+library(tidyr)
+library(superheat)
+library(tibble)
+library(pheatmap)
+library(cytotypr)
+library(gridExtra)
+#library(Biobase)
+```
+
+Functions for use in the gating
+
+```{r}
+
+.between_interval <- function(x, interval) {
+  x <- x[findInterval(x, interval) == 1]
+  if (length(x) == 0) {
+    x <- NA
+  }
+  x
+}
+
+
+# this function is from OpenCyto Github RGLab https://github.com/RGLab/openCyto/blob/0ec1218427627b9ee092f8d39e6ab46d46e7e2f8/R/bayes-flowClust.R
+.find_peaks <- function(x, y = NULL, num_peaks = NULL, adjust = 2, plot = FALSE, ...) {
+  x <- as.vector(t(x)) # AMY changed: have to transpose data so that it can find length
+  if (length(x) < 2) {
+    warning("At least 2 observations must be given in 'x' to find peaks.")
+    return(NA)
+  }
+  if (is.null(y)) {
+    dens <- density(x, adjust = adjust, ...)
+  } else {
+    y <- as.vector(y)
+    if (length(x) != length(y)) {
+      stop("The lengths of 'x' and 'y' must be equal.")
+    }
+    dens <- list(x = x, y = y)
+  }
+  # Discrete analogue to a second derivative applied to the KDE. See details.
+  second_deriv <- diff(sign(diff(dens$y)))
+  which_maxima <- which(second_deriv == -2) + 1
+  # The 'density' function can consider observations outside the observed range.
+  # In rare cases, this can actually yield peaks outside this range.  We remove
+  # any such peaks.
+  which_maxima <- which_maxima[findInterval(dens$x[which_maxima], range(x)) == 1]
+  # Next, we sort the peaks in descending order based on the density heights.
+  which_maxima <- which_maxima[order(dens$y[which_maxima], decreasing = TRUE)]
+  
+  # Returns the local maxima. If there are none, we return 'NA' instead.
+  if (length(which_maxima) > 0) {
+    peaks <- dens$x[which_maxima]
+    if (is.null(num_peaks) || num_peaks > length(peaks)) {
+      num_peaks <- length(peaks)
+    }
+    peaks <- peaks[seq_len(num_peaks)]
+  } else {
+    peaks <- NA
+  }
+  
+  peaks <- data.frame(x = peaks, y = dens$y[which_maxima][seq_len(num_peaks)])
+  if(plot){
+    plot(dens, main = paste("adjust =" ,  adjust))
+    points(peaks, ,col = "red")  
+  }
+  
+  peaks  
+}
+# this function is from OpenCyto Github RGLab https://github.com/RGLab/openCyto/blob/0ec1218427627b9ee092f8d39e6ab46d46e7e2f8/R/bayes-flowClust.R
+.find_valleys <- function(x, y = NULL, num_valleys = NULL, adjust = 2, ...) {
+  x <- as.vector(t(x))
+  if (length(x) < 2) {
+    warning("At least 2 observations must be given in 'x' to find valleys.")
+    return(NA)
+  }
+  
+  if (is.null(y)) {
+    dens <- density(x, adjust = adjust, ...)
+  } else {
+    y <- as.vector(y)
+    if (length(x) != length(y)) {
+      stop("The lengths of 'x' and 'y' must be equal.")
+    }
+    dens <- list(x = x, y = y)
+  }
+  # Discrete analogue to a second derivative applied to the KDE. See details.
+  second_deriv <- diff(sign(diff(dens$y)))
+  which_minima <- which(second_deriv == 2) + 1
+  # The 'density' function can consider observations outside the observed range.
+  # In rare cases, this can actually yield valleys outside this range. We remove
+  # any such valleys.
+  which_minima <- which_minima[findInterval(dens$x[which_minima], range(x)) == 1]
+  # Next, we sort the valleys in descending order based on the density heights.
+  which_minima <- which_minima[order(dens$y[which_minima], decreasing = FALSE)]
+  # Returns the local minima. If there are none, we return 'NA' instead.
+  if (length(which_minima) > 0) {
+    valleys <- dens$x[which_minima]
+    if (is.null(num_valleys) || num_valleys > length(valleys)) {
+      num_valleys <- length(valleys)
+    }
+    valleys <- valleys[seq_len(num_valleys)]
+  } else {
+    valleys <- NA
+  }
+  valleys
+}
+
+gate_mindensity_amy <- function(df, channel, filterId = "", positive = TRUE, ignore_values = NULL,
+                                marker = NULL,
+                       pivot = FALSE, gate_range = NULL, min = NULL, max = NULL,
+                       peaks = NULL, ...) {
+  
+  library(rlang)
+  #marker <- as.name(marker)
+  
+  if (missing(channel) || length(channel) != 1) {
+    stop("A single channel must be specified.")
+  }
+  # Filter out values less than the minimum and above the maximum, if they are
+  # given.
+  # I altered this to take in a dataframe rather than fcs file
+  x <- df[, channel]
+  
+  if(is.null(ignore_values)) {
+    x <- x
+  } else{
+    x <- x %>%
+      filter(CD4 <= ignore_values)
+  }
+    
+  
+  if(is.null(peaks))
+    peaks <- .find_peaks(x)[, "x"]
+  
+  if (is.null(gate_range)) {
+    gate_range <- c(min(x), max(x))
+  } else {
+    gate_range <- sort(gate_range)
+  }
+  
+  
+  # In the special case that there is only one peak, we are conservative and set
+  # the cutpoint as min(x) if 'positive' is TRUE, and max(x) otherwise.
+  if (length(peaks) == 1) {
+    cutpoint <- ifelse(positive, gate_range[1], gate_range[2])
+  } else {
+    # The cutpoint is the deepest valley between the two peaks selected. In the
+    # case that there are no valleys (i.e., if 'x_between' has an insufficient
+    # number of observations), we are conservative and set the cutpoint as the
+    # minimum value if 'positive' is TRUE, and the maximum value otherwise.
+    valleys <- try(.find_valleys(x), silent = TRUE)
+    valleys <- .between_interval(x = valleys, interval = gate_range)
+    if (any(is.na(valleys))) {
+    #FIXME:currently it is still returning the first peak,
+    #we want to pass density instead of x_between to 'min'
+    #because x_between is the signal values
+      cutpoint <- ifelse(positive, gate_range[1], gate_range[2])
+    } else if (length(valleys) == 1) {
+      cutpoint <- as.vector(valleys)
+    } else if (length(valleys) > 1) {
+      # If there are multiple valleys, we determine the deepest valley between
+      # the two largest peaks.
+      peaks <- sort(peaks[1:2])
+      cutpoint <- .between_interval(valleys, peaks)[1]
+      # If none of the valleys detected are between the two largest peaks, we
+      # select the deepest valley.
+      if (is.na(cutpoint)) {
+        cutpoint <- valleys[1]
+      }      
+    }
+  }
+  gate_coordinates <- ifelse(positive, list(c(cutpoint, Inf)), list(c(-Inf, cutpoint)))
+  
+  names(gate_coordinates) <- channel
+  
+  rectangleGate(gate_coordinates, filterId = filterId)
+  
+  # I added in the print(cutpoint)
+  print(cutpoint)
+  
+}
+
+```
+
+
+# Pre-infection
+Read in the initial gating strategy, which gates to live lymphocytes, into a `gatingTemplate` class.
+
+```{r}
+# Identify the file with the gating strategy 
+ws <- list.files("../data/", 
+                 pattern = "amy_gating_strategy.csv", 
+                 full = TRUE)
+
+ws
+```
+
+```{r}
+# View this template
+dtTemplate <- fread(ws)
+dtTemplate
+```
+
+```{r message = FALSE, warning = FALSE}
+# Read in the gating strategy to a 'gatingTemplate' object
+initial_gate <- gatingTemplate(ws) 
+plot(initial_gate)
+```
+
+###  Read in Pre-infection data
+```{r}
+# Identify the file names of all 20 FCS flow cytometry experiments to 
+# read in. 
+
+fcsFiles <- list.files("../data/BCG_Stim/Surface_30_DPI", full = TRUE)
+fcsFiles
+
+
+```
+
+```{r}
+# Read these files into a 'ncdfFlowSet' object. This will taken a minute
+# or so to run. The resulting 'ncdfFlowset' object contains row names with the 
+# individual samples and column names with the markers/parameters used in the flow cytometer.
+ncfs <- read.ncdfFlowSet(fcsFiles) 
+ncfs
+```
+
+Apply the initial gating to filter the data to only measurements on live lymphocyte cells.
+
+```{r}
+# Convert to a 'GatingSet' object, so we can apply the initial gating to this data.
+gs <- GatingSet(ncfs)
+gs
+```
+
+```{r fig.height = 8, fig.width = 4}
+# Apply the initial gating to this data, to filter to only measurements
+# on live lymphocyte cells. This may take a minute.
+gt_gating(initial_gate, gs)
+
+# You can plot the results of this gating with `autoplot`. For example, to plot
+# the gating for the first sample, run:
+autoplot(gs[[1]])
+```
+
+## Convert data to "tidy data" format
+
+Now that the initial gating has been applied, to limit the data to measurements oflive, singlet lymphocyte cells, we convert the data to a "tidy data" format, to allow us to work with "tidyverse" tools for further analysis and visualization.
+
+```{r}
+# Pull out the data from the 'live' node of the gating set (the last node
+# in the initial gating strategy).
+flowset_gated_data <- gs_pop_get_data(gs, "live") %>% 
+  cytoset_to_flowSet() 
+
+# tidy the flowset and convert to a dataframe
+df_all_gated <-  tidy_flow_set(flowset_gated_data) %>%
+   na.omit() %>%
+  dplyr::filter(`SSC-A` != max(`SSC-A`))
+
+unique(df_all_gated$filename)
+
+```
+
+## Clear separation of populations --> Gate with minimum density between + and - populations
+
+We're basically looking at gating 7 different markers
+
+# Try what I did in cyto-fe paper for clinical data
+
+Note I removed CCR7 because there is not a difference in two populations
+```{r}
+gated_data <- flowset_gated_data
+
+gated_data[[1]]
+# initialize the gated data df
+all_gated_df = data.frame()
+
+# logicle transform of data in the listed channels 
+# convert each of the FMO files to a data frame, adding on the filename
+# bind all of the FMO files into one dataframe (though there is only 1 file)
+for (i in 1:length(gated_data)) {
+  lgcl <- estimateLogicle(gated_data[[i]], channels = c("Alexa Fluor 488-A", "PE-A", "PE-Cy5-A",
+                                                        "PE-Cy7-A", "APC-A", "Alexa Fluor 700-A",
+                                                        "Alexa Fluor 405-A"))
+  
+  gated_data_test <- transform(gated_data[[i]], lgcl) %>%
+    Biobase::exprs() %>%
+    data.frame() %>%
+    mutate(filename = sampleNames(gated_data[i])) 
+  
+  all_gated_df <- rbind(all_gated_df, gated_data_test)
+}
+
+
+all_gated_for_plot <- all_gated_df %>%
+  rename("CCR7" = "PE.Cy7.A",
+         "SLADQ" = "APC.A",
+         "CD3" = "Alexa.Fluor.700.A",
+         "CD4" = "PE.Cy5.A",
+         "CD8" = "Alexa.Fluor.405.A",
+         "CD172" = "Alexa.Fluor.488.A",
+         "CD45RA" = "PE.A") %>%
+  select(-CCR7)
+
+
+```
+
+So I think we will need to gate each sample on it's own data (Gate Pig 1817 only on Pig 1817 data) rather than combining all of the samples together 
+
+Calculate the breaks for each sample
+
+```{r}
+
+files <- unique(all_gated_for_plot$filename)
+
+saved_data <- data.frame()
+for(i in files) {
+  
+  pig <- all_gated_for_plot %>%
+    filter(filename == i) 
+   
+  intermediate <- pig %>% 
+  mutate(CD3_break = gate_mindensity_amy(., "CD3"),
+         CD4_break = gate_mindensity_amy(., "CD4"),
+         CD8_break = gate_mindensity_amy(., "CD8"),
+         CD45RA_break = gate_mindensity_amy(., "CD45RA"),
+         CD172_break = gate_mindensity_amy(., "CD172"),
+         SLADQ_break = gate_mindensity_amy(., "SLADQ")) %>%
+  select(filename, contains("break")) %>%
+  unique() %>%
+    print()
+  
+  saved_data <- rbind(saved_data, intermediate)
+}
+
+# I checked for outliers and compared the data to manual gating - in the case of CD172, there was only 1 pig for which the break point was <2, so I found an average of all of the other data points to replace it
+
+# for CD4 and CD45RA, when the break point was >3, there was basically no data that was gated, when we know that there is a clear population separation at a lower range (based on manual gating and just visualization of the populations) - again, I found the average of all of the other values
+
+# I think I should actually find the average of all of the samples and keep the gating consistent
+
+corrected_data <- saved_data %>%
+  mutate(CD4_break = ifelse(CD4_break >3, NA, CD4_break),
+         CD8_break = ifelse(CD8_break <1, NA, CD8_break),
+         CD172_break = ifelse(CD172_break <2, NA, CD172_break),
+         CD45RA_break = ifelse(CD45RA_break <1 | CD45RA_break >4, NA, CD45RA_break),
+         SLADQ_break = ifelse(SLADQ_break <2.5 | SLADQ_break >4, NA, SLADQ_break)) %>%
+  mutate(CD3_break = 2.3,
+         CD4_break = mean(CD4_break, na.rm = TRUE),
+         CD8_break = mean(CD8_break, na.rm = TRUE),
+         CD45RA_break = 2.2,
+         CD172_break = 2.2,
+         SLADQ_break = 2.5)
+```
+
+
+```{r}
+all_data_breaks <- left_join(all_gated_for_plot, corrected_data , by = "filename")
+
+unique(all_data_breaks$filename)
+# check the gating with the percentages
+
+
+all_data_breaks %>%
+  select(filename, CD4_break, CD4) %>%
+  group_by(filename) %>%
+  mutate(cells = 1) %>%
+  mutate(total_cells = sum(cells)) %>%
+  filter(CD4>CD4_break) %>%
+  mutate(interested_percentage = 100*sum(cells)/total_cells) %>%
+    select(filename, interested_percentage) %>%
+    unique()
+```
+
+Need to check each of the plots now
+
+```{r}
+
+separation_ggplot <- function(df, x_axis, x_title, break_name) {
+
+  ggplot(df, aes(x = x_axis, y = `SSC.A`)) +
+   geom_hex(bins = 100) +
+   scale_fill_viridis_c() +
+   xlab(x_title) +
+   ylab("SSC-A") +
+    ggtitle(df$filename) +
+   geom_vline(xintercept = break_name, size = .7) +
+  theme_gray()
+}
+
+
+for(i in files) {
+  
+  pig_names <- all_data_breaks %>%
+    filter(filename == i)
+  
+  p1 <- separation_ggplot(pig_names, pig_names$CD3, "CD3",
+                          pig_names$"CD3_break")
+  
+  p2 <- separation_ggplot(pig_names, pig_names$CD4, "CD4",
+                          pig_names$"CD4_break")
+p3 <- separation_ggplot(pig_names, pig_names$CD8, "CD8",
+                          pig_names$"CD8_break")
+p4 <- separation_ggplot(pig_names, pig_names$CD45RA, "CD45RA",
+                          pig_names$"CD45RA_break")
+p5 <- separation_ggplot(pig_names, pig_names$CD172, "CD172",
+                          pig_names$"CD172_break")
+p6 <- separation_ggplot(pig_names, pig_names$SLADQ, "SLADQ",
+                          pig_names$"SLADQ_break")
+
+
+grid.arrange(p1, p2, p3, p4, p5, p6, 
+             nrow = 3)
+  
+}
+
+```
+
+Convert data to fe
+```{r}
+break_points <- corrected_data %>%
+  head(1) %>%
+  select(-filename) %>%
+  pivot_longer(everything(), names_to = "filename", values_to = "quantile_99") %>%
+  mutate(filename = str_replace(filename, "_break", ""))
+
+all_fe_BCG_30DPI <- all_data_breaks %>%
+  mutate(CD3 = fe(break_points, CD3, "CD3"),
+         CD4 = fe(break_points, CD4, "CD4"),
+         CD8 = fe(break_points, CD8, "CD8"),
+         CD45RA = fe(break_points, CD45RA, "CD45RA"),
+         SLADQ = fe(break_points, SLADQ, "SLADQ"),
+         CD172 = fe(break_points, CD172, "CD172")) %>%
+  select(filename, CD3, CD4, CD8, CD45RA, SLADQ, CD172) %>%
+  count_calc()
+
+save(all_fe_BCG_30DPI, file = "../data/all_fe_BCG_30DPI")
+```
+
+# Visulatizations
+
+Initial identification of populations plot
+
+We first want to view all of the different cell phenotypes within the data
+```{r}
+# this is the order of markers that we want for all of our plots
+order_of_markers <- c("CD3", "CD4", "CD8", "CD45RA", "SLADQ", "CD172")
+
+# to view all of the possible combinations
+total_phenotypes <- filter_for_total_pheno(all_fe_BCG_30DPI, marker_order = order_of_markers)
+
+heatmap_all_pheno(total_phenotypes)
+
+# gives the total number of populations
+nrow(total_phenotypes) 
+```
+
+After identifying all phenotypes, we can filter the data to see the ones that we’re interested in, for example, CD3+ cells that constitute >0.5% of total live leukocytes in a sample.
+
+
+```{r}
+# view the specific cell phenotypes we're interested in
+sample_populations <- all_fe_BCG_30DPI %>%
+  dplyr::filter(CD3 == 1 & percentage > 1) %>%
+  arrange(CD3, CD4, CD8) %>%
+  filter_pops() 
+
+sample_populations_all_groups <- identified_pop_perc(sample_populations, all_fe_BCG_30DPI, 
+                                                     marker_vector = order_of_markers) %>%
+  mutate(filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+simple_pop_df <- sample_populations %>%
+  column_to_rownames("population") 
+
+simple_pop_df %>%
+  dplyr::select(all_of(order_of_markers)) %>%
+  mutate_all(~convert_factor_numeric(.)) %>%
+    pheatmap::pheatmap(cluster_rows = FALSE, cluster_cols = FALSE,
+             labels_row = rownames(simple_pop_df),
+             cellwidth = 15, cellheight = 15, angle_col = 45, 
+             color = c("#3F4788FF", "#56C667FF"), cutree_rows = 2, legend = FALSE)
+```
+
+Correlation Plot
+```{r}
+corr <- calc_corr(sample_populations_all_groups)
+
+melted_corr <- format_corr(corr)
+  
+plot_corr(melted_corr) +
+    ggplot2::xlab("Populations") +
+    ggplot2::ylab("Populations") +
+    ggplot2::labs(fill = "Correlation") 
+```
+
+```{r}
+ggplot(sample_populations_all_groups, aes(x = vaccine_status, y = percentage, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_point() +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+
+pops_for_plots_average <- sample_populations_all_groups %>%
+  dplyr::group_by(population, vaccine_status) %>%
+  dplyr::summarise(average_percent = mean(percentage))
+
+ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent, 
+                                   group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_bar(stat = "identity") +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
+```
+
+T-test
+There are no statistically significant differences...
+```{r}
+library(purrr)
+library(tidyr)
+library(broom)
+
+sample_populations_all_groups %>%
+  group_by(population) %>%
+  do(tidy(t.test(percentage ~ vaccine_status, data = .))) %>%
+  filter(p.value<0.05)
+```
+
+Singular Markers Expression
+```{r}
+expression <- all_fe_BCG_30DPI %>%
+  gather(key = marker, value = expression, -filename, -cell_no, -total_count_by_file, -percentage)%>%
+  group_by(filename, marker, expression) %>%
+  summarise(cells_per_marker = sum(cell_no)) %>%
+  ungroup %>%
+  group_by(filename, marker) %>%
+  mutate(total_cells = sum(cells_per_marker),
+         percent_per_marker = 100*cells_per_marker/total_cells) %>%
+  ungroup()%>%
+  mutate(filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+expression %>%
+  filter(expression == "1") %>%
+  group_by(marker) %>%
+  do(tidy(t.test(percent_per_marker ~ vaccine_status, data = .))) %>%
+  filter(p.value<0.05)
+
+expression_plot <- expression %>%
+  dplyr::group_by(vaccine_status, marker, expression) %>%
+  dplyr::mutate(average_percent_per_marker = mean(percent_per_marker)) %>%
+  dplyr::filter(expression == 1) %>%
+  select(-filename, -cells_per_marker, -total_cells, -percent_per_marker) %>%
+  unique()
+
+
+# all groups together
+ggplot(expression_plot, aes(x = vaccine_status,
+                                 y = average_percent_per_marker, group = vaccine_status, color = vaccine_status)) +
+  scale_fill_identity() +
+  geom_point() +
+  facet_wrap("marker") +
+  xlab("Days Post-Infection") +
+  ylab("Average Percent of Cells Expressing Marker") +
+  theme_gray() +
+    theme(axis.text.x = element_text(angle = 45, size = 13, hjust = 1),
+        axis.text.y = element_text(size = 13),
+        strip.text.x = element_text(size = 10),
+        axis.title = element_text(size = 17),
+        title = element_text(size = 20),
+        legend.text = element_text(size=18),
+        legend.key.size = unit(1.5, "line"))
+```
+
+```{r}
+
+save_for_phenotypes <- all_fe_BCG_30DPI %>%
+  mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
+         timepoint = str_extract(filename, "[:alnum:]*_"),
+         timepoint = str_replace(timepoint, "_", ""),
+         filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+
+
+# look at specific phenotypes (multiple markers)
+look_multiple_markers <- function(df, marker, pheno_name) {
+  #marker = as.name(marker) # because calling a specific marker
+  
+  marker_alone <- maker_percent<- NULL # because creating a new column
+  
+  df %>%
+    rename(group = vaccine_status) %>%
+    group_by(group, filename, timepoint) %>%
+    filter_(marker) %>%
+    mutate(marker_alone = sum(cell_no)) %>%
+    select(group, filename, timepoint, marker_alone, total_count_by_file) %>%
+    unique() %>%
+    mutate(marker_percent = 100*marker_alone/total_count_by_file) %>%
+  ungroup() %>%
+  select(group, filename, timepoint, marker_percent) %>%
+    mutate(phenotype = pheno_name)
+}
+
+# CD4
+pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 0"), "CD4_Tcell")
+
+pheno_2 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 1"), "CD8_Tcell")
+
+pheno_3 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 0"), "DN_Tcell")
+
+pheno_4 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 1"), "DP_Tcell")
+
+
+all_phenotypes <- rbind(pheno_1, pheno_2, pheno_3, pheno_4)
+
+all_phenotypes %>%
+  group_by(phenotype) %>%
+  do(tidy(t.test(marker_percent ~ group, data = .))) %>%
+  filter(p.value<0.05)
+```
+
+
+#Check 
+```{r}
+# check the gating with the percentages
+all_data_breaks %>%
+  select(filename, CD172_break, CD172) %>%
+  group_by(filename) %>%
+  mutate(cells = 1) %>%
+  mutate(total_cells = sum(cells)) %>%
+  filter(CD172>CD172_break) %>%
+  mutate(CD172_percentage = 100*sum(cells)/total_cells) %>%
+    select(filename, CD172_percentage) %>%
+    unique() %>%
+  ungroup() %>%
+  mutate(average = mean(CD172_percentage))
+```
+
+
