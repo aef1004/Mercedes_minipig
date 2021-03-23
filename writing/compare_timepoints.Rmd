@@ -798,8 +798,8 @@ melted_corr %>%
 functions for calculating data
 ```{r fig.width = 7, fig.height = 8}
 
-fit_models <- function(df, markerID) {  
-  
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
 df %>%
   filter(marker == markerID) %>%
   group_by(metaboliteID) %>%
@@ -807,11 +807,29 @@ df %>%
   mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
          summary_model = map(model, tidy)) %>%
 unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
   select(metaboliteID, estimate, model) %>%
   mutate(tidy_model = map(model, broom::glance)) %>%
   unnest(tidy_model) %>%
   select(metaboliteID, adj.r.squared, p.value, estimate) %>%
-  ungroup()}
+  ungroup()
+    } else {
+      
+    df %>%
+  filter(marker == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() 
+  }
+}
 
 
 calc_important_metab <- function(df, min_p_value, min_r_squared) {
@@ -821,19 +839,30 @@ df %>%
   filter(adj.r.squared > min_r_squared)
 }
 
-calculate_plot_r_labeling <- function(important_metab, df) {
-  
-left_join(important_metab, df, by = "metaboliteID") %>%
+calculate_plot_r_labeling <- function(important_metab, df, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+    left_join(important_metab, df, by = "metaboliteID") %>%
   group_by(metaboliteID) %>%
   mutate(x_axis_label = min(percent_per_marker) + (max(percent_per_marker) - min(percent_per_marker))/2,
          y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
   select(metaboliteID,  timepoint, adj.r.squared, p.value, 
          x_axis_label, y_axis_label) %>%
   unique()
+  } else {
+      
+  left_join(important_metab, df, by = c("metaboliteID", "timepoint")) %>%
+  group_by(metaboliteID, timepoint) %>%
+  mutate(x_axis_label = min(percent_per_marker) + (max(percent_per_marker) - min(percent_per_marker))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+  }
 }
 
-flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels) {
-  df %>%
+flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+      df %>%
   filter(marker == markerID) %>%
   filter(metaboliteID %in% important_metab$metaboliteID) %>%
 ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(timepoint))) +
@@ -844,6 +873,19 @@ ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(tim
                                                  round(adj.r.squared, 2))), parse = TRUE) +
   facet_wrap(~metaboliteID, scales = "free_y") +
   ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  } else{
+      df %>%
+  filter(marker == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
+ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point() +
+  geom_smooth(aes(x = percent_per_marker, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  }
 }
 
 p_hist <- function(df_fitted_models, markerID) {
@@ -874,6 +916,7 @@ ggplot(df_fitted_models, aes(x = p.value)) +
 
 ```
 
+*General r^2 with the two timepoints combined*
 Note: CD8 - no metabolites for which r^2 is >0.5 or < -0.5 and pvalue < 0.05
 ```{r}
 fitted_models_SLADQ <- fit_models(single_expression_metabolites, "SLADQ")
@@ -889,7 +932,7 @@ important_metabs_CD4 <- calc_important_metab(fitted_models_CD4, 0.01, 0.5)
 important_metabs_CD3 <- calc_important_metab(fitted_models_CD3, 0.01, 0.5)
 ```
 
-Plot the correlations
+Plot the correlations with timepoints combined
 ```{r fig.width = 7, fig.height = 8}
 
 r_labels_SLADQ <- calculate_plot_r_labeling(important_metabs_SLADQ, single_expression_metabolites)
@@ -919,8 +962,54 @@ p_hist(fitted_models_CD4, "CD4")
 p_hist(fitted_models_CD3, "CD3")
 ```
 
+*correlations with the timepoints separated*
+```{r}
+fitted_models_SLADQ_tp <- fit_models(single_expression_metabolites, "SLADQ", TRUE)
+fitted_models_CD172_tp <- fit_models(single_expression_metabolites, "CD172", TRUE)
+fitted_models_CD8_tp <- fit_models(single_expression_metabolites, "CD8", TRUE)
+fitted_models_CD4_tp <- fit_models(single_expression_metabolites, "CD4", TRUE)
+fitted_models_CD3_tp <- fit_models(single_expression_metabolites, "CD3", TRUE)
 
+important_metabs_SLADQ_tp <- calc_important_metab(fitted_models_SLADQ_tp, 0.01, 0.5)
+important_metabs_CD172_tp <- calc_important_metab(fitted_models_CD172_tp, 0.01, 0.5)
+important_metabs_CD8_tp <- calc_important_metab(fitted_models_CD8_tp, 0.01, 0.5)
+important_metabs_CD4_tp <- calc_important_metab(fitted_models_CD4_tp, 0.01, 0.5)
+important_metabs_CD3_tp <- calc_important_metab(fitted_models_CD3_tp, 0.01, 0.5)
+```
 
+*correlations with the timepoints separated*
+```{r fig.width = 7, fig.height = 8}
+
+r_labels_SLADQ_tp <- calculate_plot_r_labeling(important_metabs_SLADQ_tp,
+                                               single_expression_metabolites, TRUE)
+r_labels_CD172_tp <- calculate_plot_r_labeling(important_metabs_CD172_tp,
+                                               single_expression_metabolites, TRUE)
+r_labels_CD8_tp <- calculate_plot_r_labeling(important_metabs_CD8_tp,
+                                             single_expression_metabolites, TRUE)
+r_labels_CD4_tp <- calculate_plot_r_labeling(important_metabs_CD4_tp,
+                                             single_expression_metabolites, TRUE)
+r_labels_CD3_tp <- calculate_plot_r_labeling(important_metabs_CD3_tp,
+                                             single_expression_metabolites, TRUE)
+
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_SLADQ_tp, 
+                     "SLADQ", r_labels_SLADQ_tp, TRUE)
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD172_tp, 
+                     "CD172", r_labels_CD172_tp, TRUE)
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD8_tp, 
+                     "CD8", r_labels_CD8_tp, TRUE) 
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD3_tp, 
+                     "CD3", r_labels_CD3_tp, TRUE)
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD4_tp, 
+                     "CD4", r_labels_CD4_tp, TRUE)
+```
+
+```{r}
+p_hist(fitted_models_SLADQ_tp, "SLADQ")
+p_hist(fitted_models_CD172_tp, "CD172")
+p_hist(fitted_models_CD8_tp, "CD8")
+p_hist(fitted_models_CD4_tp, "CD4")
+p_hist(fitted_models_CD3_tp, "CD3")
+```
 # Try to pick out important metabolites for Nurul
 
 I started out by only pulling out the metabolites for which the correlation is >0.5 or <-0.5 and a pvalue of <0.01, but Nurul can only feasible look up close to 100 metabolites. Therefore, I changed the correlation to need to be >0.6 or <-0.6. This reduced the # of metabolites to explore from >500 to 153
