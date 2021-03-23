@@ -23,6 +23,11 @@ library(pheatmap)
 library(cytotypr)
 library(gridExtra)
 library(factoextra)
+library(ggplot2)
+library(rstatix)
+library(purrr)
+library(tidyr)
+library(broom)
 ```
 
 ```{r}
@@ -36,7 +41,8 @@ all_fe_12week
 all_fe <- rbind(all_fe_12week, all_fe_30DPI)
 ```
 
-#Singular marker expression
+# Singular marker expression
+
 ```{r}
 single_expression <- all_fe %>%
   gather(key = marker, value = expression, -filename, -cell_no, -total_count_by_file, -percentage)%>%
@@ -58,8 +64,117 @@ single_expression %>%
   facet_wrap(~marker)
 ```
 
+Singular Marker Statistical Significance
 
-# Visulatizations
+There are no differences between the BCG and PBS groups or the two timepoints
+```{r}
+# compare BCG to PBS
+single_expression %>%
+  filter(expression == "1") %>%
+  group_by(timepoint, marker) %>%
+  do(tidy(t.test(percent_per_marker ~ vaccine_status, data = .))) %>%
+  filter(p.value < 0.05)
+
+single_expression %>%
+  filter(expression == "1") %>%
+  group_by(timepoint, marker) %>%
+  tukey_hsd(percent_per_marker ~ vaccine_status) 
+
+# compare Week 12 to D30
+single_expression %>%
+  filter(expression == "1") %>%
+  group_by(marker) %>%
+  do(tidy(t.test(percent_per_marker ~ vaccine_status, data = ., 
+                 paired = TRUE))) %>%
+  filter(p.value < 0.05)
+
+single_expression %>%
+  filter(expression == "1") %>%
+  group_by(marker) %>%
+  tukey_hsd(percent_per_marker ~ vaccine_status) 
+```
+
+
+# Predefined Phenotypes
+
+Look at specific phenotypes (double negative, CD4+ CD8+ and double positive)
+```{r}
+
+save_for_phenotypes <- all_fe %>%
+  mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
+         timepoint = str_extract(filename, "[:alnum:]*_"),
+         timepoint = str_replace(timepoint, "_", ""),
+         filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+
+
+
+# look at specific phenotypes (multiple markers)
+look_multiple_markers <- function(df, marker, pheno_name) {
+  #marker = as.name(marker) # because calling a specific marker
+  
+  marker_alone <- maker_percent<- NULL # because creating a new column
+  
+  df %>%
+    dplyr::rename(group = vaccine_status) %>%
+    group_by(group, filename, timepoint) %>%
+    filter_(marker) %>%
+    mutate(marker_alone = sum(cell_no)) %>%
+    select(group, filename, timepoint, marker_alone, total_count_by_file) %>%
+    unique() %>%
+    mutate(marker_percent = 100*marker_alone/total_count_by_file) %>%
+  ungroup() %>%
+  select(group, filename, timepoint, marker_percent) %>%
+    mutate(phenotype = pheno_name)
+}
+
+
+# CD4
+pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 0"), "CD4_Tcell")
+
+pheno_2 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 1"), "CD8_Tcell")
+
+pheno_3 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 0"), "DN_Tcell")
+
+pheno_4 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 1"), "DP_Tcell")
+
+
+all_phenotypes <- rbind(pheno_1, pheno_2, pheno_3, pheno_4)
+
+
+ggplot(all_phenotypes, aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), 
+                           y = marker_percent, color = timepoint)) +
+  geom_point() +
+  facet_wrap(~phenotype)
+```
+
+Predefined statistical analysis
+
+There are no differences between the BCG and PBS groups, but there are differences in the CD4+ T cells and DN T cells
+```{r}
+# compare BCG to PBS
+all_phenotypes %>%
+  group_by(timepoint, phenotype) %>%
+  do(tidy(t.test(marker_percent ~ group, data = .))) %>%
+  filter(p.value < 0.05)
+
+all_phenotypes %>%
+  group_by(timepoint, phenotype) %>%
+  tukey_hsd(marker_percent ~ group) 
+
+# compare Week 12 to D30
+all_phenotypes %>%
+  group_by(phenotype) %>%
+  do(tidy(t.test(marker_percent ~ timepoint, data = .,
+                 paired = TRUE))) %>%
+  filter(p.value < 0.05)
+
+all_phenotypes %>%
+  group_by(phenotype) %>%
+  tukey_hsd(marker_percent ~ timepoint) 
+```
+
+# Feature Engineered Populations
 
 Initial identification of populations plot
 
@@ -121,7 +236,7 @@ Correlation Plot
 
 Look at percentages 
 **Note I need to separate out the time and vaccine status (4 groups)
-```{r}
+```{r fig.width = 3, fig.height = 4}
 ggplot(sample_populations_all_groups, aes(x = timepoint, y = percentage, 
                                    group = vaccine_status, color = vaccine_status)) +
   scale_fill_identity() +
@@ -146,6 +261,19 @@ ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent,
   ylab("Average Percent of Total Live Leukocytes") +
   theme_gray() 
 
+pops_for_average_timepoint <- sample_populations_all_groups %>%
+  dplyr::group_by(population, timepoint) %>%
+  dplyr::summarise(average_percent = mean(percentage))
+
+ggplot(pops_for_average_timepoint, aes(x = timepoint, y = average_percent, 
+                                   group = timepoint, color = timepoint)) +
+  scale_fill_identity() +
+  geom_bar(stat = "identity") +
+  facet_wrap("population", scales = "free",  labeller = label_both) +
+  xlab("Vaccinate Status") +
+  ylab("Average Percent of Total Live Leukocytes") +
+  theme_gray() 
+
 ```
 
 Anova and Tukey HSD
@@ -154,10 +282,6 @@ There are differences between the timepoints
 
 **Note I might actually want to do a paired analysis here...**
 ```{r}
-library(purrr)
-library(tidyr)
-library(broom)
-
 
 sample_populations_all_groups %>%
   unite(group, c(timepoint, vaccine_status)) %>%
@@ -170,83 +294,36 @@ sample_populations_all_groups %>%
   unnest(tidy_tukey, .drop = TRUE) %>%
   dplyr::filter(adj.p.value <0.05) %>%
   select(population, contrast, adj.p.value) %>%
-  arrange(paste0("Pop", c(1:length(adj.p.value))))
-```
-
-Look at specific phenotypes (double negative, CD4+ CD8+ and double positive
-
-)
-```{r}
-
-save_for_phenotypes <- all_fe %>%
-  mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
-         timepoint = str_extract(filename, "[:alnum:]*_"),
-         timepoint = str_replace(timepoint, "_", ""),
-         filename = str_extract(filename, "Pig [0-9]*")) %>%
-  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
-
-
-
-# look at specific phenotypes (multiple markers)
-look_multiple_markers <- function(df, marker, pheno_name) {
-  #marker = as.name(marker) # because calling a specific marker
-  
-  marker_alone <- maker_percent<- NULL # because creating a new column
-  
-  df %>%
-    rename(group = vaccine_status) %>%
-    group_by(group, filename, timepoint) %>%
-    filter_(marker) %>%
-    mutate(marker_alone = sum(cell_no)) %>%
-    select(group, filename, timepoint, marker_alone, total_count_by_file) %>%
-    unique() %>%
-    mutate(marker_percent = 100*marker_alone/total_count_by_file) %>%
   ungroup() %>%
-  select(group, filename, timepoint, marker_percent) %>%
-    mutate(phenotype = pheno_name)
-}
-
-# CD4
-pheno_1 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 0"), "CD4_Tcell")
-
-pheno_2 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 1"), "CD8_Tcell")
-
-pheno_3 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 0 & CD8 == 0"), "DN_Tcell")
-
-pheno_4 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & CD8 == 1"), "DP_Tcell")
-
-
-all_phenotypes <- rbind(pheno_1, pheno_2, pheno_3, pheno_4)
+  arrange(population, paste0("Pop", c(1:length(adj.p.value))))
 ```
 
-Look at statistical analysis
+# Explore Metabolomics
+
 ```{r}
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
 
-all_phenotypes%>%
-  group_by(timepoint, phenotype) %>%
-  do(tidy(t.test(marker_percent ~ group, data = .))) %>%
-  filter(p.value<0.05)
-
-
-library(rstatix)
-
-all_phenotypes%>%
-  group_by(timepoint, phenotype) %>%
-  tukey_hsd(marker_percent ~ group) 
-
-all_phenotypes %>%
-  select(-filename) %>%
+# there's a probable convergence failure - so try to see if there are metabolites with NAs or 0's - there are no NAs, but there are 427 metabolites for which metabolite expression = 0 - so let's remove those metabolites and see if there are still convergence failrues
+remove_metab <- metabolites %>%
+  filter(metabolite_expression == "0") %>%
+  select(metaboliteID) %>%
   unique()
 
 
+metabolite_wide <- metabolites %>%
+  filter(!grepl("Pooled", full_name)) %>%
+  filter(!(metaboliteID %in% remove_metab$metaboliteID)) %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  column_to_rownames("full_name")
+
 ```
 
-Try to tie in some data on metabolomics
+Combine flow and metabolite data
 ```{r}
-metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
-  rename(metaboliteID = X) %>%
-  select(metaboliteID, contains("Minipig")) %>%
-  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
 
 flow_metabolites <- all_phenotypes %>%
   unite("full_name", c(filename, timepoint)) %>%
@@ -254,7 +331,8 @@ flow_metabolites <- all_phenotypes %>%
          full_name = str_replace(full_name, "Pig", "Minipig"),
          full_name = str_replace(full_name, "Week12", "12wks"),
          full_name = str_replace(full_name, "D30DPI", "30DPI")) %>%
-  left_join(metabolites, by = "full_name") 
+  left_join(metabolites, by = "full_name") %>%
+  mutate(timepoint = str_replace(full_name, "Minipig_[0-9]*_", ""))
 
 
 
@@ -278,7 +356,7 @@ values_for_plot <- fitted_models %>%
 
 values_for_plot %>%
   mutate("Significance" = p.val.adj < 0.05) %>%
-  rename("p-value" = p.value,
+  dplyr::rename("p-value" = p.value,
          "Adjusted p-value" = p.val.adj) 
 
 # Metabolites 663, 666, 863, 867, 1806
@@ -289,7 +367,7 @@ r_labeling <- left_join(save_for_plot, flow_metabolites, by = "metaboliteID") %>
   group_by(metaboliteID) %>%
   mutate(x_axis_label = min(marker_percent) + (max(marker_percent) - min(marker_percent))/2,
          y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
-  select(metaboliteID, group, adj.r.squared, p.value, 
+  select(metaboliteID, group, timepoint, adj.r.squared, p.value, 
          x_axis_label, y_axis_label) %>%
   unique()
 
@@ -308,21 +386,31 @@ ggplot(aes(x = marker_percent, y = metabolite_expression, color = group)) +
 
 values_for_plot %>%
   filter(p.val.adj<0.05)
+
+
+flow_metabolites %>%
+  filter(phenotype == "CD4_Tcell") %>%
+  filter(metaboliteID == 663 | metaboliteID == 666 | metaboliteID == 863 | metaboliteID ==867 | metaboliteID ==1806) %>%
+ggplot(aes(x = marker_percent, y = metabolite_expression, color = timepoint)) +
+  geom_point() +
+  geom_smooth(aes(x = marker_percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(data = r_labeling, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle("Metabolite Correlations with CD4 T Cell Percentages")
 ```
 
 Explore metabolites
 Based on this analysis, we might want to look at metabolite 8
 ```{r}
-metabolite_wide <- metabolites %>%
-  filter(!grepl("Pooled", full_name)) %>%
-  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
-  column_to_rownames("full_name")
 
 #remove columns with 0 variance because prcomp cannot divide by the standard deviation if it's infinity
 which(apply(metabolite_wide, 2, var)==0)
 metabolite_wide <- metabolite_wide[ , which(apply(metabolite_wide, 2, var) != 0)]
 
 # when we get above 700 columns, the probable convergence fails
+# when I use the "runif" function two chunks below, it works
 res.pca <- prcomp(metabolite_wide[1:690], center = TRUE, scale = TRUE)
 ```
 
@@ -368,6 +456,7 @@ summary(res.pca)$x %>%
 
 Since I can't run all of the metabolites at once, I want to pick out a random grouping of the variables and ensure that the PCA plots look somewhat similar each time
 ```{r}
+
 # picks 690 random metabolites/columns to run through the PCA
 metab_run <- metabolite_wide[, floor(runif(690, min = 1, max = ncol(metabolite_wide)))]
 
@@ -430,7 +519,7 @@ summary(major_phenos_pca)$x %>%
 
 Feature engineered flow phenotypes
 ```{r}
-flow_fe_pca <- sample_populations_all_groups%>%
+flow_fe_pca <- sample_populations_all_groups %>%
   pivot_wider(names_from = "population", values_from = "percentage") %>% 
   unite("name", c(filename, vaccine_status, timepoint), sep = "_") %>%
   column_to_rownames("name") %>%
@@ -547,8 +636,8 @@ unnest(summary_model) %>%
 
 
 save_for_plot <-fitted_models %>%
-  filter(p.value < 0.5) %>%
-  filter(adj.r.squared >0.5 | adj.r.squared < -0.5) 
+  filter(p.value < 0.01) %>%
+  filter(adj.r.squared >0.6 | adj.r.squared < -0.6) 
 
 r_labeling <- left_join(save_for_plot, single_expression_metabolites, by = "metaboliteID") %>%
   group_by(metaboliteID) %>%
@@ -571,7 +660,54 @@ ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(tim
   facet_wrap(~metaboliteID, scales = "free_y") +
   ggtitle("Metabolite Correlations with SLADQ Percentages")
 
+
+
 ```
+
+Look at SLADQ with the two timepoints separated
+```{r fig.width = 7, fig.height = 8}
+
+fitted_models <- single_expression_metabolites %>%
+  filter(marker == "SLADQ") %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() 
+
+
+save_for_plot <-fitted_models %>%
+  filter(p.value < 0.05) %>%
+  filter(adj.r.squared >0.6 | adj.r.squared < -0.6) 
+
+r_labeling <- left_join(save_for_plot, single_expression_metabolites, by = c("metaboliteID", "timepoint")) %>%
+  group_by(metaboliteID, timepoint) %>%
+  mutate(x_axis_label = min(percent_per_marker) + (max(percent_per_marker) - min(percent_per_marker))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+
+
+single_expression_metabolites %>%
+  filter(marker == "SLADQ") %>%
+  filter(metaboliteID %in% save_for_plot$metaboliteID) %>%
+ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point() +
+  geom_smooth(aes(x = percent_per_marker, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = r_labeling, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle("Metabolite Correlations with SLADQ Percentages")
+```
+
 
 Histogram of P-values (SLADQ correlation with metabolites)
 ```{r}
@@ -579,15 +715,25 @@ Histogram of P-values (SLADQ correlation with metabolites)
 # page 153 in the biological textbook
 # we would expect to see a uniform distribution here if we don't expect anything interesting and don't think there should be any differences
 
+# we take the 0.5 in the calculation of pi0 because we want to see the uniform distribution and if we look too close to our alpha, it will be skewed. Since we're only looking at pvalue >0.5 (or half of the plot) we multiply the 2 to get the total proportion - the FDR is the proportion of values that are falsely picked out as significant
+
 # calculate the FDR (False Discovery Rate)
-alpha = binw = 0.05
+
+alpha = binw = 0.01
+
 pi0 <- fitted_models %>%
-  filter(p.value >0.5) %>% # I don't understand where this 0.5 came from...
-  summarise(pi0= 2*mean(p.value))
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
 
 pi1 <- fitted_models %>%
-  filter(p.value <= alpha) %>%
-  summarise(pi1= mean(p.value))
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
 
 
 ggplot(fitted_models, aes(x = p.value)) +
@@ -649,12 +795,13 @@ melted_corr %>%
 
 ```
 
-
-
-CD172
+functions for calculating data
 ```{r fig.width = 7, fig.height = 8}
-fitted_models <- single_expression_metabolites %>%
-  filter(marker == "CD172") %>%
+
+fit_models <- function(df, markerID) {  
+  
+df %>%
+  filter(marker == markerID) %>%
   group_by(metaboliteID) %>%
   nest() %>%
   mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
@@ -664,44 +811,143 @@ unnest(summary_model) %>%
   mutate(tidy_model = map(model, broom::glance)) %>%
   unnest(tidy_model) %>%
   select(metaboliteID, adj.r.squared, p.value, estimate) %>%
-  ungroup()
+  ungroup()}
 
 
-save_for_plot <-fitted_models %>%
-  filter(p.value < 0.5) %>%
-  filter(adj.r.squared >0.5 | adj.r.squared < -0.5)
+calc_important_metab <- function(df, min_p_value, min_r_squared) {
 
-r_labeling <- left_join(save_for_plot, single_expression_metabolites, by = "metaboliteID") %>%
+df %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared)
+}
+
+calculate_plot_r_labeling <- function(important_metab, df) {
+  
+left_join(important_metab, df, by = "metaboliteID") %>%
   group_by(metaboliteID) %>%
   mutate(x_axis_label = min(percent_per_marker) + (max(percent_per_marker) - min(percent_per_marker))/2,
          y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
   select(metaboliteID,  timepoint, adj.r.squared, p.value, 
          x_axis_label, y_axis_label) %>%
   unique()
+}
 
-# plot after I bring down the number of metabolites to a reasonable number
-single_expression_metabolites %>%
-  filter(marker == "CD172") %>%
-  filter(metaboliteID %in% save_for_plot$metaboliteID) %>%
+flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels) {
+  df %>%
+  filter(marker == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
 ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(timepoint))) +
   geom_point() +
   geom_smooth(aes(x = percent_per_marker, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
-  geom_text(data = r_labeling, aes(x = x_axis_label, y = y_axis_label, 
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
                                    label = paste("r^2 == ",
                                                  round(adj.r.squared, 2))), parse = TRUE) +
   facet_wrap(~metaboliteID, scales = "free_y") +
-  ggtitle("Metabolite Correlations with CD172 Percentages")
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+}
 
-ggplot(fitted_models, aes(x = p.value)) +
-  geom_histogram(binwidth = 0.01) +
-  geom_vline(xintercept = 0.05, color = "red") +
-  ggtitle("Metabolite and CD172 Percentages P-value Histogram")
+p_hist <- function(df_fitted_models, markerID) {
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+
 ```
 
-CD8 - no metabolites for which r^2 is >0.5 or < -0.5 and pvalue < 0.05
-```{r fig.width = 3, fig.height = 4}
-fitted_models <- single_expression_metabolites %>%
-  filter(marker == "CD4") %>%
+Note: CD8 - no metabolites for which r^2 is >0.5 or < -0.5 and pvalue < 0.05
+```{r}
+fitted_models_SLADQ <- fit_models(single_expression_metabolites, "SLADQ")
+fitted_models_CD172 <- fit_models(single_expression_metabolites, "CD172")
+fitted_models_CD8 <- fit_models(single_expression_metabolites, "CD8")
+fitted_models_CD4 <- fit_models(single_expression_metabolites, "CD4")
+fitted_models_CD3 <- fit_models(single_expression_metabolites, "CD3")
+
+important_metabs_SLADQ <- calc_important_metab(fitted_models_SLADQ, 0.01, 0.5)
+important_metabs_CD172 <- calc_important_metab(fitted_models_CD172, 0.01, 0.5)
+important_metabs_CD8 <- calc_important_metab(fitted_models_CD8, 0.01, 0.5)
+important_metabs_CD4 <- calc_important_metab(fitted_models_CD4, 0.01, 0.5)
+important_metabs_CD3 <- calc_important_metab(fitted_models_CD3, 0.01, 0.5)
+```
+
+Plot the correlations
+```{r fig.width = 7, fig.height = 8}
+
+r_labels_SLADQ <- calculate_plot_r_labeling(important_metabs_SLADQ, single_expression_metabolites)
+r_labels_CD172 <- calculate_plot_r_labeling(important_metabs_CD172, single_expression_metabolites)
+r_labels_CD8 <- calculate_plot_r_labeling(important_metabs_CD8, single_expression_metabolites)
+r_labels_CD4 <- calculate_plot_r_labeling(important_metabs_CD4, single_expression_metabolites)
+r_labels_CD3 <- calculate_plot_r_labeling(important_metabs_CD3, single_expression_metabolites)
+
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_SLADQ, 
+                     "SLADQ", r_labels_SLADQ)
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD172, 
+                     "CD172", r_labels_CD172)
+#flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD8, 
+#                     "CD8", r_labels_CD8) # there are no significant metabolites
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD3, 
+                     "CD3", r_labels_CD3)
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_CD4, 
+                     "CD4", r_labels_CD4)
+```
+
+Look at the p-value histograms
+```{r}
+p_hist(fitted_models_SLADQ, "SLADQ")
+p_hist(fitted_models_CD172, "CD172")
+p_hist(fitted_models_CD8, "CD8")
+p_hist(fitted_models_CD4, "CD4")
+p_hist(fitted_models_CD3, "CD3")
+```
+
+
+
+# Try to pick out important metabolites for Nurul
+
+I started out by only pulling out the metabolites for which the correlation is >0.5 or <-0.5 and a pvalue of <0.01, but Nurul can only feasible look up close to 100 metabolites. Therefore, I changed the correlation to need to be >0.6 or <-0.6. This reduced the # of metabolites to explore from >500 to 153
+
+Define all of the different datasets to use
+```{r}
+
+single_flow_metabolites <-  single_expression_metabolites
+
+predefined_flow_metabolites <- flow_metabolites
+
+fe_flow_metabolites <- sample_populations_all_groups %>%
+  unite("full_name", c(filename, timepoint)) %>%
+  mutate(full_name = str_replace(full_name, " ", "_"),
+         full_name = str_replace(full_name, "Pig", "Minipig"),
+         full_name = str_replace(full_name, "Week12", "12wks"),
+         full_name = str_replace(full_name, "D30DPI", "30DPI")) %>%
+  left_join(metabolites, by = "full_name") 
+```
+
+While none of the markers alone are statistically significant in flow, it appears as though there are some differences visually
+```{r}
+
+identify_single_metab <- function(df, markerID) {
+  
+fitted_models <- df %>%
+  filter(marker == markerID) %>%
   group_by(metaboliteID) %>%
   nest() %>%
   mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
@@ -713,36 +959,211 @@ unnest(summary_model) %>%
   select(metaboliteID, adj.r.squared, p.value, estimate) %>%
   ungroup()
 
-
 save_for_plot <-fitted_models %>%
-  filter(p.value < 0.5) %>%
-  filter(adj.r.squared >0.5 | adj.r.squared < -0.5)
-
-r_labeling <- left_join(save_for_plot, single_expression_metabolites, by = "metaboliteID") %>%
-  group_by(metaboliteID) %>%
-  mutate(x_axis_label = min(percent_per_marker) + (max(percent_per_marker) - min(percent_per_marker))/2,
-         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
-  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
-         x_axis_label, y_axis_label) %>%
+  filter(p.value < 0.01) %>%
+  filter(adj.r.squared >0.7 | adj.r.squared < -0.7) %>%
+  select(metaboliteID) %>%
   unique()
 
-# plot after I bring down the number of metabolites to a reasonable number
-single_expression_metabolites %>%
-  filter(marker == "CD4") %>%
-  filter(metaboliteID %in% save_for_plot$metaboliteID) %>%
-ggplot(aes(x = percent_per_marker, y = metabolite_expression, color = factor(timepoint))) +
-  geom_point() +
-  geom_smooth(aes(x = percent_per_marker, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
-  geom_text(data = r_labeling, aes(x = x_axis_label, y = y_axis_label, 
-                                   label = paste("r^2 == ",
-                                                 round(adj.r.squared, 2))), parse = TRUE) +
-  facet_wrap(~metaboliteID, scales = "free_y") +
-  ggtitle("Metabolite Correlations with CD4 Percentages")
+print(save_for_plot)
+}
 
-ggplot(fitted_models, aes(x = p.value)) +
-  geom_histogram(binwidth = 0.01) +
-  geom_vline(xintercept = 0.05, color = "red") +
-  ggtitle("Metabolite and CD4 Percentages P-value Histogram")
+
+CD4_metab <- identify_single_metab(single_flow_metabolites, "CD4")
+SLADQ_metab <-identify_single_metab(single_flow_metabolites, "SLADQ")
+CD172_metab <-identify_single_metab(single_flow_metabolites, "CD172")
+CD45RA_metab <-identify_single_metab(single_flow_metabolites, "CD45RA")
+
+
+all_single <- rbind(CD4_metab, SLADQ_metab, CD172_metab) %>%
+  unique()
+```
+
+These are the two that have statistically significant differences in the flow
+```{r}
+identify_predefined_metab <- function(df, phenotypeID) {
+  
+fitted_models <- df %>%
+  filter(phenotype == phenotypeID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(marker_percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+
+save_for_plot <-fitted_models %>%
+  filter(p.value < 0.01) %>%
+  filter(adj.r.squared >0.7 | adj.r.squared < -0.7) %>%
+  select(metaboliteID) %>%
+  unique()
+
+print(save_for_plot)
+}
+
+CD4Tcell_metab <- identify_predefined_metab(predefined_flow_metabolites, "CD4_Tcell")
+DNTcell_metab <- identify_predefined_metab(predefined_flow_metabolites, "DN_Tcell")
+
+all_phen <- rbind(CD4Tcell_metab, DNTcell_metab) %>%
+  unique()
+```
+
+These are populations that have statistically significant differences in the flow
+```{r}
+identify_predefined_metab <- function(df, populationID) {
+  
+fitted_models <- df %>%
+  filter(population == populationID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percentage ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+
+save_for_plot <-fitted_models %>%
+  filter(p.value < 0.01) %>%
+  filter(adj.r.squared >0.7 | adj.r.squared < -0.7) %>%
+  select(metaboliteID) %>%
+  unique()
+
+print(save_for_plot)
+}
+
+pop3_metab <- identify_predefined_metab(fe_flow_metabolites, "Pop3")
+pop8_metab <- identify_predefined_metab(fe_flow_metabolites, "Pop8")
+pop17_metab <- identify_predefined_metab(fe_flow_metabolites, "Pop17")
+pop20_metab <- identify_predefined_metab(fe_flow_metabolites, "Pop20")
+pop21_metab <- identify_predefined_metab(fe_flow_metabolites, "Pop21")
+
+# pops 21 and 8 had lowish % of cells (<5%)
+# Remove pop 3 because it's a DN cell
+all_fe_metab <- rbind(pop3_metab, pop17_metab, pop20_metab) %>%
+  unique()
+
+
+rbind(all_fe_metab, all_single)
+```
+
+```{r}
+interesting_metab <- rbind(all_single, all_phen, all_fe_metab) %>%
+  unique() %>%
+  left_join(metabolites) %>%
+  filter(!grepl("Pooled", full_name))
+
+cor1 <- interesting_metab %>%
+   tidyr::pivot_wider(names_from = metaboliteID, 
+                       values_from = metabolite_expression) %>%
+  column_to_rownames("full_name")
+
+corr <- round(stats::cor(cor1), 1)
+
+
+melted_corr <- format_corr(corr)
+  
+plot_corr(melted_corr) +
+     ggplot2::xlab("Populations") +
+     ggplot2::ylab("Populations") +
+     ggplot2::labs(fill = "Correlation") 
+```
+
+If I only look at the "interesting" metabolites, it says that there are only 2 clusters...
+```{r}
+library(factoextra)
+library(NbClust)
+
+set.seed(123)
+
+for_cluster <- interesting_metab %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  column_to_rownames("full_name")
+
+# this one looks at the "interesting" metabolites pulled out from correlations
+df <- scale(for_cluster)
+
+# this one looks at all of the metabolites
+df <- scale(metabolite_wide)
+
+
+# Elbow method
+fviz_nbclust(df, kmeans, method = "wss", nstart = 5) +
+  labs(subtitle = "Elbow method")
+
+# Silhouette method
+fviz_nbclust(df, kmeans, method = "silhouette")+
+  labs(subtitle = "Silhouette method")
+
+# Gap Statistic - this one takes a while to run
+# fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 500)+
+#   labs(subtitle = "Gap statistic method")
+
+
+# Compute k-means with k = 2
+km.res <- kmeans(df, 2, nstart = 25)
+```
+
+# Option 2 
+
+Pull out the metabolites where the Week 12 and D30 individually have either both positive or both negative correlations with the flow
+
+p value for at least one timepoint < 0.05
+adj.r.square for at least one timepoint >0.5
+--> 49 metabolites
+
+p.value <0.05
+adj.r.squared for *both* timepoints >0.5
+--> 1 metabolite
+
+```{r}
+
+fitted_models <- single_flow_metabolites %>%
+  filter(marker == "SLADQ") %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent_per_marker ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term == "metabolite_expression") %>%
+  select(metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, timepoint, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+
+save_for_plot <-fitted_models %>%
+  filter(p.value < 0.05) %>%
+  filter(adj.r.squared > 0.5 | adj.r.squared < -0.5) %>%
+  select(metaboliteID) %>%  
+  unique() %>%
+  left_join(fitted_models, by = c("metaboliteID")) %>%
+  mutate(same_sign = ifelse(estimate >0, "pos", "neg")) %>%
+  group_by(metaboliteID) 
+
+both_neg <- save_for_plot %>%
+  filter_at(vars(same_sign), all_vars(. == "neg")) %>%
+  mutate(repeate = duplicated(metaboliteID)) %>%
+  filter(repeate == "TRUE") %>%
+  select(metaboliteID)
+
+both_pos <- save_for_plot %>%
+  filter_at(vars(same_sign), all_vars(. == "pos")) %>%
+  mutate(repeate = duplicated(metaboliteID)) %>%
+  filter(repeate == "TRUE") %>%
+  select(metaboliteID)
+
+same_sign_metab <- rbind(both_neg, both_pos) %>%
+  left_join(save_for_plot) %>%
+  select(-same_sign)
+
+
 ```
 
 
