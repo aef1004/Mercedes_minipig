@@ -44,7 +44,126 @@ df2 = sapply(A, function(x) { sample(x) })
 
 ```
 
+Functions for calculating data and plots
+```{r fig.width = 7, fig.height = 8}
 
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+df %>%
+  filter(marker == markerID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+    } else {
+      
+    df %>%
+  filter(marker == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() 
+  }
+}
+
+
+calc_important_metab <- function(df, min_p_value, min_r_squared) {
+
+df %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared)
+}
+
+calculate_plot_r_labeling <- function(important_metab, df, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+    left_join(important_metab, df, by = "metaboliteID") %>%
+  group_by(metaboliteID) %>%
+  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+  } else {
+      
+  left_join(important_metab, df, by = c("metaboliteID", "timepoint")) %>%
+  group_by(metaboliteID, timepoint) %>%
+  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+  }
+}
+
+flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+      df %>%
+  filter(marker == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  } else{
+      df %>%
+  filter(marker == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  }
+}
+
+p_hist <- function(df_fitted_models, markerID) {
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+
+```
 
 ```{r}
 
@@ -76,7 +195,8 @@ single_expression <- all_fe %>%
   metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   dplyr::rename(metaboliteID = X) %>%
   select(metaboliteID, contains("Minipig")) %>%
-  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression") %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))
 
 
 metabolite_wide <- metabolites %>%
@@ -86,8 +206,10 @@ metabolite_wide <- metabolites %>%
          full_name = str_replace(full_name,  "30DPI", "D30"))
          
 ```
-  
 
+*Need to remove 0 variance metabolites*
+
+A column has zero variance if and only if it is constant and hence its minimum and maximum values will be the same - using a function to test this rather than the actual variance is faster https://www.ttested.com/removing-zero-variance-columns/
 ```{r}
 flow_metabolites <- single_expression %>%
   unite("full_name", c(filename, timepoint)) %>%
@@ -99,18 +221,74 @@ flow_metabolites <- single_expression %>%
   left_join(metabolite_wide, by = "full_name") %>%
   mutate(timepoint = str_replace(full_name, "Minipig_[0-9]*_", ""))
 
+removeZeroVar <- function(df){
+  df[, !sapply(df, function(x) min(x) == max(x))]
+}
 
 # don't set the seed because I want both of the below to be different - though I could just pick 2 different seeds
 #set.seed(123)
-random_flow_metabolites_1 <- sapply(flow_metabolites, function(x) { sample(x) })
 
-random_flow_metabolites_2 <- sapply(flow_metabolites, function(x) { sample(x) })
+single_expression_metabolites <- flow_metabolites %>%
+  pivot_longer(cols = c(CD172:SLADQ), names_to = "marker", values_to = "percent") %>%
+    removeZeroVar() %>%
+  pivot_longer(cols = c(metab_1:metab_4504), names_to = "metaboliteID", values_to = "metabolite_expression")
+
+
+random_flow_metabolites_1 <- sapply(flow_metabolites, function(x) { sample(x) }) %>%
+  as.data.frame() %>%
+  pivot_longer(cols = c(CD172:SLADQ), names_to = "marker", values_to = "percent") %>%
+  removeZeroVar() %>%
+  pivot_longer(cols = c(metab_1:metab_4504), names_to = "metaboliteID", values_to = "metabolite_expression") %>%
+  mutate(metabolite_expression = as.numeric(metabolite_expression),
+         percent = as.numeric(percent))
+
+random_flow_metabolites_2 <- sapply(flow_metabolites, function(x) { sample(x) }) %>%
+    as.data.frame() %>%
+  pivot_longer(cols = c(CD172:SLADQ), names_to = "marker", values_to = "percent") %>%
+    removeZeroVar() %>%
+  pivot_longer(cols = c(metab_1:metab_4504), names_to = "metaboliteID", values_to = "metabolite_expression")%>%
+  mutate(metabolite_expression = as.numeric(metabolite_expression),
+         percent = as.numeric(percent))
+
+random_flow_metabolites_3 <- sapply(flow_metabolites, function(x) { sample(x) }) %>%
+    as.data.frame() %>%
+  pivot_longer(cols = c(CD172:SLADQ), names_to = "marker", values_to = "percent") %>%
+    removeZeroVar() %>%
+  pivot_longer(cols = c(metab_1:metab_4504), names_to = "metaboliteID", values_to = "metabolite_expression")%>%
+  mutate(metabolite_expression = as.numeric(metabolite_expression),
+         percent = as.numeric(percent))
+
+
+
+
 ```
 
+The data all looks the same going into the following models - let's check out the functions
 
+*General r^2 with the two timepoints combined*
+Note: CD8 - no metabolites for which r^2 is >0.5 or < -0.5 and pvalue < 0.05
 ```{r}
+fitted_models_SLADQ <- fit_models(single_expression_metabolites, "SLADQ")
+p_hist(fitted_models_SLADQ, "SLADQ")
+
+fitted_models_SLADQ_r1 <- fit_models(random_flow_metabolites_1, "SLADQ")
+p_hist(fitted_models_SLADQ_r1, "SLADQ")
+
+fitted_models_SLADQ_r2 <- fit_models(random_flow_metabolites_2, "SLADQ")
+p_hist(fitted_models_SLADQ_r2, "SLADQ")
+
+fitted_models_SLADQ_r3 <- fit_models(random_flow_metabolites_3, "SLADQ")
+p_hist(fitted_models_SLADQ_r3, "SLADQ")
 
 ```
 
 
 
+
+Plot the correlations with timepoints combined
+```{r fig.width = 7, fig.height = 8}
+
+flow_metab_corr_plot(single_expression_metabolites, important_metabs_SLADQ, 
+                     "SLADQ", r_labels_SLADQ)
+
+```
