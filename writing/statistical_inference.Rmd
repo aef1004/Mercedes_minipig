@@ -1,0 +1,116 @@
+---
+title: "statistical_inference"
+output: html_document
+---
+
+The goal is to see if we switch up the data so that each column is rearranged, can we still pick out the correct data?
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://repository.upenn.edu/cgi/viewcontent.cgi?article=1389&context=statistics_papers
+
+```{r message = FALSE}
+library(data.table)
+library(openCyto)
+library(ncdfFlow)
+library(flowWorkspace)
+library(dplyr)
+library(ggcyto)
+library(stringr) 
+library(scales)
+library(tidyr)
+library(superheat)
+library(tibble)
+library(pheatmap)
+library(cytotypr)
+library(gridExtra)
+library(factoextra)
+library(ggplot2)
+library(rstatix)
+library(purrr)
+library(tidyr)
+library(broom)
+```
+
+
+Practice randomizing the data
+```{r}
+A <- data.frame(num = 1:25, letter = letters[1:25], num2 = 1:25)
+
+# closest
+
+df2 = sapply(A, function(x) { sample(x) })
+
+```
+
+
+
+```{r}
+
+load("../data/all_fe_30DPI")
+load("../data/all_fe_12week")
+
+all_fe_30DPI
+all_fe_12week
+
+all_fe <- rbind(all_fe_12week, all_fe_30DPI)
+
+single_expression <- all_fe %>%
+  gather(key = marker, value = expression, -filename, -cell_no, -total_count_by_file, -percentage)%>%
+  group_by(filename, marker, expression) %>%
+  summarise(cells_per_marker = sum(cell_no)) %>%
+  ungroup() %>%
+  group_by(filename, marker) %>%
+  mutate(total_cells = sum(cells_per_marker),
+         percent_per_marker = 100*cells_per_marker/total_cells) %>%
+  ungroup() %>%
+  mutate(timepoint = str_extract(filename, "[:alpha:]+[:digit:]+"),
+         filename = str_extract(filename, "Pig [0-9]*")) %>%
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+```
+
+
+  
+```{r}
+  metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
+
+metabolite_wide <- metabolites %>%
+  filter(!grepl("Pooled", full_name)) %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  mutate(full_name = str_replace(full_name,"12wks", "Week12"),
+         full_name = str_replace(full_name,  "30DPI", "D30"))
+         
+```
+  
+
+```{r}
+flow_metabolites <- single_expression %>%
+  unite("full_name", c(filename, timepoint)) %>%
+  mutate(full_name = str_replace(full_name, " ", "_"),
+         full_name = str_replace(full_name, "Pig", "Minipig"))%>%
+  filter(expression == 1) %>%
+  select(full_name, marker, percent_per_marker, vaccine_status) %>%
+  pivot_wider(names_from = "marker", values_from = "percent_per_marker") %>%
+  left_join(metabolite_wide, by = "full_name") %>%
+  mutate(timepoint = str_replace(full_name, "Minipig_[0-9]*_", ""))
+
+
+# don't set the seed because I want both of the below to be different - though I could just pick 2 different seeds
+#set.seed(123)
+random_flow_metabolites_1 <- sapply(flow_metabolites, function(x) { sample(x) })
+
+random_flow_metabolites_2 <- sapply(flow_metabolites, function(x) { sample(x) })
+```
+
+
+```{r}
+
+```
+
+
+
