@@ -165,6 +165,7 @@ ggplot(df_fitted_models, aes(x = p.value)) +
 
 ```
 
+Flow data
 ```{r}
 
 load("../data/all_fe_30DPI")
@@ -189,7 +190,7 @@ single_expression <- all_fe %>%
   mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
 ```
 
-
+Metabolite data
   
 ```{r}
   metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
@@ -282,13 +283,13 @@ p_hist(fitted_models_SLADQ_r3, "SLADQ")
 
 ```
 
-
-
-
-Plot the correlations with timepoints combined
+Plot the correlations with timepoints combined - basically when I run it with the similated data, there's  0-2 metabolites where the p-value < 0.01 and the r^2 >0.5!
 ```{r fig.width = 7, fig.height = 8}
+important_metabs_SLADQ <- calc_important_metab(fitted_models_SLADQ_r2, 0.01, 0.5)
 
-flow_metab_corr_plot(single_expression_metabolites, important_metabs_SLADQ, 
+r_labels_SLADQ <- calculate_plot_r_labeling(important_metabs_SLADQ, random_flow_metabolites_2)
+
+flow_metab_corr_plot(random_flow_metabolites_2, important_metabs_SLADQ, 
                      "SLADQ", r_labels_SLADQ)
 
 ```
