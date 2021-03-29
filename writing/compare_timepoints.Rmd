@@ -908,7 +908,7 @@ pi1 <- df_fitted_models %>%
 ggplot(df_fitted_models, aes(x = p.value)) +
   geom_histogram(binwidth = binw) +
   geom_vline(xintercept = alpha, color = "red") +
-  geom_hline(yintercept = pi0$pi0*binw * nrow(fitted_models), col  = "blue") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
   ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
 }
 

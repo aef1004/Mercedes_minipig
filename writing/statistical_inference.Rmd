@@ -159,7 +159,7 @@ pi1 <- df_fitted_models %>%
 ggplot(df_fitted_models, aes(x = p.value)) +
   geom_histogram(binwidth = binw) +
   geom_vline(xintercept = alpha, color = "red") +
-  geom_hline(yintercept = pi0$pi0*binw * nrow(fitted_models), col  = "blue") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
   ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
 }
 
@@ -281,6 +281,20 @@ p_hist(fitted_models_SLADQ_r2, "SLADQ")
 fitted_models_SLADQ_r3 <- fit_models(random_flow_metabolites_3, "SLADQ")
 p_hist(fitted_models_SLADQ_r3, "SLADQ")
 
+```
+
+```{r}
+fitted_models_CD8 <- fit_models(single_expression_metabolites, "CD8")
+p_hist(fitted_models_CD8, "CD8")
+
+fitted_models_CD8_r1 <- fit_models(random_flow_metabolites_1, "CD8")
+p_hist(fitted_models_CD8_r1, "CD8")
+
+fitted_models_CD8_r2 <- fit_models(random_flow_metabolites_2, "CD8")
+p_hist(fitted_models_CD8_r2, "CD8")
+
+fitted_models_CD8_r3 <- fit_models(random_flow_metabolites_3, "CD8")
+p_hist(fitted_models_CD8_r3, "CD8")
 ```
 
 Plot the correlations with timepoints combined - basically when I run it with the similated data, there's  0-2 metabolites where the p-value < 0.01 and the r^2 >0.5!
