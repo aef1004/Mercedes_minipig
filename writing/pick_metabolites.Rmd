@@ -1,0 +1,301 @@
+---
+title: "pick_metabolites"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r message = FALSE}
+library(data.table)
+library(openCyto)
+library(ncdfFlow)
+library(flowWorkspace)
+library(dplyr)
+library(ggcyto)
+library(stringr) 
+library(scales)
+library(tidyr)
+library(superheat)
+library(tibble)
+library(pheatmap)
+library(cytotypr)
+library(gridExtra)
+library(factoextra)
+library(ggplot2)
+library(rstatix)
+library(purrr)
+library(tidyr)
+library(broom)
+```
+
+```{r}
+removeZeroVar <- function(df){
+  df[, !sapply(df, function(x) min(x) == max(x))]
+}
+```
+
+Metabolite Data
+```{r}
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression") %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))%>%
+  filter(!grepl("Pooled", full_name))
+
+
+metabolite_wide <- metabolites  %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  mutate(full_name = str_replace(full_name,"12wks", "Week12"),
+         full_name = str_replace(full_name,  "30DPI", "D30")) %>%
+  removeZeroVar()
+         
+```
+
+Flow Data
+```{r}
+
+load("../data/flow_predefined_phenotypes")
+load("../data/flow_single_expression")
+load("../data/flow_fe")
+
+flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
+  rename(percent = marker_percent,
+         flow = phenotype,
+         vaccine_status = group) 
+
+flow_metab2 <-left_join(flow_fe, metabolites, by = "full_name")%>%
+  rename(percent = percentage,
+         flow = population)
+
+flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %>%
+  rename(flow = marker)
+
+flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
+  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
+
+```
+
+Functions for picking metabolites
+```{r}
+identify_metab <- function(df, flowID, min_p_value, min_r_squared, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+df %>%
+  filter(flow == flowID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared) %>%
+  select(metaboliteID) %>%
+  unique()
+    
+    } else {
+      
+    df %>%
+  filter(flow == flowID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared) %>%
+  select(metaboliteID) %>%
+  unique()
+  }
+}
+
+identify_metab(flow_metab, "SLADQ", 0.01, 0.5)
+```
+
+```{r}
+identify_metab <- function(df, min_p_value, min_r_squared, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+df %>%
+  group_by(flow, metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared) %>%
+  select(flow, metaboliteID) %>%
+  unique()
+    
+    } else {
+      
+    df %>%
+  group_by(flow, metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared) %>%
+  select(flow, metaboliteID, timepoint) %>%
+  unique()
+  }
+}
+
+```
+
+# Option 1
+
+This looks at all of the timepoints together and identifies metabolites where 
+p <0.01
+r^2 >0.5
+
+Took 14 minutes to run - 807 unique metabolies
+```{r}
+# 2322 metabolites - (but some may be repeats )
+start_time <- Sys.time()
+
+identity1 <- identify_metab(flow_metab,  0.01, 0.5)
+
+identity1 %>%
+  select(metaboliteID) %>%
+  unique()
+
+end_time <- Sys.time()
+end_time - start_time
+```
+
+# Option 2
+This looks splitting up the timepoints so that there are 2x as many correlations and identifies metabolites where 
+p <0.01
+r^2 >0.5
+
+There are 3,403 unique metabolites identified
+```{r}
+# 
+start_time <- Sys.time()
+
+identity2 <- identify_metab(flow_metab,  0.01, 0.5, timepoint = TRUE)
+
+identity2 %>%
+  select(metaboliteID) %>%
+  unique()
+
+end_time <- Sys.time()
+end_time - start_time
+```
+
+# Option 3
+Here we will look at splitting up the timepoints but only taking the metabolites where the r^2 value slope of the line is the same for both of the timepoints
+p <0.01
+r^2 >0.5
+
+107 unique metabolites
+```{r}
+start_time <- Sys.time()
+
+fitted_models <- flow_metab %>%
+  group_by(flow, metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint, estimate) %>%
+  ungroup() 
+
+end_time <- Sys.time()
+end_time - start_time
+
+
+save_for_plot <-fitted_models %>%
+  filter(p.value < 0.01) %>%
+  filter(adj.r.squared > 0.5 | adj.r.squared < -0.5) %>%
+  select(flow, metaboliteID, timepoint) %>%  
+  unique() %>%
+  left_join(fitted_models, by = c("metaboliteID", "flow", "timepoint")) %>%
+  mutate(same_sign = ifelse(estimate >0, "pos", "neg")) %>%
+  group_by(metaboliteID) 
+
+
+
+both_neg <- save_for_plot %>%
+  filter_at(vars(same_sign), all_vars(. == "neg")) %>%
+  group_by(flow) %>%
+  mutate(repeate = duplicated(metaboliteID)) %>%
+  filter(repeate == "TRUE") %>%
+  select(flow, metaboliteID)
+
+both_pos <- save_for_plot %>%
+  filter_at(vars(same_sign), all_vars(. == "pos")) %>%
+  group_by(flow) %>%
+  mutate(repeate = duplicated(metaboliteID)) %>%
+  filter(repeate == "TRUE") %>%
+  select(flow, metaboliteID)
+
+same_sign_metab <- rbind(both_neg, both_pos) %>%
+  left_join(save_for_plot) %>%
+  select(-same_sign)
+
+same_sign_metab %>%
+  ungroup() %>%
+  select(metaboliteID) %>%
+  unique()
+```
+
+
+Compare the 3 option lists to each other
+
+```{r}
+#78 overlapping metabolites
+same_sign_metab %>%
+  ungroup() %>%
+  select(metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(metaboliteID) %>%
+  unique()
+
+# all of the metabolites in same_sign are found in identity 2 (that makes sense)
+same_sign_metab %>%
+  ungroup() %>%
+  select(metaboliteID) %>%
+  inner_join(identity2) %>%
+  select(metaboliteID) %>%
+  unique()
+
+# 430 metabolites shared 
+inner_join(identity1, identity2) %>%
+  select(metaboliteID) %>%
+  unique()
+
+
+```
+
