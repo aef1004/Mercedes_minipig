@@ -334,8 +334,6 @@ flow_metabolites <- all_phenotypes %>%
   left_join(metabolites, by = "full_name") %>%
   mutate(timepoint = str_replace(full_name, "Minipig_[0-9]*_", ""))
 
-
-
 fitted_models <- flow_metabolites %>%
   filter(phenotype == "CD4_Tcell") %>%
   group_by(metaboliteID) %>%
