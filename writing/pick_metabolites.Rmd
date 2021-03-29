@@ -175,8 +175,17 @@ This looks at all of the timepoints together and identifies metabolites where
 p <0.01
 r^2 >0.5
 
+This will show us the metabolites that are correlated with infection - they may not necessarily be correlated with the flow markers
+
 Took 14 minutes to run - 807 unique metabolies
 ```{r}
+
+load("../data/saved_data/identity1")
+load("../data/saved_data/identity2")
+load("../data/saved_data/same_sign_metab")
+
+
+
 # 2322 metabolites - (but some may be repeats )
 start_time <- Sys.time()
 
@@ -185,6 +194,8 @@ identity1 <- identify_metab(flow_metab,  0.01, 0.5)
 identity1 %>%
   select(metaboliteID) %>%
   unique()
+
+save(same_sign_metab, file = "../data/saved_data/same_sign_metab")
 
 end_time <- Sys.time()
 end_time - start_time
@@ -211,9 +222,11 @@ end_time - start_time
 ```
 
 # Option 3
-Here we will look at splitting up the timepoints but only taking the metabolites where the r^2 value slope of the line is the same for both of the timepoints
+Here we will look at splitting up the timepoints but only taking the metabolites where the r^2 value slope of the line is the same for both of the timepoints. This is a more refined version of "Option 2"
 p <0.01
 r^2 >0.5
+
+These metabolites show correlation with the flow markers after accounting for the two different timepoints and separating them.
 
 107 unique metabolites
 ```{r}
@@ -274,6 +287,9 @@ same_sign_metab %>%
 
 Compare the 3 option lists to each other
 
+Based on this data, 78 of the metabolites that have form parallel lines when correlated with the time separate are also correlated when timepoint isn't accounted for
+
+There are 403 metabolites that correlate both with time and without time
 ```{r}
 #78 overlapping metabolites
 same_sign_metab %>%
@@ -295,6 +311,175 @@ same_sign_metab %>%
 inner_join(identity1, identity2) %>%
   select(metaboliteID) %>%
   unique()
+```
+
+What I want to do
+
+Option 1 shows us the metabolites that are correlated with infection - they may not necessarily be correlated with the flow markers.
+Option 3 (same_sign) shows metabolite correlation with the flow markers after accounting for the two different timepoints and separating them.
+
+goal - have the option 1 (non-time correlated) metabolites - look up - these are metabolites that are associated with infection - if we similarly look at the ones where time is separated and there is still a slope, then (same sign) then these could actually be associated with the flow percentages
+
+```{r fig.width = 7, fig.height = 8}
+
+ pick <- same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(flow, metaboliteID) %>%
+  unique()
+
+unique(pick$flow)
+
+identity1 %>%
+  filter(metaboliteID %in% pick$metaboliteID & flow %in% pick$flow)
+
+same_sign_metab  %>%
+  mutate(repeate = duplicated(metaboliteID)) %>%
+  filter(repeate == "FALSE")
+
+
+pick <- same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(flow, metaboliteID) %>%
+  unique() %>%
+  filter(flow == "Pop10")  
+
+flow_metab %>%
+  filter(flow == "Pop10") %>%
+  filter(metaboliteID %in% pick$metaboliteID) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with","Percentages"))
+```
+
+
+```{r}
+
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()
+    } else {
+      
+    df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  ungroup() 
+  }
+}
+
+
+calc_important_metab <- function(df, min_p_value, min_r_squared) {
+
+df %>%
+  filter(p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared)
+}
+
+calculate_plot_r_labeling <- function(important_metab, df, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+    left_join(important_metab, df, by = "metaboliteID") %>%
+  group_by(metaboliteID) %>%
+  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+  } else {
+      
+  left_join(important_metab, df, by = c("metaboliteID", "timepoint")) %>%
+  group_by(metaboliteID, timepoint) %>%
+  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
+         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
+  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
+         x_axis_label, y_axis_label) %>%
+  unique()
+  }
+}
+
+flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels, timepoint = FALSE) {
+  if(timepoint == FALSE) {
+      df %>%
+  filter(flow == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  } else{
+      df %>%
+  filter(flow == markerID) %>%
+  filter(metaboliteID %in% important_metab$metaboliteID) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE) +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
+  }
+}
+
+p_hist <- function(df_fitted_models, markerID) {
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+```
+
+```{r}
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop10")
+p_hist(fitted_models_CD8_Tcell, "Pop10")
 
 
 ```
