@@ -339,23 +339,74 @@ same_sign_metab  %>%
   filter(repeate == "FALSE")
 
 
-pick <- same_sign_metab %>%
+
+```
+
+See the visualizations for the metabolites and flow that have been identified
+```{r}
+
+plot_metab <- function(flowID) {
+  
+  pick <- same_sign_metab %>%
   ungroup() %>%
   select(flow, metaboliteID) %>%
   inner_join(identity1) %>%
   select(flow, metaboliteID) %>%
   unique() %>%
-  filter(flow == "Pop10")  
+  filter(flow == flowID)  
 
 flow_metab %>%
-  filter(flow == "Pop10") %>%
+  filter(flow == flowID) %>%
   filter(metaboliteID %in% pick$metaboliteID) %>%
 ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
   geom_point() +
   geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
   facet_wrap(~metaboliteID, scales = "free_y") +
-  ggtitle(paste("Metabolite Correlations with","Percentages"))
+  ggtitle(paste("Metabolite Correlations with", flowID, "Percentages"))
+}
+
+plot_metab("CD8_Tcell")
+plot_metab("Pop8")
+plot_metab("Pop10")
+plot_metab("Pop4")
+plot_metab("Pop9")
+plot_metab("CD3")
+plot_metab("CD45RA")
+
 ```
+
+Show differences when you account for vaccination
+```{r}
+plot_metab <- function(flowID) {
+  
+  pick <- same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(flow, metaboliteID) %>%
+  unique() %>%
+  filter(flow == flowID)  
+
+flow_metab %>%
+  filter(flow == flowID) %>%
+  filter(metaboliteID %in% pick$metaboliteID) %>%
+  unite(col = "timepoint_vaccine", c(timepoint, vaccine_status), sep = "-") %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint_vaccine))) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", flowID, "Percentages"))
+}
+
+plot_metab("CD8_Tcell")
+plot_metab("Pop8")
+plot_metab("Pop10")
+plot_metab("Pop4")
+plot_metab("Pop9")
+plot_metab("CD3")
+plot_metab("CD45RA")
+```
+
 
 
 ```{r}
@@ -394,62 +445,6 @@ unnest(summary_model) %>%
 }
 
 
-calc_important_metab <- function(df, min_p_value, min_r_squared) {
-
-df %>%
-  filter(p.value < min_p_value) %>%
-  filter(adj.r.squared > min_r_squared)
-}
-
-calculate_plot_r_labeling <- function(important_metab, df, timepoint = FALSE) {
-  if(timepoint == FALSE) {
-    left_join(important_metab, df, by = "metaboliteID") %>%
-  group_by(metaboliteID) %>%
-  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
-         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
-  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
-         x_axis_label, y_axis_label) %>%
-  unique()
-  } else {
-      
-  left_join(important_metab, df, by = c("metaboliteID", "timepoint")) %>%
-  group_by(metaboliteID, timepoint) %>%
-  mutate(x_axis_label = min(percent) + (max(percent) - min(percent))/2,
-         y_axis_label = ifelse(estimate <= 0, max(metabolite_expression), min(metabolite_expression))) %>%
-  select(metaboliteID,  timepoint, adj.r.squared, p.value, 
-         x_axis_label, y_axis_label) %>%
-  unique()
-  }
-}
-
-flow_metab_corr_plot <- function(df, important_metab, markerID, r_labels, timepoint = FALSE) {
-  if(timepoint == FALSE) {
-      df %>%
-  filter(flow == markerID) %>%
-  filter(metaboliteID %in% important_metab$metaboliteID) %>%
-ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
-  geom_point() +
-  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
-  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
-                                   label = paste("r^2 == ",
-                                                 round(adj.r.squared, 2))), parse = TRUE) +
-  facet_wrap(~metaboliteID, scales = "free_y") +
-  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
-  } else{
-      df %>%
-  filter(flow == markerID) %>%
-  filter(metaboliteID %in% important_metab$metaboliteID) %>%
-ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
-  geom_point() +
-  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE) +
-  geom_text(data = r_labels, aes(x = x_axis_label, y = y_axis_label, 
-                                   label = paste("r^2 == ",
-                                                 round(adj.r.squared, 2))), parse = TRUE) +
-  facet_wrap(~metaboliteID, scales = "free_y") +
-  ggtitle(paste("Metabolite Correlations with", markerID, "Percentages"))
-  }
-}
-
 p_hist <- function(df_fitted_models, markerID) {
   
   alpha = binw = 0.01
@@ -480,7 +475,12 @@ ggplot(df_fitted_models, aes(x = p.value)) +
 ```{r}
 fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop10")
 p_hist(fitted_models_CD8_Tcell, "Pop10")
+```
 
-
+# Visualizations for Marcela
+```{r}
+identity1
+identity2
+same_sign_metab
 ```
 
