@@ -477,10 +477,65 @@ fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop10")
 p_hist(fitted_models_CD8_Tcell, "Pop10")
 ```
 
-# Visualizations for Marcela
+Look at the ones that are in same_sign_meta but not identity1
 ```{r}
-identity1
-identity2
-same_sign_metab
+
+plot_metab <- function(flowID) {
+  
+  pick <- same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  anti_join(identity1) %>%
+  select(flow, metaboliteID) %>%
+  unique() %>%
+  filter(flow == flowID)  
+
+flow_metab %>%
+  filter(flow == flowID) %>%
+  filter(metaboliteID %in% pick$metaboliteID) %>%
+  unite(col = "timepoint_vaccine", c(timepoint, vaccine_status), sep = "-") %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint_vaccine))) +
+  geom_point() +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  facet_wrap(~metaboliteID, scales = "free_y") +
+  ggtitle(paste("Metabolite Correlations with", flowID, "Percentages"))
+}
+
+unique(pick$flow)
+
+
+plot_metab("CD8_Tcell")
+plot_metab("Pop10")
+plot_metab("Pop12")
+plot_metab("Pop15")
+plot_metab("Pop24")
+plot_metab("Pop7")
+plot_metab("Pop8")
+plot_metab("CD3")
+plot_metab("DN_Tcell")
+plot_metab("Pop4")
+plot_metab("Pop9")
+```
+
+
+# Send to Nurul
+
+There are 64 metabolites
+```{r}
+
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))
+
+
+same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(metaboliteID) %>%
+  unique() %>%
+  left_join(metabolites) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
+  write.csv("../data/saved_data/metabolites_for_Nurul.csv", row.names = FALSE)
 ```
 
