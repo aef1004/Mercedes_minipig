@@ -28,6 +28,8 @@ library(rstatix)
 library(purrr)
 library(tidyr)
 library(broom)
+library(ggsignif)
+library(ggpubr)
 ```
 
 ```{r}
@@ -61,7 +63,9 @@ single_expression %>%
   filter(expression == "1") %>%
   ggplot(aes(x =factor(timepoint, levels = c("Week12", "D30")), y = percent_per_marker, color = timepoint)) +
   geom_point() +
-  facet_wrap(~marker)
+  facet_wrap(~marker) +
+  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  ggtitle("")
 ```
 
 Singular Marker Statistical Significance
@@ -78,20 +82,34 @@ single_expression %>%
 single_expression %>%
   filter(expression == "1") %>%
   group_by(timepoint, marker) %>%
-  tukey_hsd(percent_per_marker ~ vaccine_status) 
+  nest() %>%
+  mutate(aov_result = map(data, ~aov(percent_per_marker ~ vaccine_status, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(timepoint, marker, contrast, adj.p.value) 
+
+
 
 # compare Week 12 to D30
 single_expression %>%
   filter(expression == "1") %>%
   group_by(marker) %>%
-  do(tidy(t.test(percent_per_marker ~ vaccine_status, data = ., 
+  do(tidy(t.test(percent_per_marker ~ timepoint, data = ., 
                  paired = TRUE))) %>%
   filter(p.value < 0.05)
 
 single_expression %>%
   filter(expression == "1") %>%
   group_by(marker) %>%
-  tukey_hsd(percent_per_marker ~ vaccine_status) 
+  nest() %>%
+  mutate(aov_result = map(data, ~aov(percent_per_marker ~ timepoint, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(marker, contrast, adj.p.value)
 ```
 
 
@@ -141,11 +159,17 @@ pheno_4 <- look_multiple_markers(save_for_phenotypes, c("CD3 == 1 & CD4 == 1 & C
 
 all_phenotypes <- rbind(pheno_1, pheno_2, pheno_3, pheno_4)
 
-
-ggplot(all_phenotypes, aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), 
+all_phenotypes %>%
+  mutate(phenotype = str_replace(phenotype, "CD4_Tcell", "CD4 Tcell"),
+         phenotype = str_replace(phenotype, "CD8_Tcell", "CD8 Tcell"),
+         phenotype = str_replace(phenotype, "DN_Tcell", "Double Negative (CD4- CD8-) Tcell"),
+         phenotype = str_replace(phenotype, "DP_Tcell", "Double Positive (CD4+ CD8+) Tcell")) %>%
+  ggplot(aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), 
                            y = marker_percent, color = timepoint)) +
   geom_point() +
-  facet_wrap(~phenotype)
+  facet_wrap(~phenotype)+
+  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  ggtitle("")
 ```
 
 Predefined statistical analysis
@@ -160,7 +184,13 @@ all_phenotypes %>%
 
 all_phenotypes %>%
   group_by(timepoint, phenotype) %>%
-  tukey_hsd(marker_percent ~ group) 
+    nest() %>%
+  mutate(aov_result = map(data, ~aov(marker_percent ~ group, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(phenotype, timepoint, contrast, adj.p.value)
 
 # compare Week 12 to D30
 all_phenotypes %>%
@@ -170,8 +200,14 @@ all_phenotypes %>%
   filter(p.value < 0.05)
 
 all_phenotypes %>%
-  group_by(phenotype) %>%
-  tukey_hsd(marker_percent ~ timepoint) 
+  group_by(phenotype)  %>%
+  nest() %>%
+  mutate(aov_result = map(data, ~aov(marker_percent ~ timepoint, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(phenotype, contrast, adj.p.value)
 ```
 
 # Feature Engineered Populations
@@ -202,13 +238,16 @@ sample_populations <- all_fe %>%
   arrange(CD3, CD4, CD8) %>%
   filter_pops() 
 
+correct_order <- c(paste0("Pop", c(1:length(unique(sample_populations$population)))))
+
 sample_populations_all_groups <- identified_pop_perc(sample_populations, all_fe, 
                                                      marker_vector = order_of_markers) %>%
   mutate(filename = str_replace(filename, "_Surface_Control_[0-9]*.fcs", ""),
          timepoint = str_extract(filename, "[:alnum:]*_"),
          timepoint = str_replace(timepoint, "_", ""),
          filename = str_extract(filename, "Pig [0-9]*")) %>%
-  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
+  mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control")) %>%
+  mutate(population = factor(population, levels = correct_order))
 
 simple_pop_df <- sample_populations %>%
   column_to_rownames("population") 
@@ -237,15 +276,17 @@ Correlation Plot
 Look at percentages 
 **Note I need to separate out the time and vaccine status (4 groups)
 ```{r fig.width = 3, fig.height = 4}
-ggplot(sample_populations_all_groups, aes(x = timepoint, y = percentage, 
-                                   group = vaccine_status, color = vaccine_status)) +
+ggplot(sample_populations_all_groups, aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), y = percentage, 
+                                   group = timepoint, color = timepoint)) +
   scale_fill_identity() +
-  geom_point() +
-  geom_line() +
-  facet_wrap("population", scales = "free",  labeller = label_both) +
+  geom_point(size = 2) +
+  facet_wrap("population", scales = "free") +
   xlab("Timepoint") +
-  ylab("Average Percent of Total Live Leukocytes") +
-  theme_gray() 
+  ylab("Percent of Total Live Leukocytes") +
+  theme_gray() +
+  theme(axis.text = element_text(size = 10),
+        strip.text = element_text(size = 10),
+        axis.title = element_text(size = 14))
 
 
 pops_for_plots_average <- sample_populations_all_groups %>%
@@ -282,20 +323,27 @@ There are differences between the timepoints
 
 **Note I might actually want to do a paired analysis here...**
 ```{r}
+sample_populations_all_groups %>%
+  group_by(population, timepoint) %>%
+  nest() %>%
+  mutate(aov_result = map(data, ~aov(percentage ~ vaccine_status, data = .x)),
+         tukey_result = map(aov_result, TukeyHSD),
+         tidy_tukey = map(tukey_result, tidy)) %>%
+  unnest(tidy_tukey, .drop = TRUE) %>%
+  dplyr::filter(adj.p.value <0.05) %>%
+  select(timepoint, population, contrast, adj.p.value) %>%
+  ungroup()
 
 sample_populations_all_groups %>%
-  unite(group, c(timepoint, vaccine_status)) %>%
-  mutate(group = as.factor(group)) %>%
   group_by(population) %>%
   nest() %>%
-  mutate(aov_result = map(data, ~aov(percentage ~ group, data = .x)),
+  mutate(aov_result = map(data, ~aov(percentage ~ timepoint, data = .x)),
          tukey_result = map(aov_result, TukeyHSD),
          tidy_tukey = map(tukey_result, tidy)) %>%
   unnest(tidy_tukey, .drop = TRUE) %>%
   dplyr::filter(adj.p.value <0.05) %>%
   select(population, contrast, adj.p.value) %>%
-  ungroup() %>%
-  arrange(population, paste0("Pop", c(1:length(adj.p.value))))
+  ungroup() 
 ```
 
 # Explore Metabolomics
