@@ -447,7 +447,7 @@ unnest(summary_model) %>%
 
 p_hist <- function(df_fitted_models, markerID) {
   
-  alpha = binw = 0.01
+alpha = binw = 0.01
 
 pi0 <- df_fitted_models %>%
   mutate(total_rows = nrow(.)) %>%
@@ -537,5 +537,40 @@ same_sign_metab %>%
   left_join(metabolites) %>%
   mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
   write.csv("../data/saved_data/metabolites_for_Nurul.csv", row.names = FALSE)
+```
+
+
+Look at p-value histograms for the same-sign metabs that are also in identity1
+```{r}
+same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  select(flow) %>%
+  unique()
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "CD3")
+p_hist(fitted_models_CD8_Tcell, "CD3")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "CD45RA")
+p_hist(fitted_models_CD8_Tcell, "CD45RA")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "CD8_Tcell")
+p_hist(fitted_models_CD8_Tcell, "CD8_Tcell")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop4")
+p_hist(fitted_models_CD8_Tcell, "Pop4")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop8")
+p_hist(fitted_models_CD8_Tcell, "Pop8")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop9")
+p_hist(fitted_models_CD8_Tcell, "Pop9")
+
+fitted_models_CD8_Tcell <- fit_models(flow_metab, "Pop10")
+p_hist(fitted_models_CD8_Tcell, "Pop10")
+
+
+
 ```
 
