@@ -554,6 +554,16 @@ metab_run <- metabolite_wide[, floor(runif(690, min = 1, max = ncol(metabolite_w
 
 res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE, tol = sqrt(.Machine$double.eps))
 
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+res_pca_importance %>% 
+  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
+  geom_col() + 
+  theme_classic()
+
 summary(res.pca)$x %>% 
   as.data.frame() %>% 
   rownames_to_column("name") %>%
@@ -578,6 +588,36 @@ summary(res.pca)$x %>%
   scale_color_manual(values = c("#009E73", "purple")) +
   theme_classic() +
   ggtitle("Metabolite PCA by Vaccine Status")
+
+# pretty for write up
+
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  ggplot(aes(x = PC1, y = PC2, color = timepoint)) + 
+  geom_point() + 
+  stat_ellipse() + 
+  theme_classic() +
+    labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA by Timepoint")
+
+
+res.pca$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  ggplot(aes(x = PC1, y = PC2, color = vaccine_status)) + 
+  geom_point() + 
+  stat_ellipse() + 
+  scale_color_manual(values = c("#009E73", "purple")) +
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA by Vaccine Status")
+
 ```
 
 
