@@ -574,3 +574,161 @@ p_hist(fitted_models_CD8_Tcell, "Pop10")
 
 ```
 
+Show plots for write up
+
+```{r}
+step1 <- flow_metab %>%
+  filter(flow == "CD8_Tcell" & metaboliteID == "metab_4363") %>%
+  group_by(flow, metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(timepoint, flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
+  unique()
+
+rlabel <- step1 %>%
+  filter(metaboliteID == "metab_4363") %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
+  mutate(labelx = paste(round(adj.r.squared, 2), ", ", "p = ", 
+                                                 signif(p.value, 2) ))
+my.formula <- metabolite_expression ~percent
+flow_metab %>%
+  filter(flow == "CD8" & metaboliteID == "metab_4363") %>%
+  left_join(step1, by = c("flow", "metaboliteID", "timepoint")) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = rlabel, aes(x = 20, y = 60000,
+                  label = paste("r^2 = ", round(adj.r.squared[1], 2), "p = ", signif(p.value[1], 2))), 
+             color = "#00BFC4",
+              parse = FALSE) +
+    geom_text(data = rlabel, aes(x = 20, y = 50000,
+                  label = paste("r^2 = ", round(adj.r.squared[2], 2), "p = ", signif(p.value[2], 2))), 
+              color = "#F8766D",
+              parse = FALSE) +
+  ggtitle("Metabolite 4363") +
+  labs(color = "Timepoint", x = "CD8 Tcell Percentage of Cells", y = "Metabolite Expression", fill = "Timepoint") +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 18),
+        title = element_text(size = 18))
+
+```
+
+```{r}
+
+plot_pick_metab <- function(df, flow_pop, metab_pick, pretty_metab, x_position, yposition1, yposition2) {
+  step1 <- df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  group_by(flow, metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(flow, metaboliteID, adj.r.squared, p.value) %>%
+  unique()
+
+# plot after I bring down the number of metabolites to a reasonable number
+df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  left_join(step1, by = c("flow", "metaboliteID")) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(aes(x = x_position, y = yposition1, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE, color = "black") +
+  geom_text(aes(x = x_position, y = yposition2, 
+                                   label = paste("p == ",
+                                                 signif(p.value, 2))), parse = TRUE, color = "black") +
+  ggtitle(pretty_metab) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "Metabolite Expression", fill = "Timepoint") +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 18),
+        title = element_text(size = 18))
+}
+# step 1
+plot_pick_metab(flow_metab, "CD8", "metab_3559", "Metabolite 3559", 14, 60000, 50000) # does not pass
+
+# step 2
+
+# final
+plot_pick_metab(flow_metab, "Pop10", "metab_1244", "Metabolite 1244", 2, 45000, 40000) # final
+plot_pick_metab(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 4363", 12, 60000, 50000) # final
+```
+
+Separate by timepoint
+```{r}
+plot_pick_metab_timepoint <- function(df, flow_pop, metab_pick, pretty_metab, pretty_flow,
+                                      xposition, yposition1, yposition2) {
+step1 <- df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  group_by(flow, metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(timepoint, flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
+  unique()
+
+rlabel <- step1 %>%
+  filter(metaboliteID == metab_pick) %>%
+  select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
+  mutate(labelx = paste(round(adj.r.squared, 2), ", ", "p = ", 
+                                                 signif(p.value, 2) ))
+
+df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  left_join(step1, by = c("flow", "metaboliteID", "timepoint")) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE) +
+  geom_text(data = rlabel, aes(x = xposition, y = yposition1,
+                  label = paste("r^2 = ", round(adj.r.squared[1], 2), "p = ", signif(p.value[1], 2))), 
+             color = "#00BFC4",
+              parse = FALSE) +
+    geom_text(data = rlabel, aes(x = xposition, y = yposition2,
+                  label = paste("r^2 = ", round(adj.r.squared[2], 2), "p = ", signif(p.value[2], 2))), 
+              color = "#F8766D",
+              parse = FALSE) +
+  ggtitle(pretty_metab) +
+  labs(color = "Timepoint", x = paste(pretty_flow, "Percentage of Cells"), y = "Metabolite Expression", 
+       fill = "Timepoint") +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 18),
+        title = element_text(size = 18))
+}
+
+# step 2 yes
+plot_pick_metab_timepoint(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 4363", "CD8 Tcell",
+                          10, 60000, 50000) 
+
+plot_pick_metab_timepoint(flow_metab, "Pop10", "metab_1244", "Metabolite 1244", "Pop10",
+                          3, 45000, 35000) 
+
+# step 2 no
+plot_pick_metab_timepoint(flow_metab, "SLADQ", "metab_1600", "Metabolite 1244", "Pop10", 
+                2, 45000, 40000) 
+
+plot_pick_metab_timepoint(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 4363", "Pop10", 
+                12, 60000, 50000) 
+```
+
