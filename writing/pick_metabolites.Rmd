@@ -732,3 +732,110 @@ plot_pick_metab_timepoint(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 436
                 12, 60000, 50000) 
 ```
 
+
+## Only pull out metabolites with correlation with SLADQ
+
+This looks at all of the timepoints together and identifies metabolites where 
+p <0.01
+r^2 >0.5
+
+This will show us the metabolites that are correlated with infection - they may not necessarily be correlated with the flow markers
+
+```{r}
+
+identify_metab_correction <- function(df, min_p_value, min_r_squared) {  
+
+df %>%
+  group_by(flow, metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup()  %>%
+  mutate(adj.p.value = p.adjust(p.value, method = "BH")) %>%
+  filter(adj.p.value < min_p_value) %>%
+  filter(adj.r.squared > min_r_squared) %>%
+  select(flow, metaboliteID) %>%
+  unique()
+}
+  
+SLADQ_flow1 <- c("SLADQ")
+SLADQ_flow2 <- c("SLADQ", "Pop2", "Pop3", "Pop6", "Pop8", "Pop12", "Pop13", 
+                "Pop14", "Pop15", "Pop17", "Pop18", "Pop20", "Pop21", "Pop25") # this contains all populations with SLADQ
+
+SLADQ_flow_metab1 <- flow_metab %>%
+  filter(flow %in% SLADQ_flow1)
+
+SLADQ_flow_metab2 <- flow_metab %>%
+  filter(flow %in% SLADQ_flow2)
+
+# 94 metabolites when just looking at correlatino with SLADQ (r^2 = 0.5)
+# 512 metabolites when looking at all populations with SLADQ in them (r^2 = 0.5)
+
+identity_SLADQ1 <- identify_metab_correction(SLADQ_flow_metab1,  0.05, 0.5)
+identity_SLADQ2 <- identify_metab_correction(SLADQ_flow_metab2,  0.05, 0.5)
+identity_3 <- identify_metab_correction(flow_metab,  0.05, 0.5)
+
+identity_SLADQ1 %>%
+  select(metaboliteID) %>%
+  unique()
+
+identity_SLADQ2 %>%
+  select(metaboliteID) %>%
+  unique()
+
+identity_3 %>%
+  select(metaboliteID) %>%
+  unique()
+
+
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))
+
+identity_SLADQ1 %>%
+  select(metaboliteID) %>%
+  unique() %>%
+  left_join(metabolites) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
+  write.csv("../data/saved_data/Nurul_SLADQ_marker.csv", row.names = FALSE)
+
+
+identity_SLADQ2 %>%
+  select(metaboliteID) %>%
+  unique() %>%
+  left_join(metabolites) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
+  write.csv("../data/saved_data/Nurul_all_SLADQ_pops.csv", row.names = FALSE)
+
+identity_3 %>%
+  select(metaboliteID) %>%
+  unique() %>%
+  left_join(metabolites) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
+  write.csv("../data/saved_data/Nurul_all_flow_pops.csv", row.names = FALSE)
+```
+
+**SLADQ** 
+94 (r^2 >0.5, p <0.01) no correction
+47 (r^2 >0.5, p <0.01) "BH"
+94 (r^2 >0.5, p <0.05) "BH"
+
+**SLADQ all pops**
+512 (r^2 >0.5, p <0.01) no correction
+512 (r^2 >0.5, p <0.05) "BH"
+
+```{r}
+
+save1 <- identify_metab_correction(SLADQ_flow_metab2,  0.05, 0.5)
+
+save1 %>%
+  select(metaboliteID) %>%
+  unique()
+```
+
