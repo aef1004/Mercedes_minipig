@@ -1,0 +1,105 @@
+---
+title: "MetaboAnalyst"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Run Correlation with Flow Cytometry
+
+See the "pick_metabolites.Rmd" - then save the .csv titled "Nurul_all_flow_pops.csv"
+
+## Human Metabolome Data Base Search 
+
+1) Go to hmdb.ca 
+2) Search, LC-MS
+3) Copy mz masses from "Nurul_all_flow_pops.csv" into “Query Masses - note that you can only copy 700 masses at a time, so I did in 2 rounds: rows: 2:500 and then 501:808
+4) Ion Mode: positive
+5) Adduct Type: 
+
+ - M+H
+ - M+H-H2O
+ - M+NA
+ - M+NH4
+ 
+6) Molecular Weight Tolerance: 20 ppm
+7) Search
+8) Download results as csv
+
+There were 17,583 compounds identified in HMDB. I compiled the metabolites into a single .csv titled "HMDB_metabolite_search.csv" and moved it to the data/saved_data folder in this repo.
+
+Note: We're using the human database because a minpig database does not exist
+
+## MetaboAnalyst - HMDB ID
+
+1) Go to https://www.metaboanalyst.ca/MetaboAnalyst/ModuleView.xhtml
+2) Click on Pathway Analysis 
+3) Add in the HMDB ID (Human Metabolome ID) from the "HMDB_metabolite_search.csv"
+4) Submit
+
+
+MetaboAnalyst_Results1
+
+- Visualization method: Scatter plot
+- Enrichment method: Hypergeometric test
+- Topology analysis: Relative-betweeness Centrality
+- Reference metabolome: Use all compounds in teh selected pathway library
+- Homo sapiens (KEGG)
+
+MetaboAnalyst_Results2
+- Visualization method: Scatter plot
+- Enrichment method: Hypergeometric test
+- Topology analysis: Out-degree Centrality
+- Reference metabolome: Use all compounds in teh selected pathway library
+- Homo sapiens (KEGG)
+
+*Same top pathways, but differing "Pathway impact", with more pathways with a higher impact and a few more with higher p-value*
+
+
+
+Other tests:
+
+Test 3
+- Visualization method: Scatter plot
+- Enrichment method: Fishers Exact test
+- Topology analysis: Relative-betweeness Centrality
+- Reference metabolome: Use all compounds in teh selected pathway library
+- Homo sapiens (KEGG)
+
+*Looks like it gives the same results as the MetaboAnalyst_Results1*
+
+Test 4
+- Visualization method: Scatter plot
+- Enrichment method: Fishers Exact test
+- Topology analysis: Out-degree Centrality
+- Reference metabolome: Use all compounds in teh selected pathway library
+- Homo sapiens (KEGG)
+
+*Looks like it gives the same results as the MetaboAnalyst_Results2*
+
+Test 5
+
+When I run the "Homo sapiens (SMPDB)" I get a lot of NaN for the results, though some of the pathways pop up such as "Pentose Phosphate Pathway..."
+
+```{r}
+library(dplyr)
+read.csv("../data/saved_data/MetaboAnalyst_Results1/name_map copy.csv") %>%
+  filter(!is.na(Match))
+
+# only 2,907 of the HMDB restuls had a match in the MetaboAnlyst database
+```
+
+Tried taking the compound name out of the first result
+
+
+## MetaboAnalyst - Compound Name
+
+1) Go to https://www.metaboanalyst.ca/MetaboAnalyst/ModuleView.xhtml
+2) Click on Pathway Analysis 
+3) Add in the Compound_name from the "HMDB_metabolite_search.csv"
+4) Submit
+
+**Looks the same as the 
+
