@@ -103,3 +103,20 @@ Tried taking the compound name out of the first result
 
 **Looks the same as the 
 
+
+
+# Look at the SLADQ-correlated metabolic features
+
+Put the metabolites from "Nurul_all_SLADQ_pops" into HMDB - this technically contains every population that includes SLADQ in my analysis
+
+HMDB_all_SLADQ
+
+MetaboAnalyst_SLADQ
+
+- Visualization method: Scatter plot
+- Enrichment method: Hypergeometric test
+- Topology analysis: Relative-betweeness Centrality
+- Reference metabolome: Use all compounds in teh selected pathway library
+- Homo sapiens (KEGG)
+
+I actually got different results from the overall analysis, and I want to actually correlate the flow with the metabolic pathways, so I need to send each flow population resutls through MetaboAnalyst separately
