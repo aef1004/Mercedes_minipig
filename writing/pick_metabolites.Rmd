@@ -187,18 +187,19 @@ load("../data/saved_data/same_sign_metab")
 
 
 # 2322 metabolites - (but some may be repeats )
-start_time <- Sys.time()
 
-identity1 <- identify_metab(flow_metab,  0.01, 0.5)
-
-identity1 %>%
-  select(metaboliteID) %>%
-  unique()
-
-save(same_sign_metab, file = "../data/saved_data/same_sign_metab")
-
-end_time <- Sys.time()
-end_time - start_time
+# start_time <- Sys.time()
+# 
+# identity1 <- identify_metab(flow_metab,  0.01, 0.5)
+# 
+# identity1 %>%
+#   select(metaboliteID) %>%
+#   unique()
+# 
+# save(same_sign_metab, file = "../data/saved_data/same_sign_metab")
+# 
+# end_time <- Sys.time()
+# end_time - start_time
 ```
 
 # Option 2
@@ -209,16 +210,16 @@ r^2 >0.5
 There are 3,403 unique metabolites identified
 ```{r}
 # 
-start_time <- Sys.time()
-
-identity2 <- identify_metab(flow_metab,  0.01, 0.5, timepoint = TRUE)
-
-identity2 %>%
-  select(metaboliteID) %>%
-  unique()
-
-end_time <- Sys.time()
-end_time - start_time
+# start_time <- Sys.time()
+# 
+# identity2 <- identify_metab(flow_metab,  0.01, 0.5, timepoint = TRUE)
+# 
+# identity2 %>%
+#   select(metaboliteID) %>%
+#   unique()
+# 
+# end_time <- Sys.time()
+# end_time - start_time
 ```
 
 # Option 3
@@ -230,58 +231,58 @@ These metabolites show correlation with the flow markers after accounting for th
 
 107 unique metabolites
 ```{r}
-start_time <- Sys.time()
-
-fitted_models <- flow_metab %>%
-  group_by(flow, metaboliteID, timepoint) %>%
-  nest() %>%
-  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
-         summary_model = map(model, tidy)) %>%
-unnest(summary_model) %>%
-  filter(term != "(Intercept)") %>%
-  select(flow, metaboliteID, timepoint, estimate, model) %>%
-  mutate(tidy_model = map(model, broom::glance)) %>%
-  unnest(tidy_model) %>%
-  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint, estimate) %>%
-  ungroup() 
-
-end_time <- Sys.time()
-end_time - start_time
-
-
-save_for_plot <-fitted_models %>%
-  filter(p.value < 0.01) %>%
-  filter(adj.r.squared > 0.5 | adj.r.squared < -0.5) %>%
-  select(flow, metaboliteID, timepoint) %>%  
-  unique() %>%
-  left_join(fitted_models, by = c("metaboliteID", "flow", "timepoint")) %>%
-  mutate(same_sign = ifelse(estimate >0, "pos", "neg")) %>%
-  group_by(metaboliteID) 
-
-
-
-both_neg <- save_for_plot %>%
-  filter_at(vars(same_sign), all_vars(. == "neg")) %>%
-  group_by(flow) %>%
-  mutate(repeate = duplicated(metaboliteID)) %>%
-  filter(repeate == "TRUE") %>%
-  select(flow, metaboliteID)
-
-both_pos <- save_for_plot %>%
-  filter_at(vars(same_sign), all_vars(. == "pos")) %>%
-  group_by(flow) %>%
-  mutate(repeate = duplicated(metaboliteID)) %>%
-  filter(repeate == "TRUE") %>%
-  select(flow, metaboliteID)
-
-same_sign_metab <- rbind(both_neg, both_pos) %>%
-  left_join(save_for_plot) %>%
-  select(-same_sign)
-
-same_sign_metab %>%
-  ungroup() %>%
-  select(metaboliteID) %>%
-  unique()
+# start_time <- Sys.time()
+# 
+# fitted_models <- flow_metab %>%
+#   group_by(flow, metaboliteID, timepoint) %>%
+#   nest() %>%
+#   mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+#          summary_model = map(model, tidy)) %>%
+# unnest(summary_model) %>%
+#   filter(term != "(Intercept)") %>%
+#   select(flow, metaboliteID, timepoint, estimate, model) %>%
+#   mutate(tidy_model = map(model, broom::glance)) %>%
+#   unnest(tidy_model) %>%
+#   select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint, estimate) %>%
+#   ungroup() 
+# 
+# end_time <- Sys.time()
+# end_time - start_time
+# 
+# 
+# save_for_plot <-fitted_models %>%
+#   filter(p.value < 0.01) %>%
+#   filter(adj.r.squared > 0.5 | adj.r.squared < -0.5) %>%
+#   select(flow, metaboliteID, timepoint) %>%  
+#   unique() %>%
+#   left_join(fitted_models, by = c("metaboliteID", "flow", "timepoint")) %>%
+#   mutate(same_sign = ifelse(estimate >0, "pos", "neg")) %>%
+#   group_by(metaboliteID) 
+# 
+# 
+# 
+# both_neg <- save_for_plot %>%
+#   filter_at(vars(same_sign), all_vars(. == "neg")) %>%
+#   group_by(flow) %>%
+#   mutate(repeate = duplicated(metaboliteID)) %>%
+#   filter(repeate == "TRUE") %>%
+#   select(flow, metaboliteID)
+# 
+# both_pos <- save_for_plot %>%
+#   filter_at(vars(same_sign), all_vars(. == "pos")) %>%
+#   group_by(flow) %>%
+#   mutate(repeate = duplicated(metaboliteID)) %>%
+#   filter(repeate == "TRUE") %>%
+#   select(flow, metaboliteID)
+# 
+# same_sign_metab <- rbind(both_neg, both_pos) %>%
+#   left_join(save_for_plot) %>%
+#   select(-same_sign)
+# 
+# same_sign_metab %>%
+#   ungroup() %>%
+#   select(metaboliteID) %>%
+#   unique()
 ```
 
 
@@ -819,6 +820,24 @@ identity_3 %>%
   left_join(metabolites) %>%
   mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
   write.csv("../data/saved_data/Nurul_all_flow_pops.csv", row.names = FALSE)
+```
+
+# Calcualte the correlated metabolites for each of the flow 
+```{r}
+identity_3 <- identify_metab_correction(flow_metab,  0.05, 0.5)
+
+unique(identity_3$flow)
+
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))
+
+# there are 31 different flow phenotypes
+
+identity_3 %>%
+  left_join(metabolites) %>%
+  write.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv")
+
 ```
 
 **SLADQ** 
