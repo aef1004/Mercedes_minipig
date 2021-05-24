@@ -120,3 +120,10 @@ MetaboAnalyst_SLADQ
 - Homo sapiens (KEGG)
 
 I actually got different results from the overall analysis, and I want to actually correlate the flow with the metabolic pathways, so I need to send each flow population resutls through MetaboAnalyst separately
+
+
+
+
+# Run all of the flow
+
+So Population 6, 9, 13, 14  do not have any results when I put everything through MetaboAnalyst - they have very few features to begin with anyways
