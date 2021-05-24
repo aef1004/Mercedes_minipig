@@ -85,8 +85,8 @@ When I run the "Homo sapiens (SMPDB)" I get a lot of NaN for the results, though
 
 ```{r}
 library(dplyr)
-read.csv("../data/saved_data/MetaboAnalyst_Results1/name_map copy.csv") %>%
-  filter(!is.na(Match))
+# read.csv("../data/saved_data/MetaboAnalyst_Results1/name_map copy.csv") %>%
+#  filter(!is.na(Match))
 
 # only 2,907 of the HMDB restuls had a match in the MetaboAnlyst database
 ```
@@ -133,6 +133,10 @@ The following seem like they might be good to explore and talk about: CD45RA, CD
 Note that these are really the putitive pathways - not actual pathways
 ```{r}
 library(readr)
+library(kableExtra)
+library(purrr) 
+library(tidyr)
+library(stringr)
 # all the folders
 files <- list.files("../data/saved_data", pattern = "MetaboAnalyst", full = TRUE)
 
@@ -145,8 +149,19 @@ read_add_name <- function(path) {
 
 map_df(all_files, ~read_add_name(.)) %>%
   filter(!grepl("Results", filename)) %>%
+  mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
   rename(p_value = `Raw p`,
-         pathway = X1) %>%
-  filter(p_value < 0.05)
+         `Putitive Pathway` = X1,
+         `Correlated Flow` = filename,
+         `Metabolites In Pathway` = Total,
+         `Identified Metabolites` = Hits) %>%
+  filter(p_value < 0.05) %>%
+  rename(`P value` = p_value) %>%
+  kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+
+  
 ```
 
