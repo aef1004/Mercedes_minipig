@@ -127,3 +127,26 @@ I actually got different results from the overall analysis, and I want to actual
 # Run all of the flow
 
 So Population 6, 9, 13, 14  do not have any results when I put everything through MetaboAnalyst - they have very few features to begin with anyways
+
+The following seem like they might be good to explore and talk about: CD45RA, CD172, Pop3, Pop 10
+
+Note that these are really the putitive pathways - not actual pathways
+```{r}
+library(readr)
+# all the folders
+files <- list.files("../data/saved_data", pattern = "MetaboAnalyst", full = TRUE)
+
+all_files <- paste0(files, "/pathway_results.csv")
+
+read_add_name <- function(path) {
+  read_csv(path) %>%
+    mutate(filename = str_extract(path, "MetaboAnalyst_[:alnum:]*"))
+}
+
+map_df(all_files, ~read_add_name(.)) %>%
+  filter(!grepl("Results", filename)) %>%
+  rename(p_value = `Raw p`,
+         pathway = X1) %>%
+  filter(p_value < 0.05)
+```
+
