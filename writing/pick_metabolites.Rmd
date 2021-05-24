@@ -858,3 +858,34 @@ save1 %>%
   unique()
 ```
 
+Want to look at the number of hits for each pop
+```{r}
+read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
+  group_by(flow) %>%
+  summarise(nrows = n()) %>%
+  arrange(desc(nrows))
+
+
+flow_list <- read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
+  select(flow) %>%
+  unique() %>%
+  as.vector()
+```
+
+```{r}
+# fit_models produces a df
+fit_models(flow_metab, "Pop10") %>%
+  p_hist("Pop10")
+
+
+# list_of_models <- pmap(flow_list, function(flow) fit_models(flow_metab, flow)) 
+
+# save_plots <- pmap(list(x = list_of_models, flow_list), function(x, flow) p_hist(x, flow))
+
+# save(save_plots, file = "../data/save_plots")
+
+load("../data/save_plots")
+
+walk(save_plots, print)
+```
+
