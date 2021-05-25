@@ -137,6 +137,7 @@ library(kableExtra)
 library(purrr) 
 library(tidyr)
 library(stringr)
+library(dplyr)
 # all the folders
 files <- list.files("../data/saved_data", pattern = "MetaboAnalyst", full = TRUE)
 
@@ -165,3 +166,8 @@ map_df(all_files, ~read_add_name(.)) %>%
   
 ```
 
+# Look at MetaboAnayst for the same-sign metabolites (65 or something of them)
+
+Note: Pop 10 did not have any HMDB references
+
+When I ran CD8 Tcell, CD45RA, Pop8, Pop10 through MetaboAnalyst - didn't get any pathways - could restart computer and recheck
