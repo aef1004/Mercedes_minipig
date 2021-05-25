@@ -131,7 +131,7 @@ So Population 6, 9, 13, 14  do not have any results when I put everything throug
 The following seem like they might be good to explore and talk about: CD45RA, CD172, Pop3, Pop 10
 
 Note that these are really the putitive pathways - not actual pathways
-```{r}
+```{r message = FALSE, warning = FALSE}
 library(readr)
 library(kableExtra)
 library(purrr) 
@@ -145,12 +145,55 @@ all_files <- paste0(files, "/pathway_results.csv")
 
 read_add_name <- function(path) {
   read_csv(path) %>%
-    mutate(filename = str_extract(path, "MetaboAnalyst_[:alnum:]*"))
+    mutate(filename = str_extract(path, "MetaboAnalyst_[:graph:]*"))
 }
 
 map_df(all_files, ~read_add_name(.)) %>%
   filter(!grepl("Results", filename)) %>%
   mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
+  select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
+    mutate(filename = factor(filename, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "Pop1", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  arrange(filename) %>%
+  rename(p_value = `Raw p`,
+         `Putitive Pathway` = X1,
+         `Correlated Flow` = filename,
+         `Metabolites In Pathway` = Total,
+         `Identified Metabolites` = Hits) %>%
+  filter(p_value < 0.05) %>%
+  rename(`P value` = p_value) %>%
+  kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+
+
+```
+
+# Look at MetaboAnayst for the same-sign metabolites (65 or something of them)
+
+Note: Pop 10 did not have any HMDB references
+
+When I ran CD8 Tcell, CD45RA, Pop8, Pop10 through MetaboAnalyst - didn't get any pathways - could restart computer and recheck
+
+```{r message = FALSE}
+files <- list.files("../data/saved_data/Same_sign_metab_analysis", pattern = "MetaboAnalyst", full = TRUE)
+
+all_files <- paste0(files, "/pathway_results.csv")
+
+read_add_name <- function(path) {
+  read_csv(path) %>%
+    mutate(filename = str_extract(path, "MetaboAnalyst_[:graph:]*"))
+}
+
+map_df(all_files, ~read_add_name(.)) %>%
+  filter(!grepl("Results", filename)) %>%
+  mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
   select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
   rename(p_value = `Raw p`,
          `Putitive Pathway` = X1,
@@ -163,11 +206,114 @@ map_df(all_files, ~read_add_name(.)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 
 
-  
 ```
 
-# Look at MetaboAnayst for the same-sign metabolites (65 or something of them)
+Create table with the following columns where the rows are the flow populations
+- # single linear correlations
+- # HMDB matches
+- # mapped names
+- # putative pathways
+- # significant putative pathways
+```{r message = FALSE}
+# single linear corr
+single_linear <- read_csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
+  select(flow, metaboliteID) %>%
+  rename(filename = flow) %>%
+  group_by(filename) %>%
+  summarise(single_linear_corr = n())
 
-Note: Pop 10 did not have any HMDB references
+# HMDB matches
+files <- list.files("../data/saved_data/HMDB", pattern = ".csv", full = TRUE)
 
-When I ran CD8 Tcell, CD45RA, Pop8, Pop10 through MetaboAnalyst - didn't get any pathways - could restart computer and recheck
+read_add_name <- function(path) {
+  read_csv(path) %>%
+    mutate(filename = str_extract(path, "HMDB_[:graph:]*"))
+}
+
+HMDB_match <- map_df(files, ~read_add_name(.)) %>%
+  filter(!grepl("all", filename)) %>%
+    filter(!grepl("metabolite_search", filename)) %>%
+  mutate(filename = str_replace(filename, "HMDB_", "")) %>%
+    mutate(filename = str_replace(filename, ".csv", "")) %>%
+  select(compound_id, filename) %>%
+  group_by(filename) %>%
+  summarise(HMDB_matches = n())
+
+
+# mapped names
+files <- list.files("../data/saved_data", pattern = "MetaboAnalyst", full = TRUE)
+
+name_files <- paste0(files, "/name_map.csv")
+
+read_add_name <- function(path) {
+  read_csv(path) %>%
+    mutate(filename = str_extract(path, "MetaboAnalyst_[:graph:]*"))
+}
+
+mapped_names <- map_df(name_files, ~read_add_name(.)) %>%
+  filter(!grepl("Results", filename)) %>%
+  mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  mutate(filename = str_replace(filename, "/name_map.csv", "")) %>%
+  select(Comment, filename) %>%
+  filter(Comment == 1) %>%
+  group_by(filename) %>%
+  summarise(mapped_names = n())
+
+# pathways
+files <- list.files("../data/saved_data", pattern = "MetaboAnalyst", full = TRUE)
+
+pathway_files <- paste0(files, "/pathway_results.csv")
+
+read_add_name <- function(path) {
+  read_csv(path) %>%
+    mutate(filename = str_extract(path, "MetaboAnalyst_[:graph:]*"))
+}
+
+pathways <- map_df(pathway_files, ~read_add_name(.)) %>%
+  filter(!grepl("Results", filename)) %>%
+  mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
+  select(X1, filename) %>%
+  group_by(filename) %>%
+  summarise(putative_pathways = n())
+
+# significant pathways
+
+significant_pathways <- map_df(pathway_files, ~read_add_name(.)) %>%
+  filter(!grepl("Results", filename)) %>%
+  mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
+  mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
+  rename(p_value = `Raw p`) %>%
+  filter(p_value < 0.05) %>%
+  group_by(filename) %>%
+  summarise(significant_pathways = n())
+
+# not sure the best way to order this...
+left_join(single_linear, HMDB_match) %>%
+  left_join(mapped_names) %>%
+  left_join(pathways) %>%
+  left_join(significant_pathways) %>%
+  mutate_all(~replace_na(., 0)) %>%
+  mutate(filename = factor(filename, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "Pop1", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  arrange(filename) %>%
+  rename(Flow = filename, 
+         `Single Linear Correlation` = single_linear_corr,
+         `HMDB Matches` = HMDB_matches,
+         `Mapped Names` = mapped_names,
+         `Putative Pathways` = putative_pathways,
+         `Significant Pathways` = significant_pathways) %>%
+  kable(align = "l", caption = "Summary of Molecular Feature and Flow Cytometry Hits") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+```
+
+
+
+
+
+
+
