@@ -538,7 +538,20 @@ same_sign_metab %>%
   left_join(metabolites) %>%
   mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
   write.csv("../data/saved_data/metabolites_for_Nurul.csv", row.names = FALSE)
+
+
+# pull out flow and metabolies for MetaboAnalysis
+
+same_sign_metab %>%
+  ungroup() %>%
+  select(flow, metaboliteID) %>%
+  inner_join(identity1) %>%
+  left_join(metabolites) %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "metab_", "")) %>%
+  write.csv("../data/saved_data/Nurul_same_sign_metab_flow.csv", row.names = FALSE)
 ```
+
+
 
 
 Look at p-value histograms for the same-sign metabs that are also in identity1
