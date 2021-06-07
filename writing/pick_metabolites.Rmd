@@ -29,6 +29,7 @@ library(rstatix)
 library(purrr)
 library(tidyr)
 library(broom)
+library(kableExtra)
 ```
 
 ```{r}
@@ -58,9 +59,9 @@ metabolite_wide <- metabolites  %>%
 Flow Data
 ```{r}
 
-load("../data/flow_predefined_phenotypes")
-load("../data/flow_single_expression")
-load("../data/flow_fe")
+load("../data/flow_predefined_phenotypes.gz")
+load("../data/flow_single_expression.gz")
+load("../data/flow_fe.gz")
 
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
   rename(percent = marker_percent,
@@ -409,24 +410,46 @@ plot_metab("CD45RA")
 ```
 
 
-
+4,504
 ```{r}
-
-fit_models <- function(df, markerID, timepoint = FALSE) {  
-  if(timepoint == FALSE) {
-df %>%
-  filter(flow == markerID) %>%
+flow_metab %>%
+  filter(flow == "Pop10") %>%
   group_by(metaboliteID) %>%
   nest() %>%
   mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
          summary_model = map(model, tidy)) %>%
 unnest(summary_model) %>%
   filter(term != "(Intercept)") %>%
-  select(metaboliteID, estimate, model) %>%
+  unnest(data) %>%
+  select(flow, metaboliteID, estimate, model) %>%
   mutate(tidy_model = map(model, broom::glance)) %>%
   unnest(tidy_model) %>%
-  select(metaboliteID, adj.r.squared, p.value, estimate) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  unique() %>%
   ungroup()
+```
+
+
+```{r}
+
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+    
+    df %>%
+      filter(flow == markerID) %>%
+      group_by(metaboliteID) %>%
+      nest() %>%
+      mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+      unnest(summary_model) %>%
+      filter(term != "(Intercept)") %>%
+      unnest(data) %>%
+      select(flow, metaboliteID, estimate, model) %>%
+      mutate(tidy_model = map(model, broom::glance)) %>%
+      unnest(tidy_model) %>%
+      select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+      unique() %>%
+      ungroup()
     } else {
       
     df %>%
@@ -437,10 +460,12 @@ unnest(summary_model) %>%
          summary_model = map(model, tidy)) %>%
 unnest(summary_model) %>%
   filter(term != "(Intercept)") %>%
-  select(metaboliteID, timepoint, estimate, model) %>%
+        unnest(data) %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
   mutate(tidy_model = map(model, broom::glance)) %>%
   unnest(tidy_model) %>%
-  select(metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+        unique() %>%
   ungroup() 
   }
 }
@@ -883,8 +908,49 @@ flow_list <- read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>
   select(flow) %>%
   unique() %>%
   as.vector()
+
+
+fdr <- function(df_fitted_models) {  
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+pval_alpha <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  select(pval_alpha) %>%
+  unique()
+
+fdr <- round(pi0$pi0*binw * nrow(df_fitted_models), digits = 0)
+
+data.frame(flow = df_fitted_models$flow, fdr, pval_alpha = pval_alpha$pval_alpha) %>%
+  unique()
+
+}
+  
+fdr(list_of_models[[1]])
+
 ```
 
+
+Maybe should do the 
+
+Column 1 - # of p-values less than 0.01 
+Column 2 - FDR
 ```{r}
 # fit_models produces a df
 fit_models(flow_metab, "Pop10") %>%
@@ -893,12 +959,32 @@ fit_models(flow_metab, "Pop10") %>%
 
 # list_of_models <- pmap(flow_list, function(flow) fit_models(flow_metab, flow)) 
 
+# save(list_of_models, file = "../data/list_of_models")
+ 
+map_df(list_of_models, function(x) fdr(x)) %>%
+  mutate(flow = factor(flow, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "Pop1", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  arrange(flow)  %>%
+  select(flow, pval_alpha, fdr) %>%
+  rename("Flow" = flow,
+         "False Discovery Number" = fdr,
+         "Number P-values <= 0.01" = pval_alpha) %>%
+  kable(align = "l", caption = "Summary of P-value Historam False Discovery Rate") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+
 # save_plots <- pmap(list(x = list_of_models, flow_list), function(x, flow) p_hist(x, flow))
 
 # save(save_plots, file = "../data/save_plots")
 
-load("../data/save_plots")
+list.files("../data")
+load("../data/save_plots.gz")
 
 walk(save_plots, print)
+
 ```
 
