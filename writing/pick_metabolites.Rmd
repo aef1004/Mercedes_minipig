@@ -937,12 +937,15 @@ pval_alpha <- df_fitted_models %>%
 
 fdr <- round(pi0$pi0*binw * nrow(df_fitted_models), digits = 0)
 
-data.frame(flow = df_fitted_models$flow, fdr, pval_alpha = pval_alpha$pval_alpha) %>%
+data.frame(flow = df_fitted_models$flow, fdr, pval_alpha = pval_alpha$pval_alpha, pi1, pi0) %>%
   unique()
 
 }
   
 fdr(list_of_models[[1]])
+
+  # calculate the fraction of false rejections
+
 
 ```
 
@@ -969,10 +972,13 @@ map_df(list_of_models, function(x) fdr(x)) %>%
                               "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
                               "Pop22","Pop23","Pop24","Pop25"))) %>%
   arrange(flow)  %>%
-  select(flow, pval_alpha, fdr) %>%
+  mutate(FDR_me = fdr/pval_alpha,
+         FDR_them = 100*pi0 * 0.01 / pi1) %>% # use theirs because I round my fdr, so it's less accurate
+  select(flow, pval_alpha, fdr, FDR_them) %>%
   rename("Flow" = flow,
          "False Discovery Number" = fdr,
-         "Number P-values <= 0.01" = pval_alpha) %>%
+         "Number P-values <= 0.01" = pval_alpha,
+         "False Discovery Rate (%)" = FDR_them) %>%
   kable(align = "l", caption = "Summary of P-value Historam False Discovery Rate") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 
