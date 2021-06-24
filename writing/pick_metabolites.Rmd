@@ -181,9 +181,9 @@ This will show us the metabolites that are correlated with infection - they may 
 Took 14 minutes to run - 807 unique metabolies
 ```{r}
 
-load("../data/saved_data/identity1")
-load("../data/saved_data/identity2")
-load("../data/saved_data/same_sign_metab")
+load("../data/saved_data/identity1.gz")
+load("../data/saved_data/identity2.gz")
+load("../data/saved_data/same_sign_metab.gz")
 
 
 
@@ -614,10 +614,9 @@ p_hist(fitted_models_CD8_Tcell, "Pop10")
 ```
 
 Show plots for write up
-
+  filter(flow == "CD8_Tcell" & metaboliteID == "metab_4363") %>%
 ```{r}
 step1 <- flow_metab %>%
-  filter(flow == "CD8_Tcell" & metaboliteID == "metab_4363") %>%
   group_by(flow, metaboliteID, timepoint) %>%
   nest() %>%
   mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
@@ -631,6 +630,9 @@ unnest(summary_model) %>%
   ungroup() %>%
   select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
   unique()
+
+step1 %>%
+  filter()
 
 rlabel <- step1 %>%
   filter(metaboliteID == "metab_4363") %>%
@@ -761,7 +763,7 @@ plot_pick_metab_timepoint(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 436
                           10, 60000, 50000) 
 
 plot_pick_metab_timepoint(flow_metab, "Pop10", "metab_1244", "Metabolite 1244", "Pop10",
-                          3, 45000, 35000) 
+                          5, 45000, 35000) 
 
 # step 2 no
 plot_pick_metab_timepoint(flow_metab, "SLADQ", "metab_1600", "Metabolite 1244", "Pop10", 
@@ -769,6 +771,26 @@ plot_pick_metab_timepoint(flow_metab, "SLADQ", "metab_1600", "Metabolite 1244", 
 
 plot_pick_metab_timepoint(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 4363", "Pop10", 
                 12, 60000, 50000) 
+
+identity1 %>%
+  mutate(timepoint = "none") %>%
+  rbind(identity2) %>%
+  select(-timepoint) %>%
+  
+anti_join(identity1, identity2)
+
+
+plot_pick_metab_timepoint(flow_metab, "CD4_Tcell", "metab_301", "Metabolite 301", "CD4_Tcell", 
+                20, 3e5, 3.2e5) 
+
+
+identity1 %>%
+  select(metaboliteID) %>%
+  unique()
+
+flow_metab %>%
+  select(metaboliteID) %>%
+  unique()
 ```
 
 

@@ -52,7 +52,7 @@ MetaboAnalyst_Results2
 - Visualization method: Scatter plot
 - Enrichment method: Hypergeometric test
 - Topology analysis: Out-degree Centrality
-- Reference metabolome: Use all compounds in teh selected pathway library
+- Reference metabolome: Use all compounds in the selected pathway library
 - Homo sapiens (KEGG)
 
 *Same top pathways, but differing "Pathway impact", with more pathways with a higher impact and a few more with higher p-value*
@@ -116,10 +116,10 @@ MetaboAnalyst_SLADQ
 - Visualization method: Scatter plot
 - Enrichment method: Hypergeometric test
 - Topology analysis: Relative-betweeness Centrality
-- Reference metabolome: Use all compounds in teh selected pathway library
+- Reference metabolome: Use all compounds in the selected pathway library
 - Homo sapiens (KEGG)
 
-I actually got different results from the overall analysis, and I want to actually correlate the flow with the metabolic pathways, so I need to send each flow population resutls through MetaboAnalyst separately
+I actually got different results from the overall analysis, and I want to actually correlate the flow with the metabolic pathways, so I need to send each flow population results through MetaboAnalyst separately
 
 
 
