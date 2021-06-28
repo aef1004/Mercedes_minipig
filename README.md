@@ -2,7 +2,7 @@
 
 This repository contains the code to analyze the data and create the plots for my fourth chapter on my dissertation, "Novel technique to study immunometabolism during *Mycobacterium tuberculosis* infection", R Code and data released under an MIT License. To use the R code and/or data in this repository, please cite [insert citation]
 
-This repository contains data from two projects: The first project (Project 1) contains lung data from C57BL/6 mice that were vaccinated with either BCG or PBS (control). The mice were subsequently infected with Mycobacterium tuberuclosis and evaluated 30, 60, and 90 days post-infection. The second project (Project 2) contains human whole blood data from a healthy individual.
+This repository contains data from a ?2015? experiment which involved evaluating the immune response (flow cytometry) and induced metabolites (LC-MS) to BCG in minpigs before and after infection with Mycobacterium tuberculosis. 
 
 Repository Directory
 
