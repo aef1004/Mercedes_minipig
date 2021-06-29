@@ -77,7 +77,6 @@ flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %
 
 flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
   mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
-
 ```
 
 Functions for picking metabolites
@@ -631,17 +630,16 @@ unnest(summary_model) %>%
   select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
   unique()
 
-step1 %>%
-  filter()
 
 rlabel <- step1 %>%
-  filter(metaboliteID == "metab_4363") %>%
+  filter(metaboliteID == "metab_3709") %>%
   select(timepoint, flow, metaboliteID, adj.r.squared, p.value) %>%
   mutate(labelx = paste(round(adj.r.squared, 2), ", ", "p = ", 
                                                  signif(p.value, 2) ))
 my.formula <- metabolite_expression ~percent
+
 flow_metab %>%
-  filter(flow == "CD8" & metaboliteID == "metab_4363") %>%
+  filter(flow == "CD3" & metaboliteID == "metab_3709") %>%
   left_join(step1, by = c("flow", "metaboliteID", "timepoint")) %>%
 ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), group = timepoint)) +
   geom_point(size = 3) +
@@ -654,8 +652,8 @@ ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint), gr
                   label = paste("r^2 = ", round(adj.r.squared[2], 2), "p = ", signif(p.value[2], 2))), 
               color = "#F8766D",
               parse = FALSE) +
-  ggtitle("Metabolite 4363") +
-  labs(color = "Timepoint", x = "CD8 Tcell Percentage of Cells", y = "Metabolite Expression", fill = "Timepoint") +
+  ggtitle("Metabolite 3709") +
+  labs(color = "Timepoint", x = "CD3 Tcell Percentage of Cells", y = "Metabolite Expression", fill = "Timepoint") +
   theme(axis.text = element_text(size = 14),
         axis.title = element_text(size = 18),
         title = element_text(size = 18))
@@ -708,6 +706,10 @@ plot_pick_metab(flow_metab, "CD8", "metab_3559", "Metabolite 3559", 14, 60000, 5
 # final
 plot_pick_metab(flow_metab, "Pop10", "metab_1244", "Metabolite 1244", 2, 45000, 40000) # final
 plot_pick_metab(flow_metab, "CD8_Tcell", "metab_4363", "Metabolite 4363", 12, 60000, 50000) # final
+
+
+# presentation - phosphadydyocholine
+plot_pick_metab(flow_metab, "CD3", "metab_3709", "Metabolite 3709", 72, 1E5, 5E4) 
 ```
 
 Separate by timepoint

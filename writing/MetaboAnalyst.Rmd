@@ -85,6 +85,7 @@ When I run the "Homo sapiens (SMPDB)" I get a lot of NaN for the results, though
 
 ```{r}
 library(dplyr)
+library(kableExtra)
 # read.csv("../data/saved_data/MetaboAnalyst_Results1/name_map copy.csv") %>%
 #  filter(!is.na(Match))
 
@@ -207,6 +208,19 @@ map_df(all_files, ~read_add_name(.)) %>%
 
 
 ```
+
+```{r}
+load("../data/saved_data/same_sign_metab.gz")
+
+same_sign_metab
+
+
+read_csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  filter(mz <900 & mz>899)
+
+899.6365
+```
+
 
 Create table with the following columns where the rows are the flow populations
 - # single linear correlations
