@@ -34,8 +34,8 @@ library(ggpubr)
 
 ```{r}
 
-load("../data/all_fe_30DPI")
-load("../data/all_fe_12week")
+load("../data/all_fe_30DPI.gz")
+load("../data/all_fe_12week.gz")
 
 all_fe_30DPI
 all_fe_12week
@@ -61,9 +61,10 @@ single_expression <- all_fe %>%
 
 single_expression %>%
   filter(expression == "1") %>%
-  ggplot(aes(x =factor(timepoint, levels = c("Week12", "D30")), y = percent_per_marker, color = timepoint)) +
+  ggplot(aes(x =factor(timepoint, levels = c("Week12", "D30")), shape = factor(vaccine_status), y = percent_per_marker, color = timepoint)) +
   geom_point() +
   facet_wrap(~marker) +
+  scale_shape_manual(values = c(21,19)) +
   labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
   ggtitle("")
 ```
@@ -616,6 +617,52 @@ res.pca$x %>%
   theme_classic() +
   labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
        y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA by Vaccine Status")
+
+```
+30DPI PCA - just check that there aren't differences between vacc and non-vacc
+```{r}
+# picks 690 random metabolites/columns to run through the PCA
+metab_run <- metabolite_wide[, floor(runif(690, min = 1, max = ncol(metabolite_wide)))] %>%
+  rownames_to_column("sample") %>%
+  filter(grepl("30DPI", sample)) %>%
+  column_to_rownames("sample")
+
+res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE, tol = sqrt(.Machine$double.eps))
+
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+res_pca_importance %>% 
+  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
+  geom_col() + 
+  theme_classic()
+
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  ggplot(aes(x = PC1, y = PC2, color = timepoint)) + 
+  geom_point() + 
+  geom_text(aes(label = name), size = 2, vjust = -1) + 
+  stat_ellipse() + 
+  theme_classic() +
+  ggtitle("Metabolite PCA by Timepoint")
+
+
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  ggplot(aes(x = PC1, y = PC2, color = vaccine_status)) + 
+  geom_point() + 
+  geom_text(aes(label = name), size = 2, vjust = -1) + 
+  stat_ellipse() + 
+  scale_color_manual(values = c("#009E73", "purple")) +
+  theme_classic() +
   ggtitle("Metabolite PCA by Vaccine Status")
 
 ```
