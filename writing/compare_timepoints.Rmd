@@ -1591,6 +1591,7 @@ cor1 <- flow_metab   %>%
   unique() %>%
    tidyr::pivot_wider(names_from = metaboliteID, 
                        values_from = metabolite_expression) %>%
+  
   column_to_rownames("full_name")
 
 
@@ -1644,7 +1645,7 @@ plot(1:20, wss, type="b", xlab="Number of Clusters",
 
 km2 <- kmeans(mydata1, centers = 2)
 km3 <- kmeans(mydata1, centers = 3)
-km4 <- kmeans(mydata1, centers = 4)
+km4 <- kmeans(mydata1, centers = 4,)
 km5 <- kmeans(mydata1, centers = 5)
 
 km2[7]

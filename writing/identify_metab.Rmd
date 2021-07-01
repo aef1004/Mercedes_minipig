@@ -1,0 +1,124 @@
+---
+title: "Identify_metab"
+author: "Amy Fox"
+date: "7/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Pop 17, Phenylpyruvic acid, KEGGID:C00166, Query mass: 182.0791887, metab_637
+
+```{r}
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  filter(mz <183 & mz>182)
+```
+
+Read in the flow metab data for plotting
+```{r}
+load("../data/flow_predefined_phenotypes.gz")
+load("../data/flow_single_expression.gz")
+load("../data/flow_fe.gz")
+
+flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
+  rename(percent = marker_percent,
+         flow = phenotype,
+         vaccine_status = group) 
+
+flow_metab2 <-left_join(flow_fe, metabolites, by = "full_name")%>%
+  rename(percent = percentage,
+         flow = population)
+
+flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %>%
+  rename(flow = marker)
+
+flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
+  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
+
+unique(flow_metab$flow)
+```
+
+Function to plot the data
+```{r}
+
+plot_pick_metab <- function(df, flow_pop, metab_pick, pretty_metab, x_position, yposition1, yposition2) {
+  
+  step1 <- df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  group_by(flow, metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(flow, metaboliteID, adj.r.squared, p.value) %>%
+  unique() 
+
+# plot after I bring down the number of metabolites to a reasonable number
+df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  left_join(step1, by = c("flow", "metaboliteID")) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_text(aes(x = x_position, y = yposition1, 
+                                   label = paste("r^2 == ",
+                                                 round(adj.r.squared, 2))), parse = TRUE, color = "black") +
+  geom_text(aes(x = x_position, y = yposition2, 
+                                   label = paste("p == ",
+                                                 signif(p.value, 2))), parse = TRUE, color = "black") +
+  ggtitle(pretty_metab) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "Metabolite Expression", fill = "Timepoint") +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 18),
+        title = element_text(size = 18))
+}
+
+
+```
+
+
+
+
+Visualize picked out 
+```{r}
+
+# phosphadydyocholine
+plot_pick_metab(flow_metab, "CD3", "3709", "Metabolite 3709", 72, 1E5, 5E4) 
+
+# Phenylpyruvic acid
+plot_pick_metab(flow_metab, "Pop17", "637", "Metabolite 637", 10, 5E4, 4.5E4)
+```
+
+Phenylalanine Metabolism
+KEGG IDs found in data
+
+- C00079 (L-Phenylalanine) - mz = 166.0837488 (metab 563)
+- C00166 (Phenylpyruvic acid) - mz = 182.0791887 (metab 637)
+- C02763 (Enol-phenylpyruvate) - mz = 182.0791887 (metab 637)
+- C00082 (L-Tyrosine) - mz = 182.0791887 (metab 637)
+- C05852 (ortho-Hydroxyphenylacetic acid) - mz = 170.0809458 (metab 586 or metab 587)
+- C01586 (Hippuric acid) - mz = 162.0549325 (metab 547)
+- C00601 (Phenylacetaldehyde) - mz = 121.0657818 (metab 232)
+
+
+166.0837
+```{r}
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  filter(between(mz, 121, 122))
+
+
+plot_pick_metab(flow_metab, "Pop17", "563", "Metabolite 563", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "637", "Metabolite 637", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "586", "Metabolite 586", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "587", "Metabolite 587", 10, 1E4, 7.5E3)
+plot_pick_metab(flow_metab, "Pop17", "547", "Metabolite 547", 10, 2.5E4, 2E4)
+plot_pick_metab(flow_metab, "Pop17", "232", "Metabolite 232", 10, 2.5E4, 2E4)
+```
+
