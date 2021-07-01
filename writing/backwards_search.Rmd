@@ -1,0 +1,26 @@
+---
+title: "Backwards_search"
+author: "Amy Fox"
+date: "7/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://www.waters.com/webassets/cms/events/docs/us_events/2015_us_events/QDa_QRC_Mass_Data_Terminology_Considerations_Interpretation.pdf
+
+
+Monoisotopic mass of the following adducts
+
+Na: 22.98976928
+NH4: 18.034374132
+
+
+Monoisotropic mass of phosphatidylcholine
+785.59345564
+
+
+**Nurul**
+Nurul - walk me how to "back search" from, "I expect to see these metabolites to "can I find it in the data?
