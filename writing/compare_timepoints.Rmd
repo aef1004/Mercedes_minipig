@@ -1642,12 +1642,41 @@ for (i in 2:20) wss[i] <- sum(kmeans(mydata1,
 plot(1:20, wss, type="b", xlab="Number of Clusters",
   ylab="Within groups sum of squares")
 
-km <- kmeans(mydata1, 7)
+km2 <- kmeans(mydata1, centers = 2)
+km3 <- kmeans(mydata1, centers = 3)
+km4 <- kmeans(mydata1, centers = 4)
+km5 <- kmeans(mydata1, centers = 5)
 
-km[7]
+km2[7]
+km3[7]
+km4[7]
+km5[7]
+
+p1 <- fviz_cluster(km2, geom = "point", data = mydata1) + ggtitle("k = 2")
+p2 <- fviz_cluster(km3, geom = "point",  data = mydata1) + ggtitle("k = 3")
+p3 <- fviz_cluster(km4, geom = "point",  data = mydata1) + ggtitle("k = 4")
+p4 <- fviz_cluster(km5, geom = "point",  data = mydata1) + ggtitle("k = 5")
+
+grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 distance <- get_dist(mydata1)
 fviz_dist(distance, gradient = list(low = "#00AFBB", mid = "white", high = "#FC4E07"))
+
+
+
+########### cluster metabolites after scaling - doesn't seem to make a huge difference
+mydata2 <- scale(mydata1)
+
+wss <- (nrow(mydata2)-1)*sum(apply(mydata2,2,var))
+
+for (i in 2:20) wss[i] <- sum(kmeans(mydata2,
+   centers=i, iter.max = 50)$withinss)
+plot(1:20, wss, type="b", xlab="Number of Clusters",
+  ylab="Within groups sum of squares")
+
+km <- kmeans(mydata2, 5)
+
+km[7]
 ```
 
 ANCOVA
