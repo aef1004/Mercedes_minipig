@@ -1650,3 +1650,57 @@ distance <- get_dist(mydata1)
 fviz_dist(distance, gradient = list(low = "#00AFBB", mid = "white", high = "#FC4E07"))
 ```
 
+ANCOVA
+
+https://www.datanovia.com/en/lessons/ancova-in-r/
+
+Dependent variable: flow population percentages
+grouping variable: vaccine status
+Covariate: timepoint
+```{r}
+CD4_t <- all_flow %>%
+  select(full_name, vaccine_status, timepoint, CD4_Tcell) %>%
+  mutate(full_name = str_replace(full_name, "_12wks", ""))%>%
+  mutate(full_name = str_replace(full_name, "_30DPI", "")) %>%
+  pivot_wider(names_from = "timepoint", values_from = "CD4_Tcell")
+
+
+ggscatter(CD4_t , x = "12wks", y = "30DPI", color = "vaccine_status", add = "reg.line") +
+  stat_regline_equation(aes(label =  paste(..eq.label.., ..rr.label.., sep = "~~~~"), 
+                            color = vaccine_status))
+
+
+CD4_t %>% 
+  anova_test(`30DPI`~ vaccine_status*`12wks`)
+#There was homogeneity of regression slopes as the interaction term was not statistically significant, F(1, 6) = 2.58, p = 0.16.
+
+# Fit the model, the covariate goes first
+model <- lm(`30DPI` ~ `12wks` + vaccine_status, data = CD4_t)
+
+# Inspect the model diagnostic metrics
+model.metrics <- augment(model) %>%
+  select(-.hat, -.sigma, -.fitted) # Remove details
+
+head(model.metrics, 3)
+
+# Assess normality of residuals using shapiro wilk test
+shapiro_test(model.metrics$.resid)
+
+#The Shapiro Wilk test was not significant (p > 0.05), so we can assume normality of residuals
+
+model.metrics %>% levene_test(.resid ~ vaccine_status)
+
+# The Levene’s test was not significant (p > 0.05), so we can assume homogeneity of the residual variances for all groups.
+
+
+model.metrics %>% 
+  filter(abs(.std.resid) > 3) %>%
+  as.data.frame()
+
+# There were no outliers in the data, as assessed by no cases with standardized residuals greater than 3 in absolute value.
+
+
+res.aov <- CD4_t %>% anova_test(`30DPI` ~ `12wks` + vaccine_status)
+get_anova_table(res.aov)
+```
+
