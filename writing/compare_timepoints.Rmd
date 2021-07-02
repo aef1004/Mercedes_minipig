@@ -1734,3 +1734,7 @@ res.aov <- CD4_t %>% anova_test(`30DPI` ~ `12wks` + vaccine_status)
 get_anova_table(res.aov)
 ```
 
+```{r}
+flow_metab
+```
+
