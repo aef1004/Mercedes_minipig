@@ -8,6 +8,15 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r}
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(broom)
+library(ggplot2)
+```
+
 Pop 17, Phenylpyruvic acid, KEGGID:C00166, Query mass: 182.0791887, metab_637
 
 ```{r}
@@ -17,6 +26,15 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
 
 Read in the flow metab data for plotting
 ```{r}
+
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression") %>%
+  mutate(metaboliteID = str_replace(metaboliteID, "[:digit:]*", paste0("metab_", metaboliteID)))%>%
+  filter(!grepl("Pooled", full_name))
+
+
 load("../data/flow_predefined_phenotypes.gz")
 load("../data/flow_single_expression.gz")
 load("../data/flow_fe.gz")
@@ -90,10 +108,10 @@ Visualize picked out
 ```{r}
 
 # phosphadydyocholine
-plot_pick_metab(flow_metab, "CD3", "3709", "Metabolite 3709", 72, 1E5, 5E4) 
+plot_pick_metab(flow_metab, "CD3", "metab_3709", "Metabolite 3709", 72, 1E5, 5E4) 
 
 # Phenylpyruvic acid
-plot_pick_metab(flow_metab, "Pop17", "637", "Metabolite 637", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_637", "Metabolite 637", 10, 5E4, 4.5E4)
 ```
 
 Phenylalanine Metabolism
@@ -114,11 +132,25 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   filter(between(mz, 121, 122))
 
 
-plot_pick_metab(flow_metab, "Pop17", "563", "Metabolite 563", 10, 5E4, 4.5E4)
-plot_pick_metab(flow_metab, "Pop17", "637", "Metabolite 637", 10, 5E4, 4.5E4)
-plot_pick_metab(flow_metab, "Pop17", "586", "Metabolite 586", 10, 5E4, 4.5E4)
-plot_pick_metab(flow_metab, "Pop17", "587", "Metabolite 587", 10, 1E4, 7.5E3)
-plot_pick_metab(flow_metab, "Pop17", "547", "Metabolite 547", 10, 2.5E4, 2E4)
-plot_pick_metab(flow_metab, "Pop17", "232", "Metabolite 232", 10, 2.5E4, 2E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_563", "Metabolite 563", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_637", "Metabolite 637", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_586", "Metabolite 586", 10, 5E4, 4.5E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_587", "Metabolite 587", 10, 1E4, 7.5E3)
+plot_pick_metab(flow_metab, "Pop17", "metab_547", "Metabolite 547", 10, 2.5E4, 2E4)
+plot_pick_metab(flow_metab, "Pop17", "metab_232", "Metabolite 232", 10, 2.5E4, 2E4)
+```
+CD3 same sign metab
+KEGG IDs found in data
+
+- C00157 (Phosphatidylcholine) - mz = 899.6365494 (metab 3709) OR 901.6402752 (metab 3715)
+- C00350 (Phosphatidylethanolamine) - mz = 900.6396874 (metab 3713)
+```{r}
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  filter(between(mz, 900, 901))
+
+
+plot_pick_metab(flow_metab, "CD3", "metab_3709", "Metabolite 3709", 75, 1E5, 5E4)
+plot_pick_metab(flow_metab, "CD3", "metab_3715", "Metabolite 3715", 75, 2.5E4, 1.25E4)
+plot_pick_metab(flow_metab, "CD3", "metab_3713", "Metabolite  3713", 75, 1E5, 5E4)
 ```
 
