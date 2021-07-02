@@ -7,6 +7,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(dplyr)
+library(kableExtra)
+library(readr)
+library(kableExtra)
+```
+
 ## Run Correlation with Flow Cytometry
 
 See the "pick_metabolites.Rmd" - then save the .csv titled "Nurul_all_flow_pops.csv"
@@ -84,8 +91,7 @@ Test 5
 When I run the "Homo sapiens (SMPDB)" I get a lot of NaN for the results, though some of the pathways pop up such as "Pentose Phosphate Pathway..."
 
 ```{r}
-library(dplyr)
-library(kableExtra)
+
 # read.csv("../data/saved_data/MetaboAnalyst_Results1/name_map copy.csv") %>%
 #  filter(!is.na(Match))
 
