@@ -1,0 +1,54 @@
+---
+title: "HMDB_MetaboAnlyst"
+author: "Amy Fox"
+date: "7/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(hmdbQuery)
+```
+https://hmdb.ca/spectra/ms/search?commit=Search&mode=positive&query_masses=175%0A209.98%0A2011.971&tolerance=0.05
+```{r}
+HmdbEntry("https://hmdb.ca/spectra/ms/search", 174.9939)
+```
+Na: 22.98976928
+NH4: 18.034374132
+
+
+
+```{r}
+list.files("../")
+all_metab <- read.delim(file = "../metabolites-2021-07-02.txt", sep = ",")
+```
+
+Try to back search for HMDB CD3
+
+Query mass = 899.6365494
+
+options(digits = 4)
+
+[1] 881.6021953
+[1] 881.6021553
+```{r}
+# Range accounting for 20 ppm
+
+(899.6365494 +(20/10^6)) - 18.034374132
+
+(899.6365494 - (20/10^6)) - 18.034374132
+
+all_metab %>%
+  filter(between(MONO_MASS, 881.602, 881.7))
+
+
+
+abs((6/10^6)*18.034374132) +18.034374132
+
+
+b = (abs(238.19-18.034374132)/18.034374132)*10^6
+```
+
