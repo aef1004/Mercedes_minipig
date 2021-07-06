@@ -150,7 +150,7 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
 
 
 plot_pick_metab(flow_metab, "CD3", "metab_3709", "Metabolite 3709", 75, 1E5, 5E4)
-plot_pick_metab(flow_metab, "CD3", "metab_3715", "Metabolite 3715", 75, 2.5E4, 1.25E4)
+plot_pick_metab(flow_metab, "CD3", "metab_3715", "Metabolite 3715 ", 75, 2.5E4, 1.25E4)
 plot_pick_metab(flow_metab, "CD3", "metab_3713", "Metabolite  3713", 75, 1E5, 5E4)
 ```
 

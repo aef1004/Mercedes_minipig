@@ -987,7 +987,8 @@ fit_models(flow_metab, "Pop10") %>%
 # list_of_models <- pmap(flow_list, function(flow) fit_models(flow_metab, flow)) 
 
 # save(list_of_models, file = "../data/list_of_models")
- 
+
+ load("../data/list_of_models")
 map_df(list_of_models, function(x) fdr(x)) %>%
   mutate(flow = factor(flow, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
                                                 "DN_Tcell", 
@@ -997,13 +998,13 @@ map_df(list_of_models, function(x) fdr(x)) %>%
                               "Pop22","Pop23","Pop24","Pop25"))) %>%
   arrange(flow)  %>%
   mutate(FDR_me = fdr/pval_alpha,
-         FDR_them = 100*pi0 * 0.01 / pi1) %>% # use theirs because I round my fdr, so it's less accurate
+         FDR_them = round(100*pi0 * 0.01 / pi1, 1)) %>% # use theirs because I round my fdr, so it's less accurate
   select(flow, pval_alpha, fdr, FDR_them) %>%
   rename("Flow" = flow,
          "False Discovery Number" = fdr,
          "Number P-values <= 0.01" = pval_alpha,
          "False Discovery Rate (%)" = FDR_them) %>%
-  kable(align = "l", caption = "Summary of P-value Historam False Discovery Rate") %>%
+  kable(align = c("l", "c", "c", "c"), caption = "Summary of P-value Histogram False Discovery Rate") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 
 
@@ -1015,6 +1016,43 @@ list.files("../data")
 load("../data/save_plots.gz")
 
 walk(save_plots, print)
+
+```
+
+```{r}
+1:50
+
+for i in (1:50) {
+  
+}
+
+library(dplyr)
+library(tidyr)
+library(stringr)
+
+# does not work
+data.frame(numbers = 1:50) %>%
+  mutate(divide = numbers/3) %>%
+  filter(is.integer(divide))
+
+# didn't work
+data.frame(numbers = 1:50) %>%
+  mutate(divide = numbers/3) %>%
+  separate(col = divide, into = c("integer", "decimal"), sep = ".")
+
+# works!
+data.frame(numbers = 1:50) %>%
+  mutate(divide = numbers/3) %>%
+  mutate(decimal = str_extract(divide, "\\.[:digit:]*")) %>%
+  filter(is.na(decimal))
+
+for (i in 1:50) {
+  if(i%%3 == 0) {
+    print("fizz")
+    } else if (i%%5 == 0) {
+      print("buzz")
+    } else {print(i)}
+}
 
 ```
 
