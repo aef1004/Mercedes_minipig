@@ -549,12 +549,19 @@ summary(res.pca)$x %>%
 ```
 
 Since I can't run all of the metabolites at once, I want to pick out a random grouping of the variables and ensure that the PCA plots look somewhat similar each time
+
+
+Probable convergence issue is for ggplot - it's okay to have that error, can run with all of the metabolites
 ```{r}
 
 # picks 690 random metabolites/columns to run through the PCA
-metab_run <- metabolite_wide[, floor(runif(690, min = 1, max = ncol(metabolite_wide)))]
+metab_run <- metabolite_wide[, floor(runif(690, min = 1, max = ncol(metabolite_wide)))] %>%
+  t()
 
-res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE, tol = sqrt(.Machine$double.eps))
+
+metab_run <-metabolite_wide
+
+res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE)
 
 res_pca_importance <- summary(res.pca)$importance %>% 
   t() %>% 
@@ -570,7 +577,7 @@ summary(res.pca)$x %>%
   as.data.frame() %>% 
   rownames_to_column("name") %>%
   mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
-  ggplot(aes(x = PC1, y = PC2, color = timepoint)) + 
+  ggplot(aes(x = PC1, y = PC2)) + 
   geom_point() + 
   geom_text(aes(label = name), size = 2, vjust = -1) + 
   stat_ellipse() + 
@@ -647,7 +654,79 @@ PCA_minipig <- res.pca$x %>%
   mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
   mutate(timepoint_vaccine = paste(timepoint," ", vaccine_status)) 
 
+
 ```
+
+```{r}
+test_metabolite <-metabolite_wide %>%
+  t()
+
+
+res.pca <- prcomp(test_metabolite, center = TRUE, scale = TRUE, tol = sqrt(.Machine$double.eps))
+
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+res.pca$x
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_point() + 
+  geom_text(aes(label = name), size = 2, vjust = -1) + 
+  stat_ellipse() + 
+  theme_classic() +
+  ggtitle("Metabolite PCA by Timepoint")
+
+
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  ggplot(aes(x = PC1, y = PC2, color = vaccine_status)) + 
+  geom_point() + 
+  geom_text(aes(label = name), size = 2, vjust = -1) + 
+  stat_ellipse() + 
+  scale_color_manual(values = c("#009E73", "purple")) +
+  theme_classic() +
+  ggtitle("Metabolite PCA by Vaccine Status")
+
+# pretty for write up
+
+summary(res.pca)$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  ggplot(aes(x = PC1, y = PC2, color = timepoint)) + 
+  geom_point() + 
+  stat_ellipse() + 
+  theme_classic() +
+    labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA by Timepoint")
+
+
+res.pca$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  ggplot(aes(x = PC1, y = PC2, color = vaccine_status)) + 
+  geom_point() + 
+  stat_ellipse() + 
+  scale_color_manual(values = c("#009E73", "purple")) +
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA by Vaccine Status")
+
+
+```
+
 30DPI PCA - just check that there aren't differences between vacc and non-vacc
 ```{r}
 # picks 690 random metabolites/columns to run through the PCA
@@ -1484,6 +1563,14 @@ load("../data/flow_predefined_phenotypes.gz")
 load("../data/flow_single_expression.gz")
 load("../data/flow_fe.gz")
 
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
+match_metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) 
+
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
   rename(percent = marker_percent,
          flow = phenotype,
@@ -1504,7 +1591,29 @@ all_flow <- flow_metab %>%
   unique() %>%
   pivot_wider(names_from = flow, values_from = percent)
 
+metab_run <-metabolite_wide
 
+res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE)
+
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+res_pca_importance %>% 
+  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
+  geom_col() + 
+  theme_classic()
+
+res.pca$x
+res.pca$rotation[,1] * metab_run[1, ]
+
+PCA_minipig <- res.pca$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  mutate(timepoint_vaccine = paste(timepoint," ", vaccine_status)) 
 
 minipig_PCA <- PCA_minipig %>%
   rename(full_name = name) %>%
@@ -1604,7 +1713,59 @@ plot_corr(melted_corr) +
      ggplot2::xlab("Metab") +
      ggplot2::ylab("Metab") +
      ggplot2::labs(fill = "Correlation") 
+
+
+ggplot(res.pca$rotation, aes(x = PC1, y= PC2)) +
+  geom_point()
+
+
+
+
+res.pca$x
+res.pca$rotation[ ,1] %*% as.matrix(scale(metab_run)[1, ])
+
+
+scale(metab_run)
+
+dim(res.pca$rotation)
+dim(metab_run)
+
+res.pca$rotation %>%
+  data.frame() %>%
+  arrange(PC2)
+
+# plot to see where I should cluster
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC2)) +
+  geom_histogram(bins = 50)
+
+# maybe a cluster at >0.02 and < -0.1
+
+# 115 metabolites
+cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC2 >= 0.02) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC2)
+
+# 915 metabolites
+cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC2 <= -0.02)%>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC2)
+
+left_join(cluster1, match_metabolites) %>%
+  write.csv("../data/saved_data/PCA/cluster1_metab_list.csv")
+
+left_join(cluster2, match_metabolites) %>%
+  write.csv("../data/saved_data/PCA/cluster2_metab_list.csv")
 ```
+
+
 ```{r}
 ############ cluster the minipigs
 
@@ -1730,7 +1891,9 @@ model.metrics %>%
 # There were no outliers in the data, as assessed by no cases with standardized residuals greater than 3 in absolute value.
 
 
-res.aov <- CD4_t %>% anova_test(`30DPI` ~ `12wks` + vaccine_status)
+res.aov <- CD4_t %>% 
+  anova_test(`30DPI` ~ `12wks` * vaccine_status)
+
 get_anova_table(res.aov)
 ```
 
