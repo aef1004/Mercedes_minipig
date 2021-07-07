@@ -61,7 +61,24 @@ single_expression <- all_fe %>%
 
 single_expression %>%
   filter(expression == "1") %>%
-  ggplot(aes(x =factor(timepoint, levels = c("Week12", "D30")), shape = factor(vaccine_status), y = percent_per_marker, color = timepoint)) +
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")),
+             shape = factor(vaccine_status), y = percent_per_marker, color = Timepoint)) +
+  geom_point() +
+  facet_wrap(~marker) +
+  scale_shape_manual(values = c(21,19)) +
+  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  ggtitle("")
+
+
+single_expression %>%
+  filter(expression == "1") %>%
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")), y = percent_per_marker, color = Timepoint)) +
   geom_point() +
   facet_wrap(~marker) +
   scale_shape_manual(values = c(21,19)) +
@@ -179,11 +196,14 @@ all_phenotypes %>%
          phenotype = str_replace(phenotype, "CD8_Tcell", "CD8 Tcell"),
          phenotype = str_replace(phenotype, "DN_Tcell", "Double Negative (CD4- CD8-) Tcell"),
          phenotype = str_replace(phenotype, "DP_Tcell", "Double Positive (CD4+ CD8+) Tcell")) %>%
-  ggplot(aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), 
-                           y = marker_percent, color = timepoint)) +
+  mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30DPI", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  ggplot(aes(x = factor(Timepoint, levels = c("Pre-infection", "Post-infection")), 
+                           y = marker_percent, color = Timepoint)) +
   geom_point() +
   facet_wrap(~phenotype)+
-  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  labs(x = "Timepoint", y = "Percent of Cells with the Phenotype") +
   ggtitle("")
 ```
 
@@ -291,8 +311,13 @@ Correlation Plot
 Look at percentages 
 **Note I need to separate out the time and vaccine status (4 groups)
 ```{r fig.width = 3, fig.height = 4}
-ggplot(sample_populations_all_groups, aes(x = factor(timepoint, levels = c("Week12", "D30DPI")), y = percentage, 
-                                   group = timepoint, color = timepoint)) +
+
+sample_populations_all_groups %>%
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre"),
+         timepoint = str_replace(timepoint, "D30DPI", "Post")) %>%
+  rename(Timepoint = timepoint) %>%
+ggplot(aes(x = factor(Timepoint, levels = c("Pre", "Post")), y = percentage, 
+                                   group = Timepoint, color = Timepoint)) +
   scale_fill_identity() +
   geom_point(size = 2) +
   facet_wrap("population", scales = "free") +
@@ -321,8 +346,12 @@ pops_for_average_timepoint <- sample_populations_all_groups %>%
   dplyr::group_by(population, timepoint) %>%
   dplyr::summarise(average_percent = mean(percentage))
 
-ggplot(pops_for_average_timepoint, aes(x = timepoint, y = average_percent, 
-                                   group = timepoint, color = timepoint)) +
+pops_for_average_timepoint %>%
+  mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30PI", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+ggplot(aes(x = Timepoint, y = average_percent, 
+                                   group = Timepoint, color = Timepoint)) +
   scale_fill_identity() +
   geom_bar(stat = "identity") +
   facet_wrap("population", scales = "free",  labeller = label_both) +
@@ -1556,214 +1585,7 @@ same_sign_metab <- rbind(both_neg, both_pos) %>%
 ```
 
 
-PCA Minipig correlations
-```{r}
 
-load("../data/flow_predefined_phenotypes.gz")
-load("../data/flow_single_expression.gz")
-load("../data/flow_fe.gz")
-
-metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
-  dplyr::rename(metaboliteID = X) %>%
-  select(metaboliteID, contains("Minipig")) %>%
-  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
-
-match_metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
-  dplyr::rename(metaboliteID = X) 
-
-flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
-  rename(percent = marker_percent,
-         flow = phenotype,
-         vaccine_status = group) 
-
-flow_metab2 <-left_join(flow_fe, metabolites, by = "full_name")%>%
-  rename(percent = percentage,
-         flow = population)
-
-flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %>%
-  rename(flow = marker)
-
-flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
-  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
-
-all_flow <- flow_metab %>%
-  select(-metaboliteID, -metabolite_expression) %>%
-  unique() %>%
-  pivot_wider(names_from = flow, values_from = percent)
-
-metab_run <-metabolite_wide
-
-res.pca <- prcomp(metab_run, center = TRUE, scale = TRUE)
-
-res_pca_importance <- summary(res.pca)$importance %>% 
-  t() %>% 
-  as.data.frame() %>% 
-  mutate(PC = factor(1:n()))
-
-res_pca_importance %>% 
-  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
-  geom_col() + 
-  theme_classic()
-
-res.pca$x
-res.pca$rotation[,1] * metab_run[1, ]
-
-PCA_minipig <- res.pca$x %>% 
-  as.data.frame() %>% 
-  rownames_to_column("name") %>%
-  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
-  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
-  mutate(timepoint_vaccine = paste(timepoint," ", vaccine_status)) 
-
-minipig_PCA <- PCA_minipig %>%
-  rename(full_name = name) %>%
-  left_join(all_flow, by = c("full_name", "timepoint", "vaccine_status")) %>%
-  pivot_longer(c(PC1:PC19), names_to = "PC", values_to = "PC_value") %>%
-  pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent")
-
-minipig_PCA %>%
-  filter(PC == "PC1") %>%
-ggplot(aes(x = flow_percent, y = PC_value)) +
-  geom_point() +
-  facet_wrap(~flow, scales= "free")
-
-
-
-minipig_PCA %>%
-  group_by(PC, flow) %>%
-  nest() %>%
-  mutate(model = map(data, ~lm(flow_percent ~ PC_value, data = .)),
-         summary_model = map(model, tidy)) %>%
-unnest(summary_model) %>%
-  filter(term != "(Intercept)") %>%
-  select(flow, PC, estimate, model) %>%
-  mutate(tidy_model = map(model, broom::glance)) %>%
-  unnest(tidy_model) %>%
-  select(flow, PC, adj.r.squared, p.value, estimate) %>%
-  ungroup() %>%
-  filter(p.value < 0.05) %>%
-  filter(adj.r.squared > .5) %>%
-  select(flow,PC, adj.r.squared, p.value) %>%
-  unique()
-
-# All with PC2 - pops12, 15, 20, 22, 7, 8, CD172
-
-plot_pick_metab <- function(df, flow_pop, metab_pick, pretty_metab, x_position, yposition1, yposition2) {
-  step1 <- df %>%
-  filter(flow == flow_pop & PC == metab_pick) %>%
-  group_by(PC, flow) %>%
-  nest() %>%
-  mutate(model = map(data, ~lm(flow_percent ~ PC_value, data = .)),
-         summary_model = map(model, tidy)) %>%
-unnest(summary_model) %>%
-  filter(term != "(Intercept)") %>%
-  select(PC, flow, estimate, model) %>%
-  mutate(tidy_model = map(model, broom::glance)) %>%
-  unnest(tidy_model) %>%
-  select(PC, flow, adj.r.squared, p.value, estimate) %>%
-  ungroup() %>%
-  select(PC, flow, adj.r.squared, p.value) %>%
-  unique()
-
-# plot after I bring down the number of metabolites to a reasonable number
-df %>%
-  filter(flow == flow_pop & PC == metab_pick) %>%
-  left_join(step1, by = c("flow", "PC")) %>%
-ggplot(aes(x = flow_percent, y = PC_value, color = factor(timepoint))) +
-  geom_point(size = 3) +
-  geom_smooth(aes(x = flow_percent, y = PC_value), method = "lm", se = FALSE, color = "#3F4788FF") +
-  geom_text(aes(x = x_position, y = yposition1, 
-                                   label = paste("r^2 == ",
-                                                 round(adj.r.squared, 2))), parse = TRUE, color = "black") +
-  geom_text(aes(x = x_position, y = yposition2, 
-                                   label = paste("p == ",
-                                                 signif(p.value, 2))), parse = TRUE, color = "black") +
-  ggtitle(pretty_metab) +
-  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "PC Value", fill = "Timepoint") +
-  theme(axis.text = element_text(size = 14),
-        axis.title = element_text(size = 18),
-        title = element_text(size = 18))
-}
-
-
-plot_pick_metab(minipig_PCA, "Pop7", "PC2", "PC2", 2.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "Pop8", "PC2", "PC2", 2.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "Pop12", "PC2", "PC2", 2.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "Pop15", "PC2", "PC2", 0.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "Pop20", "PC2", "PC2", 2.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "Pop22", "PC2", "PC2", 2.5, 50, 25) 
-plot_pick_metab(minipig_PCA, "CD172", "PC2", "PC2", 2.5, 50, 25) 
-
-
-cor1 <- flow_metab   %>%
-  select(full_name, metaboliteID, metabolite_expression) %>%
-  unique() %>%
-   tidyr::pivot_wider(names_from = metaboliteID, 
-                       values_from = metabolite_expression) %>%
-  
-  column_to_rownames("full_name")
-
-
-  corr <- round(stats::cor(cor1), 1)
-
-
-melted_corr <- format_corr(corr)
-  
-plot_corr(melted_corr) +
-     ggplot2::xlab("Metab") +
-     ggplot2::ylab("Metab") +
-     ggplot2::labs(fill = "Correlation") 
-
-
-ggplot(res.pca$rotation, aes(x = PC1, y= PC2)) +
-  geom_point()
-
-
-
-
-res.pca$x
-res.pca$rotation[ ,1] %*% as.matrix(scale(metab_run)[1, ])
-
-
-scale(metab_run)
-
-dim(res.pca$rotation)
-dim(metab_run)
-
-res.pca$rotation %>%
-  data.frame() %>%
-  arrange(PC2)
-
-# plot to see where I should cluster
-res.pca$rotation %>%
-  data.frame() %>%
-  ggplot(aes(x = PC2)) +
-  geom_histogram(bins = 50)
-
-# maybe a cluster at >0.02 and < -0.1
-
-# 115 metabolites
-cluster1 <- res.pca$rotation %>%
-  data.frame() %>%
-  filter(PC2 >= 0.02) %>%
-  rownames_to_column("metaboliteID") %>%
-  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
-  select(metaboliteID, PC2)
-
-# 915 metabolites
-cluster2 <- res.pca$rotation %>%
-  data.frame() %>%
-  filter(PC2 <= -0.02)%>%
-  rownames_to_column("metaboliteID") %>%
-  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
-  select(metaboliteID, PC2)
-
-left_join(cluster1, match_metabolites) %>%
-  write.csv("../data/saved_data/PCA/cluster1_metab_list.csv")
-
-left_join(cluster2, match_metabolites) %>%
-  write.csv("../data/saved_data/PCA/cluster2_metab_list.csv")
-```
 
 
 ```{r}
@@ -1895,9 +1717,28 @@ res.aov <- CD4_t %>%
   anova_test(`30DPI` ~ `12wks` * vaccine_status)
 
 get_anova_table(res.aov)
+
+
+res.aov %>%
+  as.data.frame()
 ```
 
+Try to run ANCOVA on all of the flow pops
 ```{r}
-flow_metab
+all_flow %>%
+  pivot_longer(cols = c(CD4_Tcell:SLADQ), names_to = "cell", values_to = "percent") %>%
+  group_by(Cell) %>%
+  anova_test(percent ~ vaccine_status*timepoint) %>%
+  filter(`p<.05` == "*")%>%
+  mutate(Cell = factor(Cell, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "Pop1", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  arrange(Cell) %>%
+  rename(p_value = p) %>%
+  select(Cell, Effect, p)
 ```
+
 
