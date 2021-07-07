@@ -19,6 +19,7 @@ library(broom)
 ```
 
 ```{r}
+# removes columns (metabolites) that have 0 variance across the animals
 removeZeroVar <- function(df){
   df[, !sapply(df, function(x) min(x) == max(x))]
 }
@@ -219,7 +220,7 @@ res.pca$rotation %>%
 
 # maybe a cluster at >0.02 and < -0.1
 
-# 115 metabolites
+# 115 metabolites - revised = 113
 cluster1 <- res.pca$rotation %>%
   data.frame() %>%
   filter(PC2 >= 0.02) %>%
@@ -234,7 +235,7 @@ cluster1_0.3 <- res.pca$rotation %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
   select(metaboliteID, PC2)
 
-# 915 metabolites
+# 915 metabolites - revised = 954
 cluster2_0.2 <- res.pca$rotation %>%
   data.frame() %>%
   filter(PC2 <= -0.02)%>%
@@ -250,15 +251,17 @@ cluster2_0.1 <- res.pca$rotation %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
   select(metaboliteID, PC2)
 
-# left_join(cluster1, match_metabolites) %>%
-#   write.csv("../data/saved_data/PCA/cluster1_metab_list.csv")
 
-# left_join(cluster2_0.2, match_metabolites) %>%
-#   write.csv("../data/saved_data/PCA/cluster2_0.2_metab_list.csv")
+# revised is when I use the "ZeroVar" function instead of removing any rows with 0 for a value
+ left_join(cluster1, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/revised_cluster1_metab_list.csv")
 
- # left_join(cluster2_0.1, match_metabolites) %>%
- #   write.csv("../data/saved_data/PCA/cluster2_0.1_metab_list.csv")
+ left_join(cluster2_0.2, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/revised_cluster2_0.2_metab_list.csv")
+
+ left_join(cluster2_0.1, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/revised_cluster2_0.1_metab_list.csv")
 
  left_join(cluster1_0.3, match_metabolites) %>%
-  write.csv("../data/saved_data/PCA/cluster1_0.3_metab_list.csv")
+  write.csv("../data/saved_data/PCA/revised_cluster1_0.3_metab_list.csv")
 ```
