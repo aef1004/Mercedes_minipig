@@ -11,6 +11,20 @@ This is based on the analysis with Bailey
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r message = FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(broom)
+```
+
+```{r}
+removeZeroVar <- function(df){
+  df[, !sapply(df, function(x) min(x) == max(x))]
+}
+```
+
+
 Read in data
 ```{r}
 load("../data/flow_predefined_phenotypes.gz")
@@ -22,11 +36,10 @@ metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.cs
   select(metaboliteID, contains("Minipig")) %>%
   pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
 
-
 metabolite_wide <- metabolites %>%
   filter(!grepl("Pooled", full_name)) %>%
-  filter(!(metaboliteID %in% remove_metab$metaboliteID)) %>%
   pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  removeZeroVar() %>%
   column_to_rownames("full_name")
 
 match_metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
@@ -100,7 +113,7 @@ PCA_minipig <- res.pca$x %>%
 PCA_minipig%>%
   ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
   geom_point() + 
-  stat_ellipse() + 
+  stat_ellipse() +
   theme_classic() +
   labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
        y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
@@ -114,7 +127,7 @@ minipig_PCA <- PCA_minipig %>%
   pivot_longer(c(PC1:PC19), names_to = "PC", values_to = "PC_value") %>%
   pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent")
 
-
+unique(minipig_PCA$PC)
 minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%
@@ -201,7 +214,8 @@ res.pca$rotation %>%
 res.pca$rotation %>%
   data.frame() %>%
   ggplot(aes(x = PC2)) +
-  geom_histogram(bins = 50)
+  geom_histogram(bins = 50) +
+  ylab("Weight of Molecular Features")
 
 # maybe a cluster at >0.02 and < -0.1
 
@@ -213,10 +227,25 @@ cluster1 <- res.pca$rotation %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
   select(metaboliteID, PC2)
 
+cluster1_0.3 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC2 >= 0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC2)
+
 # 915 metabolites
-cluster2 <- res.pca$rotation %>%
+cluster2_0.2 <- res.pca$rotation %>%
   data.frame() %>%
   filter(PC2 <= -0.02)%>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC2)
+
+# 1413 metabolites
+cluster2_0.1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC2 <= -0.01)%>%
   rownames_to_column("metaboliteID") %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
   select(metaboliteID, PC2)
@@ -224,6 +253,12 @@ cluster2 <- res.pca$rotation %>%
 # left_join(cluster1, match_metabolites) %>%
 #   write.csv("../data/saved_data/PCA/cluster1_metab_list.csv")
 
-# left_join(cluster2, match_metabolites) %>%
-#   write.csv("../data/saved_data/PCA/cluster2_metab_list.csv")
+# left_join(cluster2_0.2, match_metabolites) %>%
+#   write.csv("../data/saved_data/PCA/cluster2_0.2_metab_list.csv")
+
+ # left_join(cluster2_0.1, match_metabolites) %>%
+ #   write.csv("../data/saved_data/PCA/cluster2_0.1_metab_list.csv")
+
+ left_join(cluster1_0.3, match_metabolites) %>%
+  write.csv("../data/saved_data/PCA/cluster1_0.3_metab_list.csv")
 ```
