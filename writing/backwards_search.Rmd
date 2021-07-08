@@ -17,6 +17,7 @@ Monoisotopic mass of the following adducts
 Na: 22.98976928
 NH4: 18.034374132
 
+20 ppm error 
 
 Monoisotropic mass of phosphatidylcholine
 785.59345564

@@ -129,6 +129,7 @@ minipig_PCA <- PCA_minipig %>%
   pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent")
 
 unique(minipig_PCA$PC)
+
 minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%

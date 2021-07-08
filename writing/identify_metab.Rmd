@@ -185,4 +185,91 @@ plot_pick_metab(flow_metab, "Pop7", "metab_1574", "Metabolite 6", 1, 2E4, 1E4)
 plot_pick_metab(flow_metab, "Pop7", "metab_1862", "Metabolite 6", 1, 2E4, 1E4)
 plot_pick_metab(flow_metab, "Pop7", "metab_1979", "Metabolite 6", 1, 2E4, 1E4)
 ```
+PCA Clustering
+Cluster2_0.2
+Valine, Leucine, and isoleucine biosynthesis
+```{r}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_Cluster2_0.2/name_map.csv") %>%
+  filter(KEGG %in% c("C00188", "C00109", "C00671", "C00407", "C00123", "C00233", "C00141", "C00183")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
 
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_cluster2_0.2.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop7", "metab_110", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_155", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_183", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_194", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_225", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_328", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_352", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_375", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_400", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_402", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_403", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_415", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_459", "Metabolite 6", 1, 2E4, 1E4)
+```
+
+PCA Clustering
+Cluster2_0.2
+Phenylalanine metabolism
+```{r}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_Cluster2_0.2/name_map.csv") %>%
+  filter(KEGG %in% c("C00079", "C05332", "C00601", "C07086", "C00166", "C05852", "C0082", "C02763", "C01586")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_cluster2_0.2.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop7", "metab_112", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_220", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_392", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_426", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_447", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_457", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_560", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_563", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_564", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_585", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_587", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_614", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_625", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_636", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_638", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_640", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_657", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_658", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_688", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_689", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_703", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_793", "Metabolite 6", 1, 2E4, 1E4)
+
+```
+lower levels of metabolites after infection
+
+Antigen signaling through the TCR increases phenylalanine, leucine, and glutamine uptake into CD8+ T cells, so maybe we're not seeing these metabolites in the serum because their taken up into the cells due to increase in antigen signaling due to infection
