@@ -142,6 +142,7 @@ unnest(summary_model) %>%
   unnest(tidy_model) %>%
   select(flow, PC, adj.r.squared, p.value, estimate) %>%
   ungroup() %>%
+  arrange(desc(adj.r.squared)) %>%
   filter(p.value < 0.05) %>%
   filter(adj.r.squared > .5) %>%
   select(flow,PC, adj.r.squared, p.value) %>%
@@ -195,7 +196,129 @@ plot_pick_metab(minipig_PCA, "Pop15", "PC2", "PC2", 0.5, 50, 25)
 plot_pick_metab(minipig_PCA, "Pop20", "PC2", "PC2", 2.5, 50, 25) 
 plot_pick_metab(minipig_PCA, "Pop22", "PC2", "PC2", 2.5, 50, 25) 
 plot_pick_metab(minipig_PCA, "CD172", "PC2", "PC2", 2.5, 50, 25) 
+
+plot_pick_metab(minipig_PCA, "Pop10", "PC4", "PC4", 2.5, 50, 25) 
 ```
+So I may actually want to change the model to account for the timepoint
+
+  filter(case_when(y=="" ~ x > 3, #When y == "", x > 3
+                   T ~ x<3) 
+```{r}
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  filter(term != "(Intercept)" & term != "timepoint30DPI") %>%
+  select(flow, PC, term, p.value) %>%
+  filter(case_when(term == "PC_value"	~ p.value <0.05,
+                   T ~ p.value >0.05)) %>%
+  arrange(flow, PC) %>%
+  filter(term == "PC_value")
+  
+plot_pick_metab <- function(df, flow_pop, metab_pick, pretty_metab, x_position, yposition1, yposition2) {
+  step1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(flow_percent ~ PC_value, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(PC, flow, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(PC, flow, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(PC, flow, adj.r.squared, p.value) %>%
+  unique()
+
+# plot after I bring down the number of metabolites to a reasonable number
+df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  left_join(step1, by = c("flow", "PC")) %>%
+ggplot(aes(x = flow_percent, y = PC_value, color = factor(timepoint))) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = flow_percent, y = PC_value), method = "lm", se = FALSE, color = "#3F4788FF") +
+  ggtitle(pretty_metab) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "PC Value", fill = "Timepoint") +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 18),
+        title = element_text(size = 18))
+}
+
+
+plot_pick_metab(minipig_PCA, "CD3", "PC11", "PC11", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "CD3", "PC4", "PC4", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "CD3", "PC5", "PC5", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "CD4", "PC12", "PC12", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "CD4_Tcell", "PC12", "PC12", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "CD45RA", "PC4", "PC4", 75, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop1", "PC1", "PC1", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop10", "PC4", "PC4", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop10", "PC5", "PC5", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop16", "PC12", "PC12", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop16", "PC4", "PC4", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop17", "PC13", "PC13", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop17", "PC14", "PC14", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop19", "PC1", "PC1", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop19", "PC4", "PC4", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop19", "PC5", "PC5", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop19", "PC6", "PC6", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop2", "PC16", "PC16", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop2", "PC2", "PC2", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop2", "PC7", "PC7", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop24", "PC1", "PC1", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop24", "PC3", "PC3", 5, 5, 10) 
+plot_pick_metab(minipig_PCA, "Pop24", "PC4", "PC4", 5, 5, 10) 
+
+```
+Print more complex data
+```{r}
+plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(formula= PC_value ~ flow_percent *timepoint, data=.)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = flow_percent, y = PC_value, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(metab_pick) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "PC Value", 
+       fill = "Timepoint") 
+}
+
+plot_complex(minipig_PCA, "CD3", "PC11", 75, 5, 10) 
+plot_complex(minipig_PCA, "CD3", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "CD3", "PC5",  75, 5, 10) 
+plot_complex(minipig_PCA, "CD4", "PC12",  75, 5, 10) 
+plot_complex(minipig_PCA, "CD4_Tcell", "PC12",  75, 5, 10) 
+plot_complex(minipig_PCA, "CD45RA", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop1", "PC1",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC5",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop16", "PC12",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop16", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop17", "PC13",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop17", "PC14",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop19", "PC1",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop19", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop19", "PC5",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop19", "PC6",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop2", "PC16",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop2", "PC2",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop2", "PC7",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC1",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC3",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC4",  75, 5, 10) 
+```
+
 
 Because PC2 is correlated with flow, figure out which metabolites are contributing to PC2
 ```{r}
@@ -266,3 +389,67 @@ cluster2_0.1 <- res.pca$rotation %>%
  left_join(cluster1_0.3, match_metabolites) %>%
   write.csv("../data/saved_data/PCA/revised_cluster1_0.3_metab_list.csv")
 ```
+
+PC4
+```{r}
+# plot to see where I should cluster
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC4)) +
+  geom_histogram(bins = 50) +
+  ylab("Weight of Molecular Features")
+
+# 140 metabolites
+PC4_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC4 >= 0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC4)
+
+# 171 metabolites
+PC4_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC4 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC4)
+
+left_join(PC4_cluster1, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC4_cluster1_metab_list.csv")
+
+left_join(PC4_cluster2, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC4_cluster2_metab_list.csv")
+```
+
+```{r}
+# plot to see where I should cluster
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC5)) +
+  geom_histogram(bins = 50) +
+  ylab("Weight of Molecular Features")
+
+# 92 metabolites
+PC5_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC5 >= 0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC5)
+
+# 171 metabolites
+PC5_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC5 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC5)
+
+left_join(PC5_cluster1, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC5_cluster1_metab_list.csv")
+
+left_join(PC5_cluster2, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC5_cluster2_metab_list.csv")
+```
+
