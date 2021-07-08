@@ -153,4 +153,36 @@ plot_pick_metab(flow_metab, "CD3", "metab_3709", "Metabolite 3709", 75, 1E5, 5E4
 plot_pick_metab(flow_metab, "CD3", "metab_3715", "Metabolite 3715 ", 75, 2.5E4, 1.25E4)
 plot_pick_metab(flow_metab, "CD3", "metab_3713", "Metabolite  3713", 75, 1E5, 5E4)
 ```
+PCA Clustering
+
+Cluster 1: Primary Bile Acids
+KEGG ID: C05455, C06341, 
+
+```{r}
+
+
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_Cluster1/name_map.csv") %>%
+  filter(KEGG %in% c("C05455", "C06341", "C05453", "C00037", "C05445", "C17335", "C15518", "C04722")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_cluster1.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop7", "metab_6", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_1574", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_1862", "Metabolite 6", 1, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop7", "metab_1979", "Metabolite 6", 1, 2E4, 1E4)
+```
 
