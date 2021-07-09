@@ -275,6 +275,10 @@ plot_pick_metab(minipig_PCA, "Pop24", "PC4", "PC4", 5, 5, 10)
 
 ```
 Print more complex data
+
+Understandig linear regressions with interactions
+https://stats.idre.ucla.edu/r/seminars/interactions-r/ 
+https://www.andrew.cmu.edu/user/achoulde/94842/lectures/lecture10/lecture10-94842.html
 ```{r}
 plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
   {
