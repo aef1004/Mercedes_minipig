@@ -377,17 +377,17 @@ cluster2_0.1 <- res.pca$rotation %>%
 
 
 # revised is when I use the "ZeroVar" function instead of removing any rows with 0 for a value
- left_join(cluster1, match_metabolites) %>%
-   write.csv("../data/saved_data/PCA/revised_cluster1_metab_list.csv")
-
- left_join(cluster2_0.2, match_metabolites) %>%
-   write.csv("../data/saved_data/PCA/revised_cluster2_0.2_metab_list.csv")
-
- left_join(cluster2_0.1, match_metabolites) %>%
-   write.csv("../data/saved_data/PCA/revised_cluster2_0.1_metab_list.csv")
-
- left_join(cluster1_0.3, match_metabolites) %>%
-  write.csv("../data/saved_data/PCA/revised_cluster1_0.3_metab_list.csv")
+ # left_join(cluster1, match_metabolites) %>%
+ #   write.csv("../data/saved_data/PCA/revised_cluster1_metab_list.csv")
+ # 
+ # left_join(cluster2_0.2, match_metabolites) %>%
+ #   write.csv("../data/saved_data/PCA/revised_cluster2_0.2_metab_list.csv")
+ # 
+ # left_join(cluster2_0.1, match_metabolites) %>%
+ #   write.csv("../data/saved_data/PCA/revised_cluster2_0.1_metab_list.csv")
+ # 
+ # left_join(cluster1_0.3, match_metabolites) %>%
+ #  write.csv("../data/saved_data/PCA/revised_cluster1_0.3_metab_list.csv")
 ```
 
 PC4

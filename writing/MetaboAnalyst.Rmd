@@ -351,7 +351,7 @@ map_df(all_files, ~read_add_name(.)) %>%
   mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
   mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
   select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
-    mutate(filename = factor(filename, levels = c("Cluster1", "Cluster2_0.1", "Cluster2_0.2"))) %>%
+    mutate(filename = factor(filename, levels = c("Cluster1", "Cluster2_0.1", "Cluster2_0.2", "PC4_Cluster1", "PC4_Cluster2", "PC5_Cluster1", "PC_Cluster2"))) %>%
   arrange(filename) %>%
   rename(p_value = `Raw p`,
          `Putitive Pathway` = X1,
@@ -364,6 +364,9 @@ map_df(all_files, ~read_add_name(.)) %>%
   kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
+
+
+
 ```{r}
 
 library(readxl)
@@ -378,4 +381,5 @@ read_xlsx("../data/saved_data/PCA/test_conc.xlsx") %>%
   select(mz, compound_id, metaboliteID, Minipig_3273_12wks:Minipig_9947_30DPI) %>%
   write.csv("../data/saved_data/PCA/conc_table.csv")
 ```
+
 
