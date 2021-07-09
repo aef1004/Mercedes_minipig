@@ -317,6 +317,112 @@ plot_complex(minipig_PCA, "Pop2", "PC7",  75, 5, 10)
 plot_complex(minipig_PCA, "Pop24", "PC1",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop24", "PC3",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop24", "PC4",  75, 5, 10) 
+
+library(emmeans)
+plot_complex(minipig_PCA, "CD3", "PC11", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC5",  75, 5, 10) 
+
+fm1 <- minipig_PCA %>%
+  filter(flow == "CD3" & PC == "PC11") %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI"))  %>%
+  lm(formula = PC_value ~ timepoint *flow_percent , data = .)
+
+#summary(fm1)
+
+# try to find the difference in slopes
+emtrends(fm1, pairwise ~ timepoint, var = "flow_percent")$contrasts %>%
+  as.data.frame()
+
+emtrends(fm1, pairwise ~ timepoint, var = "flow_percent")$emtrends %>%
+  as.data.frame()
+
+fm1 <- minipig_PCA %>%
+  filter(flow == "Pop10" & PC == "PC5") %>%
+  lm(formula = PC_value ~ timepoint *flow_percent , data = .)
+
+#summary(fm1)
+emtrends(fm1, pairwise ~ timepoint, var = "flow_percent")$contrasts %>%
+  as.data.frame() 
+
+minipig_PCA %>%
+  filter(flow == "CD3" & PC == "PC11") %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI"))  %>%
+  cbind(pred = predict(fm1))
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  lm(formula = PC_value ~ timepoint *flow_percent , data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "flow_percent")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+test_trends(minipig_PCA, "CD3", "PC11") 
+test_trends(minipig_PCA, "CD3", "PC4") 
+test_trends(minipig_PCA, "CD3", "PC5") 
+test_trends(minipig_PCA, "CD4", "PC12") 
+test_trends(minipig_PCA, "CD4_Tcell", "PC12") 
+test_trends(minipig_PCA, "Pop1", "PC1") 
+test_trends(minipig_PCA, "Pop16", "PC12") 
+test_trends(minipig_PCA, "Pop17", "PC13") 
+test_trends(minipig_PCA, "Pop17", "PC14") 
+test_trends(minipig_PCA, "Pop19", "PC1") 
+test_trends(minipig_PCA, "Pop19", "PC5") 
+test_trends(minipig_PCA, "Pop19", "PC6") 
+test_trends(minipig_PCA, "Pop2", "PC16") 
+test_trends(minipig_PCA, "Pop2", "PC2") 
+test_trends(minipig_PCA, "Pop2", "PC7") 
+test_trends(minipig_PCA, "Pop24", "PC1") 
+test_trends(minipig_PCA, "Pop24", "PC3") 
+
+
+# good 
+test_trends(minipig_PCA, "CD45RA", "PC4") 
+test_trends(minipig_PCA, "Pop10", "PC4") 
+test_trends(minipig_PCA, "Pop10", "PC5") 
+test_trends(minipig_PCA, "Pop16", "PC4") 
+test_trends(minipig_PCA, "Pop19", "PC4") 
+test_trends(minipig_PCA, "Pop24", "PC4") 
+
+
+cell <- list(flow_x = c("CD3", "CD3","CD3","CD4", "CD4_Tcell", "Pop1", "Pop16", rep("Pop17", 2), rep("Pop19", 3), rep("Pop2", 3), rep("Pop24",2), "CD45RA", "Pop10", "Pop10", "Pop16", "Pop19", "Pop24"), PC_n = c("PC11", "PC4", "PC5", "PC12", "PC12", "PC1", "PC12", "PC13", "PC14", "PC1", "PC5", "PC6", "PC16", "PC2", "PC7", "PC1", "PC3", "PC4", "PC4", "PC5", rep("PC4", 3)))
+
+ajk <-pmap(cell, function(flow_x,PC_n) test_trends(minipig_PCA, flow_x, PC_n))
+
+do.call(rbind, ajk) %>%
+  select(flow, PC, flow_percent.trend, timepoint) %>%
+  pivot_wider(names_from = "timepoint", values_from = "flow_percent.trend") %>%
+  mutate(change = `12wks`/`30DPI`) %>%
+  filter(change <=2 & change >= 0.25) # it's okay that we're removing values with negative change because we're moving those that ahve opposing relationships
+  
+```
+if timepoint = D30
+PCvalue = -63.3395 + 0.7782*flow_percent + 54.4915*timepoint -0.6794*(flow_percent*timepoint)
+
+if timepoint = 12 wks
+PCvalue = -63.3395 + 0.7782*flow_percent + 54.4915 -0.6794*(flow_percent)
+
+```{r}
+-63.3395 + 54.4915*timepoint +  0.7782*flow_percent + -0.6794*timepoint*flow_percent
+
+
+# 12 wks - goal to get 6.739
+x = 90.04713
+y = 1
+
+# D30 DPI - goal to get -0.7348
+x = 82.04493
+y = 2
+
+ (0.7782*x) + (54.4915*y) -63.3395  -0.6794*(x*y)
+
+
+
 ```
 
 
@@ -397,6 +503,8 @@ res.pca$rotation %>%
   data.frame() %>%
   ggplot(aes(x = PC4)) +
   geom_histogram(bins = 50) +
+  geom_vline(xintercept = 0.03, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
   ylab("Weight of Molecular Features")
 
 # 140 metabolites
@@ -428,6 +536,8 @@ res.pca$rotation %>%
   data.frame() %>%
   ggplot(aes(x = PC5)) +
   geom_histogram(bins = 50) +
+    geom_vline(xintercept = 0.03, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
   ylab("Weight of Molecular Features")
 
 # 92 metabolites
