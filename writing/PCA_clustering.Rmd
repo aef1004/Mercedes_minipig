@@ -200,9 +200,6 @@ plot_pick_metab(minipig_PCA, "CD172", "PC2", "PC2", 2.5, 50, 25)
 plot_pick_metab(minipig_PCA, "Pop10", "PC4", "PC4", 2.5, 50, 25) 
 ```
 So I may actually want to change the model to account for the timepoint
-
-  filter(case_when(y=="" ~ x > 3, #When y == "", x > 3
-                   T ~ x<3) 
 ```{r}
 minipig_PCA %>%
   group_by(PC, flow) %>%
@@ -279,6 +276,8 @@ Print more complex data
 Understandig linear regressions with interactions
 https://stats.idre.ucla.edu/r/seminars/interactions-r/ 
 https://www.andrew.cmu.edu/user/achoulde/94842/lectures/lecture10/lecture10-94842.html
+
+Check CSU library for lienar regression - Springer
 ```{r}
 plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
   {
@@ -402,8 +401,8 @@ do.call(rbind, ajk) %>%
   select(flow, PC, flow_percent.trend, timepoint) %>%
   pivot_wider(names_from = "timepoint", values_from = "flow_percent.trend") %>%
   mutate(change = `12wks`/`30DPI`) %>%
-  filter(change <=2 & change >= 0.25) # it's okay that we're removing values with negative change because we're moving those that ahve opposing relationships
-  
+  filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
+
 ```
 if timepoint = D30
 PCvalue = -63.3395 + 0.7782*flow_percent + 54.4915*timepoint -0.6794*(flow_percent*timepoint)

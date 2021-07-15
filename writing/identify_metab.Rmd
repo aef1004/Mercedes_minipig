@@ -280,6 +280,7 @@ Antigen signaling through the TCR increases phenylalanine, leucine, and glutamin
 
 PC4_Cluster1:	Arginine and proline metabolism
 
+PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster1/name_map.csv") %>%
   filter(KEGG %in% c("C05147", "C00763", "C03440", "C00148", "C05938", "C01165", "C01157", "C00025")) %>%
@@ -303,9 +304,15 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
 plot_pick_metab(flow_metab, "CD45RA", "metab_85",  25, 1.5E4, 1E4)
 plot_pick_metab(flow_metab, "CD45RA", "metab_456",  25, 2E4, 1E4)
 plot_pick_metab(flow_metab, "CD45RA", "metab_496",  25, 2E4, 1E4)
+
+plot_pick_metab(flow_metab, "Pop10", "metab_85",  5, 1.5E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_456",  5, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_496",  5, 2E4, 1E4)
 ```
 
 PC4_Cluster1	**Phenylalanine metabolism**
+
+PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster1/name_map.csv") %>%
   filter(KEGG %in% c("C00166", "C00082", "C02763")) %>%
@@ -331,6 +338,8 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_639",  25, 2E4, 1E4)
 ```
 
 PC4_Cluster1	Phenylalanine, tyrosine and tryptophan biosynthesis
+
+PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster1/name_map.csv") %>%
   filter(KEGG %in% c("C00166", "C00082")) %>%
@@ -356,6 +365,8 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_639",  25, 2E4, 1E4)
 ```
 
 PC4_Cluster2	Arachidonic acid metabolism
+
+PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966", "C05356", "C14823", "C14812", "C14748", "C14749", "C05965", "C14772", "C14773", "C14774", "C14775", "C14781", "C14813", "C04742", "C00909", "C04805", "C14782", "C14814", "C02165", "C02166", "C04853", "C05959", "C00639")) %>%
@@ -369,7 +380,8 @@ cluster_data <- read.csv("../data/saved_data/PCA/HMDB_PC4_cluster2.csv") %>%
 
 mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
   select(compound_id, query_mass, compound_name, KEGG) %>%
-  mutate(query_mass = round(query_mass, 5))
+  mutate(query_mass = round(query_mass, 5)) %>%
+  arrange(query_mass)
 
 
 read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
@@ -388,7 +400,7 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
 
 ```
 
-PC4 correlated with CD45RA, Pop10, Pop16, Pop 19, Pop24
+PC4 correlated with PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
 
 PC4_Cluster2	Linoleic acid metabolism	
 
@@ -397,6 +409,8 @@ PC4_Cluster2	Linoleic acid metabolism
 - 9(10)-EpOME
 - 12(13)-EpOME
 - (9Z,11E)-(13S)-13-Hydroperoxyoctadeca-9,11-dienoic acid
+
+** PC breakdown is associated with the production of diacylglycerol and the activation of T cells [Aussel 1990]. As we can see on the corresponding correlation plot, as the percentage of CD45RA, a T cell co-receptor, decreases, the expression of the potentially identified phosphatidylcholine  decreases, corroborating the results**
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C01595", "C14825", "C14826", "C04717")) %>%
@@ -432,6 +446,10 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
 ```
 
 PC5_Cluster1	Arginine and proline metabolism
+Pop 10: CD3+ CD8+
+
+L-arginine is avidly taken up by activated T cells in amounts exceeding the requirements for protein synthesis and can be rapidly converted by metabolic enzymes into downstream metabolites.
+
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC5_Cluster1/name_map.csv") %>%
   filter(KEGG %in% c("C00077", "C01165", "C00750", "C00025", "C01157", "C04281", "C05938", "C04282", "C05147", "C03440")) %>%
@@ -452,14 +470,18 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   mutate(mz = round(mz, 5)) %>%
   filter(mz %in% mass$query_mass)
 
-plot_pick_metab(flow_metab, "CD45RA", "metab_302",  25, 1.5E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_494",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_503",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_731",  25, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_302",  5, 1.5E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_494",  5, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_503",  5, 2E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_731",  5, 2E4, 1E4)
 
 ```
 
 PC5_Cluster1	D-Glutamine and D-glutamate metabolism
+Pop 10 : CD3+ CD8+
+
+**Antigen signaling through the TCR increases phenylalanine, leucine, and glutamine uptake into CD8+ T cells. Therefore, we might expect to see lower levels of metabolites associated with glutamine metabolism with higher levels of CD8 T cells because it’s taken up into the cells**
+
 ```{r}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC5_Cluster1/name_map.csv") %>%
   filter(KEGG %in% c("C00217", "C02237", "C00025")) %>%
@@ -480,7 +502,7 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   mutate(mz = round(mz, 5)) %>%
   filter(mz %in% mass$query_mass)
 
-plot_pick_metab(flow_metab, "CD45RA", "metab_302",  25, 1.5E4, 1E4)
+plot_pick_metab(flow_metab, "Pop10", "metab_302",  5, 1.5E4, 1E4)
 
 ```
 
