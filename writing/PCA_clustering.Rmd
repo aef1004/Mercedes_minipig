@@ -16,6 +16,7 @@ library(readr)
 library(dplyr)
 library(tidyverse)
 library(broom)
+library(emmeans)
 ```
 
 ```{r}
@@ -92,6 +93,7 @@ Initial view to show metabolites are correlated
 
 PCA and proportion of variance
 ```{r}
+set.seed(2)
 res.pca <- prcomp(metabolite_wide, center = TRUE, scale = TRUE)
 
 res_pca_importance <- summary(res.pca)$importance %>% 
@@ -199,6 +201,7 @@ plot_pick_metab(minipig_PCA, "CD172", "PC2", "PC2", 2.5, 50, 25)
 
 plot_pick_metab(minipig_PCA, "Pop10", "PC4", "PC4", 2.5, 50, 25) 
 ```
+
 So I may actually want to change the model to account for the timepoint
 ```{r}
 minipig_PCA %>%
@@ -302,16 +305,15 @@ plot_complex(minipig_PCA, "CD3", "PC4",  75, 5, 10)
 plot_complex(minipig_PCA, "CD3", "PC5",  75, 5, 10) 
 plot_complex(minipig_PCA, "CD4", "PC12",  75, 5, 10) 
 plot_complex(minipig_PCA, "CD4_Tcell", "PC12",  75, 5, 10) 
-plot_complex(minipig_PCA, "CD45RA", "PC4", 75, 5, 10) 
+
 plot_complex(minipig_PCA, "Pop1", "PC1",  75, 5, 10) 
-plot_complex(minipig_PCA, "Pop10", "PC4",  75, 5, 10) 
-plot_complex(minipig_PCA, "Pop10", "PC5",  75, 5, 10) 
+
 plot_complex(minipig_PCA, "Pop16", "PC12",  75, 5, 10) 
-plot_complex(minipig_PCA, "Pop16", "PC4",  75, 5, 10) 
+
 plot_complex(minipig_PCA, "Pop17", "PC13",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop17", "PC14",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop19", "PC1",  75, 5, 10) 
-plot_complex(minipig_PCA, "Pop19", "PC4",  75, 5, 10) 
+
 plot_complex(minipig_PCA, "Pop19", "PC5",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop19", "PC6",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop2", "PC16",  75, 5, 10) 
@@ -319,11 +321,16 @@ plot_complex(minipig_PCA, "Pop2", "PC2",  75, 5, 10)
 plot_complex(minipig_PCA, "Pop2", "PC7",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop24", "PC1",  75, 5, 10) 
 plot_complex(minipig_PCA, "Pop24", "PC3",  75, 5, 10) 
-plot_complex(minipig_PCA, "Pop24", "PC4",  75, 5, 10) 
-
-library(emmeans)
 plot_complex(minipig_PCA, "CD3", "PC11", 75, 5, 10) 
 plot_complex(minipig_PCA, "Pop10", "PC5",  75, 5, 10) 
+
+# okay
+plot_complex(minipig_PCA, "CD45RA", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC5",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop16", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop19", "PC4",  75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC4",  75, 5, 10) 
 
 fm1 <- minipig_PCA %>%
   filter(flow == "CD3" & PC == "PC11") %>%
@@ -404,30 +411,6 @@ do.call(rbind, ajk) %>%
   filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
 
 ```
-if timepoint = D30
-PCvalue = -63.3395 + 0.7782*flow_percent + 54.4915*timepoint -0.6794*(flow_percent*timepoint)
-
-if timepoint = 12 wks
-PCvalue = -63.3395 + 0.7782*flow_percent + 54.4915 -0.6794*(flow_percent)
-
-```{r}
--63.3395 + 54.4915*timepoint +  0.7782*flow_percent + -0.6794*timepoint*flow_percent
-
-
-# 12 wks - goal to get 6.739
-x = 90.04713
-y = 1
-
-# D30 DPI - goal to get -0.7348
-x = 82.04493
-y = 2
-
- (0.7782*x) + (54.4915*y) -63.3395  -0.6794*(x*y)
-
-
-
-```
-
 
 Because PC2 is correlated with flow, figure out which metabolites are contributing to PC2
 ```{r}
@@ -564,5 +547,143 @@ left_join(PC5_cluster1, match_metabolites) %>%
 
 left_join(PC5_cluster2, match_metabolites) %>%
    write.csv("../data/saved_data/PCA/PC5_cluster2_metab_list.csv")
+```
+
+# Final PCA - July 20
+```{r}
+# this gives us 25 populations to look at more closely - note that I think I tested the trends on the opposite lm than the original 
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  filter(term != "(Intercept)" & term != "timepoint30DPI") %>%
+  select(flow, PC, term, p.value) %>%
+  filter(case_when(term == "PC_value"	~ p.value <0.05,
+                   T ~ p.value >0.05)) %>%
+  arrange(flow, PC) %>%
+  filter(term == "PC_value")
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  lm(formula = PC_value ~ timepoint *flow_percent , data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "flow_percent")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+
+# we take this list of 25 flow-PC populations and test for difference between 12 wks and 30DPI timepoint
+cell <- list(flow_x = c("CD3", "CD3","CD3","CD4", "CD4_Tcell", "Pop1", "Pop16", rep("Pop17", 2), rep("Pop19", 3), rep("Pop2", 3), rep("Pop24",2), "CD45RA", "Pop10", "Pop10", "Pop16", "Pop19", "Pop24"), PC_n = c("PC11", "PC4", "PC5", "PC12", "PC12", "PC1", "PC12", "PC13", "PC14", "PC1", "PC5", "PC6", "PC16", "PC2", "PC7", "PC1", "PC3", "PC4", "PC4", "PC5", rep("PC4", 3)))
+
+ajk <-pmap(cell, function(flow_x,PC_n) test_trends(minipig_PCA, flow_x, PC_n))
+
+do.call(rbind, ajk) %>%
+  select(flow, PC, flow_percent.trend, timepoint) %>%
+  pivot_wider(names_from = "timepoint", values_from = "flow_percent.trend") %>%
+  mutate(change = `12wks`/`30DPI`) %>%
+  filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
+
+
+####################################################
+# gives us 25 populations when we only look at pvalue <0.05 for PC_value
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.05) %>%
+  arrange(flow, PC) 
+
+# we take this list of 25 flow-PC populations and test for difference between 12 wks and 30DPI timepoint
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  lm(formula = flow_percent ~ timepoint *PC_value , data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+ajk <-pmap(cell, function(flow_x,PC_n) test_trends(minipig_PCA, flow_x, PC_n))
+
+do.call(rbind, ajk) %>%
+  select(flow, PC, PC_value.trend, timepoint) %>%
+  pivot_wider(names_from = "timepoint", values_from = "PC_value.trend") %>%
+  mutate(change = `12wks`/`30DPI`) %>%
+  filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(formula= flow_percent ~ PC_value *timepoint, data=.)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+plot_complex(minipig_PCA, "CD45RA", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "CD8_Tcell", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop16", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop2", "PC7", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC4", 75, 5, 10) 
+
+# I've previously pulled out PC4, now pull out PC7
+# plot to see where I should cluster
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC7)) +
+  geom_histogram(bins = 50) +
+    geom_vline(xintercept = 0.03, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
+  ylab("Weight of Molecular Features")
+
+# 86 metabolites
+PC7_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC7 >= 0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC7)
+
+# 137 metabolites
+PC7_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC7 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC7)
+
+left_join(PC7_cluster1, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC7_cluster1_metab_list.csv")
+
+left_join(PC7_cluster2, match_metabolites) %>%
+   write.csv("../data/saved_data/PCA/PC7_cluster2_metab_list.csv")
+
 ```
 
