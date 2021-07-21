@@ -15,6 +15,7 @@ library(purrr)
 library(tidyr)
 library(broom)
 library(ggplot2)
+library(ggpubr)
 ```
 
 Pop 17, Phenylpyruvic acid, KEGGID:C00166, Query mass: 182.0791887, metab_637
@@ -98,6 +99,34 @@ ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
         title = element_text(size = 18))
 }
 
+arrange_plot <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) {
+  
+  step1 <- df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  group_by(flow, metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+  select(flow, metaboliteID, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+  ungroup() %>%
+  select(flow, metaboliteID, adj.r.squared, p.value) %>%
+  unique() 
+
+# plot after I bring down the number of metabolites to a reasonable number
+df %>%
+  filter(flow == flow_pop & metaboliteID == metab_pick) %>%
+  left_join(step1, by = c("flow", "metaboliteID")) %>%
+ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+  geom_point(size = 3) +
+  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  ggtitle(metab_pick) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "Metabolite Expression", fill = "Timepoint") 
+}
 
 ```
 
@@ -367,7 +396,7 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_639",  25, 2E4, 1E4)
 PC4_Cluster2	Arachidonic acid metabolism
 
 PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
-```{r}
+```{r fig.height = 3, fig.width = 4}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966", "C05356", "C14823", "C14812", "C14748", "C14749", "C05965", "C14772", "C14773", "C14774", "C14775", "C14781", "C14813", "C04742", "C00909", "C04805", "C14782", "C14814", "C02165", "C02166", "C04853", "C05959", "C00639")) %>%
   select(Query, KEGG) %>%
@@ -388,14 +417,86 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   mutate(mz = round(mz, 5)) %>%
   filter(mz %in% mass$query_mass)
 
-plot_pick_metab(flow_metab, "CD45RA", "metab_1223",  25, 1.5E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1280",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1287",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1289",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1342",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_2958",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_3072",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
+p1 <- arrange_plot(flow_metab, "CD45RA", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD45RA", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD45RA", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "CD45RA", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "CD45RA", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "CD45RA", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "CD45RA", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD45RA", size = 20))
+
+p1 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD8 T cells", size = 20))
+
+
+p1 <- arrange_plot(flow_metab, "Pop16", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop16", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop16", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop16", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop16", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop16", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop16", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop16", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop16: CD3+ CD4+", size = 20))
+
+p1 <- arrange_plot(flow_metab, "Pop24", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop24", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop24", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop24", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop24", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop24", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop24", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop24", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop24: CD3+ CD4+ CD8+ CD45RA+", size = 20))
 
 
 ```
@@ -411,7 +512,7 @@ PC4_Cluster2	Linoleic acid metabolism
 - (9Z,11E)-(13S)-13-Hydroperoxyoctadeca-9,11-dienoic acid
 
 ** PC breakdown is associated with the production of diacylglycerol and the activation of T cells [Aussel 1990]. As we can see on the corresponding correlation plot, as the percentage of CD45RA, a T cell co-receptor, decreases, the expression of the potentially identified phosphatidylcholine  decreases, corroborating the results**
-```{r}
+```{r fig.height = 3}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C01595", "C14825", "C14826", "C04717")) %>%
   select(Query, KEGG) %>%
@@ -431,18 +532,112 @@ read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   mutate(mz = round(mz, 5)) %>%
   filter(mz %in% mass$query_mass)
 
-plot_pick_metab(flow_metab, "CD45RA", "metab_1011",  25, 1.5E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1081",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1082",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1083",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1101",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1102",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1169",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1186",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1263",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_1280",  25, 2E4, 1E4)
-plot_pick_metab(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
 
+
+p1 <- arrange_plot(flow_metab, "CD45RA", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD45RA", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD45RA", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "CD45RA", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "CD45RA", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "CD45RA", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "CD45RA", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "CD45RA", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "CD45RA", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "CD45RA", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
+
+
+
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xlab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xlab"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          p9+ rremove("legend")+ rremove("ylab"), 
+          p10+ rremove("legend"), 
+          ncol = 3, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and CD45RA", size = 25))
+
+
+p1 <- arrange_plot(flow_metab, "Pop24", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop24", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop24", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop24", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop24", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop24", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop24", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop24", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "Pop24", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "Pop24", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "Pop24", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xlab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xlab"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          p9+ rremove("legend")+ rremove("ylab"), 
+          p10+ rremove("legend"), 
+          ncol = 3, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop24: CD3+ CD4+ CD8+ CD45RA+", size = 25))
+
+p1 <- arrange_plot(flow_metab, "Pop16", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop16", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop16", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop16", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop16", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop16", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop16", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop16", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "Pop16", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "Pop16", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "Pop16", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xlab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xlab"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          p9+ rremove("legend")+ rremove("ylab"), 
+          p10+ rremove("legend"), 
+          ncol = 3, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop16: CD3+ CD4+", size = 25))
+
+
+p1 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xlab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xlab"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          p9+ rremove("legend")+ rremove("ylab"), 
+          p10+ rremove("legend"), 
+          ncol = 3, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and CD8 Tcells", size = 25))
 ```
 
 PC5_Cluster1	Arginine and proline metabolism
@@ -506,3 +701,142 @@ plot_pick_metab(flow_metab, "Pop10", "metab_302",  5, 1.5E4, 1E4)
 
 ```
 
+PC7_Cluster1:	Folate Biosynthesis
+Pop2: CD3+ SLADQ+
+
+```{r}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC7_Cluster1/name_map.csv") %>%
+  filter(KEGG %in% c("C00268", "C02953", "C04244")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_PC7_cluster1.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop2", "metab_1000",  5, 5E3, 2E3)
+
+```
+
+PC7_Cluster1: alpha linoleic acid metabolism
+Pop2: CD3+ SLADQ+
+```{r}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC7_Cluster1/name_map.csv") %>%
+  filter(KEGG %in% c("C16339", "C00157")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_PC7_cluster1.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop2", "metab_3545",  5, 5E3, 2E3)
+plot_pick_metab(flow_metab, "Pop2", "metab_3692",  5, 5E3, 2E3)
+plot_pick_metab(flow_metab, "Pop2", "metab_3810",  5, 5E3, 2E3)
+plot_pick_metab(flow_metab, "Pop2", "metab_3864",  5, 5E3, 2E3)
+```
+
+PC7_Cluster2:  Valine, leucine, isoleucine metabolism
+Pop2: CD3+ SLADQ+
+
+```{r fig.height = 4}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC7_Cluster2/name_map.csv") %>%
+  filter(KEGG %in% c("C00671", "C00407", "C00123", "C00233", "C00183")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_PC7_cluster2.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+p1 <- arrange_plot(flow_metab, "Pop2", "metab_183",  5, 5E3, 2E3)
+p2 <- arrange_plot(flow_metab, "Pop2", "metab_194",  5, 5E3, 2E3)
+p3 <- arrange_plot(flow_metab, "Pop2", "metab_199",  5, 5E3, 2E3)
+p4 <- arrange_plot(flow_metab, "Pop2", "metab_333",  5, 5E3, 2E3)
+p5 <- arrange_plot(flow_metab, "Pop2", "metab_344",  5, 5E3, 2E3)
+p6 <- arrange_plot(flow_metab, "Pop2", "metab_345",  5, 5E3, 2E3)
+p7 <- arrange_plot(flow_metab, "Pop2", "metab_349",  5, 5E3, 2E3)
+p8 <- arrange_plot(flow_metab, "Pop2", "metab_353",  5, 5E3, 2E3)
+p9 <- arrange_plot(flow_metab, "Pop2", "metab_354",  5, 5E3, 2E3)
+p10 <- arrange_plot(flow_metab, "Pop2", "metab_356",  5, 5E3, 2E3)
+p11 <- arrange_plot(flow_metab, "Pop2", "metab_358",  5, 5E3, 2E3)
+p12 <- arrange_plot(flow_metab, "Pop2", "metab_364",  5, 5E3, 2E3)
+p13 <- arrange_plot(flow_metab, "Pop2", "metab_458",  5, 5E3, 2E3)
+
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xlab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xlab"), 
+          p8+ rremove("legend") + rremove("xylab"), 
+          p9+ rremove("legend")+ rremove("xylab"), 
+          p10+ rremove("legend")+ rremove("xlab"), 
+          p11+ rremove("legend")+ rremove("ylab"),
+          p12+ rremove("legend")+ rremove("ylab"),
+          p13+ rremove("legend"),
+          ncol = 3, nrow = 5) %>%
+  annotate_figure(top = text_grob("PC7 Valine, leucine, isoleucine metabolism and Pop2: CD3+ SLADQ+", size = 25))
+```
+
+
+
+PC7_Cluster2:  D-glutamine, D-gluatmate
+Pop2: CD3+ SLADQ+
+
+```{r}
+hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC7_Cluster2/name_map.csv") %>%
+  filter(KEGG %in% c("C00819", "C00064", "C00026")) %>%
+  select(Query, KEGG) %>%
+  rename(compound_id = Query)
+
+cluster_data <- read.csv("../data/saved_data/PCA/HMDB_PC7_cluster2.csv") %>%
+  select(-kegg_id) %>%
+  filter(compound_id %in% hmdb_list$compound)
+
+
+mass <- left_join(hmdb_list, cluster_data, by = "compound_id") %>%
+  select(compound_id, query_mass, compound_name, KEGG) %>%
+  mutate(query_mass = round(query_mass, 5))
+
+
+read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  mutate(mz = round(mz, 5)) %>%
+  filter(mz %in% mass$query_mass)
+
+plot_pick_metab(flow_metab, "Pop2", "metab_445",  5, 5E3, 2E3)
+plot_pick_metab(flow_metab, "Pop2", "metab_577",  5, 5E3, 2E3)
+
+```
