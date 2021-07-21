@@ -591,9 +591,15 @@ do.call(rbind, ajk) %>%
   filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
 
 
+
+
+```
+
+# Final Analysis
+```{r}
 ####################################################
 # gives us 25 populations when we only look at pvalue <0.05 for PC_value
-minipig_PCA %>%
+pops_list <- minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%
   mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
@@ -684,6 +690,5 @@ left_join(PC7_cluster1, match_metabolites) %>%
 
 left_join(PC7_cluster2, match_metabolites) %>%
    write.csv("../data/saved_data/PCA/PC7_cluster2_metab_list.csv")
-
 ```
 
