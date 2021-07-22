@@ -1,0 +1,91 @@
+---
+title: "VocanoPlots"
+author: "Amy Fox"
+date: "7/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# BiocManager::install('EnhancedVolcano')
+```
+
+```{r}
+library('DESeq2')
+library(EnhanceVolcano)
+library(airway)
+library(magrittr)
+
+
+```
+
+```{r}
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
+metabolite_wide <- metabolites %>%
+  filter(!grepl("Pooled", full_name)) %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  removeZeroVar() %>%
+  column_to_rownames("full_name")
+
+metab <- metabolite_wide %>%
+  base::t() %>%
+  as.data.frame()
+
+colnames(metab)
+# 
+
+ttestRat <- function(df, grp1, grp2) {
+  x = df[grp1]
+  y = df[grp2]
+  x = as.numeric(x)
+  y = as.numeric(y)  
+  results = t.test(x, y)
+  results$p.value
+}
+
+rawpvalue = apply(metab, 1, ttestRat, grp1 = c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19), grp2 = c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)) %>%
+  p.adjust("BH")
+
+
+hist(rawpvalue)
+
+##transform our data into log2 base.
+metab_log = log2(metab)
+
+#calculate the mean of each gene per control group
+pre = apply(metab_log[,c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)], 1, mean)
+
+#calcuate the mean of each gene per test group
+post = apply(metab_log[, c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)], 1, mean) 
+
+
+foldchange <- pre - post
+
+
+foldchange %>%
+  arrange()
+
+## Pull it all together
+
+results = cbind(foldchange, rawpvalue)
+results = as.data.frame(results)
+results$probename <- rownames(results)
+
+library(ggplot2)
+volcano = ggplot(data = results, aes(x = foldchange, y = -1*log10(rawpvalue)))
+volcano + geom_point()
+
+
+
+```
+
+
+
+
