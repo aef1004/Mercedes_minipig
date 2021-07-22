@@ -16,6 +16,7 @@ library(tidyr)
 library(broom)
 library(ggplot2)
 library(ggpubr)
+library(stringr)
 ```
 
 Pop 17, Phenylpyruvic acid, KEGGID:C00166, Query mass: 182.0791887, metab_637
@@ -41,7 +42,7 @@ load("../data/flow_single_expression.gz")
 load("../data/flow_fe.gz")
 
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
-  rename(percent = marker_percent,
+  dplyr::rename(percent = marker_percent,
          flow = phenotype,
          vaccine_status = group) 
 
