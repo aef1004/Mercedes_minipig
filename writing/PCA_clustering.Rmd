@@ -766,10 +766,132 @@ PC7_cluster2 <- res.pca$rotation %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
   select(metaboliteID, PC7)
 
-left_join(PC7_cluster1, match_metabolites) %>%
-   write.csv("../data/saved_data/PCA/PC7_cluster1_metab_list.csv")
+# left_join(PC7_cluster1, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC7_cluster1_metab_list.csv")
+# 
+# left_join(PC7_cluster2, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC7_cluster2_metab_list.csv")
+```
 
-left_join(PC7_cluster2, match_metabolites) %>%
-   write.csv("../data/saved_data/PCA/PC7_cluster2_metab_list.csv")
+Final analysis if I flip PC and flow 
+```{r}
+# gives us 38 populations when we only look at pvalue <0.05 for PC_value
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(PC_value ~ flow_percent *timepoint, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "flow_percent") %>%
+  filter(p.value < 0.05) %>%
+  arrange(flow, PC) 
+
+# we take this list of 38 flow-PC populations and test for difference between 12 wks and 30DPI timepoint
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  lm(formula = PC_value ~ flow_percent *timepoint , data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "flow_percent")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+ajk <-pmap(cell, function(flow_x,PC_n) test_trends(minipig_PCA, flow_x, PC_n))
+
+do.call(rbind, ajk) %>%
+  select(flow, PC, flow_percent.trend, timepoint) %>%
+  pivot_wider(names_from = "timepoint", values_from = "flow_percent.trend") %>%
+  mutate(change = `12wks`/`30DPI`) %>%
+  filter(change <=2 & change >= 0.5) # it's okay that we're removing values with negative change because we're moving those that have opposing relationships
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(formula= PC_value ~ flow_percent *timepoint, data=.)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = flow_percent, y = PC_value, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "PC Value", 
+       fill = "Timepoint") 
+}
+
+plot_complex(minipig_PCA, "CD45RA", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop10", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop16", "PC4", 75, 5, 10) 
+plot_complex(minipig_PCA, "Pop24", "PC4", 75, 5, 10) 
+```
+
+
+# Test the best clustering model
+```{r}
+library(AICcmodavg)
+ii <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model1 = map(data, ~lm(flow_percent ~ PC_value * timepoint, data = .)),
+         summary_model1 = map(model1, summary),
+         model2 = map(data, ~lm(flow_percent ~ PC_value, data = .)),
+         summary_model2 = map(model2, summary)) 
+
+model.set <- list(ii$model1, ii$model2)
+model.names <- c("lm1", "lm2")
+comp <- map(model.set, aictab)
+
+comp1 <- comp[1] %>%
+  as.data.frame() %>%
+  select(Modnames, AICc) %>%
+  rename(inter_AICc = AICc)
+
+comp2 <- comp[2]%>%
+  as.data.frame()%>%
+  select(Modnames, AICc)%>%
+  rename(linear_AICc = AICc)
+
+full_join(comp1, comp2) %>%
+  mutate(inter = ifelse(inter_AICc < linear_AICc, "inter", "linear")) %>%
+  count(inter)
+
+############### see if differences if change my PC and flow
+ii <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model1 = map(data, ~lm(PC_value ~ flow_percent * timepoint, data = .)),
+         summary_model1 = map(model1, summary),
+         model2 = map(data, ~lm(PC_value ~ flow_percent, data = .)),
+         summary_model2 = map(model2, summary)) 
+
+model.set <- list(ii$model1, ii$model2)
+model.names <- c("lm1", "lm2")
+comp <- map(model.set, aictab)
+
+comp1 <- comp[1] %>%
+  as.data.frame() %>%
+  select(Modnames, AICc) %>%
+  rename(inter_AICc = AICc)
+
+comp2 <- comp[2]%>%
+  as.data.frame()%>%
+  select(Modnames, AICc)%>%
+  rename(linear_AICc = AICc)
+
+full_join(comp1, comp2) %>%
+  mutate(inter = ifelse(inter_AICc < linear_AICc, "inter", "linear")) %>%
+  count(inter)
+
 ```
 
