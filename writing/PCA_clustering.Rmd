@@ -895,3 +895,15 @@ full_join(comp1, comp2) %>%
 
 ```
 
+For each metabolite, tests for normality with shapiro wilks, if not, then runs a non-parametric test
+
+0 PCA - Ask Bailey about testing for normality - could also speak with zaid
+Are there non-parametric tests for the interaction
+```{r}
+hist(metabolites$metabolite_expression)
+hist(flow_fe$percentage)
+
+shapiro.test(flow_fe$percentage)
+shapiro.test(metabolites$metabolite_expression)
+```
+
