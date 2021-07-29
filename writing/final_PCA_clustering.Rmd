@@ -8,6 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Load packages
 ```{r message = FALSE}
 library(readr)
 library(dplyr)
@@ -22,7 +24,6 @@ removeZeroVar <- function(df){
   df[, !sapply(df, function(x) min(x) == max(x))]
 }
 ```
-
 
 Read in data
 ```{r}
@@ -65,8 +66,6 @@ all_flow <- flow_metab %>%
   pivot_wider(names_from = flow, values_from = percent)
 ```
 
-
-
 PCA and proportion of variance
 ```{r}
 set.seed(2)
@@ -108,10 +107,13 @@ minipig_PCA <- PCA_minipig %>%
 
 Interaction model - identify populations where the interaction with timepoint DOES have an effect
 ```{r}
+inter_formula <- flow_percent ~ PC_value *timepoint
+  
+# 6 correlations
 pops_list <- minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%
-  mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
+  mutate(model = map(data, ~lm(inter_formula, data = .)),
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
@@ -126,7 +128,7 @@ test_trends <- function(df, flow_x, PC_n) {
   fm <- df %>%
   filter(flow == flow_x & PC == PC_n) %>%
   mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
-  lm(formula = flow_percent ~ timepoint  + PC_value , data = .)
+  lm(formula = inter_formula,  data = .)
 
 emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
   as.data.frame() %>%
@@ -136,11 +138,11 @@ emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
 
 
 # plot the results to see what we're looking at
-plot_complex <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) 
+plot_complex <- function(df, flow_pop, metab_pick) 
   {
 fm1 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
-  lm(formula= flow_percent ~ PC_value *timepoint, data=.)
+  lm(formula= inter_formula, data=.)
 
 df3 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
@@ -154,21 +156,19 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
        fill = "Timepoint") 
 }
 
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 
-plot_complex(minipig_PCA, "CD8_Tcell", "PC6", 75, 5, 10) 
-plot_complex(minipig_PCA, "DN_Tcell", "PC9", 75, 5, 10) 
-plot_complex(minipig_PCA, "Pop12", "PC2", 75, 5, 10) 
-plot_complex(minipig_PCA, "Pop15", "PC2", 75, 5, 10) 
-plot_complex(minipig_PCA, "Pop7", "PC2", 75, 5, 10) 
-plot_complex(minipig_PCA, "Pop8", "PC2", 75, 5, 10) 
 ```
 
 Additive model - only include correlations not found in interaction model, meaing that the timepoint doesn't have an effect
 
 I could use ggpredict for plotting
 https://cran.r-project.org/web/packages/ggiraphExtra/vignettes/ggPredict.html 
+
+Good description of interaction
+https://www.medicine.mcgill.ca/epidemiology/joseph/courses/EPIB-621/interaction.pdf
 ```{r}
-lm_formula <- flow_percent ~ PC_value + timepoint
+add_formula <- flow_percent ~ PC_value + timepoint
 
 # 13 correlations  
 pops_list <- minipig_PCA %>%
@@ -180,7 +180,7 @@ pops_list <- minipig_PCA %>%
   filter(flow != "Pop7" | PC != "PC2") %>%
   filter(flow != "Pop8" | PC != "PC2") %>%
   nest() %>%
-  mutate(model = map(data, ~lm(lm_formula, data = .)),
+  mutate(model = map(data, ~lm(add_formula, data = .)),
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
@@ -193,7 +193,7 @@ plot_complex <- function(df, flow_pop, metab_pick)
   {
 fm1 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
-  lm(lm_formula, data = .)
+  lm(add_formula, data = .)
 
 df3 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
@@ -210,7 +210,8 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
 cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 ```
-Try without additive model
+
+Simple linear model
 ```{r}
 lm_formula <- flow_percent ~ PC_value
 
@@ -245,7 +246,7 @@ df3 <- df %>%
   
 ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
   geom_point() + 
-  geom_line(mapping=aes(y=pred))  +
+  geom_line(mapping=aes(y=pred), color = "black")  +
   ggtitle(paste(flow_pop, "&", metab_pick)) +
   labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
        fill = "Timepoint") 
@@ -255,6 +256,50 @@ cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 ```
 
+Interaction and additive
+```{r}
+add_inter_formula <- flow_percent ~ PC_value + timepoint + PC_value*timepoint
+
+# 13 correlations  
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow != "CD8_Tcell" | PC != "PC6") %>%
+  filter(flow != "DN_Tcell" | PC != "PC9") %>%
+  filter(flow != "Pop12" | PC != "PC2") %>%
+  filter(flow != "Pop15" | PC != "PC2") %>%
+  filter(flow != "Pop7" | PC != "PC2") %>%
+  filter(flow != "Pop8" | PC != "PC2") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC)
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(add_inter_formula, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+```
 Pull out PC metabolites
 ```{r}
 # I've previously pulled out PC4, now pull out PC7
