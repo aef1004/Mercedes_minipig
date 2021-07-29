@@ -66,6 +66,39 @@ all_flow <- flow_metab %>%
   pivot_wider(names_from = flow, values_from = percent)
 ```
 
+Test variance of metabolites
+Test the variance of the metabolites
+
+Normality test - shapiro wilks - if pvalue >0.05, then normal data
+Levene's is less sensitive to non-normal data - if pvalue >0.05, then equal variances
+```{r}
+library(car)
+save <- metabolite_wide %>%
+  rownames_to_column("full_name") %>%
+  pivot_longer(!full_name, names_to = "metaboliteID", values_to = "metabolite_expression") %>%
+  mutate(timepoint = ifelse(grepl("12wks", full_name), "pre", "post")) %>%
+  mutate(metaboliteID = as.factor(metaboliteID),
+         timepoint = as.factor(timepoint)) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(norm = map(data, ~shapiro.test(.$metabolite_expression)),
+         lev_var = map(data, ~leveneTest(metabolite_expression ~ timepoint, data = .)))%>%
+  mutate(tidy_norm = map(norm, broom::glance)) %>%
+  unnest(lev_var) %>%
+  filter(!is.na(`F value`))
+
+hist(save$`Pr(>F)`)
+
+xx <- save %>%
+  rename(p.value = `Pr(>F)`) %>%
+  mutate(prop_normal = sum(p.value >0.05)) 
+
+sum(xx$prop_normal)/nrow(xx)
+
+# 60% of the metabolites have normal distribution
+# 88% of the metabolites have equal variance according to Levene's test
+```
+
 PCA and proportion of variance
 ```{r}
 set.seed(2)
