@@ -1,0 +1,91 @@
+---
+title: "Extra"
+author: "Amy Fox"
+date: "7/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+See if log2 normalization of PC values affects results...
+```{r}
+log_metab <- metabolite_wide <- metabolites %>%
+  filter(!grepl("Pooled", full_name)) %>%
+  mutate(metabolite_expression = log2(1+metabolite_expression)) %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  removeZeroVar() %>%
+  column_to_rownames("full_name")
+
+res.pca <- prcomp(log_metab, center = TRUE, scale = TRUE)
+
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+res_pca_importance %>% 
+  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
+  geom_col() + 
+  theme_classic()
+
+PCA_minipig <- res.pca$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  mutate(timepoint_vaccine = paste(timepoint," ", vaccine_status)) 
+
+PCA_minipig%>%
+  ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
+  geom_point() + 
+  stat_ellipse() +
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA")
+
+minipig_PCA <- PCA_minipig %>%
+  rename(full_name = name) %>%
+  left_join(all_flow, by = c("full_name", "timepoint", "vaccine_status")) %>%
+  pivot_longer(c(PC1:PC19), names_to = "PC", values_to = "PC_value") %>%
+  pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent")
+
+
+# gives us 25 populations when we only look at pvalue <0.05 for PC_value
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(flow_percent ~ PC_value *timepoint, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.05) %>%
+  arrange(flow, PC) 
+
+# we take this list of 25 flow-PC populations and test for difference between 12 wks and 30DPI timepoint
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  lm(formula = flow_percent ~ timepoint *PC_value , data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+ajk <-pmap(cell, function(flow_x,PC_n) test_trends(minipig_PCA, flow_x, PC_n))
+
+do.call(rbind, ajk) %>%
+  select(flow, PC, PC_value.trend, timepoint) %>%
+  pivot_wider(names_from = "timepoint", values_from = "PC_value.trend") %>%
+  mutate(change = `12wks`/`30DPI`) %>%
+  filter(change <=2 & change >= 0.5) # it's okay t
+```
