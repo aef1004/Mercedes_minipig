@@ -97,6 +97,17 @@ sum(xx$prop_normal)/nrow(xx)
 
 # 60% of the metabolites have normal distribution
 # 88% of the metabolites have equal variance according to Levene's test
+
+
+# OR I want to check variance across metabolites
+
+metabolite_wide %>%
+  rownames_to_column("full_name") %>%
+  pivot_longer(!full_name, names_to = "metaboliteID", values_to = "metabolite_expression") %>%
+  mutate(timepoint = ifelse(grepl("12wks", full_name), "pre", "post")) %>%
+  mutate(metaboliteID = as.factor(metaboliteID),
+         timepoint = as.factor(timepoint)) %>%
+  leveneTest(metabolite_expression ~ metaboliteID, data = .)
 ```
 
 PCA and proportion of variance
@@ -290,26 +301,44 @@ pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 ```
 
 Interaction and additive
+
+4 output terms
+- PC_value:timepoint30DPI
+- timepoint30DPI
+- PC_value
+- (Intercept)
+
+From the 5 correlations picked out
+- PC_value - p.value < 0.01 meaning there is a correlation with PC_value
+- PC_value:timepoint30DPI - p.value > 0.01 meaning interaction does NOT have an effect
+- timepoint30DPI - p.value < 0.01 meaning timepoint has an effect
 ```{r}
 add_inter_formula <- flow_percent ~ PC_value + timepoint + PC_value*timepoint
 
-# 13 correlations  
+# 5 correlations  
 pops_list <- minipig_PCA %>%
   group_by(PC, flow) %>%
-  filter(flow != "CD8_Tcell" | PC != "PC6") %>%
-  filter(flow != "DN_Tcell" | PC != "PC9") %>%
-  filter(flow != "Pop12" | PC != "PC2") %>%
-  filter(flow != "Pop15" | PC != "PC2") %>%
-  filter(flow != "Pop7" | PC != "PC2") %>%
-  filter(flow != "Pop8" | PC != "PC2") %>%
   nest() %>%
   mutate(model = map(data, ~lm(add_inter_formula, data = .)),
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
-  filter(term == "PC_value") %>%
-  filter(p.value < 0.01) %>%
+  filter(term == "PC_value" & p.value < 0.01) %>%
   arrange(flow, PC)
+
+
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow == "CD45RA" & PC == "PC4" | 
+           flow == "Pop10" &  PC == "PC4" |
+           flow == "Pop10" & PC == "PC5" | 
+           flow == "Pop19" & PC == "PC4" |
+           flow == "Pop24" & PC == "PC1") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value)
 
 # plot the results to see what we're looking at
 plot_complex <- function(df, flow_pop, metab_pick) 
@@ -332,6 +361,8 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
 
 cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+
+
 ```
 Pull out PC metabolites
 ```{r}
