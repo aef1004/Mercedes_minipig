@@ -71,6 +71,8 @@ Test the variance of the metabolites
 
 Normality test - shapiro wilks - if pvalue >0.05, then normal data
 Levene's is less sensitive to non-normal data - if pvalue >0.05, then equal variances
+
+If I check the variance across the metabolites, the pvalue <0.05, so non-equal variances
 ```{r}
 library(car)
 save <- metabolite_wide %>%
@@ -101,13 +103,33 @@ sum(xx$prop_normal)/nrow(xx)
 
 # OR I want to check variance across metabolites
 
-metabolite_wide %>%
+save <- metabolite_wide %>%
   rownames_to_column("full_name") %>%
   pivot_longer(!full_name, names_to = "metaboliteID", values_to = "metabolite_expression") %>%
+  filter(metaboliteID %in% c(sample(1:4483, 500))) %>% # pull out 500 random metab
   mutate(timepoint = ifelse(grepl("12wks", full_name), "pre", "post")) %>%
   mutate(metaboliteID = as.factor(metaboliteID),
          timepoint = as.factor(timepoint)) %>%
+  group_by(metaboliteID) %>%
+  mutate(var(metabolite_expression),
+         sd = sd(metabolite_expression))
+
+
   leveneTest(metabolite_expression ~ metaboliteID, data = .)
+
+
+hist(save$`var(metabolite_expression)`)
+hist(save$`sd`)
+
+save %>%
+  group_by(metaboliteID) %>%
+  mutate(num_0 = sum(metabolite_expression==0))
+  select(metaboliteID, sd) %>%
+  unique() %>%
+  arrange(desc(sd))
+  
+  # pull out the frist 4 with a lot of var- so doesn't dominate PCA
+  # do a PCA for the rest
 ```
 
 PCA and proportion of variance
@@ -152,6 +174,7 @@ minipig_PCA <- PCA_minipig %>%
 Interaction model - identify populations where the interaction with timepoint DOES have an effect
 ```{r}
 inter_formula <- flow_percent ~ PC_value *timepoint
+flow_percent ~ PC_value + timepoint + PC_value *timepoint
   
 # 6 correlations
 pops_list <- minipig_PCA %>%
@@ -162,6 +185,17 @@ pops_list <- minipig_PCA %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
   filter(term == "PC_value:timepoint30DPI") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC) 
+
+pop_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
   filter(p.value < 0.01) %>%
   arrange(flow, PC) 
 
