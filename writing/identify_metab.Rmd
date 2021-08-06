@@ -122,11 +122,11 @@ unnest(summary_model) %>%
 df %>%
   filter(flow == flow_pop & metaboliteID == metab_pick) %>%
   left_join(step1, by = c("flow", "metaboliteID")) %>%
-ggplot(aes(x = percent, y = metabolite_expression, color = factor(timepoint))) +
+ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
   geom_point(size = 3) +
-  geom_smooth(aes(x = percent, y = metabolite_expression), method = "lm", se = FALSE, color = "#3F4788FF") +
+  geom_smooth(aes(x = metabolite_expression, y = percent), method = "lm", se = FALSE, color = "#3F4788FF") +
   ggtitle(metab_pick) +
-  labs(color = "Timepoint", x = paste(flow_pop, "Percentage of Cells"), y = "Metabolite Expression", fill = "Timepoint") 
+  labs(color = "Timepoint", x = "Metabolite Expression", y = paste(flow_pop, "Percentage of Cells"), fill = "Timepoint") 
 }
 
 ```
@@ -564,17 +564,17 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and CD45RA", size = 25))
 
 
-p1 <- arrange_plot(flow_metab, "Pop24", "metab_1011",  25, 1.5E4, 1E4)
-p2 <- arrange_plot(flow_metab, "Pop24", "metab_1081",  25, 2E4, 1E4)
-p3 <- arrange_plot(flow_metab, "Pop24", "metab_1082",  25, 2E4, 1E4)
-p4 <- arrange_plot(flow_metab, "Pop24", "metab_1083",  25, 2E4, 1E4)
-p5 <- arrange_plot(flow_metab, "Pop24", "metab_1101",  25, 2E4, 1E4)
-p6 <- arrange_plot(flow_metab, "Pop24", "metab_1102",  25, 2E4, 1E4)
-p7 <- arrange_plot(flow_metab, "Pop24", "metab_1169",  25, 2E4, 1E4)
-p8 <- arrange_plot(flow_metab, "Pop24", "metab_1186",  25, 2E4, 1E4)
-p9 <- arrange_plot(flow_metab, "Pop24", "metab_1263",  25, 2E4, 1E4)
-p10 <- arrange_plot(flow_metab, "Pop24", "metab_1280",  25, 2E4, 1E4)
-p11 <- arrange_plot(flow_metab, "Pop24", "metab_3602",  25, 2E4, 1E4)
+p1 <- arrange_plot(flow_metab, "Pop10", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop10", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop10", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop10", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop10", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop10", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop10", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop10", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "Pop10", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "Pop10", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "Pop10", "metab_3602",  25, 2E4, 1E4)
 
 ggarrange(p1 + rremove("legend") + rremove("xlab"), 
           p2+ rremove("legend") + rremove("xylab"), 
@@ -587,7 +587,7 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
           p9+ rremove("legend")+ rremove("ylab"), 
           p10+ rremove("legend"), 
           ncol = 3, nrow = 4) %>%
-  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop24: CD3+ CD4+ CD8+ CD45RA+", size = 25))
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop10: CD3+ CD8+", size = 25))
 
 p1 <- arrange_plot(flow_metab, "Pop16", "metab_1011",  25, 1.5E4, 1E4)
 p2 <- arrange_plot(flow_metab, "Pop16", "metab_1081",  25, 2E4, 1E4)
@@ -614,45 +614,17 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
           ncol = 3, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop16: CD3+ CD4+", size = 25))
 
-
-p1 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1011",  25, 1.5E4, 1E4)
-p2 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1081",  25, 2E4, 1E4)
-p3 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1082",  25, 2E4, 1E4)
-p4 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1083",  25, 2E4, 1E4)
-p5 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1101",  25, 2E4, 1E4)
-p6 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1102",  25, 2E4, 1E4)
-p7 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1169",  25, 2E4, 1E4)
-p8 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1186",  25, 2E4, 1E4)
-p9 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1263",  25, 2E4, 1E4)
-p10 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_1280",  25, 2E4, 1E4)
-p11 <- arrange_plot(flow_metab, "CD8_Tcell", "metab_3602",  25, 2E4, 1E4)
-
-ggarrange(p1 + rremove("legend") + rremove("xlab"), 
-          p2+ rremove("legend") + rremove("xylab"), 
-          p3+ rremove("legend") + rremove("xylab"), 
-          p4+ rremove("legend") + rremove("xlab"), 
-          p5+ rremove("legend")+ rremove("xylab"), 
-          p6+ rremove("legend")+ rremove("xylab"), 
-          p7+ rremove("legend") + rremove("xlab"), 
-          p8+ rremove("legend") + rremove("ylab"), 
-          p9+ rremove("legend")+ rremove("ylab"), 
-          p10+ rremove("legend"), 
-          ncol = 3, nrow = 4) %>%
-  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and CD8 Tcells", size = 25))
-
-
-
-p1 <- arrange_plot(flow_metab, "Pop10", "metab_1011",  25, 1.5E4, 1E4)
-p2 <- arrange_plot(flow_metab, "Pop10", "metab_1081",  25, 2E4, 1E4)
-p3 <- arrange_plot(flow_metab, "Pop10", "metab_1082",  25, 2E4, 1E4)
-p4 <- arrange_plot(flow_metab, "Pop10", "metab_1083",  25, 2E4, 1E4)
-p5 <- arrange_plot(flow_metab, "Pop10", "metab_1101",  25, 2E4, 1E4)
-p6 <- arrange_plot(flow_metab, "Pop10", "metab_1102",  25, 2E4, 1E4)
-p7 <- arrange_plot(flow_metab, "Pop10", "metab_1169",  25, 2E4, 1E4)
-p8 <- arrange_plot(flow_metab, "Pop10", "metab_1186",  25, 2E4, 1E4)
-p9 <- arrange_plot(flow_metab, "Pop10", "metab_1263",  25, 2E4, 1E4)
-p10 <- arrange_plot(flow_metab, "Pop10", "metab_1280",  25, 2E4, 1E4)
-p11 <- arrange_plot(flow_metab, "Pop10", "metab_3602",  25, 2E4, 1E4)
+p1 <- arrange_plot(flow_metab, "Pop19", "metab_1011",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop19", "metab_1081",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop19", "metab_1082",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop19", "metab_1083",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop19", "metab_1101",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop19", "metab_1102",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop19", "metab_1169",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop19", "metab_1186",  25, 2E4, 1E4)
+p9 <- arrange_plot(flow_metab, "Pop19", "metab_1263",  25, 2E4, 1E4)
+p10 <- arrange_plot(flow_metab, "Pop19", "metab_1280",  25, 2E4, 1E4)
+p11 <- arrange_plot(flow_metab, "Pop19", "metab_3602",  25, 2E4, 1E4)
 
 ggarrange(p1 + rremove("legend") + rremove("xlab"), 
           p2+ rremove("legend") + rremove("xylab"), 
@@ -665,7 +637,10 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
           p9+ rremove("legend")+ rremove("ylab"), 
           p10+ rremove("legend"), 
           ncol = 3, nrow = 4) %>%
-  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop10: CD3+ CD8+", size = 25))
+  annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 25))
+
+
+
 ```
 
 PC5_Cluster1	Arginine and proline metabolism

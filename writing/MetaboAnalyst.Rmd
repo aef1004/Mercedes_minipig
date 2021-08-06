@@ -353,7 +353,7 @@ map_df(all_files, ~read_add_name(.)) %>%
   mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
   select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
     mutate(filename = factor(filename, levels = c("Cluster1", "Cluster2_0.1", "Cluster2_0.2", "PC4_Cluster1", "PC4_Cluster2", "PC5_Cluster1", "PC5_Cluster2", "PC7_Cluster1", "PC7_Cluster2"))) %>%
-  filter(grepl("PC7", filename) | grepl("PC4", filename)) %>%
+  filter(grepl("PC4", filename)) %>%
   arrange(filename) %>%
   rename(p_value = `Raw p`,
          `Putitive Pathway` = X1,
