@@ -234,8 +234,10 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
        fill = "Timepoint") 
 }
 
-pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
-
+graphs <- pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+graphs
+library(ggpubr)
+do.call(ggarrange, graphs)
 ```
 
 Additive model - only include correlations not found in interaction model, meaing that the timepoint doesn't have an effect
@@ -261,10 +263,34 @@ pops_list <- minipig_PCA %>%
   mutate(model = map(data, ~lm(add_formula, data = .)),
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
-  select(flow, PC, term, p.value) %>%
-  filter(term == "PC_value") %>%
-  filter(p.value < 0.01) %>%
+  select(flow, PC, term, p.value, estimate) %>%
+  filter(term == "PC_value" & p.value < 0.01, .preserve = TRUE) %>%
   arrange(flow, PC)
+
+pops_list2 <- minipig_PCA %>%
+    group_by(PC, flow) %>%
+  filter(flow == "CD172" & PC == "PC3" |
+           flow == "CD45RA" & PC == "PC4" |
+           flow == "Pop10" & PC == "PC4" |
+           flow == "Pop11" & PC == "PC6" |
+           flow == "Pop12" & PC == "PC3" |
+           flow == "Pop15" & PC == "PC3" |
+           flow == "Pop16" & PC == "PC4" |
+           flow == "Pop19" & PC == "PC4" |
+           flow == "Pop20" & PC == "PC3" |
+           flow == "Pop22" & PC == "PC3" |
+           flow == "Pop23" & PC == "PC6" |
+           flow == "Pop7" & PC == "PC3" |
+           flow == "Pop8" & PC == "PC3") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value, estimate) %>%
+    filter(term =="(Intercept)" & estimate > 0)
+
+
+
 
 # plot the results to see what we're looking at
 plot_complex <- function(df, flow_pop, metab_pick) 
@@ -287,8 +313,11 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
 
 cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
-```
 
+cell <- list(flow_x = pops_list2$flow, PC_n = pops_list2$PC)
+graphs <- pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+do.call(ggarrange, graphs)
+```
 Simple linear model
 ```{r}
 lm_formula <- flow_percent ~ PC_value
@@ -399,37 +428,39 @@ pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 
 ```
 Pull out PC metabolites
+
+PC4
 ```{r}
-# I've previously pulled out PC4, now pull out PC7
 # plot to see where I should cluster
 res.pca$rotation %>%
   data.frame() %>%
-  ggplot(aes(x = PC7)) +
+  ggplot(aes(x = PC4)) +
   geom_histogram(bins = 50) +
-    geom_vline(xintercept = 0.03, color = "red") +
+  geom_vline(xintercept = 0.03, color = "red") +
   geom_vline(xintercept = -0.03, color = "red") +
   ylab("Weight of Molecular Features")
 
-# 86 metabolites
-PC7_cluster1 <- res.pca$rotation %>%
+# 140 metabolites
+PC4_cluster1 <- res.pca$rotation %>%
   data.frame() %>%
-  filter(PC7 >= 0.03) %>%
+  filter(PC4 >= 0.03) %>%
   rownames_to_column("metaboliteID") %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
-  select(metaboliteID, PC7)
+  select(metaboliteID, PC4)
 
-# 137 metabolites
-PC7_cluster2 <- res.pca$rotation %>%
+# 171 metabolites
+PC4_cluster2 <- res.pca$rotation %>%
   data.frame() %>%
-  filter(PC7 <= -0.03) %>%
+  filter(PC4 <= -0.03) %>%
   rownames_to_column("metaboliteID") %>%
   mutate(metaboliteID = as.numeric(metaboliteID)) %>%
-  select(metaboliteID, PC7)
+  select(metaboliteID, PC4)
 
-# left_join(PC7_cluster1, match_metabolites) %>%
-#    write.csv("../data/saved_data/PCA/PC7_cluster1_metab_list.csv")
+# left_join(PC4_cluster1, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC4_cluster1_metab_list.csv")
 # 
-# left_join(PC7_cluster2, match_metabolites) %>%
-#    write.csv("../data/saved_data/PCA/PC7_cluster2_metab_list.csv")
+# left_join(PC4_cluster2, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC4_cluster2_metab_list.csv")
 ```
+
 
