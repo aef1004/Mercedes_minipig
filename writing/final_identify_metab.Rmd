@@ -194,10 +194,13 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p6+ rremove("legend") + rremove("xylab"), 
           p7+ rremove("legend") + rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 2, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD45RA", size = 15),
                   left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
                   bottom = text_grob("Metabolite Expression", size = 15))
+
+
 
 p1 <- arrange_plot(flow_metab, "Pop10", "metab_1223",  25, 1.5E4, 1E4)
 p2 <- arrange_plot(flow_metab, "Pop10", "metab_1280",  25, 2E4, 1E4)
@@ -216,6 +219,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p6+ rremove("legend")+ rremove("xylab"), 
           p7+ rremove("legend")+ rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 2, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop10: CD3+ CD8+", size = 15),
                   left = text_grob("Pop10 Percentage of cells", size = 15, rot = 90),
@@ -239,6 +243,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p6+ rremove("legend")+ rremove("xylab"), 
           p7+ rremove("legend")+ rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 2, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop16: CD3+ CD4+", size = 15),
                   left = text_grob("Pop16 Percentage of cells", size = 15, rot = 90),
@@ -261,6 +266,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p6+ rremove("legend")+ rremove("xylab"), 
           p7+ rremove("legend") + rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 2, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 15),
                   left = text_grob("Pop19 Percentage of cells", size = 15, rot = 90),
@@ -322,6 +328,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p8+ rremove("legend") + rremove("xylab"), 
           p9+ rremove("legend")+ rremove("xylab"), 
           p10+ rremove("legend")+ rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 3, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and CD45RA", size = 25),
                   left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
@@ -350,6 +357,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p8+ rremove("legend") + rremove("xylab"), 
           p9+ rremove("legend")+ rremove("xylab"), 
           p10+ rremove("legend")+ rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 3, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop10: CD3+ CD8+", size = 25),
                   left = text_grob("Pop10 Percentage of cells", size = 15, rot = 90),
@@ -377,6 +385,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p8+ rremove("legend") + rremove("xylab"), 
           p9+ rremove("legend")+ rremove("xylab"), 
           p10+ rremove("legend")+ rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 3, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop16: CD3+ CD4+", size = 25),
                   left = text_grob("Pop16 Percentage of cells", size = 15, rot = 90),
@@ -404,6 +413,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p8+ rremove("legend") + rremove("xylab"), 
           p9+ rremove("legend")+ rremove("xylab"), 
           p10+ rremove("legend")+ rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
           ncol = 3, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Linoleic acid metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 25),
                   left = text_grob("Pop19 Percentage of cells", size = 15, rot = 90),
