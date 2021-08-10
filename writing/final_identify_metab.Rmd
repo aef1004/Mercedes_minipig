@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(kableExtra)
+library(readr)
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -99,9 +101,9 @@ metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.cs
   filter(!grepl("Pooled", full_name))
 
 
-load("../data/flow_predefined_phenotypes.gz")
-load("../data/flow_single_expression.gz")
-load("../data/flow_fe.gz")
+load("../data/flow_predefined_phenotypes")
+load("../data/flow_single_expression")
+load("../data/flow_fe")
 
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
   dplyr::rename(percent = marker_percent,
@@ -156,7 +158,10 @@ ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
 PC4_Cluster2	Arachidonic acid metabolism
 
 PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop19 (CD3+ CD4+ CD45RA+)
-```{r fig.height = 5, fig.width = 4}
+
+Figure for paper: fig.height = 5, fig.width = 4, ncol = 2, nrow = 4
+Figure for powerpoint: 
+```{r fig.height = 3, fig.width = 4}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966", "C05356", "C14823", "C14812", "C14748", "C14749", "C05965", "C14772", "C14773", "C14774", "C14775", "C14781", "C14813", "C04742", "C00909", "C04805", "C14782", "C14814", "C02165", "C02166", "C04853", "C05959", "C00639")) %>%
   select(Query, KEGG) %>%
@@ -195,7 +200,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p7+ rremove("legend") + rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
           legend.grob = get_legend(p1), legend = "right", 
-          ncol = 2, nrow = 4) %>%
+          ncol = 4, nrow = 2) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD45RA", size = 15),
                   left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
                   bottom = text_grob("Metabolite Expression", size = 15))

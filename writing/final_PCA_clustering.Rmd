@@ -463,4 +463,57 @@ PC4_cluster2 <- res.pca$rotation %>%
 #    write.csv("../data/saved_data/PCA/PC4_cluster2_metab_list.csv")
 ```
 
+Look at p-value histograms - these won't look very good because I'm only showing 19 PC on each flow component
+```{r}
+fit_models <- function(df, markerID) {  
+df %>%
+  filter(marker == markerID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term == "PC_value") %>%
+  select(flow, PC, estimate, p.value) %>%
+  ungroup()
+}
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow != "CD8_Tcell" | PC != "PC6") %>%
+  filter(flow != "DN_Tcell" | PC != "PC9") %>%
+  filter(flow != "Pop12" | PC != "PC2") %>%
+  filter(flow != "Pop15" | PC != "PC2") %>%
+  filter(flow != "Pop7" | PC != "PC2") %>%
+  filter(flow != "Pop8" | PC != "PC2") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value, estimate)
+
+p_hist <- function(df_fitted_models, markerID) {
+  
+  alpha = binw = 0.01
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+
+fitted_models_SLADQ <- fit_models(minipig_PCA, "SLADQ")
+p_hist(fitted_models_SLADQ, "SLADQ")
+```
 
