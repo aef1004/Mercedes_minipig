@@ -83,7 +83,7 @@ map_df(all_files, ~read_add_name(.)) %>%
          `Metabolites In Pathway` = Total,
          `Identified Metabolites` = Hits) %>%
   mutate(fraction = `Identified Metabolites`/`Metabolites In Pathway`) %>%
-  filter(p_value < 0.05) %>%
+  filter(p_value <= 0.01) %>%
   rename(`P value` = p_value) %>%
   kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
@@ -118,7 +118,9 @@ flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %
   rename(flow = marker)
 
 flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
-  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
+  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))%>%
+  mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "post-infection")) 
 
 unique(flow_metab$flow)
 ```

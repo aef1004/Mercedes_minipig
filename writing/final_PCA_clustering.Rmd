@@ -27,9 +27,9 @@ removeZeroVar <- function(df){
 
 Read in data
 ```{r}
-load("../data/flow_predefined_phenotypes.gz")
-load("../data/flow_single_expression.gz")
-load("../data/flow_fe.gz")
+load("../data/flow_predefined_phenotypes")
+load("../data/flow_single_expression")
+load("../data/flow_fe")
 
 metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   dplyr::rename(metaboliteID = X) %>%
@@ -152,7 +152,9 @@ PCA_minipig <- res.pca$x %>%
   rownames_to_column("name") %>%
   mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
   mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
-  mutate(timepoint_vaccine = paste(timepoint," ", vaccine_status)) 
+  mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "post-infection")) %>%
+  mutate(timepoint_vaccine = paste0(timepoint," ", vaccine_status)) 
 
 PCA_minipig%>%
   ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
@@ -166,9 +168,13 @@ PCA_minipig%>%
 
 minipig_PCA <- PCA_minipig %>%
   rename(full_name = name) %>%
+  mutate(timepoint = str_replace(timepoint,  "pre-infection", "12wks"),
+         timepoint = str_replace(timepoint,  "post-infection", "30DPI")) %>%
   left_join(all_flow, by = c("full_name", "timepoint", "vaccine_status")) %>%
   pivot_longer(c(PC1:PC19), names_to = "PC", values_to = "PC_value") %>%
-  pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent")
+  pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent") %>%
+  mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "post-infection")) 
 ```
 
 Interaction model - identify populations where the interaction with timepoint DOES have an effect
@@ -184,7 +190,7 @@ pops_list <- minipig_PCA %>%
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
-  filter(term == "PC_value:timepoint30DPI") %>%
+  filter(term == "PC_value:timepointpre-infection") %>%
   filter(p.value < 0.01) %>%
   arrange(flow, PC) 
 
@@ -205,7 +211,7 @@ test_trends <- function(df, flow_x, PC_n) {
   
   fm <- df %>%
   filter(flow == flow_x & PC == PC_n) %>%
-  mutate(timepoint = recode_factor(timepoint, `1` = "12wks", `2` = "30DPI")) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "pre-infection", `2` = "post-infection")) %>%
   lm(formula = inter_formula,  data = .)
 
 emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
@@ -267,6 +273,8 @@ pops_list <- minipig_PCA %>%
   filter(term == "PC_value" & p.value < 0.01, .preserve = TRUE) %>%
   arrange(flow, PC)
 
+
+
 pops_list2 <- minipig_PCA %>%
     group_by(PC, flow) %>%
   filter(flow == "CD172" & PC == "PC3" |
@@ -314,9 +322,28 @@ ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint)))
 cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 
-cell <- list(flow_x = pops_list2$flow, PC_n = pops_list2$PC)
+cell <- list(flow_x = c("CD45RA", "Pop10", "Pop16", "Pop19"), PC_n = rep("PC4", 4))
 graphs <- pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
 do.call(ggarrange, graphs)
+
+p1 <- plot_complex(minipig_PCA, "CD45RA", "PC4")
+p2 <- plot_complex(minipig_PCA, "Pop10", "PC4")
+p3 <- plot_complex(minipig_PCA, "Pop16", "PC4")
+p4 <- plot_complex(minipig_PCA, "Pop19", "PC4")
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xlab"), 
+          p3+ rremove("legend"), 
+          p4+ rremove("legend"),
+          legend.grob = get_legend(p1), legend = "right", 
+          ncol = 2, nrow = 2)
+
+
+pops_list %>%
+  select(flow, PC, p.value) %>%
+  mutate(p.value = format(p.value, scientific = TRUE, digits = 2)) %>%
+  rename(Flow = flow,
+         `P value` = p.value)
 ```
 Simple linear model
 ```{r}
