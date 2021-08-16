@@ -1,0 +1,22 @@
+---
+title: "R.version"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+R.version
+
+Run 
+- final_PCA_clustering
+- final_identify_metab
+- flow_cleaning_12week
+
+**Note that this list will not include the packages that Nurul uses.
+
+```{r}
+print(sessionInfo())
+```
+

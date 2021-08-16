@@ -30,6 +30,10 @@ library(tibble)
 library(pheatmap)
 library(cytotypr)
 library(gridExtra)
+library(rlang)
+library(purrr)
+library(tidyr)
+library(broom)
 #library(Biobase)
 ```
 
@@ -543,9 +547,7 @@ ggplot(pops_for_plots_average, aes(x = vaccine_status, y = average_percent,
 T-test
 There are no statistically significant differences...
 ```{r}
-library(purrr)
-library(tidyr)
-library(broom)
+
 
 
 sample_populations_all_groups %>%

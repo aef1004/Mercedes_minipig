@@ -427,4 +427,3 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
                   bottom = text_grob("Metabolite Expression", size = 15))
 
 ```
-
