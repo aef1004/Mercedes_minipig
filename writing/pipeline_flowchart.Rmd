@@ -1,0 +1,95 @@
+---
+title: "Pipeline_FlowChart"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(DiagrammeR)
+```
+
+
+Option 1
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled,
+      fixedsize = TRUE, height = 4, width = 30, fontsize = 100, y = 50]   
+      edge[arrowsize = 10, penwidth = 10]
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9']
+      tab10 [label = '@@10']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab1 -> tab4;
+      tab4 -> tab5;
+      tab3 -> tab6;
+      tab5 -> tab6;
+      tab6 -> tab7;
+      tab7 -> tab8;
+      tab8 -> tab9;
+      tab9 -> tab10
+      }
+[1]: 'Experiment'
+      [2]: 'Flow cytometry data acquisition'
+      [3]: 'Cyto-feature engineering'
+      [4]: 'Metabolomics data acquisition'
+      [5]: 'xcms pre-processing'
+      [6]: 'Global histogram analysis'
+      [7]: 'PCA clustering'
+      [8]: 'Linear models'
+      [9]: 'High-importance metabolites'
+      [10]: 'Pathway analysis'
+      ")
+```
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]   
+
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9']
+      tab10 [label = '@@10']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab1 -> tab4;
+      tab4 -> tab5;
+      tab3 -> tab6;
+      tab5 -> tab6;
+      tab6 -> tab7;
+      tab7 -> tab8;
+      tab8 -> tab9;
+      tab9 -> tab10
+      }
+[1]: 'Experiment'
+      [2]: 'Flow cytometry data acquisition'
+      [3]: 'Cyto-feature engineering'
+      [4]: 'Metabolomics data acquisition'
+      [5]: 'xcms pre-processing'
+      [6]: 'Global histogram analysis'
+      [7]: 'PCA clustering'
+      [8]: 'Linear models'
+      [9]: 'High-importance metabolites'
+      [10]: 'Pathway analysis'
+      ")
+```
