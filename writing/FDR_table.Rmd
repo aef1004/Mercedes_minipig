@@ -1,0 +1,74 @@
+---
+title: "FDR_Table"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(stringr)
+library(kableExtra)
+```
+
+
+False Discovery Rate Table
+```{r}
+ load("../data/list_of_models")
+
+fdr <- function(df_fitted_models) {  
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value >0.5) %>% #
+  dplyr::mutate(pval_0.5 = nrow(.)) %>%
+  dplyr::summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value <=alpha ) %>% #
+  dplyr::mutate(pval_alpha = nrow(.)) %>%
+  dplyr::summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+pval_alpha <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value <=alpha ) %>% #
+  dplyr::mutate(pval_alpha = nrow(.)) %>%
+  dplyr::select(pval_alpha) %>%
+  unique()
+
+fdr <- round(pi0$pi0*binw * nrow(df_fitted_models), digits = 0)
+
+data.frame(flow = df_fitted_models$flow, fdr, pval_alpha = pval_alpha$pval_alpha, pi1, pi0) %>%
+  unique()
+
+}
+  
+
+purrr::map_df(list_of_models, function(x) fdr(x)) %>%
+  dplyr::mutate(flow = factor(flow, levels = c("CD3", "CD4", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "Pop1", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17","Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  
+  dplyr::mutate(FDR_me = fdr/pval_alpha,
+         FDR_them = round(100*pi0 * 0.01 / pi1, 1)) %>% # use theirs because I round my fdr, so it's less accurate
+  dplyr::select(flow, pval_alpha, fdr, FDR_them) %>%
+  dplyr::arrange(FDR_them)  %>%
+  dplyr::rename("Flow" = flow,
+         "False Discovery Number" = fdr,
+         "Number P-values <= 0.01" = pval_alpha,
+         "False Discovery Rate (%)" = FDR_them) %>%
+  kable(align = c("l", "c", "c", "c"), caption = "Summary of P-value Histogram False Discovery Rate") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+```
+
+
