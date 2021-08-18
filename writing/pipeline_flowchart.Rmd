@@ -45,7 +45,7 @@ grViz(diagram = "digraph flowchart {
       [2]: 'Flow cytometry data acquisition'
       [3]: 'Cyto-feature engineering'
       [4]: 'Metabolomics data acquisition'
-      [5]: 'xcms pre-processing'
+      [5]: 'xcms and CAMERA pre-processing'
       [6]: 'Global histogram analysis'
       [7]: 'PCA clustering'
       [8]: 'Linear models'
