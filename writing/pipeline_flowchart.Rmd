@@ -69,6 +69,8 @@ grViz(diagram = "digraph flowchart {
       tab8 [label = '@@8']
       tab9 [label = '@@9']
       tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
 # set up node layout
       tab1 -> tab2;
       tab2 -> tab3;
@@ -80,16 +82,19 @@ grViz(diagram = "digraph flowchart {
       tab7 -> tab8;
       tab8 -> tab9;
       tab9 -> tab10
+      tab9 -> tab11
       }
 [1]: 'Experiment'
       [2]: 'Flow cytometry data acquisition'
       [3]: 'Cyto-feature engineering'
       [4]: 'Metabolomics data acquisition'
       [5]: 'xcms pre-processing'
-      [6]: 'Global histogram analysis'
-      [7]: 'PCA clustering'
-      [8]: 'Linear models'
+      [6]: 'Start integrated analysis'
+      [7]: 'PCA dimension reduction'
+      [8]: 'Regression modeling'
       [9]: 'High-importance metabolites'
       [10]: 'Pathway analysis'
+      [11]: 'Targeted analysis'
+      [12]: 'P-value histograms'
       ")
 ```
