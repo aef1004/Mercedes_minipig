@@ -1,0 +1,26 @@
+---
+title: "Lineage Tables"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+AmyCyan = live/dead
+PE Cy7 = CCR7
+APC = SLADQ
+Alexa 700 = CD3
+PE Cy5 = CD4
+Alexa 405 = CD8
+Alexa 488 = CD127 - IL-7  receptor
+PE = CD45RA
+
+
+```{r}
+data.frame(fluorophore = c("Alexa 488", "PE", "PE Cy5", "PE Cy7", "APC", 
+                           "Alexa 700", "Alexa 405", "AmCyan"), 
+           markers = c("CD172", "CD45RA", "CD4", "CCR7", "SLADQ",
+                       "CD3", "CD8", "Live/dead"))
+```
+
