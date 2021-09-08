@@ -1,0 +1,46 @@
+---
+title: "timeline"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(scales)
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+library(timevis)
+```
+
+
+```{r}
+data <- data.frame(
+  Day = c(0, 2, 84, 150, 180),
+  Action = c("Birth", "BCG vaccination", "Pre-infection data collection", "MTB infection", "Post-infection data collection"),
+  positions = c(rep(1, 5))
+)
+
+
+ggplot(data,aes(x=Day,y= positions, label=Action)) +
+  labs(col="Action") +
+  theme_classic() +
+  geom_hline(yintercept=0, color = "black", size=0.3)+
+  geom_segment(aes(y=positions,yend=0, xend=Day), color='black', size=0.2) +
+  geom_text(aes(x=Day,y=-0.15,label=Day),size=3.5,vjust=0.5, color='black', angle=90) +
+  theme(axis.line.y=element_blank(),
+                 axis.text.y=element_blank(),
+                 axis.title.x=element_blank(),
+                 axis.title.y=element_blank(),
+                 axis.ticks.y=element_blank(),
+                 axis.text.x =element_blank(),
+                 axis.ticks.x =element_blank(),
+                 axis.line.x =element_blank(),
+                 legend.position = "bottom"
+                ) 
+
+```
+
