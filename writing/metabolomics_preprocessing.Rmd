@@ -1,0 +1,63 @@
+---
+title: "metabolomics_preprocessing"
+output: html_document
+---
+
+Note that this is just what I *think* Nurul did to get the data - though when I analyze the data this way, I get 5,293 rows of molecular features and Nurul got 4,504 features
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(ggplot2)
+library(forcats)
+library(tidyr)
+library(stringr)
+library(readxl)
+library(viridis)
+library(tibble)
+```
+
+## Read in the raw data
+
+```{r message = FALSE}
+library(xcms)
+our_files <- list.files("../data/minipig_metabolomics", recursive = TRUE, full.names = TRUE)
+
+
+# Read in files
+xset <- xcmsSet(our_files,
+                method = "centWave",    # Use the centWave method to find peaks
+                prefilter = c(5, 1200),  # Remove mass traces with few peaks 
+                                        # above a certain intensity
+                peakwidth = c(10, 40),  # Specify chromatographic peak width 
+                snthresh = 10,          # Specify lowest acceptable signal-to-noise ratio
+                ppm = 25                # Set maximum tolerated m/z deviation in consecutive scans
+                )
+
+# Align peaks
+xset <- group(xset,
+              bw = 10,       # Set bandwidth for the Gaussian smoothing kernel
+              mzwid = 0.015, # Set the width of overlapping m / z slices
+              minfrac = 0.4  # Set the minimum fraction of each class in one bin
+              )
+
+# Do retention time correction
+xset <- retcor(xset, 
+               method = "obiwarp",    # Use the "obiwarp" method for aligning retention times
+                                      # across samples
+               plottype = "deviation" #Plot retention time deviation
+               )
+
+# Do one more alignment of peaks following retention time correction
+xset <- group(xset, bw = 10, mzwid = 0.015, minfrac = 0.4)
+
+# Fill in missing peaks
+xset <- fillPeaks(xset, method = "chrom")
+
+xset_df <- peakTable(xset)
+
+xset_df
+```
