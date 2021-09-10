@@ -78,14 +78,14 @@ map_df(all_files, ~read_add_name(.)) %>%
   filter(grepl("PC4", filename)) %>%
   arrange(filename) %>%
   rename(p_value = `Raw p`,
-         `Putitive Pathway` = X1,
+         `Putative Pathway` = X1,
          `Correlated Flow` = filename,
          `Metabolites In Pathway` = Total,
          `Identified Metabolites` = Hits) %>%
   mutate(fraction = `Identified Metabolites`/`Metabolites In Pathway`) %>%
   filter(p_value <= 0.01) %>%
   rename(`P value` = p_value) %>%
-  kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
+  kable(align = "l", caption = "Putative Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
 
