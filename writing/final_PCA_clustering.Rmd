@@ -169,6 +169,15 @@ PCA_minipig%>%
        y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
   ggtitle("Metabolite PCA")
 
+PCA_minipig %>%
+  ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
+  geom_point() + 
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%"),
+       color = "Group") +
+  ggtitle("Metabolite PCA")
+
 
 minipig_PCA <- PCA_minipig %>%
   rename(full_name = name) %>%
@@ -180,6 +189,7 @@ minipig_PCA <- PCA_minipig %>%
   mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
          timepoint = str_replace(timepoint, "30DPI", "post-infection")) 
 ```
+
 
 Interaction model - identify populations where the interaction with timepoint DOES have an effect
 ```{r}
@@ -346,8 +356,25 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
 pops_list %>%
   select(flow, PC, p.value) %>%
   mutate(p.value = format(p.value, scientific = TRUE, digits = 2)) %>%
+  mutate(flow = factor(flow, levels = c("CD45RA", "CD172", "Pop7", "Pop8", "Pop10",
+                                        "Pop11","Pop12", "Pop15", "Pop16", "Pop19",
+                                        "Pop20", "Pop22", "Pop23"))) %>%
+  arrange(flow) %>%
   rename(Flow = flow,
-         `P value` = p.value)
+         `P value` = p.value)%>%
+  mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD8+ (CD4-CD45RA-SLADQ-CD172-)"),
+         Flow = str_replace(Flow, "Pop11", "Pop11: CD3+CD8+CD45RA+CD172+  (CD4-SLADQ-)"),
+         Flow = str_replace(Flow, "Pop12", "Pop12: CD3+CD8+CD45RA+SLADQ+CD172+ (CD4-)"),
+         Flow = str_replace(Flow, "Pop15", "Pop15: CD3+CD8+SLADQ+CD172+ (CD4-CD45RA-)"),
+         Flow = str_replace(Flow, "Pop16", "Pop16: CD3+CD4+ (CD8-CD45RA-SLADQ-CD172-)"),
+         Flow = str_replace(Flow, "Pop19", "Pop19: CD3+CD4+CD45RA+ (CD8-SLADQ-CD172-)"),
+         Flow = str_replace(Flow, "Pop20", "Pop20: CD3+CD4+CD45RA+SLADQ+CD172+ (CD8-)"),
+         Flow = str_replace(Flow, "Pop22", "Pop22: CD3+CD4+CD45RA+CD172+ (CD8-SLADQ-)"),
+         Flow = str_replace(Flow, "Pop23", "Pop23: CD3+CD4+CD172+ (CD8-CD45RA-SLADQ-)"),
+         Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD45RA+CD172+ (CD4-CD8-SLADQ-)"),
+         Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD45RA+SLADQ+CD172+ (CD4-CD8-)")) %>%
+  kable(align = c("l", "c", "c", "c")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
 Simple linear model
 ```{r}
