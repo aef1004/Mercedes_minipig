@@ -119,7 +119,7 @@ save <- metabolite_wide %>%
          sd = sd(metabolite_expression))
 
 
-  leveneTest(metabolite_expression ~ metaboliteID, data = .)
+#  leveneTest(metabolite_expression ~ metaboliteID, data = .)
 
 
 hist(save$`var(metabolite_expression)`)
@@ -146,9 +146,12 @@ res_pca_importance <- summary(res.pca)$importance %>%
   as.data.frame() %>% 
   mutate(PC = factor(1:n()))
 
+# #C77CFF
 res_pca_importance %>% 
   ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
-  geom_col() + 
+  geom_col(fill = "#7CAE00") + 
+  labs(x = "Principal Components (PC)") + 
+  ggtitle("Scree Plot") +
   theme_classic()
 
 PCA_minipig <- res.pca$x %>% 
@@ -176,6 +179,17 @@ PCA_minipig %>%
   labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
        y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%"),
        color = "Group") +
+  ggtitle("Metabolite PCA")
+
+PCA_minipig %>%
+  
+  ggplot(aes(x = PC1, y = PC2, color = timepoint, shape = vaccine_status)) +
+  geom_point() + 
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%"),
+       color = "Timepoint", shape = "Vaccine Status") +
+    scale_shape_manual(values = c(21,19)) +
   ggtitle("Metabolite PCA")
 
 
@@ -361,7 +375,7 @@ pops_list %>%
                                         "Pop20", "Pop22", "Pop23"))) %>%
   arrange(flow) %>%
   rename(Flow = flow,
-         `P value` = p.value)%>%
+         `P value` = p.value) %>%
   mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD8+CD4-CD45RA-SLADQ-CD172-"),
          Flow = str_replace(Flow, "Pop11", "Pop11: CD3+CD8+CD45RA+CD172+CD4-SLADQ-"),
          Flow = str_replace(Flow, "Pop12", "Pop12: CD3+CD8+CD45RA+SLADQ+CD172+CD4-"),
@@ -373,6 +387,8 @@ pops_list %>%
          Flow = str_replace(Flow, "Pop23", "Pop23: CD3+CD4+CD172+CD8-CD45RA-SLADQ-"),
          Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD45RA+CD172+CD4-CD8-SLADQ-"),
          Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD45RA+SLADQ+CD172+CD4-CD8-")) %>%
+  rename(`Immune Cells` = Flow,
+         `Principal Components` = PC) %>%
   kable(align = c("l", "c", "c", "c")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
