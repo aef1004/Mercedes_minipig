@@ -86,9 +86,9 @@ grViz(diagram = "digraph flowchart {
       }
 [1]: 'Experiment'
       [2]: 'Flow cytometry data acquisition'
-      [3]: 'Cyto-feature engineering'
+      [3]: 'Pre-processing and data exploration'
       [4]: 'Metabolomics data acquisition'
-      [5]: 'xcms pre-processing'
+      [5]: 'Pre-processing and data exploration'
       [6]: 'Start integrated analysis'
       [7]: 'PCA dimension reduction'
       [8]: 'Regression modeling'

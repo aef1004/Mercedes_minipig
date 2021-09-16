@@ -362,17 +362,17 @@ pops_list %>%
   arrange(flow) %>%
   rename(Flow = flow,
          `P value` = p.value)%>%
-  mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD8+ (CD4-CD45RA-SLADQ-CD172-)"),
-         Flow = str_replace(Flow, "Pop11", "Pop11: CD3+CD8+CD45RA+CD172+  (CD4-SLADQ-)"),
-         Flow = str_replace(Flow, "Pop12", "Pop12: CD3+CD8+CD45RA+SLADQ+CD172+ (CD4-)"),
-         Flow = str_replace(Flow, "Pop15", "Pop15: CD3+CD8+SLADQ+CD172+ (CD4-CD45RA-)"),
-         Flow = str_replace(Flow, "Pop16", "Pop16: CD3+CD4+ (CD8-CD45RA-SLADQ-CD172-)"),
-         Flow = str_replace(Flow, "Pop19", "Pop19: CD3+CD4+CD45RA+ (CD8-SLADQ-CD172-)"),
-         Flow = str_replace(Flow, "Pop20", "Pop20: CD3+CD4+CD45RA+SLADQ+CD172+ (CD8-)"),
-         Flow = str_replace(Flow, "Pop22", "Pop22: CD3+CD4+CD45RA+CD172+ (CD8-SLADQ-)"),
-         Flow = str_replace(Flow, "Pop23", "Pop23: CD3+CD4+CD172+ (CD8-CD45RA-SLADQ-)"),
-         Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD45RA+CD172+ (CD4-CD8-SLADQ-)"),
-         Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD45RA+SLADQ+CD172+ (CD4-CD8-)")) %>%
+  mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD8+CD4-CD45RA-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop11", "Pop11: CD3+CD8+CD45RA+CD172+CD4-SLADQ-"),
+         Flow = str_replace(Flow, "Pop12", "Pop12: CD3+CD8+CD45RA+SLADQ+CD172+CD4-"),
+         Flow = str_replace(Flow, "Pop15", "Pop15: CD3+CD8+SLADQ+CD172+CD4-CD45RA-"),
+         Flow = str_replace(Flow, "Pop16", "Pop16: CD3+CD4+CD8-CD45RA-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop19", "Pop19: CD3+CD4+CD45RA+CD8-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop20", "Pop20: CD3+CD4+CD45RA+SLADQ+CD172+CD8-"),
+         Flow = str_replace(Flow, "Pop22", "Pop22: CD3+CD4+CD45RA+CD172+CD8-SLADQ-"),
+         Flow = str_replace(Flow, "Pop23", "Pop23: CD3+CD4+CD172+CD8-CD45RA-SLADQ-"),
+         Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD45RA+CD172+CD4-CD8-SLADQ-"),
+         Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD45RA+SLADQ+CD172+CD4-CD8-")) %>%
   kable(align = c("l", "c", "c", "c")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
