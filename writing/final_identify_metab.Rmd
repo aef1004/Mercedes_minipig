@@ -88,7 +88,7 @@ map_df(all_files, ~read_add_name(.)) %>%
   filter(p_value <= 0.01) %>%
   mutate(p_value = format(p_value, scientific = TRUE, digits = 2)) %>%
   rename(`P value` = p_value) %>%
-  kable(align = "c", caption = "Putative Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
+  kable(align = "c", caption = "Putative Metabolic Pathways Correlated with Immune Cell Populations") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
 

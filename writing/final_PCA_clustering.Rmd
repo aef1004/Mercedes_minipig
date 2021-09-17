@@ -726,12 +726,13 @@ purrr::map_df(list_of_models, function(x) fdr(x)) %>%
          FDR_them = round(100*pi0 * 0.01 / pi1, 1)) %>% # use theirs because I round my fdr, so it's less accurate
   dplyr::select(pop_type, flow, pval_alpha, fdr, FDR_them) %>%
   dplyr::arrange(pop_type, FDR_them)  %>%
-  dplyr::rename("Flow Population" = flow,
-         "False Discovery Number" = fdr,
-         "Number P-values <= 0.01" = pval_alpha,
+  dplyr::rename("Immune Cell Populations" = flow,
+         "Number Falsely Significant" = fdr,
+         "Number P-values $\\leq 0.01$" = pval_alpha,
          "False Discovery Rate (%)" = FDR_them,
          "Population Type" = pop_type) %>%
-  kable(align = c("l", "c", "c", "c"), caption = "Summary of P-value Histogram False Discovery Rate") %>%
+  kable(align = c("l", "c", "c", "c"),  escape = FALSE, caption = "Summary of P-value Histogram False Discovery Rate") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
 ```
 
