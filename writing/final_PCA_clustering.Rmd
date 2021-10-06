@@ -512,7 +512,13 @@ res.pca$rotation %>%
   geom_histogram(bins = 50) +
   geom_vline(xintercept = 0.03, color = "red") +
   geom_vline(xintercept = -0.03, color = "red") +
-  ylab("Weight of Molecular Features")
+  xlab("PC4: Weight of Molecular Features")
+
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC4)) +
+  geom_histogram(bins = 50) +
+  xlab("PC4: Weight of Molecular Features")
 
 # 140 metabolites
 PC4_cluster1 <- res.pca$rotation %>%
