@@ -15,7 +15,7 @@ library(kableExtra)
 
 
 ```{r}
-data.frame(MF = c("metatolite 1", "metatolite 1", "metatolite 2", "metatolite 2"),
+data.frame(MF = c("Molecular Feature 1", "Molecular Feature 1", "Molecular Feature 2", "Molecular Feature 2"),
            Group = c("Group A", "Group B", "Group A", "Group B"), 
            Intensity = c(1000, 50, 4000, 3700)) %>%
   ggplot(aes(x = Group, y = Intensity, fill = Group)) +
