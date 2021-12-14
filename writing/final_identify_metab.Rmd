@@ -17,6 +17,9 @@ library(broom)
 library(ggplot2)
 library(ggpubr)
 library(stringr)
+library(kableExtra)
+library(readr)
+library(scales)
 ```
 
 
@@ -71,6 +74,7 @@ map_df(all_files, ~read_add_name(.)) %>%
   filter(!grepl("Results", filename)) %>%
   mutate(filename = str_replace(filename, "MetaboAnalyst_", "")) %>%
   mutate(filename = str_replace(filename, "/pathway_results.csv", "")) %>%
+  rename(X1 = "...1") %>%
   select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
   mutate(filename = factor(filename, levels = c("PC4_Cluster1", "PC4_Cluster2"))) %>%
   filter(grepl("PC4", filename)) %>%
@@ -116,12 +120,16 @@ flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %
   rename(flow = marker)
 
 flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
-  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
+  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$")) %>%
+  mutate(timepoint = str_replace(timepoint, "12wks", "Pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "Post-infection"))
 
 unique(flow_metab$flow)
+
 ```
 
 ```{r}
+
 arrange_plot <- function(df, flow_pop, metab_pick, x_position, yposition1, yposition2) {
   
   step1 <- df %>%
@@ -145,8 +153,10 @@ df %>%
   filter(flow == flow_pop & metaboliteID == metab_pick) %>%
   left_join(step1, by = c("flow", "metaboliteID")) %>%
 ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
-  geom_point(size = 3) +
+  geom_point(aes(shape = vaccine_status), size = 3) +
+  scale_shape_manual(values = c(21,19)) +
   geom_smooth(aes(x = metabolite_expression, y = percent), method = "lm", se = FALSE, color = "#3F4788FF") +
+  scale_x_continuous(labels = scales::scientific) +
   ggtitle(metab_pick) +
   labs(color = "Timepoint",  fill = "Timepoint") 
 }
@@ -156,7 +166,7 @@ ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
 PC4_Cluster2	Arachidonic acid metabolism
 
 PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop19 (CD3+ CD4+ CD45RA+)
-```{r fig.height = 5, fig.width = 4}
+```{r fig.width = 8}
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966", "C05356", "C14823", "C14812", "C14748", "C14749", "C05965", "C14772", "C14773", "C14774", "C14775", "C14781", "C14813", "C04742", "C00909", "C04805", "C14782", "C14814", "C02165", "C02166", "C04853", "C05959", "C00639")) %>%
   select(Query, KEGG) %>%
@@ -195,7 +205,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
           p7+ rremove("legend") + rremove("xylab"), 
           p8+ rremove("legend") + rremove("xylab"), 
           legend.grob = get_legend(p1), legend = "right", 
-          ncol = 2, nrow = 4) %>%
+          ncol = 4, nrow = 2) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD45RA", size = 15),
                   left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
                   bottom = text_grob("Metabolite Expression", size = 15))
@@ -271,6 +281,8 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 15),
                   left = text_grob("Pop19 Percentage of cells", size = 15, rot = 90),
                   bottom = text_grob("Metabolite Expression", size = 15))
+
+p1
 ```
 
 PC4 correlated with PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
@@ -420,4 +432,40 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
                   bottom = text_grob("Metabolite Expression", size = 15))
 
 ```
+For Mercedes
+
+
+
+```{r fig.width = 8}
+
+
+
+
+p1 <- arrange_plot(flow_metab, "CD45RA", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD45RA", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD45RA", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "CD45RA", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "CD45RA", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "CD45RA", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "CD45RA", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "CD45RA", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend") + rremove("xylab"), 
+          p6+ rremove("legend") + rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xylab"), 
+          p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
+          ncol = 4, nrow = 2) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and CD45RA", size = 15),
+                  left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
+                  bottom = text_grob("Metabolite Expression", size = 15))
+```
+
+
+
+
 
