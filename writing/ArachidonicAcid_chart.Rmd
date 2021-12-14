@@ -1,0 +1,655 @@
+---
+title: "arachidonic acid"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(DiagrammeR)
+library(kableExtra)
+library(dplyr)
+```
+Table of KEGG ID
+
+```{r}
+
+KEGGID = c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966",
+           "C05356", "C05956", "C14823", "C14812", "C14748", "C14749", "C05965",
+           "C14772", "C14773", "C14774", "C14775", "C14781", "C14782", "C14813",
+           "C14814", "C04742", "C00909", "C04805", "C02165", "C02166", "C04853",
+           "C05951", "C00427", "C00696", "C00584", "C01312", "C02198", "C05959",
+           "C00639")
+
+Name = c("Phosphatidylcholine", "Arachidonic Acid", "5,6-EET", "8,9-EET",
+         "11,12-EET", "14,15-EET", "15(S)-HPETE", "5(S)-HPETE", "Prostaglandin G2",
+         "8(S)-HPETE", "12(R)-HPETE", "20-HETE", "19(S)-HETE", "12(S)-HPETE",
+         "5,6-DHET", "8,9-DHET", "11,12-DHET", "14,15-DHET", "15H-11,12-EETA",
+         "11,12,15-THETA", "11H-14,15-EETA", "11,14,15-THETA", "15(S)-HETE",
+         "Leukotriene A4", "5(S)-HETE", "Leukotriene B4", "Leukotriene C4",
+         "20-OH-Leukotriene B4", "Leukotriene D4", "Prostaglandin H2", 
+         "Prostaglandin D2", "Prostaglandin E2", "Prostaglandin I2", 
+         "Thromboxane A2", "11-epi-Prostaglandin F2alpha", "Prostaglandin F2alpha")
+
+data.frame(Name, KEGGID) %>%
+   rename("KEGG ID" = KEGGID) %>%
+   arrange(Name)  %>%
+   kable(align = c("l", "c", "c", "c"), caption = "Summary of Arachidonic Acid Metabolites and Associated KEGG ID") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+lavender= identified
+yellow = not identified
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9', color = yellow]
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+      tab13 [label = '@@13']
+      tab14 [label = '@@14']
+      tab15 [label = '@@15']
+      tab16 [label = '@@16']
+      tab17 [label = '@@17']
+      tab18 [label = '@@18']
+      tab19 [label = '@@19']
+      tab20 [label = '@@20']
+      tab21 [label = '@@21']
+      tab22 [label = '@@22']
+      tab23 [label = '@@23']
+      tab24 [label = '@@24']
+      tab25 [label = '@@25']
+      tab26 [label = '@@26']
+      tab27 [label = '@@27']
+      tab28 [label = '@@28']
+      tab29 [label = '@@29', color = yellow]
+      tab30 [label = '@@30', color = yellow]
+      tab31 [label = '@@31', color = yellow]
+      tab32 [label = '@@32', color = yellow]
+      tab33 [label = '@@33', color = yellow]
+      tab34 [label = '@@34', color = yellow]
+      tab35 [label = '@@35']
+      tab36 [label = '@@36']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4;
+      tab2 -> tab5;
+      tab2 -> tab6;
+      tab2 -> tab7;
+      tab2 -> tab8;
+      tab2 -> tab9;
+      tab2 -> tab10;
+      tab2 -> tab11;
+      tab2 -> tab12;
+      tab2 -> tab13;
+      tab2 -> tab14;
+      tab3 -> tab15;
+      tab4 -> tab16;
+      tab5 -> tab17;
+      tab6 -> tab18;
+      tab7 -> tab19;
+      tab19 -> tab20;
+      tab7 -> tab21;
+      tab21 -> tab22;
+      tab7 -> tab23;
+      tab8 -> tab24;
+      tab8 -> tab25;
+      tab24 -> tab26;
+      tab24 -> tab27;
+      tab26 -> tab28;
+      tab27 -> tab29;
+      tab9 -> tab30;
+      tab30 -> tab31;
+      tab30 -> tab32;
+      tab30 -> tab33;
+      tab30 -> tab34;
+      tab31 -> tab35;
+      tab32 -> tab36;
+      tab30 -> tab36
+      }
+[1]: 'C00157: Phosphatidylcholine'
+      [2]: 'C00219: Arachidonic Acid'
+      [3]: 'C14768'
+      [4]: 'C14769'
+      [5]: 'C14770'
+      [6]: 'C14771'
+      [7]: 'C05966'
+      [8]: 'C05356'
+      [9]: 'C05956'
+      [10]: 'C14823'
+      [11]: 'C14812'
+      [12]: 'C14748'
+      [13]: 'C14749'
+      [14]: 'C05965'
+      [15]: 'C14772'
+      [16]: 'C14773'
+      [17]: 'C14774'
+      [18]: 'C14775'
+      [19]: 'C14781'
+      [20]: 'C14782'
+      [21]: 'C14813'
+      [22]: 'C14814'
+      [23]: 'C04742'
+      [24]: 'C00909'
+      [25]: 'C04805'
+      [26]: 'C02165'
+      [27]: 'C02166'
+      [28]: 'C04853'
+      [29]: 'C05951'
+      [30]: 'C00427'
+      [31]: 'C00696'
+      [32]: 'C00584'
+      [33]: 'C01312'
+      [34]: 'C02198'
+      [35]: 'C05959'
+      [36]: 'C00639'
+      
+      ")
+```
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      graph [layout = dot,
+       rankdir = LR]
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9', color = yellow]
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+      tab13 [label = '@@13']
+      tab14 [label = '@@14']
+      tab15 [label = '@@15']
+      tab16 [label = '@@16']
+      tab17 [label = '@@17']
+      tab18 [label = '@@18']
+      tab19 [label = '@@19']
+      tab20 [label = '@@20']
+      tab21 [label = '@@21']
+      tab22 [label = '@@22']
+      tab23 [label = '@@23']
+      tab24 [label = '@@24']
+      tab25 [label = '@@25']
+      tab26 [label = '@@26']
+      tab27 [label = '@@27']
+      tab28 [label = '@@28']
+      tab29 [label = '@@29', color = yellow]
+      tab30 [label = '@@30', color = yellow]
+      tab31 [label = '@@31', color = yellow]
+      tab32 [label = '@@32', color = yellow]
+      tab33 [label = '@@33', color = yellow]
+      tab34 [label = '@@34', color = yellow]
+      tab35 [label = '@@35']
+      tab36 [label = '@@36']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4;
+      tab2 -> tab5;
+      tab2 -> tab6;
+      tab2 -> tab7;
+      tab2 -> tab8;
+      tab2 -> tab9;
+      tab2 -> tab10;
+      tab2 -> tab11;
+      tab2 -> tab12;
+      tab2 -> tab13;
+      tab2 -> tab14;
+      tab3 -> tab15;
+      tab4 -> tab16;
+      tab5 -> tab17;
+      tab6 -> tab18;
+      tab7 -> tab19;
+      tab19 -> tab20;
+      tab7 -> tab21;
+      tab21 -> tab22;
+      tab7 -> tab23;
+      tab8 -> tab24;
+      tab8 -> tab25;
+      tab24 -> tab26;
+      tab24 -> tab27;
+      tab26 -> tab28;
+      tab27 -> tab29;
+      tab9 -> tab30;
+      tab30 -> tab31;
+      tab30 -> tab32;
+      tab30 -> tab33;
+      tab30 -> tab34;
+      tab31 -> tab35;
+      tab32 -> tab36;
+      tab30 -> tab36
+      }
+[1]: 'C00157: Phosphatidylcholine'
+      [2]: 'C00219: Arachidonic Acid'
+      [3]: 'C14768: 5,6-EET'
+      [4]: 'C14769: 8,9-EET'
+      [5]: 'C14770: 11,12-EET'
+      [6]: 'C14771: 14,15-EET'
+      [7]: 'C05966: 15(S)-HPETE'
+      [8]: 'C05356: 5(S)-HPETE'
+      [9]: 'C05956: Prostaglandin G2;'
+      [10]: 'C14823: 8(S)-HPETE'
+      [11]: 'C14812: 12(R)-HPETE'
+      [12]: 'C14748: 20-HETE'
+      [13]: 'C14749: 19(S)-HETE'
+      [14]: 'C05965: 12(S)-HPETE'
+      [15]: 'C14772: 5,6-DHET'
+      [16]: 'C14773: 8,9-DHET'
+      [17]: 'C14774: 11,12-DHET'
+      [18]: 'C14775: 14,15-DHET'
+      [19]: 'C14781: 15H-11,12-EETA'
+      [20]: 'C14782: 11,12,15-THETA'
+      [21]: 'C14813: 11H-14,15-EETA'
+      [22]: 'C14814: 11,14,15-THETA'
+      [23]: 'C04742: 15(S)-HETE'
+      [24]: 'C00909: Leukotriene A4'
+      [25]: 'C04805: 5(S)-HETE'
+      [26]: 'C02165: Leukotriene B4'
+      [27]: 'C02166: Leukotriene C4'
+      [28]: 'C04853: 20-OH-Leukotriene B4'
+      [29]: 'C05951: Leukotriene D4'
+      [30]: 'C00427: Prostaglandin H2'
+      [31]: 'C00696: Prostaglandin D2'
+      [32]: 'C00584: Prostaglandin E2'
+      [33]: 'C01312: Prostaglandin I2'
+      [34]: 'C02198: Thromboxane A2'
+      [35]: 'C05959: 11-epi-Prostaglandin F2alpha'
+      [36]: 'C00639: Prostaglandin F2alpha'
+      
+      ")
+```
+Wihtout KEGG ID - sidewauys
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      graph [layout = dot,
+       rankdir = LR]
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9', color = yellow]
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+      tab13 [label = '@@13']
+      tab14 [label = '@@14']
+      tab15 [label = '@@15']
+      tab16 [label = '@@16']
+      tab17 [label = '@@17']
+      tab18 [label = '@@18']
+      tab19 [label = '@@19']
+      tab20 [label = '@@20']
+      tab21 [label = '@@21']
+      tab22 [label = '@@22']
+      tab23 [label = '@@23']
+      tab24 [label = '@@24']
+      tab25 [label = '@@25']
+      tab26 [label = '@@26']
+      tab27 [label = '@@27']
+      tab28 [label = '@@28']
+      tab29 [label = '@@29', color = yellow]
+      tab30 [label = '@@30', color = yellow]
+      tab31 [label = '@@31', color = yellow]
+      tab32 [label = '@@32', color = yellow]
+      tab33 [label = '@@33', color = yellow]
+      tab34 [label = '@@34', color = yellow]
+      tab35 [label = '@@35']
+      tab36 [label = '@@36']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4;
+      tab2 -> tab5;
+      tab2 -> tab6;
+      tab2 -> tab7;
+      tab2 -> tab8;
+      tab2 -> tab9;
+      tab2 -> tab10;
+      tab2 -> tab11;
+      tab2 -> tab12;
+      tab2 -> tab13;
+      tab2 -> tab14;
+      tab3 -> tab15;
+      tab4 -> tab16;
+      tab5 -> tab17;
+      tab6 -> tab18;
+      tab7 -> tab19;
+      tab19 -> tab20;
+      tab7 -> tab21;
+      tab21 -> tab22;
+      tab7 -> tab23;
+      tab8 -> tab24;
+      tab8 -> tab25;
+      tab24 -> tab26;
+      tab24 -> tab27;
+      tab26 -> tab28;
+      tab27 -> tab29;
+      tab9 -> tab30;
+      tab30 -> tab31;
+      tab30 -> tab32;
+      tab30 -> tab33;
+      tab30 -> tab34;
+      tab31 -> tab35;
+      tab32 -> tab36;
+      tab30 -> tab36
+      }
+[1]: 'Phosphatidylcholine'
+      [2]: 'Arachidonic Acid'
+      [3]: '5,6-EET'
+      [4]: '8,9-EET'
+      [5]: '11,12-EET'
+      [6]: '14,15-EET'
+      [7]: '15(S)-HPETE'
+      [8]: '5(S)-HPETE'
+      [9]: 'Prostaglandin G2;'
+      [10]: '8(S)-HPETE'
+      [11]: '12(R)-HPETE'
+      [12]: '20-HETE'
+      [13]: '19(S)-HETE'
+      [14]: '12(S)-HPETE'
+      [15]: '5,6-DHET'
+      [16]: '8,9-DHET'
+      [17]: '11,12-DHET'
+      [18]: '14,15-DHET'
+      [19]: '15H-11,12-EETA'
+      [20]: '11,12,15-THETA'
+      [21]: '11H-14,15-EETA'
+      [22]: '11,14,15-THETA'
+      [23]: '15(S)-HETE'
+      [24]: 'Leukotriene A4'
+      [25]: '5(S)-HETE'
+      [26]: 'Leukotriene B4'
+      [27]: 'Leukotriene C4'
+      [28]: '20-OH-Leukotriene B4'
+      [29]: 'Leukotriene D4'
+      [30]: 'Prostaglandin H2'
+      [31]: 'Prostaglandin D2'
+      [32]: 'Prostaglandin E2'
+      [33]: 'Prostaglandin I2'
+      [34]: 'Thromboxane A2'
+      [35]: '11-epi-Prostaglandin F2alpha'
+      [36]: 'Prostaglandin F2alpha'
+      
+      ")
+```
+
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9', color = yellow]
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+      tab13 [label = '@@13']
+      tab14 [label = '@@14']
+      tab15 [label = '@@15']
+      tab16 [label = '@@16']
+      tab17 [label = '@@17']
+      tab18 [label = '@@18']
+      tab19 [label = '@@19']
+      tab20 [label = '@@20']
+      tab21 [label = '@@21']
+      tab22 [label = '@@22']
+      tab23 [label = '@@23']
+      tab24 [label = '@@24']
+      tab25 [label = '@@25']
+      tab26 [label = '@@26']
+      tab27 [label = '@@27']
+      tab28 [label = '@@28']
+      tab29 [label = '@@29', color = yellow]
+      tab30 [label = '@@30', color = yellow]
+      tab31 [label = '@@31', color = yellow]
+      tab32 [label = '@@32', color = yellow]
+      tab33 [label = '@@33', color = yellow]
+      tab34 [label = '@@34', color = yellow]
+      tab35 [label = '@@35']
+      tab36 [label = '@@36']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4;
+      tab2 -> tab5;
+      tab2 -> tab6;
+      tab2 -> tab7;
+      tab2 -> tab8;
+      tab2 -> tab9;
+      tab2 -> tab10;
+      tab2 -> tab11;
+      tab2 -> tab12;
+      tab2 -> tab13;
+      tab2 -> tab14;
+      tab3 -> tab15;
+      tab4 -> tab16;
+      tab5 -> tab17;
+      tab6 -> tab18;
+      tab7 -> tab19;
+      tab19 -> tab20;
+      tab7 -> tab21;
+      tab21 -> tab22;
+      tab7 -> tab23;
+      tab8 -> tab24;
+      tab8 -> tab25;
+      tab24 -> tab26;
+      tab24 -> tab27;
+      tab26 -> tab28;
+      tab27 -> tab29;
+      tab9 -> tab30;
+      tab30 -> tab31;
+      tab30 -> tab32;
+      tab30 -> tab33;
+      tab30 -> tab34;
+      tab31 -> tab35;
+      tab32 -> tab36;
+      tab30 -> tab36
+      }
+[1]: 'C00157: Phosphatidylcholine'
+      [2]: 'C00219: Arachidonic Acid'
+      [3]: 'C14768: 5,6-EET'
+      [4]: 'C14769: 8,9-EET'
+      [5]: 'C14770: 11,12-EET'
+      [6]: 'C14771: 14,15-EET'
+      [7]: 'C05966: 15(S)-HPETE'
+      [8]: 'C05356: 5(S)-HPETE'
+      [9]: 'C05956: Prostaglandin G2;'
+      [10]: 'C14823: 8(S)-HPETE'
+      [11]: 'C14812: 12(R)-HPETE'
+      [12]: 'C14748: 20-HETE'
+      [13]: 'C14749: 19(S)-HETE'
+      [14]: 'C05965: 12(S)-HPETE'
+      [15]: 'C14772: 5,6-DHET'
+      [16]: 'C14773: 8,9-DHET'
+      [17]: 'C14774: 11,12-DHET'
+      [18]: 'C14775: 14,15-DHET'
+      [19]: 'C14781: 15H-11,12-EETA'
+      [20]: 'C14782: 11,12,15-THETA'
+      [21]: 'C14813: 11H-14,15-EETA'
+      [22]: 'C14814: 11,14,15-THETA'
+      [23]: 'C04742: 15(S)-HETE'
+      [24]: 'C00909: Leukotriene A4'
+      [25]: 'C04805: 5(S)-HETE'
+      [26]: 'C02165: Leukotriene B4'
+      [27]: 'C02166: Leukotriene C4'
+      [28]: 'C04853: 20-OH-Leukotriene B4'
+      [29]: 'C05951: Leukotriene D4'
+      [30]: 'C00427: Prostaglandin H2'
+      [31]: 'C00696: Prostaglandin D2'
+      [32]: 'C00584: Prostaglandin E2'
+      [33]: 'C01312: Prostaglandin I2'
+      [34]: 'C02198: Thromboxane A2'
+      [35]: 'C05959: 11-epi-Prostaglandin F2alpha'
+      [36]: 'C00639: Prostaglandin F2alpha'
+      
+      ")
+```
+
+Wihtout KEGG ID
+```{r out.extra="style='transform:rotate(90deg);'"}
+
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9', color = yellow]
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+      tab13 [label = '@@13']
+      tab14 [label = '@@14']
+      tab15 [label = '@@15']
+      tab16 [label = '@@16']
+      tab17 [label = '@@17']
+      tab18 [label = '@@18']
+      tab19 [label = '@@19']
+      tab20 [label = '@@20']
+      tab21 [label = '@@21']
+      tab22 [label = '@@22']
+      tab23 [label = '@@23']
+      tab24 [label = '@@24']
+      tab25 [label = '@@25']
+      tab26 [label = '@@26']
+      tab27 [label = '@@27']
+      tab28 [label = '@@28']
+      tab29 [label = '@@29', color = yellow]
+      tab30 [label = '@@30', color = yellow]
+      tab31 [label = '@@31', color = yellow]
+      tab32 [label = '@@32', color = yellow]
+      tab33 [label = '@@33', color = yellow]
+      tab34 [label = '@@34', color = yellow]
+      tab35 [label = '@@35']
+      tab36 [label = '@@36']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4;
+      tab2 -> tab5;
+      tab2 -> tab6;
+      tab2 -> tab7;
+      tab2 -> tab8;
+      tab2 -> tab9;
+      tab2 -> tab10;
+      tab2 -> tab11;
+      tab2 -> tab12;
+      tab2 -> tab13;
+      tab2 -> tab14;
+      tab3 -> tab15;
+      tab4 -> tab16;
+      tab5 -> tab17;
+      tab6 -> tab18;
+      tab7 -> tab19;
+      tab19 -> tab20;
+      tab7 -> tab21;
+      tab21 -> tab22;
+      tab7 -> tab23;
+      tab8 -> tab24;
+      tab8 -> tab25;
+      tab24 -> tab26;
+      tab24 -> tab27;
+      tab26 -> tab28;
+      tab27 -> tab29;
+      tab9 -> tab30;
+      tab30 -> tab31;
+      tab30 -> tab32;
+      tab30 -> tab33;
+      tab30 -> tab34;
+      tab31 -> tab35;
+      tab32 -> tab36;
+      tab30 -> tab36
+      }
+[1]: 'Phosphatidylcholine'
+      [2]: 'Arachidonic Acid'
+      [3]: '5,6-EET'
+      [4]: '8,9-EET'
+      [5]: '11,12-EET'
+      [6]: '14,15-EET'
+      [7]: '15(S)-HPETE'
+      [8]: '5(S)-HPETE'
+      [9]: 'Prostaglandin G2;'
+      [10]: '8(S)-HPETE'
+      [11]: '12(R)-HPETE'
+      [12]: '20-HETE'
+      [13]: '19(S)-HETE'
+      [14]: '12(S)-HPETE'
+      [15]: '5,6-DHET'
+      [16]: '8,9-DHET'
+      [17]: '11,12-DHET'
+      [18]: '14,15-DHET'
+      [19]: '15H-11,12-EETA'
+      [20]: '11,12,15-THETA'
+      [21]: '11H-14,15-EETA'
+      [22]: '11,14,15-THETA'
+      [23]: '15(S)-HETE'
+      [24]: 'Leukotriene A4'
+      [25]: '5(S)-HETE'
+      [26]: 'Leukotriene B4'
+      [27]: 'Leukotriene C4'
+      [28]: '20-OH-Leukotriene B4'
+      [29]: 'Leukotriene D4'
+      [30]: 'Prostaglandin H2'
+      [31]: 'Prostaglandin D2'
+      [32]: 'Prostaglandin E2'
+      [33]: 'Prostaglandin I2'
+      [34]: 'Thromboxane A2'
+      [35]: '11-epi-Prostaglandin F2alpha'
+      [36]: 'Prostaglandin F2alpha'
+      
+      ")
+```
+
+
+
+{r out.width = '50%', out.extra="style='transform:rotate(90deg);'"}
+include(knitr)
+knitr::include_graphics("DSC_0167.jpg")
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+---
+title: "simulate_data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+
+```{r}
+data.frame(MF = c("Molecular Feature 1", "Molecular Feature 1", "Molecular Feature 2", "Molecular Feature 2"),
+           Group = c("Group A", "Group B", "Group A", "Group B"), 
+           Intensity = c(1000, 50, 4000, 3700)) %>%
+  ggplot(aes(x = Group, y = Intensity, fill = Group)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~MF)
+```
+
+```{r}
+data.frame(item = c("Deaths", "Infected"), number = c(1400000, 2550000000)) %>%
+  ggplot(aes(item, number)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+data.frame("Immune Cells" = c("CD8 T cells", "Double Negative T cells", "Pop12", "Pop15",
+                              "Pop7", "Pop8"),
+           "Principal Components" = c("PC6", "PC9", rep("PC2", 4)))%>%
+  kable(align = c("l", "c", "c", "c"),  escape = FALSE, caption = "Removed due to Timepoint Interaction") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+```
+

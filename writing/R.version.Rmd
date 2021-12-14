@@ -1,0 +1,89 @@
+---
+title: "R.version"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+R.version
+
+Run 
+- final_PCA_clustering
+- final_identify_metab
+- flow_cleaning_12week
+- metabolomics_preprocessing
+
+# Final PCA clustering
+```{r}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(emmeans)
+library(ggpubr)
+library(car)
+library(kableExtra)
+library(tidyr)
+```
+
+# final_identify_metab
+```{r}
+library(kableExtra)
+library(readr)
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(broom)
+library(ggplot2)
+library(ggpubr)
+library(stringr)
+```
+
+# flow cleaning
+```{r}
+library(data.table)
+library(openCyto)
+library(ncdfFlow)
+library(flowWorkspace)
+library(dplyr)
+library(ggcyto)
+library(stringr) 
+library(scales)
+library(tidyr)
+library(superheat)
+library(tibble)
+library(pheatmap)
+library(cytotypr)
+library(gridExtra)
+library(rlang)
+library(purrr)
+library(tidyr)
+library(broom)
+library(rlang)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(forcats)
+library(tidyr)
+library(stringr)
+library(readxl)
+library(viridis)
+library(tibble)
+library(xcms)
+```
+
+
+```{r}
+print(sessionInfo())
+
+x<- sessionInfo()
+
+x[15]
+
+x$loadedOnly
+```
+

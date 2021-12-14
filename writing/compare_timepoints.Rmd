@@ -34,8 +34,8 @@ library(ggpubr)
 
 ```{r}
 
-load("../data/all_fe_30DPI.gz")
-load("../data/all_fe_12week.gz")
+load("../data/all_fe_30DPI")
+load("../data/all_fe_12week")
 
 all_fe_30DPI
 all_fe_12week
@@ -59,14 +59,34 @@ single_expression <- all_fe %>%
          filename = str_extract(filename, "Pig [0-9]*")) %>%
   mutate(vaccine_status = ifelse(filename == "Pig 9947" | filename == "Pig 1817" | filename == "Pig 6059" | filename == "Pig 4515"| filename == "Pig 5273", "vaccinated", "control"))
 
+# shape for vaccine status
 single_expression %>%
   filter(expression == "1") %>%
     mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
          timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
   rename(Timepoint = timepoint) %>%
+  mutate(`Vaccine Status` = factor(vaccine_status)) %>%
   ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")),
-             shape = factor(vaccine_status), y = percent_per_marker, color = Timepoint)) +
+             shape = `Vaccine Status`, y = percent_per_marker, color = Timepoint)) +
+  scale_shape_manual(c(1, 16)) +
   geom_point() +
+  facet_wrap(~marker) +
+  scale_shape_manual(values = c(21,19)) +
+  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  ggtitle("")
+
+
+# paired with shape for vaccine status
+single_expression %>%
+  filter(expression == "1") %>%
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  mutate(`Vaccine Status` = factor(vaccine_status)) %>%
+  ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")),
+             shape = `Vaccine Status`, y = percent_per_marker, color = Timepoint)) +
+  geom_point() +
+  geom_line(aes(group = filename), color = "black", alpha = 0.5) +
   facet_wrap(~marker) +
   scale_shape_manual(values = c(21,19)) +
   labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
@@ -79,7 +99,20 @@ single_expression %>%
          timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
   rename(Timepoint = timepoint) %>%
   ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")), y = percent_per_marker, color = Timepoint)) +
+  facet_wrap(~marker) +
+  scale_shape_manual(values = c(21,19)) +
+  labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
+  ggtitle("")
+
+# paired lines
+single_expression %>%
+  filter(expression == "1") %>%
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  ggplot(aes(x =factor(Timepoint, levels = c("Pre-infection", "Post-infection")), y = percent_per_marker, color = Timepoint)) +
   geom_point() +
+  geom_line(aes(group = filename), color = "grey") +
   facet_wrap(~marker) +
   scale_shape_manual(values = c(21,19)) +
   labs(x = "Timepoint", y = "Percent of Cells Expressing the Marker") +
@@ -205,6 +238,25 @@ all_phenotypes %>%
   facet_wrap(~phenotype)+
   labs(x = "Timepoint", y = "Percent of Cells with the Phenotype") +
   ggtitle("")
+
+# with shapes for vaccine status
+all_phenotypes %>%
+  mutate(phenotype = str_replace(phenotype, "CD4_Tcell", "CD4 Tcell (CD4+ CD8-)"),
+         phenotype = str_replace(phenotype, "CD8_Tcell", "CD8 Tcell (CD4- CD8+)"),
+         phenotype = str_replace(phenotype, "DN_Tcell", "Double Negative Tcell (CD4- CD8-)"),
+         phenotype = str_replace(phenotype, "DP_Tcell", "Double Positive Tcell (CD4+ CD8+)")) %>%
+  mutate(timepoint = str_replace(timepoint, "Week12", "Pre-infection"),
+         timepoint = str_replace(timepoint, "D30DPI", "Post-infection")) %>%
+  rename(Timepoint = timepoint) %>%
+  mutate(`Vaccine Status` = factor(group)) %>%
+  ggplot(aes(x = factor(Timepoint, levels = c("Pre-infection", "Post-infection")), 
+                           y = marker_percent, color = Timepoint, shape = `Vaccine Status`)) +
+  scale_shape_manual(values = c(1, 16)) +
+  geom_point() +
+  facet_wrap(~phenotype)+
+  labs(x = "Timepoint", y = "Percent of Cells with the Phenotype") +
+  ggtitle("")
+
 ```
 
 Predefined statistical analysis
@@ -327,6 +379,26 @@ ggplot(aes(x = factor(Timepoint, levels = c("Pre", "Post")), y = percentage,
   theme(axis.text = element_text(size = 10),
         strip.text = element_text(size = 10),
         axis.title = element_text(size = 14))
+
+
+# scatter plot with shape for vaccine status
+sample_populations_all_groups %>%
+    mutate(timepoint = str_replace(timepoint, "Week12", "Pre"),
+         timepoint = str_replace(timepoint, "D30DPI", "Post")) %>%
+  rename(Timepoint = timepoint) %>%
+  mutate(`Vaccine Status` = factor(vaccine_status)) %>%
+ggplot(aes(x = factor(Timepoint, levels = c("Pre", "Post")), y = percentage, 
+                                   group = Timepoint, color = Timepoint, shape = `Vaccine Status`)) +
+  scale_fill_identity() +
+  scale_shape_manual(values = c(1, 16)) +
+  geom_point(size = 3) +
+  facet_wrap("population", scales = "free") +
+  xlab("Timepoint") +
+  ylab("Percent of Total Live Leukocytes") +
+  theme_gray() +
+  theme(axis.text = element_text(size = 12),
+        strip.text = element_text(size = 12),
+        axis.title = element_text(size = 16))
 
 
 pops_for_plots_average <- sample_populations_all_groups %>%

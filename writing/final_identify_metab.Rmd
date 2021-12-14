@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(kableExtra)
+library(readr)
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -78,16 +80,19 @@ map_df(all_files, ~read_add_name(.)) %>%
   select(filename, X1, Total, Hits, `Raw p`, Impact) %>%
   mutate(filename = factor(filename, levels = c("PC4_Cluster1", "PC4_Cluster2"))) %>%
   filter(grepl("PC4", filename)) %>%
-  arrange(filename) %>%
+  mutate(filename = str_replace(filename, "_Cluster[0-9]", "")) %>%
+  arrange(`Raw p`) %>%
   rename(p_value = `Raw p`,
-         `Putitive Pathway` = X1,
-         `Correlated Flow` = filename,
+         `Putative Pathway` = X1,
+         `Correlated PC` = filename,
          `Metabolites In Pathway` = Total,
          `Identified Metabolites` = Hits) %>%
   mutate(fraction = `Identified Metabolites`/`Metabolites In Pathway`) %>%
-  filter(p_value < 0.05) %>%
+  select(-Impact, -fraction) %>%
+  filter(p_value <= 0.01) %>%
+  mutate(p_value = format(p_value, scientific = TRUE, digits = 2)) %>%
   rename(`P value` = p_value) %>%
-  kable(align = "l", caption = "Putitive Metabolic Pathways Correlated with Flow Cytometry Cell Populations") %>%
+  kable(align = "c", caption = "Putative Metabolic Pathways Correlated with Immune Cell Populations") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
 
@@ -103,9 +108,9 @@ metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.cs
   filter(!grepl("Pooled", full_name))
 
 
-load("../data/flow_predefined_phenotypes.gz")
-load("../data/flow_single_expression.gz")
-load("../data/flow_fe.gz")
+load("../data/flow_predefined_phenotypes")
+load("../data/flow_single_expression")
+load("../data/flow_fe")
 
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
   dplyr::rename(percent = marker_percent,
@@ -166,7 +171,13 @@ ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
 PC4_Cluster2	Arachidonic acid metabolism
 
 PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop19 (CD3+ CD4+ CD45RA+)
+
+
+Figure for paper: fig.height = 5, fig.width = 4, ncol = 2, nrow = 4
+Figure for powerpoint: fig.height = 3, fig.width = 4
+
 ```{r fig.width = 8}
+
 hmdb_list <- read.csv("../data/saved_data/PCA/MetaboAnalyst_PC4_Cluster2/name_map.csv") %>%
   filter(KEGG %in% c("C00157", "C00219", "C14768", "C14769", "C14770", "C14771", "C05966", "C05356", "C14823", "C14812", "C14748", "C14749", "C05965", "C14772", "C14773", "C14774", "C14775", "C14781", "C14813", "C04742", "C00909", "C04805", "C14782", "C14814", "C02165", "C02166", "C04853", "C05959", "C00639")) %>%
   select(Query, KEGG) %>%
@@ -432,6 +443,7 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
                   bottom = text_grob("Metabolite Expression", size = 15))
 
 ```
+
 For Mercedes
 
 
@@ -464,8 +476,5 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
                   left = text_grob("CD45RA Percentage of cells", size = 15, rot = 90),
                   bottom = text_grob("Metabolite Expression", size = 15))
 ```
-
-
-
 
 

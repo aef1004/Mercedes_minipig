@@ -928,9 +928,12 @@ read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
   arrange(desc(nrows))
 
 
-flow_list <- read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
-  select(flow) %>%
-  unique() %>%
+flow_list <- c("CD3", "CD4", "CD8", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "DP_Tcell", "Pop1", "Pop2", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17", "Pop18", "Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25") %>%
   as.vector()
 
 
@@ -973,12 +976,111 @@ fdr(list_of_models[[1]])
 
 ```
 
+Calculate the FDR for each population
+```{r}
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+    
+    df %>%
+      filter(flow == markerID) %>%
+      group_by(metaboliteID) %>%
+      nest() %>%
+      mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+      unnest(summary_model) %>%
+      filter(term != "(Intercept)") %>%
+      unnest(data) %>%
+      select(flow, metaboliteID, estimate, model) %>%
+      mutate(tidy_model = map(model, broom::glance)) %>%
+      unnest(tidy_model) %>%
+      select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+      unique() %>%
+      ungroup()
+    } else {
+      
+    df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+        unnest(data) %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+        unique() %>%
+  ungroup() 
+  }
+}
+
+flow_list1 <- read.csv("../data/saved_data/Nurul_metabolites_by_flow_pop.csv") %>%
+  select(flow) %>%
+  unique() %>%
+  as.vector()
+
+flow_list <- data.frame(flow = c("CD3", "CD4", "CD8", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "DP_Tcell", "Pop1", "Pop2", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17", "Pop18", "Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))
+
+flow_list1
+flow_list2
+
+list_of_models <- pmap(flow_list, function(flow) fit_models(flow_metab, flow)) 
+
+save(list_of_models, file = "../data/list_of_models")
+```
 
 Maybe should do the 
 
 Column 1 - # of p-values less than 0.01 
 Column 2 - FDR
 ```{r}
+
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+    
+    df %>%
+      filter(flow == markerID) %>%
+      group_by(metaboliteID) %>%
+      nest() %>%
+      mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+      unnest(summary_model) %>%
+      filter(term != "(Intercept)") %>%
+      unnest(data) %>%
+      select(flow, metaboliteID, estimate, model) %>%
+      mutate(tidy_model = map(model, broom::glance)) %>%
+      unnest(tidy_model) %>%
+      select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+      unique() %>%
+      ungroup()
+    } else {
+      
+    df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+        unnest(data) %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+        unique() %>%
+  ungroup() 
+  }
+}
+
+
 # fit_models produces a df
 fit_models(flow_metab, "Pop10") %>%
   p_hist("Pop10")
