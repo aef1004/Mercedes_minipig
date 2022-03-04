@@ -1,0 +1,799 @@
+---
+title: "final_PCA_clustering_real"
+author: "Amy Fox"
+date: "3/4/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load packages
+```{r message = FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(emmeans)
+library(ggpubr)
+library(car)
+library(kableExtra)
+library(tidyr)
+```
+
+```{r}
+# removes columns (metabolites) that have 0 variance across the animals
+removeZeroVar <- function(df){
+  df[, !sapply(df, function(x) min(x) == max(x))]
+}
+```
+
+Read in data
+```{r}
+load("../data/flow_predefined_phenotypes.gz")
+load("../data/flow_single_expression.gz")
+load("../data/flow_fe.gz")
+
+metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) %>%
+  select(metaboliteID, contains("Minipig")) %>%
+  pivot_longer(cols = c(-metaboliteID), names_to = "full_name", values_to = "metabolite_expression")
+
+metabolite_wide <- metabolites %>%
+  filter(!grepl("Pooled", full_name)) %>%
+  pivot_wider(names_from = "metaboliteID", values_from = "metabolite_expression") %>%
+  removeZeroVar() %>%
+  column_to_rownames("full_name")
+
+match_metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
+  dplyr::rename(metaboliteID = X) 
+
+flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
+  rename(percent = marker_percent,
+         flow = phenotype,
+         vaccine_status = group) 
+
+flow_metab2 <-left_join(flow_fe, metabolites, by = "full_name")%>%
+  rename(percent = percentage,
+         flow = population)
+
+flow_metab3 <-left_join(flow_single_expression, metabolites, by = "full_name") %>%
+  rename(flow = marker)
+
+flow_metab <- rbind(flow_metab1, flow_metab2, flow_metab3) %>%
+  mutate(timepoint = str_extract(full_name, "[0-9]*[:alpha:]*$"))
+
+all_flow <- flow_metab %>%
+  select(-metaboliteID, -metabolite_expression) %>%
+  unique() %>%
+  pivot_wider(names_from = flow, values_from = percent)
+```
+
+
+PCA and proportion of variance
+```{r}
+set.seed(2)
+res.pca <- prcomp(metabolite_wide, center = TRUE, scale = TRUE)
+
+res_pca_importance <- summary(res.pca)$importance %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(PC = factor(1:n()))
+
+# #C77CFF
+res_pca_importance %>% 
+  ggplot(aes(x = PC, y = `Proportion of Variance`)) + 
+  geom_col(fill = "#7CAE00") + 
+  labs(x = "Principal Components (PC)") + 
+  ggtitle("Scree Plot") +
+  theme_classic()
+
+PCA_minipig <- res.pca$x %>% 
+  as.data.frame() %>% 
+  rownames_to_column("name") %>%
+  mutate(timepoint = str_extract(name, "[:digit:][:digit:][:alpha:]+")) %>% 
+  mutate(vaccine_status = ifelse(name == "Minipig_9947_12wks" | name == "Minipig_9947_30DPI"| name == "Minipig_1817_12wks" | name == "Minipig_6059_12wks" | name == "Minipig_4515_12wks"| name == "Minipig_5273_12wks"| name == "Minipig_1817_30DPI" | name == "Minipig_6059_30DPI" | name == "Minipig_4515_30DPI"| name == "Minipig_5273_30DPI", "vaccinated", "control")) %>%
+  mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "post-infection")) %>%
+  mutate(timepoint_vaccine = paste0(timepoint," ", vaccine_status)) 
+
+PCA_minipig%>%
+  ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
+  geom_point() + 
+  stat_ellipse() +
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%")) +
+  ggtitle("Metabolite PCA")
+
+PCA_minipig %>%
+  ggplot(aes(x = PC1, y = PC2, color = timepoint_vaccine)) +
+  geom_point() + 
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%"),
+       color = "Group") +
+  ggtitle("Metabolite PCA")
+
+PCA_minipig %>%
+  
+  ggplot(aes(x = PC1, y = PC2, color = timepoint, shape = vaccine_status)) +
+  geom_point() + 
+  theme_classic() +
+  labs(x = paste0("PC1: ", round(res_pca_importance$`Proportion of Variance`[1]*100, 1), "%"),
+       y = paste0("PC2: ", round(res_pca_importance$`Proportion of Variance`[2]*100, 1), "%"),
+       color = "Timepoint", shape = "Vaccine Status") +
+    scale_shape_manual(values = c(21,19)) +
+  ggtitle("Metabolite PCA")
+
+
+minipig_PCA <- PCA_minipig %>%
+  rename(full_name = name) %>%
+  mutate(timepoint = str_replace(timepoint,  "pre-infection", "12wks"),
+         timepoint = str_replace(timepoint,  "post-infection", "30DPI")) %>%
+  left_join(all_flow, by = c("full_name", "timepoint", "vaccine_status")) %>%
+  pivot_longer(c(PC1:PC20), names_to = "PC", values_to = "PC_value") %>%
+  pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent") %>%
+  mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
+         timepoint = str_replace(timepoint, "30DPI", "post-infection"))  %>%
+  mutate(pig_name = str_extract(full_name, "Minipig_[0-9]*"))
+```
+
+Need to transition to lmer model and pull out data
+```{r}
+library(lmerTest)
+inter_formula <- flow_percent ~ PC_value *timepoint + (1 |pig_name)
+
+
+# these are gong to be the ones that remove in further analysis because timepoint makes a difference 
+# 10 correlations to remove
+pops_list_lmer_remove <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lmer(inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value:timepointpre-infection") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC) 
+
+
+# list of 10 to remove
+pops_list_lmer_remove 
+
+
+
+
+# Remove 10 correlations where the interaction with PC and timepoint was not significant (p>0.05)t 
+# 15 significant correlations after this
+add_formula <- flow_percent ~ PC_value + timepoint + (1 |pig_name)
+
+pops_list_lmer_final <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+   filter(flow != "CD45RA" & PC != "PC11") %>%
+   filter(flow != "CD8_Tcell" & PC != "PC6") %>%
+   filter(flow != "Pop12" & PC != "PC2") %>%
+   filter(flow != "Pop15" & PC != "PC2") %>%
+   filter(flow != "Pop16" & PC != "PC19") %>%
+   filter(flow != "Pop5" | PC != "PC15") %>%
+   filter(flow != "Pop7" | PC != "PC2") %>%
+   filter(flow != "Pop7" | PC != "PC20") %>%
+   filter(flow != "Pop8" | PC != "PC2") %>%
+   filter(flow != "Pop8" | PC != "PC20") %>%
+  nest() %>%
+  mutate(model = map(data, ~lmer(add_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value, estimate) %>%
+  filter(term == "PC_value" & p.value < 0.01, .preserve = TRUE) %>%
+  arrange(flow, PC)
+
+# see final list
+pops_list_lmer_final 
+
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lmer(add_formula, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+
+cell <- list(flow_x = pops_list_lmer_final$flow, 
+             PC_n = pops_list_lmer_final$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+```
+
+
+Interaction model - identify populations where the interaction with timepoint DOES have an effect
+```{r}
+
+inter_formula <- flow_percent ~ PC_value *timepoint 
+# flow_percent ~ PC_value + timepoint + PC_value *timepoint
+# this is the same thing
+  
+# 6 correlations that will need to be removed because significnat interaction f
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value:timepointpre-infection") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC) 
+
+pop_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC) 
+
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+
+test_trends <- function(df, flow_x, PC_n) {
+  
+  fm <- df %>%
+  filter(flow == flow_x & PC == PC_n) %>%
+  mutate(timepoint = recode_factor(timepoint, `1` = "pre-infection", `2` = "post-infection")) %>%
+  lm(formula = inter_formula,  data = .)
+
+emtrends(fm, pairwise ~ timepoint, var = "PC_value")$emtrends %>%
+  as.data.frame() %>%
+  mutate(flow = flow_x,
+         PC = PC_n) 
+}
+
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(formula= inter_formula, data=.)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+graphs <- pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+graphs
+
+do.call(ggarrange, graphs)
+```
+
+**This is used for table 1** 
+Additive model - only include correlations not found in interaction model, meaing that the timepoint doesn't have an effect
+
+I could use ggpredict for plotting
+https://cran.r-project.org/web/packages/ggiraphExtra/vignettes/ggPredict.html 
+
+Good description of interaction
+https://www.medicine.mcgill.ca/epidemiology/joseph/courses/EPIB-621/interaction.pdf
+```{r}
+add_formula <- flow_percent ~ PC_value + timepoint 
+
+# Start with ____ and remove 6 correlations where the interaction with PC and timepoint was not significant (p>0.05)t 
+# 13 correlations  
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow != "CD8_Tcell" | PC != "PC6") %>%
+  filter(flow != "DN_Tcell" | PC != "PC9") %>%
+  filter(flow != "Pop12" | PC != "PC2") %>%
+  filter(flow != "Pop15" | PC != "PC2") %>%
+  filter(flow != "Pop7" | PC != "PC2") %>%
+  filter(flow != "Pop8" | PC != "PC2") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value, estimate) %>%
+  filter(term == "PC_value" & p.value < 0.01, .preserve = TRUE) %>%
+  arrange(flow, PC)
+
+
+
+# pops_list2 <- minipig_PCA %>%
+#     group_by(PC, flow) %>%
+#   filter(flow == "CD172" & PC == "PC3" |
+#            flow == "CD45RA" & PC == "PC4" |
+#            flow == "Pop10" & PC == "PC4" |
+#            flow == "Pop11" & PC == "PC6" |
+#            flow == "Pop12" & PC == "PC3" |
+#            flow == "Pop15" & PC == "PC3" |
+#            flow == "Pop16" & PC == "PC4" |
+#            flow == "Pop19" & PC == "PC4" |
+#            flow == "Pop20" & PC == "PC3" |
+#            flow == "Pop22" & PC == "PC3" |
+#            flow == "Pop23" & PC == "PC6" |
+#            flow == "Pop7" & PC == "PC3" |
+#            flow == "Pop8" & PC == "PC3") %>%
+#   nest() %>%
+#   mutate(model = map(data, ~lm(add_formula, data = .)),
+#          summary_model = map(model, tidy)) %>%
+#   unnest(summary_model) %>%
+#   select(flow, PC, term, p.value, estimate) %>%
+#     filter(term =="(Intercept)" & estimate > 0)
+
+
+
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(add_formula, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+
+cell <- list(flow_x = c("CD45RA", "Pop10", "Pop16", "Pop19"), PC_n = rep("PC4", 4))
+graphs <- pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+do.call(ggarrange, graphs)
+
+p1 <- plot_complex(minipig_PCA, "CD45RA", "PC4")
+p2 <- plot_complex(minipig_PCA, "Pop10", "PC4")
+p3 <- plot_complex(minipig_PCA, "Pop16", "PC4")
+p4 <- plot_complex(minipig_PCA, "Pop19", "PC4")
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xlab"), 
+          p3+ rremove("legend"), 
+          p4+ rremove("legend"),
+          legend.grob = get_legend(p1), legend = "right", 
+          ncol = 2, nrow = 2)
+
+
+pops_list %>%
+  select(flow, PC, p.value) %>%
+  mutate(p.value = format(p.value, scientific = TRUE, digits = 2)) %>%
+  mutate(flow = factor(flow, levels = c("CD45RA", "CD172", "Pop7", "Pop8", "Pop10",
+                                        "Pop11","Pop12", "Pop15", "Pop16", "Pop19",
+                                        "Pop20", "Pop22", "Pop23"))) %>%
+  arrange(flow) %>%
+  rename(Flow = flow,
+         `P value` = p.value) %>%
+  mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD8+CD4-CD45RA-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop11", "Pop11: CD3+CD8+CD45RA+CD172+CD4-SLADQ-"),
+         Flow = str_replace(Flow, "Pop12", "Pop12: CD3+CD8+CD45RA+SLADQ+CD172+CD4-"),
+         Flow = str_replace(Flow, "Pop15", "Pop15: CD3+CD8+SLADQ+CD172+CD4-CD45RA-"),
+         Flow = str_replace(Flow, "Pop16", "Pop16: CD3+CD4+CD8-CD45RA-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop19", "Pop19: CD3+CD4+CD45RA+CD8-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop20", "Pop20: CD3+CD4+CD45RA+SLADQ+CD172+CD8-"),
+         Flow = str_replace(Flow, "Pop22", "Pop22: CD3+CD4+CD45RA+CD172+CD8-SLADQ-"),
+         Flow = str_replace(Flow, "Pop23", "Pop23: CD3+CD4+CD172+CD8-CD45RA-SLADQ-"),
+         Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD45RA+CD172+CD4-CD8-SLADQ-"),
+         Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD45RA+SLADQ+CD172+CD4-CD8-")) %>%
+  rename(`Immune Cells` = Flow,
+         `Principal Components` = PC) %>%
+  kable(align = c("l", "c", "c", "c")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+```
+
+**Remove??**
+Simple linear model
+```{r}
+lm_formula <- flow_percent ~ PC_value
+
+# 15 correlations  
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow != "CD8_Tcell" | PC != "PC6") %>%
+  filter(flow != "DN_Tcell" | PC != "PC9") %>%
+  filter(flow != "Pop12" | PC != "PC2") %>%
+  filter(flow != "Pop15" | PC != "PC2") %>%
+  filter(flow != "Pop7" | PC != "PC2") %>%
+  filter(flow != "Pop8" | PC != "PC2") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(lm_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC)
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(lm_formula, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred), color = "black")  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+```
+
+
+**REmove??**
+Interaction and additive
+
+4 output terms
+- PC_value:timepoint30DPI
+- timepoint30DPI
+- PC_value
+- (Intercept)
+
+From the 5 correlations picked out
+- PC_value - p.value < 0.01 meaning there is a correlation with PC_value
+- PC_value:timepoint30DPI - p.value > 0.01 meaning interaction does NOT have an effect
+- timepoint30DPI - p.value < 0.01 meaning timepoint has an effect
+```{r}
+add_inter_formula <- flow_percent ~ PC_value + timepoint + PC_value*timepoint
+
+# 5 correlations  
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value" & p.value < 0.01) %>%
+  arrange(flow, PC)
+
+
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+  filter(flow == "CD45RA" & PC == "PC4" | 
+           flow == "Pop10" &  PC == "PC4" |
+           flow == "Pop10" & PC == "PC5" | 
+           flow == "Pop19" & PC == "PC4" |
+           flow == "Pop24" & PC == "PC1") %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(add_inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value)
+
+# plot the results to see what we're looking at
+plot_complex <- function(df, flow_pop, metab_pick) 
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(add_inter_formula, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+  
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
+  geom_point() + 
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
+       fill = "Timepoint") 
+}
+
+cell <- list(flow_x = pops_list$flow, PC_n = pops_list$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+
+
+```
+Pull out PC metabolites
+
+PC4
+```{r}
+# plot to see where I should cluster
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC4)) +
+  geom_histogram(bins = 50) +
+  geom_vline(xintercept = 0.03, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
+  xlab("PC4: Weight of Molecular Features")
+
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC4)) +
+  geom_histogram(bins = 50) +
+  xlab("PC4: Weight of Molecular Features")
+
+# 140 metabolites
+PC4_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC4 >= 0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC4)
+
+# 171 metabolites
+PC4_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC4 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC4)
+
+# left_join(PC4_cluster1, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC4_cluster1_metab_list.csv")
+# 
+# left_join(PC4_cluster2, match_metabolites) %>%
+#    write.csv("../data/saved_data/PCA/PC4_cluster2_metab_list.csv")
+
+
+# Pull out PC3 for John 
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC3)) +
+  geom_histogram(bins = 50) +
+  geom_vline(xintercept = 0.025, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
+  xlab("PC3: Weight of Molecular Features")
+
+# 48 metab
+PC3_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC3 >= 0.025) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC3)
+
+# 301 metabolites
+PC3_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC3 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC3)
+
+
+ left_join(PC3_cluster1, match_metabolites) %>%
+    write.csv("../data/saved_data/PCA/PC3_cluster1_metab_list.csv")
+ 
+ left_join(PC3_cluster2, match_metabolites) %>%
+    write.csv("../data/saved_data/PCA/PC3_cluster2_metab_list.csv")
+
+```
+
+Look at p-value histograms - these won't look very good because I'm only showing 19 PC on each flow component
+```{r}
+fit_models <- function(df, markerID) {  
+df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term == "PC_value") %>%
+  select(flow, PC, estimate, p.value) %>%
+  ungroup()
+}
+
+
+p_hist <- function(df_fitted_models, markerID) {
+  
+  alpha = binw = 0.01
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+
+fitted_models_SLADQ <- fit_models(flow_metab, "SLADQ")
+p_hist(fitted_models_SLADQ, "SLADQ")
+
+
+flow_metab %>%
+  filter(flow == "SLADQ") %>%
+  group_by(metaboliteID) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term == "PC_value") %>%
+  select(flow, PC, estimate, p.value) %>%
+  ungroup()
+```
+
+
+```{r}
+
+fit_models <- function(df, markerID, timepoint = FALSE) {  
+  if(timepoint == FALSE) {
+    
+    df %>%
+      filter(flow == markerID) %>%
+      group_by(metaboliteID) %>%
+      nest() %>%
+      mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+      unnest(summary_model) %>%
+      filter(term != "(Intercept)") %>%
+      unnest(data) %>%
+      select(flow, metaboliteID, estimate, model) %>%
+      mutate(tidy_model = map(model, broom::glance)) %>%
+      unnest(tidy_model) %>%
+      select(flow, metaboliteID, adj.r.squared, p.value, estimate) %>%
+      unique() %>%
+      ungroup()
+    } else {
+      
+    df %>%
+  filter(flow == markerID) %>%
+  group_by(metaboliteID, timepoint) %>%
+  nest() %>%
+  mutate(model = map(data, ~lm(percent ~ metabolite_expression, data = .)),
+         summary_model = map(model, tidy)) %>%
+unnest(summary_model) %>%
+  filter(term != "(Intercept)") %>%
+        unnest(data) %>%
+  select(flow, metaboliteID, timepoint, estimate, model) %>%
+  mutate(tidy_model = map(model, broom::glance)) %>%
+  unnest(tidy_model) %>%
+  select(flow, metaboliteID, adj.r.squared, estimate, p.value, timepoint) %>%
+        unique() %>%
+  ungroup() 
+  }
+}
+
+
+p_hist <- function(df_fitted_models, markerID) {
+  
+alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value >0.5) %>% #  
+  mutate(pval_0.5 = nrow(.)) %>%
+  summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  mutate(total_rows = nrow(.)) %>%
+  filter(p.value <=alpha ) %>% #
+  mutate(pval_alpha = nrow(.)) %>%
+  summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+
+ggplot(df_fitted_models, aes(x = p.value)) +
+  geom_histogram(binwidth = binw) +
+  geom_vline(xintercept = alpha, color = "red") +
+  geom_hline(yintercept = pi0$pi0*binw * nrow(df_fitted_models), col  = "blue") +
+  ggtitle(paste("Metabolite and", markerID, "Percentages P-value Histogram"))
+}
+
+fitted_models_SLADQ <- fit_models(flow_metab, "SLADQ")
+p_hist(fitted_models_SLADQ, "SLADQ")
+
+fitted_models_Pop15 <- fit_models(flow_metab, "Pop15")
+p_hist(fitted_models_Pop15, "Pop15")
+
+fitted_models_Pop9<- fit_models(flow_metab, "Pop9")
+p_hist(fitted_models_Pop9, "Pop9")
+
+fitted_models_Pop9<- fit_models(flow_metab, "Pop18")
+p_hist(fitted_models_Pop9, "Pop18")
+```
+
+False Discovery Rate Table
+```{r}
+ load("../data/list_of_models")
+
+fdr <- function(df_fitted_models) {  
+  
+  alpha = binw = 0.01
+
+pi0 <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value >0.5) %>% #
+  dplyr::mutate(pval_0.5 = nrow(.)) %>%
+  dplyr::summarise(pi0 = 2*(pval_0.5/total_rows)) %>%
+  unique()
+
+pi1 <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value <=alpha ) %>% #
+  dplyr::mutate(pval_alpha = nrow(.)) %>%
+  dplyr::summarise(pi1= (pval_alpha/total_rows)) %>%
+  unique()
+
+pval_alpha <- df_fitted_models %>%
+  dplyr::mutate(total_rows = nrow(.)) %>%
+  dplyr::filter(p.value <=alpha ) %>% #
+  dplyr::mutate(pval_alpha = nrow(.)) %>%
+  dplyr::select(pval_alpha) %>%
+  unique()
+
+fdr <- round(pi0$pi0*binw * nrow(df_fitted_models), digits = 0)
+
+data.frame(flow = df_fitted_models$flow, fdr, pval_alpha = pval_alpha$pval_alpha, pi1, pi0) %>%
+  unique()
+
+}
+  
+
+purrr::map_df(list_of_models, function(x) fdr(x)) %>%
+  dplyr::mutate(flow = factor(flow, levels = c("CD3", "CD4", "CD8", "CD45RA", "CD172", "SLADQ", 
+                                                "DN_Tcell", 
+                              "CD4_Tcell", "CD8_Tcell", "DP_Tcell", "Pop1", "Pop2", "Pop3","Pop4","Pop5","Pop6",
+                              "Pop7","Pop8","Pop9","Pop10","Pop11","Pop12","Pop13",
+                              "Pop14","Pop15","Pop16","Pop17", "Pop18", "Pop19","Pop20","Pop21",
+                              "Pop22","Pop23","Pop24","Pop25"))) %>%
+  dplyr::mutate(pop_type = ifelse(grepl("Tcell", flow), "Predefined Phenotype",
+                                  ifelse(grepl("Pop", flow), "Unsupervised Phenotype",
+                "Singular Marker Expression"))) %>%
+  dplyr::mutate(pop_type = factor(pop_type, levels = c("Singular Marker Expression", "Predefined Phenotype", "Unsupervised Phenotype"))) %>%
+  dplyr::mutate(FDR_me = fdr/pval_alpha,
+         FDR_them = round(100*pi0 * 0.01 / pi1, 1)) %>% # use theirs because I round my fdr, so it's less accurate
+  dplyr::select(pop_type, flow, pval_alpha, fdr, FDR_them) %>%
+  dplyr::arrange(pop_type, FDR_them)  %>%
+  dplyr::rename("Immune Cell Populations" = flow,
+         "Number Falsely Significant" = fdr,
+         "Number P-values $\\leq 0.01$" = pval_alpha,
+         "False Discovery Rate (%)" = FDR_them,
+         "Population Type" = pop_type) %>%
+  kable(align = c("l", "c", "c", "c"),  escape = FALSE, caption = "Summary of P-value Histogram False Discovery Rate") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+```
+
