@@ -338,6 +338,49 @@ plot_pick_metab(flow_metab, "CD45RA", "metab_496",  25, 2E4, 1E4)
 plot_pick_metab(flow_metab, "Pop10", "metab_85",  5, 1.5E4, 1E4)
 plot_pick_metab(flow_metab, "Pop10", "metab_456",  5, 2E4, 1E4)
 plot_pick_metab(flow_metab, "Pop10", "metab_496",  5, 2E4, 1E4)
+
+
+
+
+p1 <- arrange_plot(flow_metab, "CD45RA", "metab_85",  25, 2E4, 1E4)
+p2 <- arrange_plot(flow_metab, "CD45RA", "metab_456",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "CD45RA", "metab_496",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 2) %>%
+  annotate_figure(top = text_grob("PC4 Arginine and proline metabolism and CD45RA", size = 15), left = text_grob("CD45RA Percentage of Cells", rot = 90))
+
+p1 <- arrange_plot(flow_metab, "Pop10", "metab_85",  25, 2E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop10", "metab_456",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop10", "metab_496",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 2) %>%
+  annotate_figure(top = text_grob("PC4 Arginine and proline metabolism and Pop10: CD3+ CD8+", size = 15), left = text_grob("Pop10 Percentage of Cells", rot = 90))
+
+p1 <- arrange_plot(flow_metab, "Pop16", "metab_85",  25, 2E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop16", "metab_456",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop16", "metab_496",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 2) %>%
+  annotate_figure(top = text_grob("PC4 Arginine and proline metabolism and Pop16: CD3+ CD4+", size = 15), left = text_grob("Pop16 Percentage of Cells", rot = 90))
+
+p1 <- arrange_plot(flow_metab, "Pop19", "metab_85",  25, 2E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop19", "metab_456",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop19", "metab_496",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 2) %>%
+  annotate_figure(top = text_grob("PC4 Arginine and proline metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 15), left = text_grob("Pop19 Percentage of Cells", rot = 90))
 ```
 
 PC4_Cluster1	**Phenylalanine metabolism**
@@ -499,7 +542,46 @@ ggarrange(p1 + rremove("legend") + rremove("xlab"),
           ncol = 2, nrow = 4) %>%
   annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop24: CD3+ CD4+ CD8+ CD45RA+", size = 20))
 
+p1 <- arrange_plot(flow_metab, "Pop19", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop19", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop19", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop19", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop19", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop19", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop19", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop19", "metab_3602",  25, 2E4, 1E4)
 
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop19: CD3+ CD4+ CD45RA+", size = 20))
+
+
+p1 <- arrange_plot(flow_metab, "Pop10", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop10", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop10", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop10", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop10", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop10", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop10", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop10", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xlab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xlab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend"), 
+          p8+ rremove("legend") + rremove("ylab"), 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop10: CD3+ CD8+", size = 20))
 ```
 
 PC4 correlated with PC4: CD45RA, Pop10 (CD3+ CD8+), Pop16 (CD3+ CD4+), Pop24 (CD3+ CD4+ CD8+ CD45RA+)
