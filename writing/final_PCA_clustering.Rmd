@@ -31,9 +31,9 @@ removeZeroVar <- function(df){
 
 Read in data
 ```{r}
-load("../data/flow_predefined_phenotypes")
-load("../data/flow_single_expression")
-load("../data/flow_fe")
+load("../data/flow_predefined_phenotypes.gz")
+load("../data/flow_single_expression.gz")
+load("../data/flow_fe.gz")
 
 metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.csv") %>%
   dplyr::rename(metaboliteID = X) %>%
@@ -198,23 +198,53 @@ minipig_PCA <- PCA_minipig %>%
   mutate(timepoint = str_replace(timepoint,  "pre-infection", "12wks"),
          timepoint = str_replace(timepoint,  "post-infection", "30DPI")) %>%
   left_join(all_flow, by = c("full_name", "timepoint", "vaccine_status")) %>%
-  pivot_longer(c(PC1:PC19), names_to = "PC", values_to = "PC_value") %>%
+  pivot_longer(c(PC1:PC20), names_to = "PC", values_to = "PC_value") %>%
   pivot_longer(c(CD4_Tcell:SLADQ), names_to = "flow", values_to = "flow_percent") %>%
   mutate(timepoint = str_replace(timepoint, "12wks", "pre-infection"),
-         timepoint = str_replace(timepoint, "30DPI", "post-infection")) 
+         timepoint = str_replace(timepoint, "30DPI", "post-infection"))  %>%
+  mutate(pig_name = str_extract(full_name, "Minipig_[0-9]*"))
 ```
 
 
 Interaction model - identify populations where the interaction with timepoint DOES have an effect
+
+Need to transition to lmer model and pull out data
 ```{r}
-inter_formula <- flow_percent ~ PC_value *timepoint
+library(lmerTest)
+inter_formula <- flow_percent ~ PC_value *timepoint + (1 |pig_name)
+flow_percent ~ PC_value + timepoint + PC_value *timepoint
+
+library(broom.mixed)
+  minipig_PCA %>%
+  filter(PC == "PC1" & flow == "CD4") %>%
+  lmer(inter_formula, data = .) %>%
+    tidy()
+  broom.mixed::tidy()
+  
+# 6 correlations
+pops_list <- minipig_PCA %>%
+  group_by(PC, flow) %>%
+  nest() %>%
+  mutate(model = map(data, ~lmer(inter_formula, data = .)),
+         summary_model = map(model, tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value) %>%
+  filter(term == "PC_value:timepointpre-infection") %>%
+  filter(p.value < 0.01) %>%
+  arrange(flow, PC) 
+```
+
+
+```{r}
+
+inter_formula <- flow_percent ~ PC_value *timepoint +
 flow_percent ~ PC_value + timepoint + PC_value *timepoint
   
 # 6 correlations
 pops_list <- minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%
-  mutate(model = map(data, ~lm(inter_formula, data = .)),
+  mutate(model = map(data, ~lmer(inter_formula, data = .)),
          summary_model = map(model, tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
@@ -274,6 +304,7 @@ graphs
 do.call(ggarrange, graphs)
 ```
 
+**This is used for table 1** 
 Additive model - only include correlations not found in interaction model, meaing that the timepoint doesn't have an effect
 
 I could use ggpredict for plotting
@@ -282,7 +313,7 @@ https://cran.r-project.org/web/packages/ggiraphExtra/vignettes/ggPredict.html
 Good description of interaction
 https://www.medicine.mcgill.ca/epidemiology/joseph/courses/EPIB-621/interaction.pdf
 ```{r}
-add_formula <- flow_percent ~ PC_value + timepoint
+add_formula <- flow_percent ~ PC_value + timepoint 
 
 # 13 correlations  
 pops_list <- minipig_PCA %>%
@@ -303,27 +334,27 @@ pops_list <- minipig_PCA %>%
 
 
 
-pops_list2 <- minipig_PCA %>%
-    group_by(PC, flow) %>%
-  filter(flow == "CD172" & PC == "PC3" |
-           flow == "CD45RA" & PC == "PC4" |
-           flow == "Pop10" & PC == "PC4" |
-           flow == "Pop11" & PC == "PC6" |
-           flow == "Pop12" & PC == "PC3" |
-           flow == "Pop15" & PC == "PC3" |
-           flow == "Pop16" & PC == "PC4" |
-           flow == "Pop19" & PC == "PC4" |
-           flow == "Pop20" & PC == "PC3" |
-           flow == "Pop22" & PC == "PC3" |
-           flow == "Pop23" & PC == "PC6" |
-           flow == "Pop7" & PC == "PC3" |
-           flow == "Pop8" & PC == "PC3") %>%
-  nest() %>%
-  mutate(model = map(data, ~lm(add_formula, data = .)),
-         summary_model = map(model, tidy)) %>%
-  unnest(summary_model) %>%
-  select(flow, PC, term, p.value, estimate) %>%
-    filter(term =="(Intercept)" & estimate > 0)
+# pops_list2 <- minipig_PCA %>%
+#     group_by(PC, flow) %>%
+#   filter(flow == "CD172" & PC == "PC3" |
+#            flow == "CD45RA" & PC == "PC4" |
+#            flow == "Pop10" & PC == "PC4" |
+#            flow == "Pop11" & PC == "PC6" |
+#            flow == "Pop12" & PC == "PC3" |
+#            flow == "Pop15" & PC == "PC3" |
+#            flow == "Pop16" & PC == "PC4" |
+#            flow == "Pop19" & PC == "PC4" |
+#            flow == "Pop20" & PC == "PC3" |
+#            flow == "Pop22" & PC == "PC3" |
+#            flow == "Pop23" & PC == "PC6" |
+#            flow == "Pop7" & PC == "PC3" |
+#            flow == "Pop8" & PC == "PC3") %>%
+#   nest() %>%
+#   mutate(model = map(data, ~lm(add_formula, data = .)),
+#          summary_model = map(model, tidy)) %>%
+#   unnest(summary_model) %>%
+#   select(flow, PC, term, p.value, estimate) %>%
+#     filter(term =="(Intercept)" & estimate > 0)
 
 
 
@@ -541,6 +572,40 @@ PC4_cluster2 <- res.pca$rotation %>%
 # 
 # left_join(PC4_cluster2, match_metabolites) %>%
 #    write.csv("../data/saved_data/PCA/PC4_cluster2_metab_list.csv")
+
+
+# Pull out PC3 for John 
+res.pca$rotation %>%
+  data.frame() %>%
+  ggplot(aes(x = PC3)) +
+  geom_histogram(bins = 50) +
+  geom_vline(xintercept = 0.025, color = "red") +
+  geom_vline(xintercept = -0.03, color = "red") +
+  xlab("PC3: Weight of Molecular Features")
+
+# 48 metab
+PC3_cluster1 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC3 >= 0.025) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC3)
+
+# 301 metabolites
+PC3_cluster2 <- res.pca$rotation %>%
+  data.frame() %>%
+  filter(PC3 <= -0.03) %>%
+  rownames_to_column("metaboliteID") %>%
+  mutate(metaboliteID = as.numeric(metaboliteID)) %>%
+  select(metaboliteID, PC3)
+
+
+ left_join(PC3_cluster1, match_metabolites) %>%
+    write.csv("../data/saved_data/PCA/PC3_cluster1_metab_list.csv")
+ 
+ left_join(PC3_cluster2, match_metabolites) %>%
+    write.csv("../data/saved_data/PCA/PC3_cluster2_metab_list.csv")
+
 ```
 
 Look at p-value histograms - these won't look very good because I'm only showing 19 PC on each flow component
