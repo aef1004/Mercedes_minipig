@@ -1,0 +1,10 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Retinol metabolism",17,0.63613,5,0.00027043,3.5679,0.022716,0.022716,0.21649
+"alpha-Linolenic acid metabolism",13,0.48645,2,0.082408,1.084,1,1,0.33333
+"Biosynthesis of unsaturated fatty acids",36,1.3471,2,0.39337,0.4052,1,1,0
+"Tryptophan metabolism",41,1.5342,2,0.45917,0.33803,1,1,0.09417
+"Pentose and glucuronate interconversions",18,0.67355,1,0.49859,0.30225,1,1,0.14062
+"Fructose and mannose metabolism",20,0.74839,1,0.53585,0.27095,1,1,0
+"Arachidonic acid metabolism",36,1.3471,1,0.75068,0.12455,1,1,0.07615
+"Amino sugar and nucleotide sugar metabolism",37,1.3845,1,0.76023,0.11906,1,1,0
+"Purine metabolism",65,2.4323,1,0.92055,0.035953,1,1,0.05577

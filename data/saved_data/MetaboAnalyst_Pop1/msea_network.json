@@ -1,0 +1,34 @@
+{
+ "nodes": [
+ {
+ "id": "Carnitine Synthesis",
+"label": "Carnitine Synthesis",
+"size": 3.540541,
+"color": "#FF0000",
+"x": 89.48763,
+"y": 81.58233 
+},
+{
+ "id": "Phospholipid Biosynthesis",
+"label": "Phospholipid Biosynthesis",
+"size": 3.409836,
+"color": "#FF8000",
+"x": 89.93918,
+"y": 83.25515 
+},
+{
+ "id": "Arachidonic Acid Metabolism",
+"label": "Arachidonic Acid Metabolism",
+"size": 3.172712,
+"color": "#FFFF00",
+"x": 91.16115,
+"y": 82.02668 
+} 
+],
+"edges": [ {
+ "id": "1" 
+},
+{
+ "id": "0" 
+} ] 
+}

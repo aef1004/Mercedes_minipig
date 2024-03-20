@@ -1,0 +1,1130 @@
+query_mass,compound_id,compound_name,kegg_id,formula,monoisotopic_mass,adduct,adduct_type,adduct_m/z,delta(ppm)
+146.1171354,HMDB0166738,3-butyloxirane-2-carbaldehyde,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0164724,4-Hydroxy-4-methylcyclohexanone,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0165094,3-(Hydroxymethyl)cyclohexanone,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0165096,SCHEMBL443446,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0165095,3-Hydroxy-3-methylcyclohexan-1-one,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0165097,SCHEMBL13284055,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0166737,6-Hydroxy-2-heptenal,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0031484,2-Heptenoic acid,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0038962,Ethyl tiglate,C08487,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031500,Methyl 2E-hexenoate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0166739,(2E)-7-hydroxyhept-2-enal,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0029314,Isopentenyl acetate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031477,"3,4-Heptanedione",n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031476,"2,3-Heptanedione",n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031504,Methyl (Z)-3-hexenoate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031603,Ethyl 4-pentenoate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0040214,cis-3-Hexenyl formate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031342,Cyclohexanecarboxylic acid,C09822,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0038271,2-Hexenyl formate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031174,4-Methyl-5-hexanolide,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031681,Dihydro-5-propyl-2(3H)-furanone,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0033793,4-Heptenoic acid,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031593,"5-Methyl-2,3-hexanedione",n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0039819,"2,4-Dimethyl-2-pentenoic acid",n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0166736,4-Hydroxyheptenal,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0173760,SCHEMBL14734478,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0173761,"3-methylcyclohex-3-ene-1,2-diol",n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0173762,"5-methylcyclohex-4-ene-1,3-diol",n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0173763,1-methyl-7-oxabicyclo[4.1.0]heptan-3-ol,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0180322,3-(3-ethyloxiran-2-yl)propanal,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0180323,(2E)-3-(3-ethyloxiran-2-yl)prop-2-en-1-ol,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0029165,"1,3-Diacetylpropane",n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0031351,Cyclohexyl formate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0032460,4-Pentenyl acetate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0032391,3-Methyl-3-butenyl acetate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0030330,1-Methoxy-3-methylene-2-pentanone,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0059876,Pantolactone,n/a,C7H12O2,128.083729626,M+NH4,+,146.117553,3
+146.1171354,HMDB0040591,Allyl butyrate,n/a,C7H12O2,128.083729628,M+NH4,+,146.117553,3
+146.1171354,HMDB0145113,SCHEMBL4034937,n/a,C7H15NO2,145.110278727,M+H,+,146.117555,3
+146.1171354,HMDB0145114,"1-(piperidin-1-yl)ethane-1,2-diol",n/a,C7H15NO2,145.110278727,M+H,+,146.117555,3
+146.1171354,HMDB0145115,5-[(2-hydroxyethyl)amino]pentanal,n/a,C7H15NO2,145.110278727,M+H,+,146.117555,3
+146.1171354,HMDB0145125,1-(2-hydroxyethyl)piperidin-3-ol,n/a,C7H15NO2,145.110278727,M+H,+,146.117555,3
+146.1171354,HMDB0145116,SCHEMBL10818580,n/a,C7H15NO2,145.110278727,M+H,+,146.117555,3
+146.1171354,HMDB0094649,L-2-aminoheptanoic acid,n/a,C7H15NO2,145.110278729,M+H,+,146.117555,3
+146.1171354,HMDB0001161,4-Trimethylammoniobutanoic acid,C01181,C7H15NO2,145.110278729,M+H,+,146.117555,3
+146.1171354,HMDB0006831,4-Trimethylammoniobutanoic acid,C01181,C7H15NO2,145.110278729,M+H,+,146.117555,3
+146.1171354,HMDB0000895,Acetylcholine,C01996,C7H16NO2,146.118103761,M+H,+,146.118104,7
+146.1171354,HMDB0013811,1-Nitroheptane,n/a,C7H16NO2,146.118103761,M+H,+,146.118104,7
+212.0918116,HMDB0060747,3-O-Methyl-a-methyldopa,n/a,C10H13NO4,211.084457909,M+H,+,212.091734,0
+212.0918116,HMDB0011754,Methyldopa,C07194,C10H13NO4,211.084457909,M+H,+,212.091734,0
+212.0918116,HMDB0001434,3-Methoxytyrosine,n/a,C10H13NO4,211.084457909,M+H,+,212.091734,0
+212.0918116,HMDB0125096,3-(4-hydroxy-3-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0125588,3-(3-hydroxy-5-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166608,"3-(6-hydroxy-2H-1,3-benzodioxol-5-yl)propanal",n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0125524,(2E)-3-(3-hydroxy-5-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0142175,2-benzylpropanedioic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0141263,(2Z)-2-hydroxy-3-(3-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0141265,3-(3-methoxyphenyl)-2-oxopropanoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0140957,(2E)-3-(3-hydroxy-2-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0137510,3-(4-hydroxy-2-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0131171,(2Z)-2-hydroxy-3-(4-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0131172,(2E)-3-(2-hydroxy-4-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0131173,3-(4-methoxyphenyl)oxirane-2-carboxylic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0131137,3-(3-hydroxy-4-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0146403,SCHEMBL2535852,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0146628,ZINC222502827,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0146629,CTK4I0057,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0178262,(2Z)-3-(3-hydroxy-5-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166614,"[3-(2H-1,3-benzodioxol-5-yl)oxiran-2-yl]methanol",n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166613,"6-[(1Z)-3-hydroxyprop-1-en-1-yl]-2H-1,3-benzodioxol-5-ol",n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166609,2815-95-4,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166611,"3-(2H-1,3-benzodioxol-5-yl)-2-hydroxypropanal",n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0166607,"3-(2H-1,3-benzodioxol-5-yl)-3-hydroxypropanal",n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0154365,3-(3-hydroxy-2-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0146630,3-(2-methoxyphenyl)oxirane-2-carboxylic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0127500,3-(4-methoxyphenyl)-2-oxopropanoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0032652,Meconine,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0061686,"2,5-Dihydroxycinnamic acid methyl ester",n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0059721,mono-Benzyl malonate,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0165533,Ferulic acid,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0240705,Ferulic acid,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0032614,Piperonyl acetate,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0029663,Vanillin acetate,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0135741,3-(2-hydroxy-4-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0037644,3-(2-Hydroxy-3-methoxyphenyl)-2-propenoic acid,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0002120,Monoethyl phthalate,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0000955,Isoferulic acid,C10470,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0000954,Ferulic acid,C01494,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0134088,3-(2-hydroxy-3-methoxyphenyl)prop-2-enoic acid,n/a,C10H10O4,194.057908802,M+NH4,+,212.091732,0
+212.0918116,HMDB0039606,Repandiol,n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0030765,"(-)-trans-3,4-Dihydro-4,8-dihydroxy-3-methyl-1H-2-benzopyran-1-one",n/a,C10H10O4,194.057908808,M+NH4,+,212.091732,0
+212.0918116,HMDB0036604,N-Methylcalystegine B2,n/a,C8H15NO4,189.100107973,M+Na,+,212.089326,12
+212.0918116,HMDB0240627,1-Carboxyethylvaline,n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0094722,"2-[(1,5-dihydroxyhexylidene)amino]acetic acid",n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0062181,N-lactoyl-Valine,n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0094719,"2-[(1,2-dihydroxyhexylidene)amino]acetic acid",n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0094718,1-hydroxyhexanoylglycine,n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0094720,"2-[(1,3-dihydroxyhexylidene)amino]acetic acid",n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0094721,"2-[(1,4-dihydroxyhexylidene)amino]acetic acid",n/a,C8H15NO4,189.100107967,M+Na,+,212.089326,12
+212.0918116,HMDB0014991,Temozolomide,n/a,C6H6N6O2,194.055223466,M+NH4,+,212.089046,13
+212.0918116,HMDB0166750,[(2E)-hept-2-en-1-yloxy]sulfonic acid,n/a,C7H14O4S,194.061280105,M+NH4,+,212.095103,16
+212.0918116,HMDB0175186,(hept-6-en-1-yloxy)sulfonic acid,n/a,C7H14O4S,194.061280105,M+NH4,+,212.095103,16
+279.1916424,HMDB0061189,3-Hydroxyisovalerylcarnitine,n/a,C12H23NO5,261.157622845,M+NH4,+,279.191446,1
+279.1916424,HMDB0062555,Hydroxyisovaleroyl carnitine,n/a,C12H23NO5,261.157622845,M+NH4,+,279.191446,1
+279.1916424,HMDB0240421,2-Hydroxyisovalerylcarnitine,n/a,C12H23NO5,261.157622845,M+NH4,+,279.191446,1
+279.1916424,HMDB0040904,Ipomeatetrahydrofuran,n/a,C15H28O3,256.203844762,M+Na,+,279.193063,5
+279.1916424,HMDB0168550,"(8E,13E)-heptadeca-8,13,16-trien-11-yne-2,10,15-triol",n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0168551,"(2E,7E)-1-(oxiran-2-yl)pentadeca-2,7-dien-4-yne-1,6-diol",n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0168552,(4E)-1-[3-(1-hydroxyprop-2-en-1-yl)oxiran-2-yl]dodec-4-en-1-yn-3-ol,n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0168553,"(4E)-1-(3-heptyloxiran-2-yl)octa-4,7-dien-2-yne-1,6-diol",n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0168554,"(8E,13E)-heptadeca-8,13,16-trien-11-yne-1,10,15-triol",n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0168549,"(4E,9E)-heptadeca-1,4,9-trien-6-yne-3,8,11-triol",n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0137260,4-[(4E)-3-hydroxydec-4-en-1-yl]-2-methoxyphenol,n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0137271,4-[(1E)-3-hydroxydec-1-en-1-yl]-2-methoxyphenol,n/a,C17H26O3,278.188194697,M+H,+,279.195471,14
+279.1916424,HMDB0030974,8-Acetoxy-4-acoren-3-one,n/a,C17H26O3,278.188194698,M+H,+,279.195471,14
+279.1916424,HMDB0031928,Panaxytriol,C16792,C17H26O3,278.188194698,M+H,+,279.195471,14
+279.1916424,HMDB0030801,[6]-Paradol,C10482,C17H26O3,278.188194698,M+H,+,279.195471,14
+279.1916424,HMDB0039251,Panaxacol,n/a,C17H26O3,278.188194698,M+H,+,279.195471,14
+279.1916424,HMDB0134775,"5-formyl-6-hydroxy-1,1,4a,6-tetramethyl-decahydronaphthalen-2-yl acetate",n/a,C17H28O4,296.198759382,M+H-H2O,+,279.196059,16
+279.1916424,HMDB0038798,"(1(10)E,4a,5E)-1(10),5-Germacradiene-12-acetoxy-4,11-diol",n/a,C17H28O4,296.198759384,M+H-H2O,+,279.196059,16
+279.1916424,HMDB0035075,Tanacetol B,n/a,C17H28O4,296.198759384,M+H-H2O,+,279.196059,16
+279.1916424,HMDB0060952,2-hydroxyimipramine,n/a,C19H24N2O,296.1888634,M+H-H2O,+,279.186163,20
+279.1916424,HMDB0014521,Palonosetron,n/a,C19H24N2O,296.1888634,M+H-H2O,+,279.186163,20
+279.1916424,HMDB0030283,Hydrocinchonine,n/a,C19H24N2O,296.1888634,M+H-H2O,+,279.186163,20
+318.1287707,HMDB0037839,N-(1-Deoxy-1-fructosyl)histidine,n/a,C12H19N3O7,317.122299977,M+H,+,318.129576,3
+318.1287707,HMDB0029089,Tryptophyl-Methionine,n/a,C16H21N3O3S,335.130362243,M+H-H2O,+,318.127662,3
+318.1287707,HMDB0028984,Methionyl-Tryptophan,n/a,C16H21N3O3S,335.130362243,M+H-H2O,+,318.127662,3
+318.1287707,HMDB0000489,Aspartylglycosamine,C04540,C12H21N3O8,335.132864663,M+H-H2O,+,318.130165,4
+318.1287707,HMDB0136315,"(2-{[3-(3,4-dihydroxy-5-methoxyphenyl)prop-2-enoyl]oxy}ethyl)trimethylazanium",n/a,C15H22NO5,296.149249233,M+Na,+,318.131191,8
+318.1287707,HMDB0136311,"(2-{[1,2-dihydroxy-3-(3-methoxy-4-oxocyclohexa-2,5-dien-1-ylidene)prop-1-en-1-yl]oxy}ethyl)trimethylazanium",n/a,C15H22NO5,296.149249233,M+Na,+,318.131191,8
+318.1287707,HMDB0136314,"(2-{[3-(2,4-dihydroxy-5-methoxyphenyl)prop-2-enoyl]oxy}ethyl)trimethylazanium",n/a,C15H22NO5,296.149249233,M+Na,+,318.131191,8
+318.1287707,HMDB0136313,"(2-{[3-(2,4-dihydroxy-3-methoxyphenyl)prop-2-enoyl]oxy}ethyl)trimethylazanium",n/a,C15H22NO5,296.149249233,M+Na,+,318.131191,8
+318.1287707,HMDB0136316,{2-[3-(4-hydroxy-3-methoxyphenyl)oxirane-2-carbonyloxy]ethyl}trimethylazanium,n/a,C15H22NO5,296.149249233,M+Na,+,318.131191,8
+318.1287707,HMDB0005037,Sumatriptan,C07319,C14H21N3O2S,295.135447621,M+Na,+,318.124666,13
+318.1287707,HMDB0153675,"1-(2,4-dihydroxy-6-methoxy-3-methylphenyl)-3-(3-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0153676,"5-methoxy-2-methyl-4-(3-phenyloxirane-2-carbonyl)benzene-1,3-diol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0151629,"3-benzyl-5,8-dihydroxy-7-methoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0151909,"3-(4-hydroxy-2,3-dimethoxyphenyl)-1-(4-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0153670,"1-(2,4-dihydroxy-6-methoxy-3-methylphenyl)-3-(2-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0153672,"(2E)-3-phenyl-1-(2,4,5-trihydroxy-6-methoxy-3-methylphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0153671,"1-[2,4-dihydroxy-3-(hydroxymethyl)-6-methoxyphenyl]-3-phenylprop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0153674,"1-(2,4-dihydroxy-6-methoxy-3-methylphenyl)-3-(4-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0146373,AC1NAZKE,n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0140280,"1-(2-hydroxy-4,6-dimethoxyphenyl)-3-(4-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0136509,"2-(4-hydroxyphenyl)ethyl 3-(3,4-dihydroxyphenyl)prop-2-enoate",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130773,"3-(4-hydroxyphenyl)-5,7-dimethoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130772,"3-(3-hydroxyphenyl)-5,7-dimethoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130769,"6-hydroxy-5,7-dimethoxy-3-phenyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130768,"3-(2-hydroxyphenyl)-5,7-dimethoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130580,"3-(3-hydroxyphenyl)-1-(2,4,6-trihydroxy-3,5-dimethylphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0138454,"7-hydroxy-3-[(3-hydroxyphenyl)methyl]-5-methoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130574,"3-(2-hydroxyphenyl)-1-(2,4,6-trihydroxy-3,5-dimethylphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130573,"5,7-dihydroxy-2-(3-hydroxyphenyl)-6,8-dimethyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130576,"3-phenyl-1-[2,4,6-trihydroxy-3-(hydroxymethyl)-5-methylphenyl]prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130899,"3-(3-hydroxy-5-methoxyphenyl)-7-methoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0132853,"7-hydroxy-6-methoxy-3-(4-methoxyphenyl)-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0134815,"2-hydroxy-3,4-diphenylpentanedioic acid",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0133983,"(2E)-1-(2,6-dihydroxy-3,4-dimethoxyphenyl)-3-phenylprop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0133985,"(2E)-1-(2,5-dihydroxy-3,4-dimethoxyphenyl)-3-phenylprop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0133980,"(2E)-1-(2-hydroxy-3,4-dimethoxyphenyl)-3-(3-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0133300,"2-(3-hydroxyphenyl)-7,8-dimethoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0133299,"6-hydroxy-7,8-dimethoxy-2-phenyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0132915,"(2E)-1-(3,6-dihydroxy-2,4-dimethoxyphenyl)-3-phenylprop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0132911,"(2E)-1-(2,3-dihydroxy-4,6-dimethoxyphenyl)-3-phenylprop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0132909,"(2E)-1-(2-hydroxy-4,6-dimethoxyphenyl)-3-(3-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130569,"5,7-dihydroxy-8-(hydroxymethyl)-6-methyl-2-phenyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130570,"5,7-dihydroxy-6-(hydroxymethyl)-8-methyl-2-phenyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130578,"3-(4-hydroxyphenyl)-1-(2,4,6-trihydroxy-3,5-dimethylphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0146408,"3-(3-methoxyphenyl)-2-methyl-1-(2,4,6-trihydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0146435,"2-[(3-methoxyphenyl)methyl]-1-(2,4,6-trihydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0147284,"2,5-dimethoxy-4-(6-methoxy-1-benzofuran-2-yl)phenol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0147288,"2,3-dimethoxy-4-(6-methoxy-1-benzofuran-2-yl)phenol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0150246,"3-(4-methoxyphenyl)-1-(2,4,6-trihydroxy-3-methylphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0150244,"5,7-dihydroxy-2-(4-methoxyphenyl)-6-methyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0151165,"4-hydroxy-9-methoxy-6-(2-methylbut-3-en-2-yl)-7H-furo[3,2-g]chromen-7-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0146372,"5,14-dimethoxy-8,17-dioxatetracyclo[8.7.0.0²,⁷.0¹¹,¹⁶]heptadeca-2,4,6,11(16),12,14-hexaen-4-ol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130397,"5-hydroxy-7-methoxy-3-(3-methoxyphenyl)-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130393,"8-hydroxy-7-methoxy-3-(3-methoxyphenyl)-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130373,"3-(3-hydroxy-4-methoxyphenyl)-7-methoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130370,"3-(4-hydroxy-3-methoxyphenyl)-7-methoxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130369,"6-hydroxy-7-methoxy-3-(3-methoxyphenyl)-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0128539,"5,6-dimethoxy-8,17-dioxatetracyclo[8.7.0.0²,⁷.0¹¹,¹⁶]heptadeca-2(7),3,5,11(16),12,14-hexaen-14-ol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0126073,"3-(4-hydroxy-2,3-dimethoxyphenyl)-1-(3-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0140838,"(2E)-1-(2-hydroxy-4,6-dimethoxyphenyl)-3-(2-hydroxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0140839,"3,5-dimethoxy-2-(3-phenyloxirane-2-carbonyl)phenol",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0151166,"9-hydroxy-4-methoxy-6-(2-methylbut-3-en-2-yl)-7H-furo[3,2-g]chromen-7-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130571,"5,7-dihydroxy-2-(4-hydroxyphenyl)-6,8-dimethyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0030875,"2',4-Dihydroxy-4',6'-dimethoxychalcone",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0033861,"3-Hydroxy-2,9-dimethoxypterocarpan",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0034116,Homopisatin,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0033142,L-Cystathionine,C00542,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0041321,"5,7-Dihydroxy-4'-methoxy-8-methylflavanone",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0038812,"4,4'-Dihydroxy-2',6'-dimethoxychalcone",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0033292,"8-Hydroxy-3,9-dimethoxypterocarpan",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0031421,Heliannone B,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0038110,Sativanone,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0034008,Methylnissolin,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0031705,Heliannone A,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0041322,"5,7-Dihydroxy-4'-methoxy-8-methylisoflavanone",n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0034001,Panaxydol,n/a,C17H16O5,300.099773622,M+NH4,+,318.133597,15
+318.1287707,HMDB0130378,"3-(3,4-dimethoxyphenyl)-7-hydroxy-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0140279,"1-(2,4-dihydroxy-6-methoxyphenyl)-3-(4-methoxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0130568,"5,7-dihydroxy-2-(2-hydroxyphenyl)-6,8-dimethyl-3,4-dihydro-2H-1-benzopyran-4-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0140278,"1-(2,6-dihydroxy-4-methoxyphenyl)-3-(4-methoxyphenyl)prop-2-en-1-one",n/a,C17H16O5,300.099773615,M+NH4,+,318.133597,15
+318.1287707,HMDB0030341,Piplartine,C10166,C17H19NO5,317.126322723,M+H,+,318.133599,15
+318.1287707,HMDB0137020,"3-(3,4-dihydroxyphenyl)-3-hydroxy-N-[2-(4-hydroxyphenyl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137023,"3-(3,4-dihydroxyphenyl)-2-hydroxy-N-[2-(4-hydroxyphenyl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137024,"N-[2-(4-hydroxyphenyl)ethyl]-3-(2,3,4-trihydroxyphenyl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137022,"3-(3,4-dihydroxyphenyl)-N-[2-(3,4-dihydroxyphenyl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137025,"N-[2-(4-hydroxyphenyl)ethyl]-3-(3,4,5-trihydroxyphenyl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137027,"3-(3,4-dihydroxyphenyl)-N-[2-(1-hydroxy-4-oxocyclohexa-2,5-dien-1-yl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137026,"3-(1,3-dihydroxy-4-oxocyclohexa-2,5-dien-1-yl)-N-[2-(4-hydroxyphenyl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0137021,"N-[2-(4-hydroxyphenyl)ethyl]-3-(2,4,5-trihydroxyphenyl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136330,"N-[2-hydroxy-2-(4-hydroxyphenyl)ethyl]-3-(1-hydroxy-4-oxocyclohexa-2,5-dien-1-yl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136329,"N-[2-hydroxy-2-(1-hydroxy-4-oxocyclohexa-2,5-dien-1-yl)ethyl]-3-(4-hydroxyphenyl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136327,"3-(3,4-dihydroxyphenyl)-N-[2-hydroxy-2-(4-hydroxyphenyl)ethyl]propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136328,2-hydroxy-N-[2-hydroxy-2-(4-hydroxyphenyl)ethyl]-3-(4-hydroxyphenyl)propanimidic acid,n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136326,"N-[2-(3,4-dihydroxyphenyl)-2-hydroxyethyl]-3-(4-hydroxyphenyl)propanimidic acid",n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+318.1287707,HMDB0136325,3-hydroxy-N-[2-hydroxy-2-(4-hydroxyphenyl)ethyl]-3-(4-hydroxyphenyl)propanimidic acid,n/a,C17H19NO5,317.126322716,M+H,+,318.133599,15
+385.2080457,HMDB0185679,"(8Z,14Z)-11-(sulfooxy)icosa-8,12,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185658,"(8Z,14Z)-7-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185694,"(8Z,11Z,14Z)-20-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185682,"(8Z,11Z,14Z)-19-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185676,"(8Z,11Z,13E)-15-(sulfooxy)icosa-8,11,13-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185661,"(8Z,11Z,14Z)-16-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185673,"(11Z,14Z)-8-(sulfooxy)icosa-9,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185698,"(8Z,11Z,14Z)-2-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185670,"(8Z,10E,14Z)-12-(sulfooxy)icosa-8,10,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185667,"(8Z,11Z,14Z)-13-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0185664,"(8Z,11Z,14Z)-10-(sulfooxy)icosa-8,11,14-trienoic acid",n/a,C20H34O6S,402.207609989,M+H-H2O,+,385.20491,8
+385.2080457,HMDB0179611,"{[7-(2-hydroxypropan-2-yl)-1,4a-dimethyl-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179614,"{[6-hydroxy-1,4a-dimethyl-7-(propan-2-yl)-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179608,"{[1-(hydroxymethyl)-4a-methyl-7-(propan-2-yl)-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179615,"[8-(hydroxymethyl)-4b,8-dimethyl-2-(propan-2-yl)-3,4,4a,4b,5,6,7,8,8a,9-decahydrophenanthren-3-yl]oxidanesulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179605,"{[1-(hydroxymethyl)-1-methyl-7-(propan-2-yl)-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-4a-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179606,"{[4a-(hydroxymethyl)-1-methyl-7-(propan-2-yl)-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179618,"{[10-hydroxy-1,4a-dimethyl-7-(propan-2-yl)-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179619,"[8-(hydroxymethyl)-4b,8-dimethyl-2-(propan-2-yl)-3,4,4a,4b,5,6,7,8,8a,9-decahydrophenanthren-9-yl]oxidanesulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179623,"{[2,6-dimethyl-13-(propan-2-yl)-12-oxatetracyclo[8.5.0.0²,⁷.0¹¹,¹³]pentadec-9-en-6-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179626,"{2-[8-(hydroxymethyl)-4b,8-dimethyl-3,4,4a,4b,5,6,7,8,8a,9-decahydrophenanthren-2-yl]propoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0182175,"({2-hydroxy-5,9,14-trimethyltetracyclo[11.2.1.0¹,¹⁰.0⁴,⁹]hexadec-14-en-5-yl}methoxy)sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0179627,"{[7-(1-hydroxypropan-2-yl)-1,4a-dimethyl-1,2,3,4,4a,4b,5,6,10,10a-decahydrophenanthren-1-yl]methoxy}sulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0182176,"[5-(hydroxymethyl)-5,9,14-trimethyltetracyclo[11.2.1.0¹,¹⁰.0⁴,⁹]hexadec-14-en-2-yl]oxidanesulfonic acid",n/a,C20H32O5S,384.197045304,M+H,+,385.204321,10
+385.2080457,HMDB0014334,Bortezomib,n/a,C19H25BN4O4,384.196885774,M+H,+,385.204162,10
+385.2080457,HMDB0061005,repaglinide aromatic amine,n/a,C22H28N2O4,384.204907394,M+H,+,385.212183,11
+385.2080457,HMDB0060583,Trandolaprilat,n/a,C22H30N2O5,402.21547208,M+H-H2O,+,385.212772,12
+385.2080457,HMDB0030868,Citreoviridin A,n/a,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0030523,Citreoviridin C,n/a,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0036462,Virolongin B,n/a,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0035027,Melleolide F,n/a,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0035774,Armillyl orsellinate,n/a,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0015459,Cortisone acetate,C08173,C23H30O6,402.204238692,M+H-H2O,+,385.201539,17
+385.2080457,HMDB0038917,Armillarivin,n/a,C23H28O5,384.193674006,M+H,+,385.20095,18
+385.2080457,HMDB0031380,"(6beta,7alpha,12beta,13beta)-7-Hydroxy-11,16-dioxo-8,14-apianadien-22,6-olide",n/a,C23H28O5,384.193674006,M+H,+,385.20095,18
+385.2080457,HMDB0179899,"(2E,4E,6E,8E,10E,12E)-13-{3-[(1E)-3-methoxy-2-methyl-3-oxoprop-1-en-1-yl]oxiran-2-yl}-4,8-dimethyltetradeca-2,4,6,8,10,12-hexaenoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179900,"(2E,4E,6E,8E,10E,12E,14E)-15-[3-(methoxycarbonyl)-3-methyloxiran-2-yl]-4,8,13-trimethylpentadeca-2,4,6,8,10,12,14-heptaenoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179898,"(2E,4E,6E,8E,10E)-11-{3-[(1E,3E)-5-methoxy-4-methyl-5-oxopenta-1,3-dien-1-yl]-3-methyloxiran-2-yl}-4,8-dimethylundeca-2,4,6,8,10-pentaenoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179897,"(2E,4E,6E,8E)-9-{3-[(1E,3E,5E)-7-methoxy-2,6-dimethyl-7-oxohepta-1,3,5-trien-1-yl]oxiran-2-yl}-4,8-dimethylnona-2,4,6,8-tetraenoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179895,"(2E,4E)-5-{3-[(2E,4E,6E,8E,10E)-12-methoxy-7,11-dimethyl-12-oxododeca-2,4,6,8,10-pentaen-2-yl]oxiran-2-yl}-4-methylpenta-2,4-dienoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179894,"(2E)-3-{3-[(1E,3E,5E,7E,9E,11E)-13-methoxy-3,8,12-trimethyl-13-oxotrideca-1,3,5,7,9,11-hexaen-1-yl]-2-methyloxiran-2-yl}prop-2-enoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179893,"3-[(2E,4E,6E,8E,10E,12E,14E)-16-methoxy-6,11,15-trimethyl-16-oxohexadeca-2,4,6,8,10,12,14-heptaen-2-yl]oxirane-2-carboxylic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+385.2080457,HMDB0179896,"(2E,4E,6E)-7-{3-[(1E,3E,5E,7E)-9-methoxy-4,8-dimethyl-9-oxonona-1,3,5,7-tetraen-1-yl]-2-methyloxiran-2-yl}-4-methylhepta-2,4,6-trienoic acid",n/a,C23H28O5,384.193674002,M+H,+,385.20095,18
+439.3423622,HMDB0002126,"27-Nor-5b-cholestane-3a,7a,12a,24,25-pentol",n/a,C26H46O5,438.334524582,M+H,+,439.341801,1
+439.3423622,HMDB0036883,Citranaxanthin,n/a,C33H44O,456.33921603,M+H-H2O,+,439.336516,13
+481.3131016,HMDB0175472,"3,4,5-trihydroxy-6-[(6,10,14-trimethyl-2-methylidenepentadecyl)oxy]oxane-2-carboxylic acid",n/a,C25H46O7,458.324353821,M+Na,+,481.313572,1
+481.3131016,HMDB0170465,"14-(2,3-dihydroxy-6-methylheptan-2-yl)-4,5,11,13-tetrahydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-9-en-8-one",n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0167392,"3,4,5-trihydroxy-6-(3-pentadecylphenoxy)oxane-2-carboxylic acid",n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0170466,"4,5,11-trihydroxy-2,15-dimethyl-14-(1,2,3-trihydroxy-6-methylheptan-2-yl)tetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-9-en-8-one",n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0030180,Crustecdysone,n/a,C27H44O7,480.308703762,M+H,+,481.31598,6
+481.3131016,HMDB0170469,Inokosterone,n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0170467,"14-(2,3-dihydroxy-6-methylheptan-2-yl)-4,5,11-trihydroxy-15-(hydroxymethyl)-2-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-9-en-8-one",n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0170468,"14-(2,3-dihydroxy-6-methylheptan-2-yl)-4,5,11-trihydroxy-2-(hydroxymethyl)-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-9-en-8-one",n/a,C27H44O7,480.308703757,M+H,+,481.31598,6
+481.3131016,HMDB0240232,Bilastine,n/a,C28H37N3O3,463.283492063,M+NH4,+,481.317315,9
+481.3131016,HMDB0171796,"N-[(10Z)-7-(butan-2-yl)-5,8-dihydroxy-3-(propan-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,10,12,15-hexaen-4-yl]-2-(dimethylamino)-4-methylpent-4-enimidic acid",n/a,C28H42N4O4,498.320605848,M+H-H2O,+,481.317906,10
+481.3131016,HMDB0171795,"N-[(10Z)-7-(butan-2-yl)-5,8-dihydroxy-3-(prop-1-en-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,10,12,15-hexaen-4-yl]-2-(dimethylamino)-4-methylpentanimidic acid",n/a,C28H42N4O4,498.320605848,M+H-H2O,+,481.317906,10
+481.3131016,HMDB0171797,"N-[(10Z)-7-(but-1-en-2-yl)-5,8-dihydroxy-3-(propan-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,10,12,15-hexaen-4-yl]-2-(dimethylamino)-4-methylpentanimidic acid",n/a,C28H42N4O4,498.320605848,M+H-H2O,+,481.317906,10
+481.3131016,HMDB0171798,"N-[(10Z)-7-(but-3-en-2-yl)-5,8-dihydroxy-3-(propan-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,10,12,15-hexaen-4-yl]-2-(dimethylamino)-4-methylpentanimidic acid",n/a,C28H42N4O4,498.320605848,M+H-H2O,+,481.317906,10
+481.3131016,HMDB0170648,"5'-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170654,"5'-(hydroxymethyl)-7,9,13-trimethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170645,"19-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170653,"17-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170658,"11-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170657,"7-(hydroxymethyl)-5',9,13-trimethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170656,"13-(hydroxymethyl)-5',7,9-trimethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170649,"7-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170652,"15-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170647,"4-[6-(2-hydroxydiazen-1-yl)-7,9,13-trimethyl-16-oxo-5-oxapentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosan-6-yl]-2-methylbutanal",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170646,"6'-hydroxy-5',7,9,13-tetramethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+481.3131016,HMDB0170655,"9-(hydroxymethyl)-5',7,13-trimethyl-1'-nitroso-5-oxaspiro[pentacyclo[10.8.0.0²,⁹.0⁴,⁸.0¹³,¹⁸]icosane-6,2'-piperidine]-16-one",n/a,C27H42N2O4,458.31445784,M+Na,+,481.303676,20
+512.2522409,HMDB0158633,"6-{[(15S)-10,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158234,"6-{[(15S)-14,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158235,"6-{[(15S)-13,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158642,"6-{[(15R)-5,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-3-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158238,"6-{[(15S)-12,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158621,"6-{[(15S)-5,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-9-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158636,"6-{[(15S)-1,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158629,"6-{[(15S)-14,16-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158625,"6-{[(15S)-14,17-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158226,"6-{[(15R)-3,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158231,"3,4,5-trihydroxy-6-{[(15S)-14-hydroxy-15-(hydroxymethyl)-5-methoxytetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}oxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158228,"6-{[(15S)-8,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0157580,"3,4,5-trihydroxy-6-{[(2R,15S)-13-hydroxy-2,15-dimethyl-5,14-dioxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-7-en-9-yl]oxy}oxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158210,"6-{[(15S)-4,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-9-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158213,"6-{[(15S)-14,17-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158219,"6-{[(15S)-10,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158216,"6-{[(15S)-14,16-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158221,"6-{[(15R)-1,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158223,"6-{[(15R)-11,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-4-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158225,"6-{[(15R)-4,14-dihydroxy-5-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-3-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158639,"6-{[(15R)-11,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158646,"6-{[(15S)-8,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158643,"6-{[(15S)-3,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169111,"6-[4-acetyl-3-(3,7-dimethylocta-2,6-dien-1-yl)-2-hydroxy-5-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171254,"6-{[(9E)-3-(acetyloxy)-11-hydroxyheptadeca-1,9-dien-4,6-diyn-8-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171269,"6-{[(9E)-3-(acetyloxy)-17-hydroxyheptadeca-1,9-dien-4,6-diyn-8-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171253,"6-{[(8E)-15-(acetyloxy)-10-hydroxyheptadeca-8,16-dien-11,13-diyn-7-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171257,"6-{[(8E)-15-(acetyloxy)-10-hydroxyheptadeca-8,16-dien-11,13-diyn-2-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171258,"6-{[(9E)-3-(acetyloxy)-16-hydroxyheptadeca-1,9-dien-4,6-diyn-8-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171264,"6-{[6-(acetyloxy)-1-(3-heptyloxiran-2-yl)oct-7-en-2,4-diyn-1-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171268,"6-{[(8E)-15-(acetyloxy)-10-hydroxyheptadeca-8,16-dien-11,13-diyn-1-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171273,"3,4,5-trihydroxy-6-{[(9E)-3-[(2-hydroxyacetyl)oxy]heptadeca-1,9-dien-4,6-diyn-8-yl]oxy}oxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0171272,"3,4,5-trihydroxy-6-(2-{[(9E)-8-hydroxyheptadeca-1,9-dien-4,6-diyn-3-yl]oxy}-2-oxoethoxy)oxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169110,"6-[3-acetyl-2-(3,7-dimethylocta-2,6-dien-1-yl)-6-hydroxy-4-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169105,"6-(4-acetyl-3-methoxy-5-{[3-methyl-3-(4-methylpent-3-en-1-yl)oxiran-2-yl]methyl}phenoxy)-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169108,"6-[4-acetyl-5-(3,7-dimethylocta-2,6-dien-1-yl)-2-hydroxy-3-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158650,"3,4,5-trihydroxy-6-{[(15S)-14-hydroxy-15-(hydroxymethyl)-4-methoxytetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}oxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158654,"6-{[(15S)-14,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158656,"6-{[(15S)-13,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0158660,"6-{[(15S)-12,14-dihydroxy-4-methoxy-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-2,4,6-trien-5-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169095,"6-[4-acetyl-3-(8-hydroxy-3,7-dimethylocta-2,6-dien-1-yl)-5-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169099,"6-[4-acetyl-3-(4-hydroxy-3,7-dimethylocta-2,6-dien-1-yl)-5-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169097,"6-{4-acetyl-3-[4-hydroxy-3-(4-methylpent-3-en-1-yl)but-2-en-1-yl]-5-methoxyphenoxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169101,"6-[4-acetyl-3-(5-hydroxy-3,7-dimethylocta-2,6-dien-1-yl)-5-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169103,"6-{4-acetyl-3-[5-(3,3-dimethyloxiran-2-yl)-3-methylpent-2-en-1-yl]-5-methoxyphenoxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0169107,"6-[3-acetyl-4-(3,7-dimethylocta-2,6-dien-1-yl)-6-hydroxy-2-methoxyphenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0033412,"(1R,2R,5S,8S,9S,10R,11R)-11-methyl-6-methylidene-16-oxo-5-{[(2S,3R,4S,5S,6R)-3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]oxy}-15-oxapentacyclo[9.3.2.1,.0,.0,]heptadecane-9-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0037084,"(8S,8'S)-Secoisolariciresinol 9-xyloside",n/a,C25H34O10,494.215197308,M+NH4,+,512.24902,6
+512.2522409,HMDB0038610,Gibberellin A4 glucosyl ester,n/a,C25H34O10,494.215197308,M+NH4,+,512.24902,6
+512.2522409,HMDB0171261,"6-{[(7E)-1-(acetyloxy)-1-(oxiran-2-yl)pentadec-7-en-2,4-diyn-6-yl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C25H34O10,494.215197295,M+NH4,+,512.24902,6
+512.2522409,HMDB0015181,Fluocinonide,C07007,C26H32F2O7,494.211609788,M+NH4,+,512.245433,13
+512.2522409,HMDB0140090,"6-(4-{2-[(4-aminobutyl)(3-aminopropyl)carbamoyl]ethyl}-2,6-dimethoxyphenoxy)-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C24H39N3O10,529.263544468,M+H-H2O,+,512.260844,17
+512.5864846,HMDB0033177,Sapiol,n/a,C34H70O,494.542666862,M+NH4,+,512.57649,19
+513.2548693,HMDB0038738,Ethyl 3-hydroxyoctanoate O-[glucosyl-(1->6)-glucoside],n/a,C22H40O13,512.246891366,M+H,+,513.254167,1
+513.2548693,HMDB0157582,"[(2R,15S)-9-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-13-hydroxy-2,15-dimethyl-14-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-7-en-5-yl]oxidanyl",n/a,C25H35O10,495.223022327,M+NH4,+,513.256845,4
+513.2548693,HMDB0179952,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(2,4,8-trihydroxy-2,6-dimethyloctan-3-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C20H37N3O9S,495.225050957,M+NH4,+,513.258874,8
+513.2548693,HMDB0179953,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(2,3,8-trihydroxy-2,6-dimethyloctan-4-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C20H37N3O9S,495.225050957,M+NH4,+,513.258874,8
+513.2548693,HMDB0174900,"N-[(10Z)-5,8-dihydroxy-7-[(1H-indol-3-yl)methyl]-3-(propan-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,10,12,15-hexaen-4-yl]-3-methyl-2-oxobutanamide",n/a,C30H34N4O5,530.252920211,M+H-H2O,+,513.25022,9
+513.2548693,HMDB0167227,"6-[3-(7-{3-[(2E)-hexa-2,5-dien-1-yl]oxiran-2-yl}heptyl)phenoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167180,"3,4,5-trihydroxy-6-{3-[(8E,11E)-5-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0035700,Corosin,n/a,C27H38O8,490.256668192,M+Na,+,513.245886,18
+513.2548693,HMDB0167212,"3,4,5-trihydroxy-6-{2-hydroxy-6-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167174,"3,4,5-trihydroxy-6-{3-[(8E,11E)-7-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167200,"3,4,5-trihydroxy-6-{3-[(8E,11E)-10-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167223,"3,4,5-trihydroxy-6-{3-[(8E)-10-[3-(prop-2-en-1-yl)oxiran-2-yl]dec-8-en-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167220,"3,4,5-trihydroxy-6-{3-[(8E,11E)-13-(oxiran-2-yl)trideca-8,11-dien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167217,"3,4,5-trihydroxy-6-{2-hydroxy-5-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167216,"3,4,5-trihydroxy-6-{2-hydroxy-4-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167195,"3,4,5-trihydroxy-6-{4-hydroxy-2-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167213,"3,4,5-trihydroxy-6-{2-hydroxy-3-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167206,"3,4,5-trihydroxy-6-{3-[(9E,11E)-8-hydroxypentadeca-9,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167209,"3,4,5-trihydroxy-6-{3-[(8E)-12-hydroxypentadeca-8,10,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167203,"3,4,5-trihydroxy-6-{3-[(8E)-11-hydroxypentadeca-8,12,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167186,"3,4,5-trihydroxy-6-{3-[(8E,11E)-3-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167183,"3,4,5-trihydroxy-6-{3-[(8E,11E)-4-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167177,"3,4,5-trihydroxy-6-{3-[(8E,11E)-6-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167189,"3,4,5-trihydroxy-6-{3-[(8E,11E)-2-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167192,"3,4,5-trihydroxy-6-{3-[(8E,11E)-1-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167196,"3,4,5-trihydroxy-6-{4-hydroxy-3-[(8E,11E)-pentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0167197,"3,4,5-trihydroxy-6-{3-[(8E,11E)-13-hydroxypentadeca-8,11,14-trien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C27H38O8,490.256668184,M+Na,+,513.245886,18
+513.2548693,HMDB0173045,"{14-[(3Z)-5,6-dimethylhept-3-en-2-yl]-2,15-dimethyl-17-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadeca-1(10),7-dien-5-yl}oxidanesulfonic acid",n/a,C28H42O5S,490.275295626,M+Na,+,513.264514,19
+530.2263939,HMDB0015393,Darunavir,n/a,C27H37N3O7S,547.235221243,M+H-H2O,+,530.232521,12
+530.2263939,HMDB0168629,"3,4,5-trihydroxy-6-{2-hydroxy-4-[(1E)-10-oxo-10-(pyrrolidin-1-yl)dec-1-en-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C26H37NO9,507.246831775,M+Na,+,530.23605,18
+530.2263939,HMDB0168628,"3,4,5-trihydroxy-6-{2-hydroxy-5-[(1E)-10-oxo-10-(pyrrolidin-1-yl)dec-1-en-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C26H37NO9,507.246831775,M+Na,+,530.23605,18
+530.2263939,HMDB0161739,"3,4,5-trihydroxy-6-{2-hydroxy-5-[(1E,6E)-9-[(2-methylpropyl)-C-hydroxycarbonimidoyl]nona-1,6-dien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C26H37NO9,507.246831775,M+Na,+,530.23605,18
+530.2263939,HMDB0161740,"3,4,5-trihydroxy-6-{2-hydroxy-4-[(1E,6E)-9-[(2-methylpropyl)-C-hydroxycarbonimidoyl]nona-1,6-dien-1-yl]phenoxy}oxane-2-carboxylic acid",n/a,C26H37NO9,507.246831775,M+Na,+,530.23605,18
+536.3717391,HMDB0011491,LysoPE(0:0/22:1(13Z)),n/a,C27H54NO7P,535.363789599,M+H,+,536.371066,1
+536.3717391,HMDB0011521,LysoPE(22:1(13Z)/0:0),n/a,C27H54NO7P,535.363789599,M+H,+,536.371066,1
+536.3717391,HMDB0166691,"[(6Z)-6-ethylidene-2,15-dimethyl-14-[(5E)-5-(propan-2-yl)hept-5-en-2-yl]tetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-1(10)-en-5-yl]oxidanesulfonic acid",n/a,C31H50O4S,518.342981264,M+NH4,+,536.376804,9
+536.3717391,HMDB0183450,"3,4,5-trihydroxy-6-[(20-hydroxyhenicosanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183448,"6-[(20-carboxyicosan-2-yl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183454,"6-[(1-carboxyicosyl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183392,"3,4,5-trihydroxy-6-[(17-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184230,"6-[(16-carboxy-2,6,10,14-tetramethylhexadecan-2-yl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184231,"6-[4-carboxy-2-(4,8,12-trimethyltridecyl)butoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184233,"3,4,5-trihydroxy-6-{[8-(hydroxymethyl)-4,12,16-trimethylheptadecanoyl]oxy}oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184235,"3,4,5-trihydroxy-6-{[12-(hydroxymethyl)-4,8,16-trimethylheptadecanoyl]oxy}oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184236,"6-[(16-carboxy-2,6,10,14-tetramethylhexadecyl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0184261,"3,4,5-trihydroxy-6-[(21-hydroxyhenicosanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183451,"6-[(20-carboxyicosyl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183395,"3,4,5-trihydroxy-6-[(2-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183394,"6-[(1-carboxy-3,7,11,15-tetramethylhexadecyl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183374,"6-[(1-carboxy-3,7,11,15-tetramethylhexadecan-3-yl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183376,"3,4,5-trihydroxy-6-[(4-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183377,"6-[(1-carboxy-3,7,11,15-tetramethylhexadecan-7-yl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183378,"3,4,5-trihydroxy-6-[(8-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183380,"3,4,5-trihydroxy-6-[(12-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183379,"6-[(16-carboxy-2,6,10,14-tetramethylhexadecan-6-yl)oxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183382,"3,4,5-trihydroxy-6-[(16-hydroxy-4,8,12,16-tetramethylheptadecanoyl)oxy]oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183384,"3,4,5-trihydroxy-6-{[4-(hydroxymethyl)-8,12,16-trimethylheptadecanoyl]oxy}oxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0183386,"6-{[8-carboxy-2-(4,8-dimethylnonyl)-6-methyloctyl]oxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C27H50O9,518.34548319,M+NH4,+,536.379306,14
+536.3717391,HMDB0171784,3-(4-{2-[(2-amino-1-hydroxy-3-methylpentylidene)amino]ethenyl}phenoxy)-2-{[2-(dimethylamino)-1-hydroxy-4-methylpentylidene]amino}-4-methylpentanoic acid,n/a,C28H46N4O5,518.346820597,M+NH4,+,536.380644,17
+536.3717391,HMDB0171783,2-({3-[4-(2-aminoethenyl)phenoxy]-2-{[2-(dimethylamino)-1-hydroxy-4-methylpentylidene]amino}-1-hydroxy-4-methylpentylidene}amino)-3-methylpentanoic acid,n/a,C28H46N4O5,518.346820597,M+NH4,+,536.380644,17
+537.3742207,HMDB0035943,Cyclopassifloic acid A,n/a,C31H52O7,536.371304018,M+H,+,537.37858,8
+537.3742207,HMDB0033635,xi-4-Hydroxy-4-methyl-2-cyclohexen-1-one,n/a,C31H52O7,536.371304018,M+H,+,537.37858,8
+537.3742207,HMDB0035945,Kuwanol E,n/a,C31H52O7,536.371304018,M+H,+,537.37858,8
+537.3742207,HMDB0015079,Demecarium,n/a,C32H52N4O4,556.398856172,M+H-H2O,+,537.381604,14
+537.3742207,HMDB0061700,2-linoleoyl-sn-glycero-3-phosphocholine,n/a,C26H50NO7P,519.332489952,M+NH4,+,537.366313,15
+537.3742207,HMDB0062711,"(2-{[(2R)-3-hydroxy-2-[(9Z)-octadeca-9,12-dienoyloxy]propyl phosphonato]oxy}ethyl)trimethylazanium",n/a,C26H50NO7P,519.332489952,M+NH4,+,537.366313,15
+537.3742207,HMDB0010386,"LysoPC(18:2(9Z,12Z)/0:0)",n/a,C26H50NO7P,519.332489471,M+NH4,+,537.366312,15
+626.3147004,HMDB0184827,(5Z)-7-{2-[2-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-3-hydroxyoctyl]-3-oxocyclopentyl}hept-5-enoic acid,n/a,C30H49N3O10S,643.313865964,M+H-H2O,+,626.311166,6
+626.3147004,HMDB0062478,"(8Z,11S,12E,14R,15S)-14-{[(2R)-2-{[(4S)-4-amino-4-carboxy-1-hydroxybutylidene]amino}-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl]sulfanyl}-11,15-dihydroxyicosa-5,8,12-trienoic acid",n/a,C30H49N3O10S,643.313865964,M+H-H2O,+,626.311166,6
+626.3147004,HMDB0060155,"10,11-Dihydro-12R-hydroxy-leukotriene C4",n/a,C30H49N3O10S,643.313865493,M+H-H2O,+,626.311165,6
+626.3147004,HMDB0013061,S-(PGA1)-glutathione,n/a,C30H49N3O10S,643.313865493,M+H-H2O,+,626.311165,6
+626.3147004,HMDB0013060,S-(9-hydroxy-PGA2)-glutathione,n/a,C30H49N3O10S,643.313865493,M+H-H2O,+,626.311165,6
+626.3147004,HMDB0013057,S-(9-deoxy-delta12-PGD2)-glutathione,n/a,C30H49N3O10S,643.313865493,M+H-H2O,+,626.311165,6
+626.3147004,HMDB0013056,"S-(11-OH-9-deoxy-delta9,12-PGD2)-glutathione",n/a,C30H49N3O10S,643.313865493,M+H-H2O,+,626.311165,6
+626.3147004,HMDB0183885,"(4E,6Z)-8-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-9-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-4,6-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0183879,"(6Z)-5-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-4-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-6,8-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0183878,"(6Z,8E)-4-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-5-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-6,8-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0183884,"(6Z)-9-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-8-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-4,6-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0001198,Leukotriene C4,C02166,C30H47N3O9S,625.303300807,M+H,+,626.310577,7
+626.3147004,HMDB0183882,"(4E)-7-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-6-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-4,8-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0005095,11-trans-Leukotriene C4,n/a,C30H47N3O9S,625.303300807,M+H,+,626.310577,7
+626.3147004,HMDB0183888,"(6Z)-9-[2-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-1-hydroxy-2,6,6-trimethylcyclohexyl]-3,7-dimethylnona-4,6,8-trienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0183887,"(4E,6Z)-9-[1-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-2-hydroxy-2,6,6-trimethylcyclohexyl]-3,7-dimethylnona-4,6,8-trienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0183881,"(4E,8E)-6-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-7-hydroxy-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-4,8-dienoic acid",n/a,C30H47N3O9S,625.303301279,M+H,+,626.310577,7
+626.3147004,HMDB0178719,"2-(2-{[19-amino-7,11,18-trihydroxy-5,9-dimethyl-16-(sulfooxy)icosan-6-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178728,"2-(2-{[19-amino-6,11,16-trihydroxy-5,9-dimethyl-18-(sulfooxy)icosan-7-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178720,"2-(2-{[19-amino-7,16,18-trihydroxy-5,9-dimethyl-11-(sulfooxy)icosan-6-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178718,"2-(2-{[19-amino-7,11,16-trihydroxy-5,9-dimethyl-18-(sulfooxy)icosan-6-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178717,"2-(2-{[19-amino-11,16,18-trihydroxy-5,9-dimethyl-7-(sulfooxy)icosan-6-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178729,"2-(2-{[19-amino-6,11,18-trihydroxy-5,9-dimethyl-16-(sulfooxy)icosan-7-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178730,"2-(2-{[19-amino-6,16,18-trihydroxy-5,9-dimethyl-11-(sulfooxy)icosan-7-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0178727,"2-(2-{[19-amino-11,16,18-trihydroxy-5,9-dimethyl-6-(sulfooxy)icosan-7-yl]oxy}-2-oxoethyl)butanedioic acid",n/a,C28H53NO13S,643.323761945,M+H-H2O,+,626.321062,10
+626.3147004,HMDB0160619,(9Z)-12-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-13-hydroxyoctadec-9-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0160620,(9Z)-13-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-12-hydroxyoctadec-9-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0160617,(12Z)-10-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-9-hydroxyoctadec-12-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0160616,(12Z)-9-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-10-hydroxyoctadec-12-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0173931,12-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-13-hydroxyoctadec-9-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0173932,(9E)-13-({2-[(4-amino-4-carboxy-1-hydroxybutylidene)amino]-2-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl}sulfanyl)-12-hydroxyoctadec-9-enoic acid,n/a,C28H49N3O9S,603.318951344,M+Na,+,626.308169,10
+626.3147004,HMDB0014351,Reserpine,C06539,C33H40N2O9,608.273380888,M+NH4,+,626.307204,12
+626.3147004,HMDB0030172,Oxyacanthine,C09598,C37H40N2O6,608.288637022,M+NH4,+,626.32246,12
+626.3147004,HMDB0015330,Tubocurarine,C07547,C37H41N2O6,609.296462054,M+NH4,+,626.323009,13
+708.6352337,HMDB0061667,"CE(DiMe(11,3))",n/a,C47H78O3,690.595096362,M+NH4,+,708.628919,9
+708.6352337,HMDB0061671,"CE(DiMe(9,5))",n/a,C47H78O3,690.595096362,M+NH4,+,708.628919,9
+708.6352337,HMDB0112234,"2,15-dimethyl-14-(6-methylheptan-2-yl)tetracyclo[8.7.0.0,.0,]heptadec-7-en-5-yl 9-(5-hexyl-3-methylfuran-2-yl)nonanoate",n/a,C47H78O3,690.595096372,M+NH4,+,708.628919,9
+708.6352337,HMDB0112220,"2,15-dimethyl-14-(6-methylheptan-2-yl)tetracyclo[8.7.0.0,.0,]heptadec-7-en-5-yl 7-(5-heptyl-3,4-dimethylfuran-2-yl)heptanoate",n/a,C47H78O3,690.595096372,M+NH4,+,708.628919,9
+709.3032257,HMDB0177552,"11-({4-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-3,5-dihydroxyoxan-2-yl}oxy)-14-ethoxy-7,10-dimethyl-4-(propan-2-yl)-3-oxatetracyclo[8.5.0.0²,⁴.0²,⁷]pentadec-12-ene-13-carboxylic acid",n/a,C33H50O15,686.31497091,M+Na,+,709.304189,1
+709.3032257,HMDB0177551,"11-({3-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-4,5-dihydroxyoxan-2-yl}oxy)-14-ethoxy-7,10-dimethyl-4-(propan-2-yl)-3-oxatetracyclo[8.5.0.0²,⁴.0²,⁷]pentadec-12-ene-13-carboxylic acid",n/a,C33H50O15,686.31497091,M+Na,+,709.304189,1
+709.3032257,HMDB0177553,"11-({5-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-3,4-dihydroxyoxan-2-yl}oxy)-14-ethoxy-7,10-dimethyl-4-(propan-2-yl)-3-oxatetracyclo[8.5.0.0²,⁴.0²,⁷]pentadec-12-ene-13-carboxylic acid",n/a,C33H50O15,686.31497091,M+Na,+,709.304189,1
+709.3032257,HMDB0177554,"6-[14-ethoxy-7,10-dimethyl-4-(propan-2-yl)-11-[(3,4,5-trihydroxyoxan-2-yl)oxy]-3-oxatetracyclo[8.5.0.0²,⁴.0²,⁷]pentadec-12-ene-13-carbonyloxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C33H50O15,686.31497091,M+Na,+,709.304189,1
+709.3032257,HMDB0040155,Paradisin C,n/a,C42H46O11,726.304012301,M+H-H2O,+,709.301312,3
+709.3032257,HMDB0039887,Methyl nomilinate 17-glucoside,n/a,C35H50O16,726.309885552,M+H-H2O,+,709.307186,6
+709.3032257,HMDB0166973,"6-{5-[(4,5-dihydroxy-6-methyloxan-2-yl)oxy]-7,11-dihydroxy-15-methyl-14-(5-oxo-2,5-dihydrofuran-3-yl)tetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecane-2-carbonyloxy}-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C35H50O16,726.30988553,M+H-H2O,+,709.307186,6
+709.636888,HMDB0099701,TG(i-14:0/a-15:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100257,TG(i-14:0/i-19:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100256,TG(14:0/i-19:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100259,TG(14:0/19:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100936,TG(a-15:0/8:0/i-18:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100935,TG(a-15:0/8:0/18:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100937,TG(i-15:0/8:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100938,TG(i-15:0/8:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100939,TG(15:0/8:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100940,TG(15:0/8:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101013,TG(i-15:0/10:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101011,TG(a-15:0/10:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101012,TG(i-15:0/10:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101010,TG(a-15:0/10:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101014,TG(15:0/10:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101015,TG(15:0/10:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101107,TG(a-15:0/12:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0100258,TG(i-14:0/19:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071838,TG(8:0/i-15:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099980,TG(14:0/17:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099703,TG(i-14:0/a-15:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099702,TG(14:0/a-15:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099704,TG(14:0/a-15:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099707,TG(14:0/i-15:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099705,TG(14:0/i-15:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099706,TG(i-14:0/15:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099710,TG(i-14:0/15:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099711,TG(14:0/15:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099708,TG(i-14:0/i-15:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099709,TG(i-14:0/i-15:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099712,TG(14:0/15:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099975,TG(14:0/a-17:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099976,TG(i-14:0/a-17:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099978,TG(i-14:0/i-17:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099977,TG(14:0/i-17:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099979,TG(i-14:0/17:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101106,TG(15:0/i-12:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101108,TG(a-15:0/12:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101293,TG(a-15:0/i-13:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101290,TG(a-15:0/a-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101292,TG(a-15:0/13:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101291,TG(a-15:0/13:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101294,TG(a-15:0/i-13:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101297,TG(15:0/i-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101295,TG(i-15:0/13:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101296,TG(i-15:0/i-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101298,TG(a-15:0/i-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101300,TG(i-15:0/i-13:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101301,TG(i-15:0/13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101299,TG(15:0/i-13:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101302,TG(i-15:0/i-13:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101304,TG(15:0/13:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101303,TG(i-15:0/13:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101305,TG(15:0/13:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101289,TG(15:0/i-13:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101288,TG(a-15:0/a-13:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101287,TG(a-15:0/13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101110,TG(a-15:0/i-12:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101109,TG(a-15:0/i-12:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101111,TG(i-15:0/12:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101114,TG(i-15:0/i-12:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101112,TG(15:0/i-12:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101113,TG(i-15:0/i-12:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101115,TG(i-15:0/12:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101116,TG(15:0/12:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101117,TG(15:0/12:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101281,TG(i-15:0/a-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101280,TG(15:0/a-13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101282,TG(i-15:0/a-13:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101285,TG(a-15:0/a-13:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101284,TG(i-15:0/a-13:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101283,TG(15:0/a-13:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101286,TG(15:0/a-13:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101306,TG(15:0/13:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097388,TG(a-13:0/i-15:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097627,TG(13:0/16:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097628,TG(13:0/16:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098047,TG(a-13:0/18:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098046,TG(13:0/i-18:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098051,TG(13:0/18:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098048,TG(a-13:0/i-18:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098050,TG(i-13:0/18:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098049,TG(i-13:0/i-18:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098388,TG(13:0/i-20:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098391,TG(i-13:0/i-20:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098389,TG(a-13:0/20:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098390,TG(a-13:0/i-20:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098392,TG(i-13:0/20:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0098393,TG(13:0/20:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099211,TG(14:0/8:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099209,TG(i-14:0/8:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097626,TG(i-13:0/16:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097624,TG(i-13:0/i-16:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097625,TG(i-13:0/i-16:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097389,TG(a-13:0/i-15:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097390,TG(i-13:0/i-15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097391,TG(13:0/i-15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097392,TG(13:0/i-15:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097395,TG(i-13:0/15:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097394,TG(i-13:0/15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097393,TG(i-13:0/i-15:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097396,TG(13:0/15:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097397,TG(13:0/15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097619,TG(a-13:0/16:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097617,TG(13:0/i-16:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097618,TG(a-13:0/16:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097620,TG(a-13:0/i-16:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097621,TG(a-13:0/i-16:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097622,TG(i-13:0/16:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097623,TG(13:0/i-16:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099210,TG(i-14:0/8:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099212,TG(14:0/8:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099454,TG(14:0/14:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099455,TG(i-14:0/a-13:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099456,TG(14:0/a-13:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099457,TG(14:0/14:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099459,TG(14:0/i-13:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099458,TG(i-14:0/i-14:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099463,TG(14:0/14:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099460,TG(i-14:0/i-13:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099461,TG(i-14:0/i-14:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099462,TG(i-14:0/13:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099464,TG(14:0/13:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099599,TG(14:0/i-14:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099600,TG(i-14:0/14:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099602,TG(14:0/i-14:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099603,TG(i-14:0/14:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099601,TG(14:0/i-14:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099453,TG(i-14:0/i-14:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099337,TG(14:0/12:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099338,TG(14:0/12:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099259,TG(i-14:0/10:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099261,TG(i-14:0/10:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099260,TG(i-14:0/10:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099263,TG(14:0/10:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099262,TG(14:0/10:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099264,TG(14:0/10:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099327,TG(14:0/i-12:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099328,TG(i-14:0/12:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099329,TG(i-14:0/i-12:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099331,TG(14:0/i-12:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099330,TG(14:0/i-12:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099332,TG(i-14:0/i-12:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099333,TG(i-14:0/12:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099335,TG(i-14:0/12:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099334,TG(i-14:0/i-12:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099336,TG(14:0/12:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0099604,TG(i-14:0/14:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105231,TG(a-17:0/8:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105396,TG(17:0/12:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105395,TG(i-17:0/12:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105830,TG(17:0/i-14:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105832,TG(a-17:0/i-14:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105831,TG(a-17:0/14:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105834,TG(i-17:0/14:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105833,TG(i-17:0/i-14:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105835,TG(17:0/14:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106274,TG(17:0/i-16:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106275,TG(a-17:0/16:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106276,TG(a-17:0/i-16:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106278,TG(i-17:0/16:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106277,TG(i-17:0/i-16:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0106279,TG(17:0/16:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107824,TG(i-18:0/8:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107825,TG(i-18:0/8:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105397,TG(17:0/12:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105393,TG(i-17:0/i-12:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105394,TG(i-17:0/i-12:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105232,TG(i-17:0/8:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105233,TG(i-17:0/8:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105235,TG(17:0/8:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105306,TG(a-17:0/10:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105305,TG(a-17:0/10:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105309,TG(17:0/10:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105308,TG(i-17:0/10:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105307,TG(i-17:0/10:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105310,TG(17:0/10:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105386,TG(17:0/i-12:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105387,TG(a-17:0/12:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105390,TG(a-17:0/i-12:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105389,TG(a-17:0/i-12:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105388,TG(a-17:0/12:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105391,TG(i-17:0/12:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105392,TG(17:0/i-12:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107826,TG(i-18:0/8:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107827,TG(18:0/8:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108348,TG(i-18:0/15:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109549,TG(i-19:0/8:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109550,TG(i-19:0/8:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109551,TG(19:0/8:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109552,TG(19:0/8:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109602,TG(19:0/10:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109599,TG(i-19:0/10:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109601,TG(19:0/10:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109600,TG(i-19:0/10:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109659,TG(19:0/i-12:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109662,TG(19:0/12:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109660,TG(i-19:0/i-12:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109661,TG(i-19:0/12:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109955,TG(19:0/i-14:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109956,TG(i-19:0/i-14:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109958,TG(19:0/14:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108347,TG(i-18:0/i-15:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108346,TG(18:0/i-15:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108349,TG(18:0/15:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107829,TG(18:0/8:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107828,TG(18:0/8:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107874,TG(i-18:0/10:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107876,TG(i-18:0/10:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107878,TG(18:0/10:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107875,TG(i-18:0/10:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107877,TG(18:0/10:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0107879,TG(18:0/10:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108054,TG(18:0/i-13:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108052,TG(18:0/a-13:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108053,TG(i-18:0/a-13:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108055,TG(i-18:0/i-13:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108057,TG(18:0/13:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108056,TG(i-18:0/13:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108344,TG(18:0/a-15:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0108345,TG(i-18:0/a-15:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0109957,TG(i-19:0/14:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101527,TG(a-15:0/14:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102355,TG(a-15:0/i-18:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102357,TG(i-15:0/18:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102356,TG(i-15:0/i-18:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102358,TG(15:0/18:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103501,TG(i-16:0/8:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103500,TG(i-16:0/8:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103504,TG(16:0/8:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103502,TG(i-16:0/8:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103503,TG(16:0/8:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103505,TG(16:0/8:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103550,TG(i-16:0/10:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103551,TG(i-16:0/10:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103552,TG(i-16:0/10:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103553,TG(16:0/10:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103554,TG(16:0/10:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103555,TG(16:0/10:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102354,TG(a-15:0/18:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0102353,TG(15:0/i-18:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101932,TG(i-15:0/16:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101526,TG(15:0/i-14:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101528,TG(a-15:0/14:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101529,TG(a-15:0/i-14:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101530,TG(a-15:0/i-14:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101531,TG(i-15:0/14:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101534,TG(i-15:0/i-14:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101533,TG(i-15:0/i-14:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101532,TG(15:0/i-14:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101536,TG(15:0/14:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101535,TG(i-15:0/14:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101537,TG(15:0/14:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101930,TG(a-15:0/i-16:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101929,TG(a-15:0/16:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101928,TG(15:0/i-16:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101933,TG(15:0/16:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0101931,TG(i-15:0/i-16:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103608,TG(16:0/i-12:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103612,TG(16:0/i-12:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103732,TG(i-16:0/i-13:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103734,TG(16:0/13:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103735,TG(16:0/13:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104014,TG(16:0/a-15:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104015,TG(i-16:0/a-15:0/10:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104016,TG(16:0/i-15:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104018,TG(i-16:0/15:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104017,TG(i-16:0/i-15:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104019,TG(16:0/15:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104275,TG(16:0/a-17:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104278,TG(i-16:0/i-17:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104276,TG(i-16:0/a-17:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104277,TG(16:0/i-17:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104279,TG(i-16:0/17:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0104280,TG(16:0/17:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105230,TG(a-17:0/8:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103733,TG(i-16:0/13:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103731,TG(i-16:0/i-13:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103730,TG(16:0/i-13:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103609,TG(i-16:0/12:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103610,TG(i-16:0/i-12:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103611,TG(16:0/i-12:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103613,TG(i-16:0/i-12:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103616,TG(i-16:0/12:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103615,TG(i-16:0/i-12:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103614,TG(i-16:0/12:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103617,TG(16:0/12:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103618,TG(16:0/12:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103619,TG(16:0/12:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103724,TG(i-16:0/a-13:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103725,TG(16:0/a-13:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103727,TG(16:0/a-13:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103726,TG(i-16:0/a-13:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103728,TG(16:0/i-13:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0103729,TG(i-16:0/13:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0105234,TG(17:0/8:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071940,TG(10:0/i-17:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072157,TG(8:0/a-21:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072188,TG(10:0/i-15:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072197,TG(10:0/17:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072209,TG(10:0/i-18:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072238,TG(8:0/20:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072246,TG(8:0/14:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072249,TG(8:0/i-19:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072265,TG(8:0/a-15:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072286,TG(8:0/20:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072287,TG(10:0/i-16:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072293,TG(10:0/a-13:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072316,TG(8:0/i-12:0/i-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072320,TG(10:0/16:0/a-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072336,TG(8:0/18:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072364,TG(10:0/13:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072368,TG(10:0/i-14:0/a-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072153,TG(10:0/i-18:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072143,TG(10:0/10:0/i-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071965,TG(8:0/21:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071966,TG(8:0/i-14:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071983,TG(8:0/8:0/a-25:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071989,TG(10:0/i-17:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071990,TG(10:0/12:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071997,TG(8:0/i-16:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072012,TG(10:0/i-13:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072022,TG(10:0/16:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072035,TG(10:0/18:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072064,TG(10:0/i-14:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072076,TG(8:0/i-18:0/a-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072090,TG(8:0/13:0/20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072117,TG(8:0/i-12:0/21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072124,TG(10:0/19:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072141,TG(8:0/21:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072142,TG(10:0/a-13:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072385,TG(8:0/16:0/a-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072408,TG(10:0/a-15:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072718,TG(8:0/14:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072747,TG(10:0/15:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072804,TG(8:0/i-14:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072825,TG(8:0/20:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072832,TG(8:0/a-21:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094865,TG(i-12:0/8:0/i-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094866,TG(i-12:0/8:0/a-21:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094870,TG(12:0/8:0/a-21:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094867,TG(i-12:0/8:0/21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094868,TG(12:0/8:0/21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094869,TG(12:0/8:0/i-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094918,TG(i-12:0/10:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094917,TG(i-12:0/10:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094919,TG(12:0/10:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094988,TG(12:0/i-12:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094992,TG(12:0/i-12:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072644,TG(10:0/12:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072642,TG(8:0/i-20:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072410,TG(8:0/15:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072422,TG(10:0/13:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072438,TG(8:0/16:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072442,TG(10:0/i-19:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072451,TG(8:0/12:0/i-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072470,TG(8:0/17:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072496,TG(8:0/15:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072501,TG(8:0/a-15:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072532,TG(8:0/i-18:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072534,TG(8:0/a-13:0/20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072536,TG(8:0/17:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072549,TG(10:0/18:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072563,TG(8:0/18:0/a-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072597,TG(10:0/15:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072609,TG(10:0/10:0/a-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0072607,TG(8:0/16:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094990,TG(i-12:0/i-12:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094920,TG(12:0/10:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065069,TG(i-21:0/8:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065114,TG(i-21:0/10:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065342,TG(a-21:0/10:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065682,TG(21:0/i-12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065826,TG(i-21:0/i-12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065952,TG(i-21:0/12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065955,TG(a-21:0/i-12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0066219,TG(21:0/8:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0066300,TG(i-21:0/8:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0069739,TG(a-25:0/8:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071120,TG(8:0/i-16:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071134,TG(8:0/13:0/i-20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071167,TG(8:0/i-17:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071170,TG(8:0/i-15:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071171,TG(8:0/i-20:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071183,TG(8:0/a-17:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0065009,TG(21:0/12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064992,TG(21:0/8:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0062962,TG(20:0/a-13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0063275,TG(i-20:0/i-13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0063341,TG(20:0/13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0063426,TG(i-20:0/8:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0063610,TG(20:0/8:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0063687,TG(i-20:0/8:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064065,TG(i-20:0/13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064153,TG(i-20:0/8:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064175,TG(20:0/i-13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064236,TG(i-20:0/a-13:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064416,TG(20:0/8:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064499,TG(20:0/8:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064579,TG(a-21:0/12:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064593,TG(21:0/10:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064788,TG(a-21:0/8:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0064975,TG(a-21:0/8:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071229,TG(8:0/12:0/21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071265,TG(8:0/i-17:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071627,TG(10:0/i-14:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071675,TG(10:0/i-16:0/a-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071692,TG(10:0/17:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071701,TG(8:0/12:0/a-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071717,TG(10:0/14:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071721,TG(8:0/i-19:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071749,TG(8:0/i-21:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071787,TG(10:0/18:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071811,TG(10:0/10:0/21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071862,TG(8:0/19:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071865,TG(10:0/14:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071863,TG(10:0/i-19:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071878,TG(8:0/i-13:0/20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071881,TG(8:0/i-13:0/i-20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071912,TG(10:0/i-12:0/i-19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071920,TG(8:0/18:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071620,TG(10:0/14:0/a-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071549,TG(10:0/i-12:0/19:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071266,TG(8:0/a-13:0/i-20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071267,TG(10:0/a-17:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071289,TG(8:0/i-12:0/a-21:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071349,TG(10:0/16:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071348,TG(8:0/a-17:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071394,TG(8:0/19:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071405,TG(10:0/i-18:0/a-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071435,TG(8:0/i-16:0/a-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071446,TG(10:0/a-15:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071468,TG(8:0/i-20:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071478,TG(8:0/i-18:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071486,TG(10:0/i-15:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071495,TG(10:0/a-17:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071504,TG(10:0/i-16:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071528,TG(10:0/19:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071539,TG(10:0/i-13:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0071924,TG(8:0/i-21:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096157,TG(i-12:0/21:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096818,TG(i-13:0/i-12:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096819,TG(i-13:0/i-12:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096816,TG(i-13:0/12:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096820,TG(i-13:0/12:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096821,TG(13:0/12:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096822,TG(13:0/12:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096981,TG(13:0/a-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096982,TG(i-13:0/a-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096983,TG(i-13:0/a-13:0/i-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096987,TG(13:0/a-13:0/i-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096985,TG(i-13:0/a-13:0/15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096984,TG(13:0/a-13:0/15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096986,TG(a-13:0/a-13:0/15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096991,TG(a-13:0/a-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096990,TG(13:0/i-13:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096988,TG(a-13:0/13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096817,TG(13:0/i-12:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096814,TG(a-13:0/i-12:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096623,TG(a-13:0/8:0/i-20:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096622,TG(a-13:0/8:0/20:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096624,TG(i-13:0/8:0/i-20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096625,TG(i-13:0/8:0/20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096627,TG(13:0/8:0/i-20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096626,TG(13:0/8:0/20:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096703,TG(i-13:0/10:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096700,TG(a-13:0/10:0/18:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096701,TG(a-13:0/10:0/i-18:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096702,TG(i-13:0/10:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096705,TG(13:0/10:0/i-18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096704,TG(13:0/10:0/18:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096811,TG(13:0/i-12:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096813,TG(a-13:0/12:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096812,TG(a-13:0/12:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096815,TG(a-13:0/i-12:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096989,TG(a-13:0/a-13:0/i-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096992,TG(a-13:0/13:0/15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097208,TG(a-13:0/14:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097210,TG(a-13:0/i-14:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097209,TG(a-13:0/i-14:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097212,TG(13:0/i-14:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097213,TG(i-13:0/i-14:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097215,TG(i-13:0/14:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097214,TG(i-13:0/i-14:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097216,TG(13:0/14:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097217,TG(13:0/14:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097380,TG(13:0/a-15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097382,TG(i-13:0/a-15:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097383,TG(a-13:0/a-15:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097381,TG(i-13:0/a-15:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097384,TG(13:0/a-15:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097386,TG(a-13:0/15:0/13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097387,TG(a-13:0/15:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097211,TG(i-13:0/14:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097207,TG(a-13:0/14:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096995,TG(a-13:0/i-13:0/15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096993,TG(a-13:0/13:0/i-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096994,TG(a-13:0/i-13:0/i-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096996,TG(i-13:0/13:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096997,TG(i-13:0/i-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096999,TG(a-13:0/i-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096998,TG(13:0/i-13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097000,TG(13:0/i-13:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097002,TG(i-13:0/13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097003,TG(i-13:0/i-13:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097001,TG(i-13:0/i-13:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097004,TG(i-13:0/13:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097007,TG(13:0/13:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097005,TG(13:0/13:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097006,TG(13:0/13:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097206,TG(13:0/i-14:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0097385,TG(a-13:0/a-15:0/i-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096156,TG(i-12:0/i-21:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094991,TG(12:0/i-12:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095128,TG(12:0/13:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095129,TG(12:0/13:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095258,TG(12:0/i-14:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095260,TG(i-12:0/i-14:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095259,TG(i-12:0/14:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095264,TG(i-12:0/14:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095261,TG(12:0/i-14:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095262,TG(12:0/i-14:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095263,TG(i-12:0/i-14:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095268,TG(12:0/14:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095265,TG(i-12:0/i-14:0/i-15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095266,TG(i-12:0/14:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095267,TG(12:0/14:0/15:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095269,TG(12:0/14:0/a-15:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095379,TG(12:0/a-15:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095124,TG(12:0/i-13:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095126,TG(i-12:0/i-13:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095127,TG(i-12:0/13:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094989,TG(i-12:0/12:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094993,TG(i-12:0/i-12:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094994,TG(i-12:0/12:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094995,TG(i-12:0/i-12:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094996,TG(i-12:0/12:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094997,TG(12:0/12:0/17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094999,TG(12:0/12:0/a-17:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0094998,TG(12:0/12:0/i-17:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095119,TG(12:0/a-13:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095118,TG(i-12:0/a-13:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095122,TG(12:0/i-13:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095121,TG(12:0/a-13:0/i-16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095123,TG(i-12:0/13:0/i-16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095120,TG(i-12:0/a-13:0/16:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095125,TG(i-12:0/i-13:0/16:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095378,TG(i-12:0/a-15:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095380,TG(i-12:0/a-15:0/14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096155,TG(12:0/i-21:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095538,TG(12:0/16:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095539,TG(12:0/16:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095644,TG(i-12:0/a-17:0/12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095645,TG(12:0/a-17:0/i-12:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095649,TG(12:0/17:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095648,TG(i-12:0/17:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095647,TG(i-12:0/i-17:0/12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095646,TG(12:0/i-17:0/i-12:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095928,TG(12:0/19:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095926,TG(i-12:0/i-19:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095925,TG(12:0/i-19:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095927,TG(i-12:0/19:0/10:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096153,TG(12:0/a-21:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096154,TG(i-12:0/a-21:0/8:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0096158,TG(12:0/21:0/8:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095537,TG(12:0/16:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095536,TG(i-12:0/16:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095534,TG(i-12:0/16:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095382,TG(12:0/i-15:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095384,TG(12:0/i-15:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095381,TG(12:0/a-15:0/i-14:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095383,TG(i-12:0/15:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095385,TG(i-12:0/i-15:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095386,TG(i-12:0/i-15:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095387,TG(i-12:0/15:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095388,TG(12:0/15:0/14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095389,TG(12:0/15:0/i-14:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095535,TG(i-12:0/i-16:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095531,TG(12:0/i-16:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095532,TG(12:0/i-16:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095533,TG(i-12:0/i-16:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095530,TG(i-12:0/i-16:0/a-13:0)[rac],n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095529,TG(i-12:0/16:0/i-13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+709.636888,HMDB0095528,TG(12:0/i-16:0/13:0),n/a,C44H84O6,708.626790425,M+H,+,709.634066,4
+710.3042172,HMDB0182265,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({2-hydroxy-1,3,3-trimethyl-5-oxo-2-[(3Z,5E,7E,9E,11Z)-3,7,12-trimethyl-13-oxotrideca-1,3,5,7,9,11-hexaen-1-yl]cyclohexyl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C35H49N3O9S,687.318951344,M+Na,+,710.308169,6
+710.3042172,HMDB0182264,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({2-hydroxy-2,6,6-trimethyl-4-oxo-1-[(3Z,5E,7E,9E,11Z)-3,7,12-trimethyl-13-oxotrideca-1,3,5,7,9,11-hexaen-1-yl]cyclohexyl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C35H49N3O9S,687.318951344,M+Na,+,710.308169,6
+710.3042172,HMDB0182266,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-{[(4E,6E,10Z,12E)-2,7,11-trimethyl-1-oxo-13-{2,2,6-trimethyl-4-oxo-7-oxabicyclo[4.1.0]heptan-1-yl}trideca-4,6,8,10,12-pentaen-3-yl]sulfanyl}ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C35H49N3O9S,687.318951344,M+Na,+,710.308169,6
+710.3042172,HMDB0164217,"7-benzyl-4-({2-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-1-hydroxy-4-methylpent-4-en-1-ylidene}amino)-5,8-dihydroxy-3-(propan-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,12,15-pentaene-10-carboxylic acid",n/a,C36H45N3O13,727.295238521,M+H-H2O,+,710.292539,16
+710.3042172,HMDB0164215,"7-benzyl-4-({2-[(6-carboxy-3,4,5-trihydroxyoxan-2-yl)oxy]-1-hydroxy-4-methylpentylidene}amino)-5,8-dihydroxy-3-(prop-1-en-2-yl)-2-oxa-6,9-diazabicyclo[10.2.2]hexadeca-1(14),5,8,12,15-pentaene-10-carboxylic acid",n/a,C36H45N3O13,727.295238521,M+H-H2O,+,710.292539,16
+710.6373052,HMDB0038059,Glycerol 1-(9Z-octadecenoate) 2-octanoate 3-tetradecanoate,n/a,C43H80O6,692.595490292,M+NH4,+,710.629313,11
+769.657295,HMDB0012092,SM(d18:0/22:1(13Z)),C00550,C45H91N2O6P,786.661475166,M+H-H2O,+,769.658775,2
+769.657295,HMDB0012103,SM(d18:1/22:0),C00550,C45H91N2O6P,786.661475166,M+H-H2O,+,769.658775,2
+769.657295,HMDB0061669,"CE(DiMe(13,5))",n/a,C51H86O3,746.657696618,M+Na,+,769.646915,13
+769.657295,HMDB0112209,"2,15-dimethyl-14-(6-methylheptan-2-yl)tetracyclo[8.7.0.0,.0,]heptadec-7-en-5-yl 15-(3,4-dimethyl-5-propylfuran-2-yl)pentadecanoate",n/a,C51H86O3,746.657696629,M+Na,+,769.646915,13
+769.657295,HMDB0042752,"TG(14:0/18:3(9Z,12Z,15Z)/15:0)",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0043401,"TG(15:0/18:2(9Z,12Z)/14:1(9Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0042975,"TG(15:0/14:0/18:3(6Z,9Z,12Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0042982,"TG(15:0/14:0/18:3(9Z,12Z,15Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0043177,"TG(15:0/14:1(9Z)/18:2(9Z,12Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0047755,"TG(14:1(9Z)/15:0/18:2(9Z,12Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0042542,"TG(14:0/18:3(6Z,9Z,12Z)/15:0)",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0042114,"TG(14:0/15:0/18:3(9Z,12Z,15Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+769.657295,HMDB0042107,"TG(14:0/15:0/18:3(6Z,9Z,12Z))",n/a,C50H90O6,786.673740618,M+H-H2O,+,769.671041,18
+770.3793685,HMDB0034699,Fumonisin A2,n/a,C36H61NO15,747.404120287,M+Na,+,770.393338,18
+779.3665507,HMDB0148903,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(4-{3-[2,4-dihydroxy-3-(3-methylbut-2-en-1-yl)phenyl]-5,7-dimethoxy-3,4-dihydro-2H-1-benzopyran-6-yl}-3-hydroxy-2-methylbutan-2-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C37H51N3O12S,761.319345268,M+NH4,+,779.353168,17
+779.3665507,HMDB0148904,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(4-{3-[5,7-dimethoxy-6-(3-methylbut-2-en-1-yl)-3,4-dihydro-2H-1-benzopyran-3-yl]-2,6-dihydroxyphenyl}-3-hydroxy-2-methylbutan-2-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C37H51N3O12S,761.319345268,M+NH4,+,779.353168,17
+780.367213,HMDB0167769,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-7,8-dihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-4-en-9-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H57N3O12S,779.366295461,M+H,+,780.373571,8
+780.367213,HMDB0167768,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-7,9-dihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-4-en-8-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H57N3O12S,779.366295461,M+H,+,780.373571,8
+780.367213,HMDB0173103,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-7,9,11-trihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-8-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H59N3O13S,797.376860146,M+H-H2O,+,780.37416,9
+780.367213,HMDB0169616,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-8,11,14-trihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-7-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H59N3O13S,797.376860146,M+H-H2O,+,780.37416,9
+780.367213,HMDB0165411,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-6,8,13-trihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-7-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H59N3O13S,797.376860146,M+H-H2O,+,780.37416,9
+780.367213,HMDB0173104,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[1-(4,5-dimethyl-6-oxooxan-2-yl)-1-hydroxyethyl]-7,8,11-trihydroxy-2,15-dimethyl-3-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-9-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H59N3O13S,797.376860146,M+H-H2O,+,780.37416,9
+780.367213,HMDB0164420,1-(2-{[2-({2-[({1-[1-(2-amino-4-carboxybutanoyl)pyrrolidine-2-carbonyl]pyrrolidin-2-yl}(hydroxy)methylidene)amino]-1-hydroxy-3-methylbutylidene}amino)-1-hydroxy-3-(4-hydroxyphenyl)propylidene]amino}acetyl)pyrrolidine-2-carboxylic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164423,2-{[hydroxy(1-{2-[(1-hydroxy-2-{[1-hydroxy-2-({hydroxy[1-(pyrrolidine-2-carbonyl)pyrrolidin-2-yl]methylidene}amino)-3-methylbutylidene]amino}-3-(4-hydroxyphenyl)propylidene)amino]acetyl}pyrrolidin-2-yl)methylidene]amino}pentanedioic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164424,1-(4-carboxy-2-{[hydroxy({1-[2-({1-hydroxy-2-[(1-hydroxy-2-{[hydroxy(pyrrolidin-2-yl)methylidene]amino}-3-methylbutylidene)amino]-3-(4-hydroxyphenyl)propylidene}amino)acetyl]pyrrolidin-2-yl})methylidene]amino}butanoyl)pyrrolidine-2-carboxylic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164421,1-(1-{2-[({1-[2-({2-[(2-amino-1-hydroxy-3-methylbutylidene)amino]-1-hydroxy-3-(4-hydroxyphenyl)propylidene}amino)acetyl]pyrrolidin-2-yl}(hydroxy)methylidene)amino]-4-carboxybutanoyl}pyrrolidine-2-carbonyl)pyrrolidine-2-carboxylic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164422,5-[2-(2-{[1-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-(4-hydroxyphenyl)ethyl}-C-hydroxycarbonimidoyl)-2-methylpropyl]-C-hydroxycarbonimidoyl}pyrrolidine-1-carbonyl)pyrrolidin-1-yl]-4-{[hydroxy(pyrrolidin-2-yl)methylidene]amino}-5-oxopentanoic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164419,4-({[1-(2-aminoacetyl)pyrrolidin-2-yl](hydroxy)methylidene}amino)-5-(2-{2-[(1-{[1-carboxy-2-(4-hydroxyphenyl)ethyl]-C-hydroxycarbonimidoyl}-2-methylpropyl)-C-hydroxycarbonimidoyl]pyrrolidine-1-carbonyl}pyrrolidin-1-yl)-5-oxopentanoic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+780.367213,HMDB0164418,4-({[1-(2-{[2-amino-1-hydroxy-3-(4-hydroxyphenyl)propylidene]amino}acetyl)pyrrolidin-2-yl](hydroxy)methylidene}amino)-5-(2-{2-[(1-carboxy-2-methylpropyl)-C-hydroxycarbonimidoyl]pyrrolidine-1-carbonyl}pyrrolidin-1-yl)-5-oxopentanoic acid,n/a,C36H51N7O11,757.36465549,M+Na,+,780.353873,17
+1026.927152,HMDB0046646,"TG(22:0/18:2(9Z,12Z)/22:2(13Z,16Z))",n/a,C66H120O6,1008.908491572,M+NH4,+,1026.942315,15
+1062.948787,HMDB0051659,"TG(22:1(13Z)/24:1(15Z)/20:5(5Z,8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054167,"TG(20:4(5Z,8Z,11Z,14Z)/24:1(15Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047434,"TG(24:0/20:2n6/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054486,"TG(22:2(13Z,16Z)/24:1(15Z)/20:4(8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051643,"TG(22:1(13Z)/22:1(13Z)/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047682,"TG(24:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z)/20:1(11Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047505,"TG(24:0/22:2(13Z,16Z)/20:5(5Z,8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046964,"TG(22:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z)/22:1(13Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051851,"TG(22:1(13Z)/20:5(5Z,8Z,11Z,14Z,17Z)/24:1(15Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047664,"TG(24:0/22:5(7Z,10Z,13Z,16Z,19Z)/20:2n6)",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047452,"TG(24:0/20:3n6/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052106,"TG(24:1(15Z)/20:1(11Z)/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047643,"TG(24:0/20:5(5Z,8Z,11Z,14Z,17Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052227,"TG(24:1(15Z)/20:4(5Z,8Z,11Z,14Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052101,"TG(24:1(15Z)/20:1(11Z)/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052196,"TG(24:1(15Z)/20:2n6/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051508,"TG(22:1(13Z)/22:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051995,"TG(24:1(15Z)/20:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0053728,"TG(20:3n6/24:0/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052137,"TG(24:1(15Z)/22:1(13Z)/20:5(5Z,8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047429,"TG(24:0/20:2n6/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051638,"TG(22:1(13Z)/22:1(13Z)/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052242,"TG(24:1(15Z)/22:2(13Z,16Z)/20:4(5Z,8Z,11Z,14Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046946,"TG(22:0/22:5(7Z,10Z,13Z,16Z,19Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047515,"TG(24:0/22:4(7Z,10Z,13Z,16Z)/20:3(5Z,8Z,11Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046821,"TG(22:0/22:5(4Z,7Z,10Z,13Z,16Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046773,"TG(22:0/22:2(13Z,16Z)/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046604,"TG(22:0/22:1(13Z)/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046215,"TG(20:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z)/24:1(15Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0045865,"TG(20:0/24:1(15Z)/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050816,"TG(20:1(11Z)/22:5(7Z,10Z,13Z,16Z,19Z)/24:1(15Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050577,"TG(20:1(11Z)/24:1(15Z)/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050431,"TG(20:1(11Z)/24:0/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047291,"TG(24:0/20:1(11Z)/22:6(4Z,7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052248,"TG(24:1(15Z)/22:2(13Z,16Z)/20:4(8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0046778,"TG(22:0/22:2(13Z,16Z)/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051756,"TG(22:1(13Z)/22:2(13Z,16Z)/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054393,"TG(22:2(13Z,16Z)/22:0/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050721,"TG(20:1(11Z)/22:5(4Z,7Z,10Z,13Z,16Z)/24:1(15Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050582,"TG(20:1(11Z)/24:1(15Z)/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0050986,"TG(20:3(5Z,8Z,11Z)/24:0/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0053352,"TG(20:2n6/24:0/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0053450,"TG(20:2n6/24:1(15Z)/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0053347,"TG(20:2n6/24:0/22:5(4Z,7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054407,"TG(22:2(13Z,16Z)/24:0/20:5(5Z,8Z,11Z,14Z,17Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051772,"TG(22:1(13Z)/22:4(7Z,10Z,13Z,16Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047521,"TG(24:0/22:4(7Z,10Z,13Z,16Z)/20:3n6)",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047544,"TG(24:0/22:5(4Z,7Z,10Z,13Z,16Z)/20:2n6)",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054472,"TG(22:2(13Z,16Z)/22:1(13Z)/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0047308,"TG(24:0/20:3(5Z,8Z,11Z)/22:4(7Z,10Z,13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052256,"TG(24:1(15Z)/22:4(7Z,10Z,13Z,16Z)/20:2n6)",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0054398,"TG(22:2(13Z,16Z)/22:0/22:5(7Z,10Z,13Z,16Z,19Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051782,"TG(22:1(13Z)/22:5(4Z,7Z,10Z,13Z,16Z)/22:1(13Z))",n/a,C69H120O6,1044.908491572,M+NH4,+,1062.942315,6
+1062.948787,HMDB0051867,"TG(22:1(13Z)/22:5(7Z,10Z,13Z,16Z,19Z)/22:1(13Z))",n/a,C69H120O6,1044.908491572,M+NH4,+,1062.942315,6
+1062.948787,HMDB0052323,"TG(24:1(15Z)/20:4(8Z,11Z,14Z,17Z)/22:2(13Z,16Z))",n/a,C69H120O6,1044.908491584,M+NH4,+,1062.942315,6

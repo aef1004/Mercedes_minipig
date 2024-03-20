@@ -1,0 +1,76 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Malate-Aspartate Shuttle",10,4.68,2,0.983,1,1
+"Thiamine Metabolism",9,4.21,1,0.997,1,1
+"Lactose Degradation",9,4.21,1,0.997,1,1
+"De Novo Triacylglycerol Biosynthesis",9,4.21,1,0.997,1,1
+"Glucose-Alanine Cycle",13,6.08,2,0.997,1,1
+"Alanine Metabolism",17,7.95,3,0.998,1,1
+"Glycerol Phosphate Shuttle",11,5.15,1,0.999,1,1
+"Trehalose Degradation",11,5.15,1,0.999,1,1
+"Cardiolipin Biosynthesis",11,5.15,1,0.999,1,1
+"Alpha Linolenic Acid and Linoleic Acid Metabolism",19,8.89,3,0.999,1,1
+"Beta Oxidation of Very Long Chain Fatty Acids",17,7.95,2,1,1,1
+"Carnitine Synthesis",22,10.3,3,1,1,1
+"Lactose Synthesis",20,9.36,2,1,1,1
+"Glycerolipid Metabolism",25,11.7,3,1,1,1
+"Glutathione Metabolism",21,9.82,2,1,1,1
+"Urea Cycle",29,13.6,4,1,1,1
+"Phosphatidylinositol Phosphate Metabolism",17,7.95,1,1,1,1
+"Cysteine Metabolism",26,12.2,3,1,1,1
+"Transfer of Acetyl Groups into Mitochondria",22,10.3,2,1,1,1
+"Spermidine and Spermine Biosynthesis",18,8.42,1,1,1,1
+"Fatty Acid Biosynthesis",35,16.4,5,1,1,1
+"Mitochondrial Electron Transport Chain",19,8.89,1,1,1,1
+"Ammonia Recycling",32,15,4,1,1,1
+"Citric Acid Cycle",32,15,4,1,1,1
+"Androstenedione Metabolism",24,11.2,2,1,1,1
+"Estrone Metabolism",24,11.2,2,1,1,1
+"Vitamin B6 Metabolism",20,9.36,1,1,1,1
+"Riboflavin Metabolism",20,9.36,1,1,1,1
+"Glycolysis",25,11.7,2,1,1,1
+"Pantothenate and CoA Biosynthesis",21,9.82,1,1,1,1
+"Betaine Metabolism",21,9.82,1,1,1,1
+"Oxidation of Branched Chain Fatty Acids",26,12.2,2,1,1,1
+"Inositol Phosphate Metabolism",26,12.2,2,1,1,1
+"Sulfate/Sulfite Metabolism",22,10.3,1,1,1,1
+"Arachidonic Acid Metabolism",69,32.3,14,1,1,1
+"Fructose and Mannose Degradation",32,15,3,1,1,1
+"Phenylalanine and Tyrosine Metabolism",28,13.1,2,1,1,1
+"Amino Sugar Metabolism",33,15.4,3,1,1,1
+"Folate Metabolism",29,13.6,2,1,1,1
+"Lysine Degradation",30,14,2,1,1,1
+"Aspartate Metabolism",35,16.4,3,1,1,1
+"Gluconeogenesis",35,16.4,3,1,1,1
+"Phytanic Acid Peroxisomal Oxidation",26,12.2,1,1,1,1
+"Plasmalogen Synthesis",26,12.2,1,1,1,1
+"Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",27,12.6,1,1,1,1
+"Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",27,12.6,1,1,1,1
+"Nicotinate and Nicotinamide Metabolism",37,17.3,3,1,1,1
+"Inositol Metabolism",33,15.4,2,1,1,1
+"Selenoamino Acid Metabolism",28,13.1,1,1,1,1
+"Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",28,13.1,1,1,1,1
+"Beta-Alanine Metabolism",34,15.9,2,1,1,1
+"Phospholipid Biosynthesis",29,13.6,1,1,1,1
+"Pentose Phosphate Pathway",29,13.6,1,1,1,1
+"Starch and Sucrose Metabolism",31,14.5,1,1,1,1
+"Bile Acid Biosynthesis",65,30.4,9,1,1,1
+"Propanoate Metabolism",42,19.6,3,1,1,1
+"Androgen and Estrogen Metabolism",33,15.4,1,1,1,1
+"Arginine and Proline Metabolism",53,24.8,5,1,1,1
+"Glutamate Metabolism",49,22.9,4,1,1,1
+"Fatty Acid Elongation In Mitochondria",35,16.4,1,1,1,1
+"Warburg Effect",58,27.1,6,1,1,1
+"Histidine Metabolism",43,20.1,2,1,1,1
+"Fatty acid Metabolism",43,20.1,2,1,1,1
+"Steroidogenesis",43,20.1,2,1,1,1
+"Galactose Metabolism",38,17.8,1,1,1,1
+"Sphingolipid Metabolism",40,18.7,1,1,1,1
+"Steroid Biosynthesis",48,22.5,2,1,1,1
+"Pyruvate Metabolism",48,22.5,2,1,1,1
+"Methionine Metabolism",43,20.1,1,1,1,1
+"Glycine and Serine Metabolism",59,27.6,4,1,1,1
+"Pyrimidine Metabolism",59,27.6,3,1,1,1
+"Valine, Leucine and Isoleucine Degradation",60,28.1,3,1,1,1
+"Tryptophan Metabolism",60,28.1,2,1,1,1
+"Tyrosine Metabolism",72,33.7,2,1,1,1
+"Purine Metabolism",74,34.6,3,1,1,1

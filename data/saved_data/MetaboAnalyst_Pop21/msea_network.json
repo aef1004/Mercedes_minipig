@@ -1,0 +1,255 @@
+{
+ "nodes": [
+ {
+ "id": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"label": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"size": 3.591716,
+"color": "#FF0000",
+"x": 19.46806,
+"y":  42.7926 
+},
+{
+ "id": "Carnitine Synthesis",
+"label": "Carnitine Synthesis",
+"size": 3.511073,
+"color": "#FF1000",
+"x": 17.91549,
+"y": 46.13331 
+},
+{
+ "id": "Beta Oxidation of Very Long Chain Fatty Acids",
+"label": "Beta Oxidation of Very Long Chain Fatty Acids",
+"size": 3.441501,
+"color": "#FF2000",
+"x":  20.6126,
+"y": 41.42803 
+},
+{
+ "id": "Fatty Acid Biosynthesis",
+"label": "Fatty Acid Biosynthesis",
+"size": 3.428725,
+"color": "#FF3000",
+"x": 17.35326,
+"y": 47.43129 
+},
+{
+ "id": "Alanine Metabolism",
+"label": "Alanine Metabolism",
+"size": 3.220751,
+"color": "#FF4000",
+"x": 16.77314,
+"y": 43.34489 
+},
+{
+ "id": "Glutathione Metabolism",
+"label": "Glutathione Metabolism",
+"size": 3.178571,
+"color": "#FF5000",
+"x": 14.89237,
+"y": 44.71131 
+},
+{
+ "id": "Pantothenate and CoA Biosynthesis",
+"label": "Pantothenate and CoA Biosynthesis",
+"size": 3.178571,
+"color": "#FF6000",
+"x": 20.39554,
+"y": 46.20657 
+},
+{
+ "id": "Glycerolipid Metabolism",
+"label": "Glycerolipid Metabolism",
+"size": 3.149925,
+"color": "#FF7000",
+"x": 15.77044,
+"y": 46.72825 
+},
+{
+ "id": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"label": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"size": 3.138889,
+"color": "#FF8000",
+"x": 18.73733,
+"y": 40.29974 
+},
+{
+ "id": "Phospholipid Biosynthesis",
+"label": "Phospholipid Biosynthesis",
+"size": 3.129366,
+"color": "#FF8F00",
+"x": 19.19901,
+"y": 47.14089 
+},
+{
+ "id": "Ammonia Recycling",
+"label": "Ammonia Recycling",
+"size": 3.117233,
+"color": "#FF9F00",
+"x": 15.97898,
+"y": 42.68081 
+},
+{
+ "id": "Fatty acid Metabolism",
+"label": "Fatty acid Metabolism",
+"size": 3.173913,
+"color": "#FFAF00",
+"x": 17.87026,
+"y": 40.51258 
+},
+{
+ "id": "Fatty Acid Elongation In Mitochondria",
+"label": "Fatty Acid Elongation In Mitochondria",
+"size": 3.107181,
+"color": "#FFBF00",
+"x": 18.56847,
+"y": 41.11143 
+},
+{
+ "id": "Porphyrin Metabolism",
+"label": "Porphyrin Metabolism",
+"size": 3.093458,
+"color": "#FFCF00",
+"x": 19.01603,
+"y": 44.92459 
+},
+{
+ "id": "Pyrimidine Metabolism",
+"label": "Pyrimidine Metabolism",
+"size": 3.191083,
+"color": "#FFDF00",
+"x": 20.41838,
+"y": 44.08443 
+},
+{
+ "id": "Methionine Metabolism",
+"label": "Methionine Metabolism",
+"size": 3.086957,
+"color": "#FFEF00",
+"x": 15.85519,
+"y": 41.54849 
+},
+{
+ "id": "Bile Acid Biosynthesis",
+"label": "Bile Acid Biosynthesis",
+"size":  3.17341,
+"color": "#FFFF00",
+"x": 21.43104,
+"y": 42.87662 
+},
+{
+ "id": "Steroid Biosynthesis",
+"label": "Steroid Biosynthesis",
+"size": 3.078125,
+"color": "#FFFF19",
+"x": 21.44329,
+"y":  44.9768 
+},
+{
+ "id": "Glutamate Metabolism",
+"label": "Glutamate Metabolism",
+"size": 3.076336,
+"color": "#FFFF4D",
+"x":  15.6803,
+"y": 43.70785 
+},
+{
+ "id": "Arginine and Proline Metabolism",
+"label": "Arginine and Proline Metabolism",
+"size": 3.070922,
+"color": "#FFFF80",
+"x": 14.91243,
+"y": 43.10124 
+},
+{
+ "id": "Glycine and Serine Metabolism",
+"label": "Glycine and Serine Metabolism",
+"size": 3.063694,
+"color": "#FFFFB3",
+"x": 15.27736,
+"y": 42.38994 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size": 3.050761,
+"color": "#FFFFE6",
+"x": 16.21674,
+"y":  44.8513 
+} 
+],
+"edges": [ {
+ "id": "1",
+"source": "Alanine Metabolism",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "2",
+"source": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"target": "Fatty acid Metabolism" 
+},
+{
+ "id": "3",
+"source": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"target": "Fatty Acid Elongation In Mitochondria" 
+},
+{
+ "id": "4",
+"source": "Fatty acid Metabolism",
+"target": "Fatty Acid Elongation In Mitochondria" 
+},
+{
+ "id": "5",
+"source": "Ammonia Recycling",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "6",
+"source": "Alanine Metabolism",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "7",
+"source": "Glutathione Metabolism",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "8",
+"source": "Ammonia Recycling",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "9",
+"source": "Ammonia Recycling",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "10",
+"source": "Glutamate Metabolism",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "11",
+"source": "Ammonia Recycling",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "12",
+"source": "Methionine Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "13",
+"source": "Glutamate Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "14",
+"source": "Arginine and Proline Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "15",
+"source": "Glutamate Metabolism",
+"target": "Purine Metabolism" 
+} ] 
+}

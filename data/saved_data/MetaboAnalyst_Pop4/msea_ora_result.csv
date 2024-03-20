@@ -1,0 +1,7 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Retinol Metabolism",37,5.2,7,0.255,1,1
+"Alpha Linolenic Acid and Linoleic Acid Metabolism",19,2.67,3,0.513,1,1
+"Fructose and Mannose Degradation",32,4.5,1,0.993,1,1
+"Arachidonic Acid Metabolism",69,9.7,4,0.993,1,1
+"Tryptophan Metabolism",60,8.44,2,0.999,1,1
+"Purine Metabolism",74,10.4,1,1,1,1

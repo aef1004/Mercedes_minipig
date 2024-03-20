@@ -1,0 +1,52 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Malate-Aspartate Shuttle",10,8.6,1,1,1,1
+"Ketone Body Metabolism",13,11.2,2,1,1,1
+"D-Arginine and D-Ornithine Metabolism",11,9.46,1,1,1,1
+"Alpha Linolenic Acid and Linoleic Acid Metabolism",19,16.3,3,1,1,1
+"Beta Oxidation of Very Long Chain Fatty Acids",17,14.6,2,1,1,1
+"Alanine Metabolism",17,14.6,1,1,1,1
+"Catecholamine Biosynthesis",20,17.2,2,1,1,1
+"Glycine and Serine Metabolism",59,50.8,3,1,1,1
+"Pterine Biosynthesis",29,25,1,1,1,1
+"Tyrosine Metabolism",72,61.9,5,1,1,1
+"Phenylalanine and Tyrosine Metabolism",28,24.1,1,1,1,1
+"Ammonia Recycling",32,27.5,1,1,1,1
+"Glutathione Metabolism",21,18.1,1,1,1,1
+"Propanoate Metabolism",42,36.1,2,1,1,1
+"Vitamin B6 Metabolism",20,17.2,1,1,1,1
+"Arginine and Proline Metabolism",53,45.6,4,1,1,1
+"Steroid Biosynthesis",48,41.3,1,1,1,1
+"Porphyrin Metabolism",40,34.4,4,1,1,1
+"Phospholipid Biosynthesis",29,25,1,1,1,1
+"Pantothenate and CoA Biosynthesis",21,18.1,1,1,1,1
+"Valine, Leucine and Isoleucine Degradation",60,51.6,3,1,1,1
+"Methionine Metabolism",43,37,2,1,1,1
+"Sphingolipid Metabolism",40,34.4,1,1,1,1
+"Bile Acid Biosynthesis",65,55.9,10,1,1,1
+"Lysine Degradation",30,25.8,1,1,1,1
+"Glycerolipid Metabolism",25,21.5,1,1,1,1
+"Pyrimidine Metabolism",59,50.8,3,1,1,1
+"Nicotinate and Nicotinamide Metabolism",37,31.8,1,1,1,1
+"Purine Metabolism",74,63.7,3,1,1,1
+"Fatty acid Metabolism",43,37,1,1,1,1
+"Folate Metabolism",29,25,1,1,1,1
+"Fatty Acid Elongation In Mitochondria",35,30.1,2,1,1,1
+"Citric Acid Cycle",32,27.5,1,1,1,1
+"Starch and Sucrose Metabolism",31,26.7,1,1,1,1
+"Urea Cycle",29,25,1,1,1,1
+"Pyruvate Metabolism",48,41.3,1,1,1,1
+"Tryptophan Metabolism",60,51.6,9,1,1,1
+"Aspartate Metabolism",35,30.1,1,1,1,1
+"Androgen and Estrogen Metabolism",33,28.4,1,1,1,1
+"Glutamate Metabolism",49,42.2,1,1,1,1
+"Retinol Metabolism",37,31.8,5,1,1,1
+"Arachidonic Acid Metabolism",69,59.4,4,1,1,1
+"Betaine Metabolism",21,18.1,1,1,1,1
+"Gluconeogenesis",35,30.1,1,1,1,1
+"Steroidogenesis",43,37,10,1,1,1
+"Fatty Acid Biosynthesis",35,30.1,7,1,1,1
+"Carnitine Synthesis",22,18.9,2,1,1,1
+"Transfer of Acetyl Groups into Mitochondria",22,18.9,1,1,1,1
+"Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",27,23.2,1,1,1,1
+"Warburg Effect",58,49.9,1,1,1,1
+"Estrone Metabolism",24,20.6,1,1,1,1

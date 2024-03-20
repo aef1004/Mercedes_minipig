@@ -1,0 +1,98 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Dipyridamole (Antiplatelet) Action Pathway",2,1.74,1,0.983,1,1
+"Rabeprazole Metabolism Pathway",2,1.74,1,0.983,1,1
+"Delavirdine Action Pathway",4,3.47,1,1,1,1
+"Quinapril Metabolism Pathway",4,3.47,1,1,1,1
+"Stavudine Action Pathway",4,3.47,1,1,1,1
+"Vindesine Action Pathway",5,4.34,1,1,1,1
+"Cyproheptadine H1-Antihistamine Action",8,6.95,1,1,1,1
+"Desloratadine H1-Antihistamine Action",8,6.95,1,1,1,1
+"Methdilazine H1-Antihistamine Action",8,6.95,1,1,1,1
+"Quinapril Action Pathway",8,6.95,1,1,1,1
+"Eplerenone Action Pathway",9,7.82,1,1,1,1
+"Ethacrynic Acid Action Pathway",9,7.82,1,1,1,1
+"Spironolactone Action Pathway",9,7.82,1,1,1,1
+"Buprenorphine Action Pathway",11,9.55,1,1,1,1
+"Metipranolol Action Pathway",12,10.4,1,1,1,1
+"Nadolol Action Pathway",12,10.4,1,1,1,1
+"Rabeprazole Action Pathway",15,13,2,1,1,1
+"Betazole Action Pathway",14,12.2,1,1,1,1
+"Cimetidine Action Pathway",14,12.2,1,1,1,1
+"Esomeprazole Action Pathway",14,12.2,1,1,1,1
+"Famotidine Action Pathway",14,12.2,1,1,1,1
+"Lafutidine H2-Antihistamine Action",14,12.2,1,1,1,1
+"Metiamide Action Pathway",14,12.2,1,1,1,1
+"Nizatidine Action Pathway",14,12.2,1,1,1,1
+"Pirenzepine Action Pathway",14,12.2,1,1,1,1
+"Ranitidine Action Pathway",14,12.2,1,1,1,1
+"Roxatidine acetate Action Pathway",14,12.2,1,1,1,1
+"Ibuprofen Metabolism Pathway",15,13,1,1,1,1
+"Lansoprazole Action Pathway",15,13,1,1,1,1
+"Pantoprazole Action Pathway",15,13,1,1,1,1
+"Omeprazole Action Pathway",16,13.9,1,1,1,1
+"Acetaminophen  Action Pathway",67,58.2,4,1,1,1
+"Acetylsalicylic Acid Action Pathway",67,58.2,4,1,1,1
+"Alendronate Action Pathway",48,41.7,1,1,1,1
+"Antipyrine Action Pathway",67,58.2,4,1,1,1
+"Antrafenine Action Pathway",67,58.2,4,1,1,1
+"Atorvastatin Action Pathway",48,41.7,1,1,1,1
+"Azathioprine Action Pathway",92,79.9,4,1,1,1
+"Bromfenac Action Pathway",67,58.2,4,1,1,1
+"Carprofen Action Pathway",67,58.2,4,1,1,1
+"Celecoxib Action Pathway",74,64.3,4,1,1,1
+"Cerivastatin Action Pathway",47,40.8,1,1,1,1
+"Citalopram Action Pathway",28,24.3,1,1,1,1
+"Citalopram Metabolism Pathway",19,16.5,1,1,1,1
+"Cyclophosphamide Action Pathway",25,21.7,1,1,1,1
+"Cyclophosphamide Metabolism Pathway",25,21.7,1,1,1,1
+"Diclofenac Action Pathway",68,59.1,4,1,1,1
+"Diflunisal Action Pathway",67,58.2,4,1,1,1
+"Etodolac Action Pathway",67,58.2,4,1,1,1
+"Etoricoxib Action Pathway",67,58.2,4,1,1,1
+"Fenoprofen Action Pathway",67,58.2,5,1,1,1
+"Flurbiprofen Action Pathway",67,58.2,4,1,1,1
+"Fluvastatin Action Pathway",49,42.6,1,1,1,1
+"Gentamicin Action Pathway",20,17.4,1,1,1,1
+"Ibandronate Action Pathway",48,41.7,2,1,1,1
+"Ibuprofen Action Pathway",76,66,5,1,1,1
+"Ifosfamide Action Pathway",23,20,2,1,1,1
+"Ifosfamide Metabolism Pathway",23,20,2,1,1,1
+"Indomethacin Action Pathway",67,58.2,4,1,1,1
+"Ketoprofen Action Pathway",67,58.2,4,1,1,1
+"Ketorolac Action Pathway",67,58.2,4,1,1,1
+"Lornoxicam Action Pathway",67,58.2,4,1,1,1
+"Lovastatin Action Pathway",48,41.7,1,1,1,1
+"Lumiracoxib Action Pathway",67,58.2,4,1,1,1
+"Magnesium salicylate Action Pathway",67,58.2,4,1,1,1
+"Mefenamic Acid Action Pathway",67,58.2,5,1,1,1
+"Meloxicam Action Pathway",67,58.2,4,1,1,1
+"Mercaptopurine Action Pathway",90,78.2,4,1,1,1
+"Methotrexate Action Pathway",30,26.1,1,1,1,1
+"Nabumetone Action Pathway",67,58.2,5,1,1,1
+"Naproxen Action Pathway",68,59.1,4,1,1,1
+"Neomycin Action Pathway",20,17.4,1,1,1,1
+"Nepafenac Action Pathway",67,58.2,4,1,1,1
+"Nicotine Action Pathway",36,31.3,1,1,1,1
+"Nicotine Metabolism Pathway",26,22.6,1,1,1,1
+"Oxaprozin Action Pathway",67,58.2,4,1,1,1
+"Pamidronate Action Pathway",48,41.7,1,1,1,1
+"Phenylbutazone Action Pathway",67,58.2,4,1,1,1
+"Piroxicam Action Pathway",68,59.1,4,1,1,1
+"Pravastatin Action Pathway",48,41.7,1,1,1,1
+"Risedronate Action Pathway",48,41.7,1,1,1,1
+"Rofecoxib Action Pathway",66,57.3,4,1,1,1
+"Rosuvastatin Action Pathway",48,41.7,1,1,1,1
+"Salicylate-sodium Action Pathway",67,58.2,4,1,1,1
+"Salicylic Acid Action Pathway",67,58.2,4,1,1,1
+"Salsalate Action Pathway",67,58.2,4,1,1,1
+"Simvastatin Action Pathway",48,41.7,1,1,1,1
+"Sulindac Action Pathway",67,58.2,4,1,1,1
+"Suprofen Action Pathway",67,58.2,4,1,1,1
+"Tenoxicam Action Pathway",67,58.2,4,1,1,1
+"Thioguanine Action Pathway",91,79,4,1,1,1
+"Tiaprofenic Acid Action Pathway",67,58.2,4,1,1,1
+"Tolmetin Action Pathway",67,58.2,5,1,1,1
+"Trisalicylate-choline Action Pathway",67,58.2,4,1,1,1
+"Valdecoxib Action Pathway",67,58.2,4,1,1,1
+"Valproic Acid Metabolism Pathway",37,32.1,3,1,1,1
+"Zoledronate Action Pathway",48,41.7,1,1,1,1

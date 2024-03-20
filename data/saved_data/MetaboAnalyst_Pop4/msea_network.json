@@ -1,0 +1,58 @@
+{
+ "nodes": [
+ {
+ "id": "Retinol Metabolism",
+"label": "Retinol Metabolism",
+"size": 4.346154,
+"color": "#FF0000",
+"x": 125.6531,
+"y": 128.3698 
+},
+{
+ "id": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"label": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"size": 4.123596,
+"color": "#FF4000",
+"x": 122.5289,
+"y": 128.3101 
+},
+{
+ "id": "Fructose and Mannose Degradation",
+"label": "Fructose and Mannose Degradation",
+"size": 3.222222,
+"color": "#FF8000",
+"x": 124.1653,
+"y": 129.0094 
+},
+{
+ "id": "Arachidonic Acid Metabolism",
+"label": "Arachidonic Acid Metabolism",
+"size": 3.412371,
+"color": "#FFBF00",
+"x": 124.9846,
+"y": 130.3272 
+},
+{
+ "id": "Tryptophan Metabolism",
+"label": "Tryptophan Metabolism",
+"size": 3.236967,
+"color": "#FFFF00",
+"x": 122.9643,
+"y": 130.1603 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size": 3.096154,
+"color": "#FFFF80",
+"x": 124.0656,
+"y": 127.2587 
+} 
+],
+"edges": [ {
+ "id": "1" 
+},
+{
+ "id": "0" 
+} ] 
+}

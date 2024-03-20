@@ -1,0 +1,26 @@
+{
+ "nodes": [
+ {
+ "id": "Bile Acid Biosynthesis",
+"label": "Bile Acid Biosynthesis",
+"size": 4.578947,
+"color": "#FF0000",
+"x": 156.2434,
+"y": 122.5284 
+},
+{
+ "id": "Tryptophan Metabolism",
+"label": "Tryptophan Metabolism",
+"size": 4.136364,
+"color": "#FFFF00",
+"x": 154.9818,
+"y": 121.8885 
+} 
+],
+"edges": [ {
+ "id": "1" 
+},
+{
+ "id": "0" 
+} ] 
+}

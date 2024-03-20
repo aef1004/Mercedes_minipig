@@ -1,0 +1,27 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Valine, leucine and isoleucine biosynthesis",8,0.72258,4,0.0033493,2.475,0.28134,0.28134,0
+"Arginine and proline metabolism",38,3.4323,5,0.25493,0.59358,1,1,0.18843
+"Valine, leucine and isoleucine degradation",40,3.6129,5,0.29102,0.53608,1,1,0.04094
+"D-Arginine and D-ornithine metabolism",4,0.36129,1,0.31549,0.50102,1,1,0
+"Synthesis and degradation of ketone bodies",5,0.45161,1,0.37747,0.42311,1,1,0.6
+"Butanoate metabolism",15,1.3548,2,0.39875,0.3993,1,1,0.14286
+"Phosphonate and phosphinate metabolism",6,0.54194,1,0.43388,0.36263,1,1,0.5
+"Vitamin B6 metabolism",9,0.8129,1,0.57442,0.24077,1,1,0.4902
+"Phenylalanine metabolism",10,0.90323,1,0.61308,0.21248,1,1,0
+"Propanoate metabolism",23,2.0774,2,0.62981,0.20079,1,1,0.04061
+"Aminoacyl-tRNA biosynthesis",48,4.3355,4,0.64411,0.19104,1,1,0
+"Lysine degradation",25,2.2581,2,0.67571,0.17024,1,1,0.15023
+"Alanine, aspartate and glutamate metabolism",28,2.529,2,0.73582,0.13323,1,1,0.04808
+"Arginine biosynthesis",14,1.2645,1,0.73583,0.13322,1,1,0.06091
+"Tyrosine metabolism",42,3.7935,3,0.74764,0.12631,1,1,0.11085
+"Glycine, serine and threonine metabolism",33,2.9806,2,0.81502,0.088834,1,1,0
+"Cysteine and methionine metabolism",33,2.9806,2,0.81502,0.088834,1,1,0.05983
+"Purine metabolism",65,5.871,4,0.85525,0.067907,1,1,0.16012
+"Sphingolipid metabolism",21,1.8968,1,0.86487,0.063047,1,1,0
+"Steroid hormone biosynthesis",85,7.6774,5,0.89831,0.046575,1,1,0.16686
+"Tryptophan metabolism",41,3.7032,2,0.89854,0.046463,1,1,0.00202
+"Glutathione metabolism",28,2.529,1,0.9311,0.031002,1,1,0
+"Porphyrin and chlorophyll metabolism",30,2.7097,1,0.9432,0.025397,1,1,0
+"Arachidonic acid metabolism",36,3.2516,1,0.96822,0.014025,1,1,0.1166
+"Drug metabolism - other enzymes",39,3.5226,1,0.97625,0.010438,1,1,0.04891
+"Metabolism of xenobiotics by cytochrome P450",68,6.1419,1,0.99862,0.00059848,1,1,0

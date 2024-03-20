@@ -1,0 +1,31 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Malate-Aspartate Shuttle",10,2.54,1,0.947,1,1
+"D-Arginine and D-Ornithine Metabolism",11,2.79,1,0.961,1,1
+"Catecholamine Biosynthesis",20,5.08,1,0.997,1,1
+"Vitamin B6 Metabolism",20,5.08,1,0.997,1,1
+"Carnitine Synthesis",22,5.59,1,0.999,1,1
+"Transfer of Acetyl Groups into Mitochondria",22,5.59,1,0.999,1,1
+"Bile Acid Biosynthesis",65,16.5,7,0.999,1,1
+"Oxidation of Branched Chain Fatty Acids",26,6.6,1,1,1,1
+"Phytanic Acid Peroxisomal Oxidation",26,6.6,1,1,1,1
+"Plasmalogen Synthesis",26,6.6,1,1,1,1
+"Phospholipid Biosynthesis",29,7.36,1,1,1,1
+"Starch and Sucrose Metabolism",31,7.87,1,1,1,1
+"Citric Acid Cycle",32,8.12,1,1,1,1
+"Steroidogenesis",43,10.9,2,1,1,1
+"Fatty Acid Elongation In Mitochondria",35,8.89,1,1,1,1
+"Gluconeogenesis",35,8.89,1,1,1,1
+"Fatty Acid Biosynthesis",35,8.89,1,1,1,1
+"Nicotinate and Nicotinamide Metabolism",37,9.39,1,1,1,1
+"Retinol Metabolism",37,9.39,1,1,1,1
+"Porphyrin Metabolism",40,10.2,1,1,1,1
+"Tryptophan Metabolism",60,15.2,3,1,1,1
+"Arginine and Proline Metabolism",53,13.5,2,1,1,1
+"Pyruvate Metabolism",48,12.2,1,1,1,1
+"Pyrimidine Metabolism",59,15,2,1,1,1
+"Warburg Effect",58,14.7,1,1,1,1
+"Glycine and Serine Metabolism",59,15,1,1,1,1
+"Valine, Leucine and Isoleucine Degradation",60,15.2,1,1,1,1
+"Purine Metabolism",74,18.8,2,1,1,1
+"Arachidonic Acid Metabolism",69,17.5,1,1,1,1
+"Tyrosine Metabolism",72,18.3,1,1,1,1

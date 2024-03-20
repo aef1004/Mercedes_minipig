@@ -1,0 +1,65 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Glycine and Serine Metabolism",59,71,4,NA,NA,NA
+"Pterine Biosynthesis",29,34.9,1,NA,NA,NA
+"Tyrosine Metabolism",72,86.7,13,NA,NA,NA
+"Beta-Alanine Metabolism",34,40.9,1,NA,NA,NA
+"Phenylalanine and Tyrosine Metabolism",28,33.7,3,NA,NA,NA
+"Ammonia Recycling",32,38.5,3,NA,NA,NA
+"Catecholamine Biosynthesis",20,24.1,5,NA,NA,NA
+"Glutathione Metabolism",21,25.3,1,NA,NA,NA
+"Propanoate Metabolism",42,50.6,1,NA,NA,NA
+"Vitamin B6 Metabolism",20,24.1,1,NA,NA,NA
+"Alpha Linolenic Acid and Linoleic Acid Metabolism",19,22.9,4,NA,NA,NA
+"Arginine and Proline Metabolism",53,63.8,4,NA,NA,NA
+"Taurine and Hypotaurine Metabolism",12,14.4,1,NA,NA,NA
+"Steroid Biosynthesis",48,57.8,1,NA,NA,NA
+"Porphyrin Metabolism",40,48.2,2,NA,NA,NA
+"Phospholipid Biosynthesis",29,34.9,2,NA,NA,NA
+"Pantothenate and CoA Biosynthesis",21,25.3,2,NA,NA,NA
+"Oxidation of Branched Chain Fatty Acids",26,31.3,2,NA,NA,NA
+"Valine, Leucine and Isoleucine Degradation",60,72.2,2,NA,NA,NA
+"Methionine Metabolism",43,51.8,3,NA,NA,NA
+"Bile Acid Biosynthesis",65,78.3,17,NA,NA,NA
+"D-Arginine and D-Ornithine Metabolism",11,13.2,1,NA,NA,NA
+"Lysine Degradation",30,36.1,2,NA,NA,NA
+"Glycerolipid Metabolism",25,30.1,1,NA,NA,NA
+"Sulfate/Sulfite Metabolism",22,26.5,1,NA,NA,NA
+"Galactose Metabolism",38,45.8,2,NA,NA,NA
+"Histidine Metabolism",43,51.8,1,NA,NA,NA
+"Pyrimidine Metabolism",59,71,3,NA,NA,NA
+"Nicotinate and Nicotinamide Metabolism",37,44.6,1,NA,NA,NA
+"Purine Metabolism",74,89.1,5,NA,NA,NA
+"Fatty acid Metabolism",43,51.8,3,NA,NA,NA
+"Beta Oxidation of Very Long Chain Fatty Acids",17,20.5,3,NA,NA,NA
+"Folate Metabolism",29,34.9,1,NA,NA,NA
+"Fatty Acid Elongation In Mitochondria",35,42.1,2,NA,NA,NA
+"Alanine Metabolism",17,20.5,2,NA,NA,NA
+"Citric Acid Cycle",32,38.5,1,NA,NA,NA
+"Starch and Sucrose Metabolism",31,37.3,1,NA,NA,NA
+"Urea Cycle",29,34.9,1,NA,NA,NA
+"Pyruvate Metabolism",48,57.8,1,NA,NA,NA
+"Tryptophan Metabolism",60,72.2,9,NA,NA,NA
+"Fructose and Mannose Degradation",32,38.5,1,NA,NA,NA
+"Ubiquinone Biosynthesis",20,24.1,1,NA,NA,NA
+"Biotin Metabolism",8,9.63,1,NA,NA,NA
+"Aspartate Metabolism",35,42.1,1,NA,NA,NA
+"Androgen and Estrogen Metabolism",33,39.7,3,NA,NA,NA
+"Ketone Body Metabolism",13,15.7,1,NA,NA,NA
+"Glutamate Metabolism",49,59,2,NA,NA,NA
+"Retinol Metabolism",37,44.6,7,NA,NA,NA
+"Arachidonic Acid Metabolism",69,83.1,13,NA,NA,NA
+"Betaine Metabolism",21,25.3,2,NA,NA,NA
+"Gluconeogenesis",35,42.1,1,NA,NA,NA
+"Steroidogenesis",43,51.8,7,NA,NA,NA
+"Threonine and 2-Oxobutanoate Degradation",20,24.1,1,NA,NA,NA
+"Homocysteine Degradation",9,10.8,1,NA,NA,NA
+"Fatty Acid Biosynthesis",35,42.1,6,NA,NA,NA
+"Carnitine Synthesis",22,26.5,3,NA,NA,NA
+"Transfer of Acetyl Groups into Mitochondria",22,26.5,1,NA,NA,NA
+"Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",27,32.5,2,NA,NA,NA
+"Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",27,32.5,1,NA,NA,NA
+"Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",28,33.7,1,NA,NA,NA
+"Warburg Effect",58,69.8,1,NA,NA,NA
+"Thyroid hormone synthesis",13,15.7,1,NA,NA,NA
+"Androstenedione Metabolism",24,28.9,2,NA,NA,NA
+"Estrone Metabolism",24,28.9,2,NA,NA,NA

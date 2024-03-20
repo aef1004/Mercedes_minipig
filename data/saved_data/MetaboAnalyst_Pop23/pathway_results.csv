@@ -1,0 +1,16 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Glycerophospholipid metabolism",36,1.0684,3,0.088301,1.054,1,1,0.24596
+"Linoleic acid metabolism",5,0.14839,1,0.14001,0.85385,1,1,0
+"Primary bile acid biosynthesis",46,1.3652,3,0.1534,0.81417,1,1,0.00758
+"alpha-Linolenic acid metabolism",13,0.38581,1,0.3251,0.48798,1,1,0
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,0.41548,1,0.3453,0.4618,1,1,0.00399
+"Terpenoid backbone biosynthesis",18,0.53419,1,0.42035,0.37639,1,1,0
+"Sphingolipid metabolism",21,0.62323,1,0.47104,0.32694,1,1,0
+"Glutathione metabolism",28,0.83097,1,0.57305,0.2418,1,1,0.08873
+"Porphyrin and chlorophyll metabolism",30,0.89032,1,0.59848,0.22295,1,1,0
+"Glyoxylate and dicarboxylate metabolism",32,0.94968,1,0.62242,0.20591,1,1,0.10582
+"Glycine, serine and threonine metabolism",33,0.97935,1,0.63386,0.198,1,1,0.24577
+"Arachidonic acid metabolism",36,1.0684,1,0.66619,0.1764,1,1,0
+"Tyrosine metabolism",42,1.2465,1,0.72269,0.14105,1,1,0.00635
+"Aminoacyl-tRNA biosynthesis",48,1.4245,1,0.7698,0.11362,1,1,0
+"Steroid hormone biosynthesis",85,2.5226,1,0.9282,0.032357,1,1,6e-05

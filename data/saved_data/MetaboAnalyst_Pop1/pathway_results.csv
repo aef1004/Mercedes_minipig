@@ -1,0 +1,5 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Glycerophospholipid metabolism",36,0.51097,2,0.090621,1.0428,1,1,0.01736
+"Sphingolipid metabolism",21,0.29806,1,0.26079,0.58372,1,1,0
+"Lysine degradation",25,0.35484,1,0.30246,0.51933,1,1,0.00469
+"Arachidonic acid metabolism",36,0.51097,1,0.40582,0.39167,1,1,0.02023

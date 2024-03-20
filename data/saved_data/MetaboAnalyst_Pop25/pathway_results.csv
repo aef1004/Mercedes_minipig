@@ -1,0 +1,19 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Valine, leucine and isoleucine biosynthesis",8,0.28387,3,0.0020881,2.6802,0.1754,0.1754,0
+"Arginine and proline metabolism",38,1.3484,5,0.0096059,2.0175,0.79729,0.40345,0.15481
+"Glycine, serine and threonine metabolism",33,1.171,3,0.10905,0.96236,1,1,0.05034
+"D-Arginine and D-ornithine metabolism",4,0.14194,1,0.13468,0.87069,1,1,0
+"Valine, leucine and isoleucine degradation",40,1.4194,3,0.16658,0.77837,1,1,0.02168
+"Nitrogen metabolism",6,0.2129,1,0.19517,0.70958,1,1,0
+"Arginine biosynthesis",14,0.49677,1,0.39829,0.3998,1,1,0.20305
+"Terpenoid backbone biosynthesis",18,0.63871,1,0.48003,0.31874,1,1,0.11429
+"Pantothenate and CoA biosynthesis",19,0.67419,1,0.49869,0.30217,1,1,0
+"Alanine, aspartate and glutamate metabolism",28,0.99355,1,0.63965,0.19406,1,1,0
+"Porphyrin and chlorophyll metabolism",30,1.0645,1,0.66523,0.17703,1,1,0.02799
+"Glyoxylate and dicarboxylate metabolism",32,1.1355,1,0.68903,0.16176,1,1,0.27513
+"Glycerophospholipid metabolism",36,1.2774,1,0.73175,0.13564,1,1,0.01736
+"Pyrimidine metabolism",39,1.3839,1,0.75995,0.11921,1,1,0.01318
+"Tryptophan metabolism",41,1.4548,1,0.77711,0.10952,1,1,0.05157
+"Tyrosine metabolism",42,1.4903,1,0.78524,0.105,1,1,0.01751
+"Aminoacyl-tRNA biosynthesis",48,1.7032,1,0.82822,0.081856,1,1,0
+"Drug metabolism - cytochrome P450",55,1.9516,1,0.86777,0.061597,1,1,0

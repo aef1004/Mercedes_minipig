@@ -1,0 +1,1349 @@
+{
+ "nodes": [
+ {
+ "id": "Dipyridamole (Antiplatelet) Action Pathway",
+"label": "Dipyridamole (Antiplatelet) Action Pathway",
+"size": 3.574713,
+"color": "#FF0000",
+"x": 12.16733,
+"y": 6.960317 
+},
+{
+ "id": "Rabeprazole Metabolism Pathway",
+"label": "Rabeprazole Metabolism Pathway",
+"size": 3.574713,
+"color": "#FF0700",
+"x":  10.1226,
+"y": 4.224177 
+},
+{
+ "id": "Delavirdine Action Pathway",
+"label": "Delavirdine Action Pathway",
+"size": 3.288184,
+"color": "#FF0E00",
+"x": 11.90027,
+"y": 5.080826 
+},
+{
+ "id": "Quinapril Metabolism Pathway",
+"label": "Quinapril Metabolism Pathway",
+"size": 3.288184,
+"color": "#FF1500",
+"x": 10.65628,
+"y": 7.526222 
+},
+{
+ "id": "Stavudine Action Pathway",
+"label": "Stavudine Action Pathway",
+"size": 3.288184,
+"color": "#FF1C00",
+"x": 11.83747,
+"y": 4.231032 
+},
+{
+ "id": "Vindesine Action Pathway",
+"label": "Vindesine Action Pathway",
+"size": 3.230415,
+"color": "#FF2200",
+"x": 4.519755,
+"y": 2.321778 
+},
+{
+ "id": "Cyproheptadine H1-Antihistamine Action",
+"label": "Cyproheptadine H1-Antihistamine Action",
+"size": 3.143885,
+"color": "#FF2900",
+"x": 0.6516459,
+"y": 6.312487 
+},
+{
+ "id": "Desloratadine H1-Antihistamine Action",
+"label": "Desloratadine H1-Antihistamine Action",
+"size": 3.143885,
+"color": "#FF3000",
+"x": 1.405298,
+"y": 5.955762 
+},
+{
+ "id": "Methdilazine H1-Antihistamine Action",
+"label": "Methdilazine H1-Antihistamine Action",
+"size": 3.143885,
+"color": "#FF3700",
+"x": 0.7399079,
+"y": 5.378962 
+},
+{
+ "id": "Quinapril Action Pathway",
+"label": "Quinapril Action Pathway",
+"size": 3.143885,
+"color": "#FF3E00",
+"x": 10.84899,
+"y":  6.65856 
+},
+{
+ "id": "Eplerenone Action Pathway",
+"label": "Eplerenone Action Pathway",
+"size": 3.127877,
+"color": "#FF4500",
+"x": 8.972973,
+"y": 8.956006 
+},
+{
+ "id": "Ethacrynic Acid Action Pathway",
+"label": "Ethacrynic Acid Action Pathway",
+"size": 3.127877,
+"color": "#FF4C00",
+"x": 8.370299,
+"y": 9.552716 
+},
+{
+ "id": "Spironolactone Action Pathway",
+"label": "Spironolactone Action Pathway",
+"size": 3.127877,
+"color": "#FF5300",
+"x": 9.198228,
+"y": 9.821099 
+},
+{
+ "id": "Buprenorphine Action Pathway",
+"label": "Buprenorphine Action Pathway",
+"size": 3.104712,
+"color": "#FF5A00",
+"x": 4.843806,
+"y": 2.846537 
+},
+{
+ "id": "Metipranolol Action Pathway",
+"label": "Metipranolol Action Pathway",
+"size": 3.096154,
+"color": "#FF6000",
+"x": 3.642067,
+"y": 3.691826 
+},
+{
+ "id": "Nadolol Action Pathway",
+"label": "Nadolol Action Pathway",
+"size": 3.096154,
+"color": "#FF6700",
+"x": 3.159233,
+"y": 3.106007 
+},
+{
+ "id": "Rabeprazole Action Pathway",
+"label": "Rabeprazole Action Pathway",
+"size": 3.153846,
+"color": "#FF6E00",
+"x": 5.180827,
+"y":  2.19804 
+},
+{
+ "id": "Betazole Action Pathway",
+"label": "Betazole Action Pathway",
+"size": 3.081967,
+"color": "#FF7500",
+"x": 4.722267,
+"y": 1.394906 
+},
+{
+ "id": "Cimetidine Action Pathway",
+"label": "Cimetidine Action Pathway",
+"size": 3.081967,
+"color": "#FF7C00",
+"x": 5.703406,
+"y": 1.825121 
+},
+{
+ "id": "Esomeprazole Action Pathway",
+"label": "Esomeprazole Action Pathway",
+"size": 3.081967,
+"color": "#FF8300",
+"x": 4.979841,
+"y": 1.148411 
+},
+{
+ "id": "Famotidine Action Pathway",
+"label": "Famotidine Action Pathway",
+"size": 3.081967,
+"color": "#FF8A00",
+"x": 5.199075,
+"y":  1.46219 
+},
+{
+ "id": "Lafutidine H2-Antihistamine Action",
+"label": "Lafutidine H2-Antihistamine Action",
+"size": 3.081967,
+"color": "#FF9100",
+"x": 5.820494,
+"y": 2.253527 
+},
+{
+ "id": "Metiamide Action Pathway",
+"label": "Metiamide Action Pathway",
+"size": 3.081967,
+"color": "#FF9800",
+"x": 4.896162,
+"y": 1.950148 
+},
+{
+ "id": "Nizatidine Action Pathway",
+"label": "Nizatidine Action Pathway",
+"size": 3.081967,
+"color": "#FF9F00",
+"x": 5.350745,
+"y": 1.798622 
+},
+{
+ "id": "Pirenzepine Action Pathway",
+"label": "Pirenzepine Action Pathway",
+"size": 3.081967,
+"color": "#FFA500",
+"x": 5.486155,
+"y":  2.37494 
+},
+{
+ "id": "Ranitidine Action Pathway",
+"label": "Ranitidine Action Pathway",
+"size": 3.081967,
+"color": "#FFAC00",
+"x": 4.612198,
+"y": 1.721748 
+},
+{
+ "id": "Roxatidine acetate Action Pathway",
+"label": "Roxatidine acetate Action Pathway",
+"size": 3.081967,
+"color": "#FFB300",
+"x": 6.012391,
+"y": 1.866597 
+},
+{
+ "id": "Ibuprofen Metabolism Pathway",
+"label": "Ibuprofen Metabolism Pathway",
+"size": 3.076923,
+"color": "#FFBA00",
+"x": 10.84375,
+"y": 9.075159 
+},
+{
+ "id": "Lansoprazole Action Pathway",
+"label": "Lansoprazole Action Pathway",
+"size": 3.076923,
+"color": "#FFC100",
+"x": 5.412308,
+"y": 1.018459 
+},
+{
+ "id": "Pantoprazole Action Pathway",
+"label": "Pantoprazole Action Pathway",
+"size": 3.076923,
+"color": "#FFC800",
+"x": 5.769182,
+"y": 1.354629 
+},
+{
+ "id": "Omeprazole Action Pathway",
+"label": "Omeprazole Action Pathway",
+"size": 3.071942,
+"color": "#FFCF00",
+"x":   5.9966,
+"y": 1.101134 
+},
+{
+ "id": "Acetaminophen  Action Pathway",
+"label": "Acetaminophen  Action Pathway",
+"size": 3.068729,
+"color": "#FFD600",
+"x": 3.923846,
+"y": 8.472269 
+},
+{
+ "id": "Acetylsalicylic Acid Action Pathway",
+"label": "Acetylsalicylic Acid Action Pathway",
+"size": 3.068729,
+"color": "#FFDD00",
+"x": 3.816667,
+"y": 9.574041 
+},
+{
+ "id": "Alendronate Action Pathway",
+"label": "Alendronate Action Pathway",
+"size": 3.023981,
+"color": "#FFE300",
+"x": 10.57547,
+"y": 1.600318 
+},
+{
+ "id": "Antipyrine Action Pathway",
+"label": "Antipyrine Action Pathway",
+"size": 3.068729,
+"color": "#FFEA00",
+"x": 4.284768,
+"y": 9.681241 
+},
+{
+ "id": "Antrafenine Action Pathway",
+"label": "Antrafenine Action Pathway",
+"size": 3.068729,
+"color": "#FFF100",
+"x": 4.811773,
+"y": 8.620638 
+},
+{
+ "id": "Atorvastatin Action Pathway",
+"label": "Atorvastatin Action Pathway",
+"size": 3.023981,
+"color": "#FFF800",
+"x": 11.07397,
+"y": 2.363341 
+},
+{
+ "id": "Azathioprine Action Pathway",
+"label": "Azathioprine Action Pathway",
+"size": 3.050063,
+"color": "#FFFF00",
+"x": 7.562801,
+"y": 10.97138 
+},
+{
+ "id": "Bromfenac Action Pathway",
+"label": "Bromfenac Action Pathway",
+"size": 3.068729,
+"color": "#FFFF0B",
+"x": 3.566091,
+"y": 9.165438 
+},
+{
+ "id": "Carprofen Action Pathway",
+"label": "Carprofen Action Pathway",
+"size": 3.068729,
+"color": "#FFFF20",
+"x": 4.886206,
+"y": 9.117194 
+},
+{
+ "id": "Celecoxib Action Pathway",
+"label": "Celecoxib Action Pathway",
+"size": 3.062208,
+"color": "#FFFF35",
+"x": 4.345921,
+"y": 8.324515 
+},
+{
+ "id": "Cerivastatin Action Pathway",
+"label": "Cerivastatin Action Pathway",
+"size":  3.02451,
+"color": "#FFFF4A",
+"x": 10.20573,
+"y":  2.35274 
+},
+{
+ "id": "Citalopram Action Pathway",
+"label": "Citalopram Action Pathway",
+"size": 3.041152,
+"color": "#FFFF60",
+"x": 5.822702,
+"y": 4.680587 
+},
+{
+ "id": "Citalopram Metabolism Pathway",
+"label": "Citalopram Metabolism Pathway",
+"size": 3.060606,
+"color": "#FFFF75",
+"x": 6.793925,
+"y": 5.621817 
+},
+{
+ "id": "Cyclophosphamide Action Pathway",
+"label": "Cyclophosphamide Action Pathway",
+"size": 3.046083,
+"color": "#FFFF8A",
+"x": 9.254799,
+"y": 5.961896 
+},
+{
+ "id": "Cyclophosphamide Metabolism Pathway",
+"label": "Cyclophosphamide Metabolism Pathway",
+"size": 3.046083,
+"color": "#FFFF9F",
+"x": 8.845417,
+"y": 6.800706 
+},
+{
+ "id": "Diclofenac Action Pathway",
+"label": "Diclofenac Action Pathway",
+"size": 3.067682,
+"color": "#FFFFB5",
+"x": 3.573253,
+"y":  8.72364 
+},
+{
+ "id": "Diflunisal Action Pathway",
+"label": "Diflunisal Action Pathway",
+"size": 3.068729,
+"color": "#FFFFCA",
+"x": 4.072277,
+"y": 9.131125 
+},
+{
+ "id": "Etodolac Action Pathway",
+"label": "Etodolac Action Pathway",
+"size": 3.068729,
+"color": "#FFFFDF",
+"x":  4.67507,
+"y":  9.49532 
+},
+{
+ "id": "Etoricoxib Action Pathway",
+"label": "Etoricoxib Action Pathway",
+"size": 3.068729,
+"color": "#FFFFF4",
+"x": 4.438869,
+"y": 8.870789 
+} 
+],
+"edges": [ {
+ "id": "1",
+"source": "Delavirdine Action Pathway",
+"target": "Stavudine Action Pathway" 
+},
+{
+ "id": "2",
+"source": "Cyproheptadine H1-Antihistamine Action",
+"target": "Desloratadine H1-Antihistamine Action" 
+},
+{
+ "id": "3",
+"source": "Cyproheptadine H1-Antihistamine Action",
+"target": "Methdilazine H1-Antihistamine Action" 
+},
+{
+ "id": "4",
+"source": "Desloratadine H1-Antihistamine Action",
+"target": "Methdilazine H1-Antihistamine Action" 
+},
+{
+ "id": "5",
+"source": "Quinapril Metabolism Pathway",
+"target": "Quinapril Action Pathway" 
+},
+{
+ "id": "6",
+"source": "Eplerenone Action Pathway",
+"target": "Ethacrynic Acid Action Pathway" 
+},
+{
+ "id": "7",
+"source": "Eplerenone Action Pathway",
+"target": "Spironolactone Action Pathway" 
+},
+{
+ "id": "8",
+"source": "Ethacrynic Acid Action Pathway",
+"target": "Spironolactone Action Pathway" 
+},
+{
+ "id": "9",
+"source": "Vindesine Action Pathway",
+"target": "Buprenorphine Action Pathway" 
+},
+{
+ "id": "10",
+"source": "Vindesine Action Pathway",
+"target": "Metipranolol Action Pathway" 
+},
+{
+ "id": "11",
+"source": "Buprenorphine Action Pathway",
+"target": "Metipranolol Action Pathway" 
+},
+{
+ "id": "12",
+"source": "Vindesine Action Pathway",
+"target": "Nadolol Action Pathway" 
+},
+{
+ "id": "13",
+"source": "Buprenorphine Action Pathway",
+"target": "Nadolol Action Pathway" 
+},
+{
+ "id": "14",
+"source": "Metipranolol Action Pathway",
+"target": "Nadolol Action Pathway" 
+},
+{
+ "id": "15",
+"source": "Vindesine Action Pathway",
+"target": "Rabeprazole Action Pathway" 
+},
+{
+ "id": "16",
+"source": "Vindesine Action Pathway",
+"target": "Betazole Action Pathway" 
+},
+{
+ "id": "17",
+"source": "Buprenorphine Action Pathway",
+"target": "Betazole Action Pathway" 
+},
+{
+ "id": "18",
+"source": "Rabeprazole Action Pathway",
+"target": "Betazole Action Pathway" 
+},
+{
+ "id": "19",
+"source": "Vindesine Action Pathway",
+"target": "Cimetidine Action Pathway" 
+},
+{
+ "id": "20",
+"source": "Buprenorphine Action Pathway",
+"target": "Cimetidine Action Pathway" 
+},
+{
+ "id": "21",
+"source": "Rabeprazole Action Pathway",
+"target": "Cimetidine Action Pathway" 
+},
+{
+ "id": "22",
+"source": "Betazole Action Pathway",
+"target": "Cimetidine Action Pathway" 
+},
+{
+ "id": "23",
+"source": "Vindesine Action Pathway",
+"target": "Esomeprazole Action Pathway" 
+},
+{
+ "id": "24",
+"source": "Buprenorphine Action Pathway",
+"target": "Esomeprazole Action Pathway" 
+},
+{
+ "id": "25",
+"source": "Rabeprazole Action Pathway",
+"target": "Esomeprazole Action Pathway" 
+},
+{
+ "id": "26",
+"source": "Betazole Action Pathway",
+"target": "Esomeprazole Action Pathway" 
+},
+{
+ "id": "27",
+"source": "Cimetidine Action Pathway",
+"target": "Esomeprazole Action Pathway" 
+},
+{
+ "id": "28",
+"source": "Vindesine Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "29",
+"source": "Buprenorphine Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "30",
+"source": "Rabeprazole Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "31",
+"source": "Betazole Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "32",
+"source": "Cimetidine Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "33",
+"source": "Esomeprazole Action Pathway",
+"target": "Famotidine Action Pathway" 
+},
+{
+ "id": "34",
+"source": "Vindesine Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "35",
+"source": "Buprenorphine Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "36",
+"source": "Rabeprazole Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "37",
+"source": "Betazole Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "38",
+"source": "Cimetidine Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "39",
+"source": "Esomeprazole Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "40",
+"source": "Famotidine Action Pathway",
+"target": "Lafutidine H2-Antihistamine Action" 
+},
+{
+ "id": "41",
+"source": "Vindesine Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "42",
+"source": "Buprenorphine Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "43",
+"source": "Rabeprazole Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "44",
+"source": "Betazole Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "45",
+"source": "Cimetidine Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "46",
+"source": "Esomeprazole Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "47",
+"source": "Famotidine Action Pathway",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "48",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Metiamide Action Pathway" 
+},
+{
+ "id": "49",
+"source": "Vindesine Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "50",
+"source": "Buprenorphine Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "51",
+"source": "Rabeprazole Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "52",
+"source": "Betazole Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "53",
+"source": "Cimetidine Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "54",
+"source": "Esomeprazole Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "55",
+"source": "Famotidine Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "56",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "57",
+"source": "Metiamide Action Pathway",
+"target": "Nizatidine Action Pathway" 
+},
+{
+ "id": "58",
+"source": "Vindesine Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "59",
+"source": "Buprenorphine Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "60",
+"source": "Rabeprazole Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "61",
+"source": "Betazole Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "62",
+"source": "Cimetidine Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "63",
+"source": "Esomeprazole Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "64",
+"source": "Famotidine Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "65",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "66",
+"source": "Metiamide Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "67",
+"source": "Nizatidine Action Pathway",
+"target": "Pirenzepine Action Pathway" 
+},
+{
+ "id": "68",
+"source": "Vindesine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "69",
+"source": "Buprenorphine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "70",
+"source": "Rabeprazole Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "71",
+"source": "Betazole Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "72",
+"source": "Cimetidine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "73",
+"source": "Esomeprazole Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "74",
+"source": "Famotidine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "75",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "76",
+"source": "Metiamide Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "77",
+"source": "Nizatidine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "78",
+"source": "Pirenzepine Action Pathway",
+"target": "Ranitidine Action Pathway" 
+},
+{
+ "id": "79",
+"source": "Vindesine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "80",
+"source": "Buprenorphine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "81",
+"source": "Rabeprazole Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "82",
+"source": "Betazole Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "83",
+"source": "Cimetidine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "84",
+"source": "Esomeprazole Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "85",
+"source": "Famotidine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "86",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "87",
+"source": "Metiamide Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "88",
+"source": "Nizatidine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "89",
+"source": "Pirenzepine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "90",
+"source": "Ranitidine Action Pathway",
+"target": "Roxatidine acetate Action Pathway" 
+},
+{
+ "id": "91",
+"source": "Vindesine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "92",
+"source": "Rabeprazole Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "93",
+"source": "Betazole Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "94",
+"source": "Cimetidine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "95",
+"source": "Esomeprazole Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "96",
+"source": "Famotidine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "97",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "98",
+"source": "Metiamide Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "99",
+"source": "Nizatidine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "100",
+"source": "Pirenzepine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "101",
+"source": "Ranitidine Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "102",
+"source": "Roxatidine acetate Action Pathway",
+"target": "Lansoprazole Action Pathway" 
+},
+{
+ "id": "103",
+"source": "Vindesine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "104",
+"source": "Rabeprazole Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "105",
+"source": "Betazole Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "106",
+"source": "Cimetidine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "107",
+"source": "Esomeprazole Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "108",
+"source": "Famotidine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "109",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "110",
+"source": "Metiamide Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "111",
+"source": "Nizatidine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "112",
+"source": "Pirenzepine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "113",
+"source": "Ranitidine Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "114",
+"source": "Roxatidine acetate Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "115",
+"source": "Lansoprazole Action Pathway",
+"target": "Pantoprazole Action Pathway" 
+},
+{
+ "id": "116",
+"source": "Rabeprazole Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "117",
+"source": "Betazole Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "118",
+"source": "Cimetidine Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "119",
+"source": "Esomeprazole Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "120",
+"source": "Famotidine Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "121",
+"source": "Lafutidine H2-Antihistamine Action",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "122",
+"source": "Metiamide Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "123",
+"source": "Nizatidine Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "124",
+"source": "Pirenzepine Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "125",
+"source": "Ranitidine Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "126",
+"source": "Roxatidine acetate Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "127",
+"source": "Lansoprazole Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "128",
+"source": "Pantoprazole Action Pathway",
+"target": "Omeprazole Action Pathway" 
+},
+{
+ "id": "129",
+"source": "Acetaminophen  Action Pathway",
+"target": "Acetylsalicylic Acid Action Pathway" 
+},
+{
+ "id": "130",
+"source": "Acetaminophen  Action Pathway",
+"target": "Antipyrine Action Pathway" 
+},
+{
+ "id": "131",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Antipyrine Action Pathway" 
+},
+{
+ "id": "132",
+"source": "Acetaminophen  Action Pathway",
+"target": "Antrafenine Action Pathway" 
+},
+{
+ "id": "133",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Antrafenine Action Pathway" 
+},
+{
+ "id": "134",
+"source": "Antipyrine Action Pathway",
+"target": "Antrafenine Action Pathway" 
+},
+{
+ "id": "135",
+"source": "Alendronate Action Pathway",
+"target": "Atorvastatin Action Pathway" 
+},
+{
+ "id": "136",
+"source": "Acetaminophen  Action Pathway",
+"target": "Bromfenac Action Pathway" 
+},
+{
+ "id": "137",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Bromfenac Action Pathway" 
+},
+{
+ "id": "138",
+"source": "Antipyrine Action Pathway",
+"target": "Bromfenac Action Pathway" 
+},
+{
+ "id": "139",
+"source": "Antrafenine Action Pathway",
+"target": "Bromfenac Action Pathway" 
+},
+{
+ "id": "140",
+"source": "Acetaminophen  Action Pathway",
+"target": "Carprofen Action Pathway" 
+},
+{
+ "id": "141",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Carprofen Action Pathway" 
+},
+{
+ "id": "142",
+"source": "Antipyrine Action Pathway",
+"target": "Carprofen Action Pathway" 
+},
+{
+ "id": "143",
+"source": "Antrafenine Action Pathway",
+"target": "Carprofen Action Pathway" 
+},
+{
+ "id": "144",
+"source": "Bromfenac Action Pathway",
+"target": "Carprofen Action Pathway" 
+},
+{
+ "id": "145",
+"source": "Acetaminophen  Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "146",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "147",
+"source": "Antipyrine Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "148",
+"source": "Antrafenine Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "149",
+"source": "Bromfenac Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "150",
+"source": "Carprofen Action Pathway",
+"target": "Celecoxib Action Pathway" 
+},
+{
+ "id": "151",
+"source": "Alendronate Action Pathway",
+"target": "Cerivastatin Action Pathway" 
+},
+{
+ "id": "152",
+"source": "Atorvastatin Action Pathway",
+"target": "Cerivastatin Action Pathway" 
+},
+{
+ "id": "153",
+"source": "Buprenorphine Action Pathway",
+"target": "Citalopram Action Pathway" 
+},
+{
+ "id": "154",
+"source": "Citalopram Action Pathway",
+"target": "Citalopram Metabolism Pathway" 
+},
+{
+ "id": "155",
+"source": "Cyclophosphamide Action Pathway",
+"target": "Cyclophosphamide Metabolism Pathway" 
+},
+{
+ "id": "156",
+"source": "Acetaminophen  Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "157",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "158",
+"source": "Antipyrine Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "159",
+"source": "Antrafenine Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "160",
+"source": "Bromfenac Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "161",
+"source": "Carprofen Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "162",
+"source": "Celecoxib Action Pathway",
+"target": "Diclofenac Action Pathway" 
+},
+{
+ "id": "163",
+"source": "Acetaminophen  Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "164",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "165",
+"source": "Antipyrine Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "166",
+"source": "Antrafenine Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "167",
+"source": "Bromfenac Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "168",
+"source": "Carprofen Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "169",
+"source": "Celecoxib Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "170",
+"source": "Diclofenac Action Pathway",
+"target": "Diflunisal Action Pathway" 
+},
+{
+ "id": "171",
+"source": "Acetaminophen  Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "172",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "173",
+"source": "Antipyrine Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "174",
+"source": "Antrafenine Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "175",
+"source": "Bromfenac Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "176",
+"source": "Carprofen Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "177",
+"source": "Celecoxib Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "178",
+"source": "Diclofenac Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "179",
+"source": "Diflunisal Action Pathway",
+"target": "Etodolac Action Pathway" 
+},
+{
+ "id": "180",
+"source": "Acetaminophen  Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "181",
+"source": "Acetylsalicylic Acid Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "182",
+"source": "Antipyrine Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "183",
+"source": "Antrafenine Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "184",
+"source": "Bromfenac Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "185",
+"source": "Carprofen Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "186",
+"source": "Celecoxib Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "187",
+"source": "Diclofenac Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "188",
+"source": "Diflunisal Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+},
+{
+ "id": "189",
+"source": "Etodolac Action Pathway",
+"target": "Etoricoxib Action Pathway" 
+} ] 
+}

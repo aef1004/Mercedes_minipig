@@ -1,0 +1,58 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"Malate-Aspartate Shuttle",10,6.69,3,0.997,1,1
+"Homocysteine Degradation",9,6.02,1,1,1,1
+"Catecholamine Biosynthesis",20,13.4,5,1,1,1
+"Glucose-Alanine Cycle",13,8.7,2,1,1,1
+"Taurine and Hypotaurine Metabolism",12,8.03,1,1,1,1
+"Ketone Body Metabolism",13,8.7,1,1,1,1
+"Alpha Linolenic Acid and Linoleic Acid Metabolism",19,12.7,3,1,1,1
+"Beta Oxidation of Very Long Chain Fatty Acids",17,11.4,2,1,1,1
+"Alanine Metabolism",17,11.4,2,1,1,1
+"Betaine Metabolism",21,14,2,1,1,1
+"Citric Acid Cycle",32,21.4,6,1,1,1
+"Transfer of Acetyl Groups into Mitochondria",22,14.7,2,1,1,1
+"Phenylalanine and Tyrosine Metabolism",28,18.7,4,1,1,1
+"Mitochondrial Electron Transport Chain",19,12.7,1,1,1,1
+"Vitamin B6 Metabolism",20,13.4,1,1,1,1
+"Ubiquinone Biosynthesis",20,13.4,1,1,1,1
+"Retinol Metabolism",37,24.8,7,1,1,1
+"Glutathione Metabolism",21,14,1,1,1,1
+"Pantothenate and CoA Biosynthesis",21,14,1,1,1,1
+"Glycerolipid Metabolism",25,16.7,2,1,1,1
+"Carnitine Synthesis",22,14.7,1,1,1,1
+"Urea Cycle",29,19.4,3,1,1,1
+"Cysteine Metabolism",26,17.4,2,1,1,1
+"Lysine Degradation",30,20.1,3,1,1,1
+"Bile Acid Biosynthesis",65,43.5,17,1,1,1
+"Fatty Acid Biosynthesis",35,23.4,4,1,1,1
+"Oxidation of Branched Chain Fatty Acids",26,17.4,1,1,1,1
+"Phytanic Acid Peroxisomal Oxidation",26,17.4,1,1,1,1
+"Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",27,18.1,1,1,1,1
+"Aspartate Metabolism",35,23.4,3,1,1,1
+"Ammonia Recycling",32,21.4,2,1,1,1
+"Phospholipid Biosynthesis",29,19.4,1,1,1,1
+"Folate Metabolism",29,19.4,1,1,1,1
+"Beta-Alanine Metabolism",34,22.7,2,1,1,1
+"Starch and Sucrose Metabolism",31,20.7,1,1,1,1
+"Gluconeogenesis",35,23.4,2,1,1,1
+"Fructose and Mannose Degradation",32,21.4,1,1,1,1
+"Glycine and Serine Metabolism",59,39.5,4,1,1,1
+"Tyrosine Metabolism",72,48.2,14,1,1,1
+"Propanoate Metabolism",42,28.1,2,1,1,1
+"Arginine and Proline Metabolism",53,35.5,4,1,1,1
+"Steroid Biosynthesis",48,32.1,1,1,1,1
+"Valine, Leucine and Isoleucine Degradation",60,40.1,2,1,1,1
+"Methionine Metabolism",43,28.8,1,1,1,1
+"Galactose Metabolism",38,25.4,2,1,1,1
+"Histidine Metabolism",43,28.8,1,1,1,1
+"Amino Sugar Metabolism",33,22.1,1,1,1,1
+"Nicotinate and Nicotinamide Metabolism",37,24.8,2,1,1,1
+"Purine Metabolism",74,49.5,4,1,1,1
+"Fatty acid Metabolism",43,28.8,2,1,1,1
+"Fatty Acid Elongation In Mitochondria",35,23.4,1,1,1,1
+"Pyruvate Metabolism",48,32.1,2,1,1,1
+"Tryptophan Metabolism",60,40.1,7,1,1,1
+"Glutamate Metabolism",49,32.8,2,1,1,1
+"Arachidonic Acid Metabolism",69,46.2,5,1,1,1
+"Steroidogenesis",43,28.8,2,1,1,1
+"Warburg Effect",58,38.8,6,1,1,1

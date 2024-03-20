@@ -1,0 +1,25 @@
+query_mass,compound_id,compound_name,kegg_id,formula,monoisotopic_mass,adduct,adduct_type,adduct_m/z,delta(ppm)
+323.221956,HMDB0185973,"(2S,15S)-14,17-dihydroxy-15-(hydroxymethyl)-2-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-5-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154833,"(2R,15S)-5,17-dihydroxy-2-(hydroxymethyl)-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0185972,"(2R,15S)-14,17-dihydroxy-2-(hydroxymethyl)-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-5-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0185970,"(2S,15S)-8,14,17-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-5-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0159845,"(1S,2R,10S,11S,15S)-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-7-ene-5,13,14,17-tetrol",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0156607,"(2S,15R)-5,13-dihydroxy-2-(hydroxymethyl)-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-3-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0156608,"(2S,15S)-5,13-dihydroxy-15-(hydroxymethyl)-2-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-3-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0156606,"(2R,15R)-5,8,13-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-3-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154834,"(2S,15S)-5,17-dihydroxy-15-(hydroxymethyl)-2-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154832,"(2S,15S)-5,13,17-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154831,"(2S,15S)-5,8,17-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154830,"(2S,15S)-5,9-dihydroxy-15-(hydroxymethyl)-2-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154829,"(2R,15S)-5,9-dihydroxy-2-(hydroxymethyl)-15-methyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154827,"(2R,15S)-5,8,9-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0154828,"(2S,15S)-5,9,13-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0185971,"(2S,15S)-13,14,17-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-5-one",n/a,C19H30O4,322.214409446,M+H,+,323.221685,1
+323.221956,HMDB0033615,(S)-[8]-Gingerol,C17495,C19H30O4,322.214409448,M+H,+,323.221685,1
+323.221956,HMDB0011531,MG(0:0/14:1(9Z)/0:0),n/a,C17H32O4,300.230059512,M+Na,+,323.219278,8
+323.221956,HMDB0011562,MG(14:1(9Z)/0:0/0:0),n/a,C17H32O4,300.230059512,M+Na,+,323.219278,8
+323.221956,HMDB0166494,hexadecan-2-yl hydrogen sulfate,n/a,C16H34O4S,322.217780749,M+H,+,323.225057,10
+323.221956,HMDB0166496,"1-Hexadecanol, hydrogen sulfate",n/a,C16H34O4S,322.217780749,M+H,+,323.225057,10
+637.4484975,HMDB0187382,"(8E)-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-2,4,6,8-tetraen-1-yl (5Z)-7-{2-[(1E)-3,8-dihydroxyoct-1-en-1-yl]-3-hydroxy-5-oxocyclopentyl}hept-5-enoate",n/a,C40H60O6,636.438989652,M+H,+,637.446266,4
+637.4484975,HMDB0187157,"(8E)-3,7-dimethyl-9-(2,6,6-trimethylcyclohex-1-en-1-yl)nona-2,4,6,8-tetraen-1-yl (5Z)-7-{6-[(1E)-3-hydroperoxyoct-1-en-1-yl]-2,3-dioxabicyclo[2.2.1]heptan-5-yl}hept-5-enoate",n/a,C40H60O6,636.438989652,M+H,+,637.446266,4
+637.4484975,HMDB0036928,Mactraxanthin,n/a,C40H60O6,636.438989652,M+H,+,637.446266,4

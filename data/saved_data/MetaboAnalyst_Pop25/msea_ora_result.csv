@@ -1,0 +1,21 @@
+"","total","expected","hits","Raw p","Holm p","FDR"
+"D-Arginine and D-Ornithine Metabolism",11,1.35,1,0.766,1,1
+"Alanine Metabolism",17,2.09,1,0.895,1,1
+"Betaine Metabolism",21,2.58,1,0.938,1,1
+"Arginine and Proline Metabolism",53,6.52,3,0.969,1,1
+"Urea Cycle",29,3.57,1,0.979,1,1
+"Glycine and Serine Metabolism",59,7.26,3,0.984,1,1
+"Valine, Leucine and Isoleucine Degradation",60,7.38,3,0.985,1,1
+"Ammonia Recycling",32,3.94,1,0.986,1,1
+"Fatty Acid Elongation In Mitochondria",35,4.31,1,0.991,1,1
+"Aspartate Metabolism",35,4.31,1,0.991,1,1
+"Fatty Acid Biosynthesis",35,4.31,1,0.991,1,1
+"Retinol Metabolism",37,4.55,1,0.993,1,1
+"Porphyrin Metabolism",40,4.92,1,0.995,1,1
+"Propanoate Metabolism",42,5.17,1,0.996,1,1
+"Methionine Metabolism",43,5.29,1,0.997,1,1
+"Steroid Biosynthesis",48,5.91,1,0.998,1,1
+"Glutamate Metabolism",49,6.03,1,0.999,1,1
+"Pyrimidine Metabolism",59,7.26,1,1,1,1
+"Tryptophan Metabolism",60,7.38,1,1,1,1
+"Tyrosine Metabolism",72,8.86,1,1,1,1

@@ -1,0 +1,8 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Glycerophospholipid metabolism",36,0.32516,3,0.0035154,2.454,0.2953,0.2953,0.21631
+"Linoleic acid metabolism",5,0.045161,1,0.044409,1.3525,1,1,0
+"Ubiquinone and other terpenoid-quinone biosynthesis",9,0.08129,1,0.07861,1.1045,1,1,0
+"alpha-Linolenic acid metabolism",13,0.11742,1,0.11167,0.95206,1,1,0
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,0.12645,1,0.11976,0.92168,1,1,0.00399
+"Arachidonic acid metabolism",36,0.32516,1,0.28136,0.55073,1,1,0
+"Primary bile acid biosynthesis",46,0.41548,1,0.3453,0.4618,1,1,0.00977

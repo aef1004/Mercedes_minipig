@@ -1,0 +1,27 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Primary bile acid biosynthesis",46,2.76,6,0.053066,1.2752,1,1,0.12076
+"Arginine and proline metabolism",38,2.28,4,0.18995,0.72137,1,1,0.15481
+"D-Arginine and D-ornithine metabolism",4,0.24,1,0.21944,0.65868,1,1,0
+"Glycerophospholipid metabolism",36,2.16,3,0.36813,0.434,1,1,0.20537
+"Ascorbate and aldarate metabolism",8,0.48,1,0.39114,0.40767,1,1,0
+"Valine, leucine and isoleucine biosynthesis",8,0.48,1,0.39114,0.40767,1,1,0
+"Vitamin B6 metabolism",9,0.54,1,0.42786,0.3687,1,1,0.04902
+"Nicotinate and nicotinamide metabolism",15,0.9,1,0.60642,0.21722,1,1,0
+"Glycerolipid metabolism",16,0.96,1,0.63027,0.20047,1,1,0.01246
+"Pyrimidine metabolism",39,2.34,2,0.69135,0.1603,1,1,0.02264
+"Pantothenate and CoA biosynthesis",19,1.14,1,0.69356,0.15892,1,1,0
+"Ether lipid metabolism",20,1.2,1,0.71217,0.14741,1,1,0
+"Citrate cycle (TCA cycle)",20,1.2,1,0.71217,0.14741,1,1,0.04412
+"Tryptophan metabolism",41,2.46,2,0.71788,0.14395,1,1,0.07848
+"Steroid biosynthesis",42,2.52,2,0.73042,0.13643,1,1,0.00344
+"Pyruvate metabolism",22,1.32,1,0.74611,0.1272,1,1,0.0311
+"Alanine, aspartate and glutamate metabolism",28,1.68,1,0.82593,0.083059,1,1,0
+"Phosphatidylinositol signaling system",28,1.68,1,0.82593,0.083059,1,1,0.00152
+"Porphyrin and chlorophyll metabolism",30,1.8,1,0.84656,0.072345,1,1,0.02799
+"Glyoxylate and dicarboxylate metabolism",32,1.92,1,0.86476,0.063103,1,1,0
+"Glycine, serine and threonine metabolism",33,1.98,1,0.87305,0.058962,1,1,0
+"Purine metabolism",65,3.9,2,0.9124,0.039816,1,1,0.02868
+"Fatty acid elongation",39,2.34,1,0.9132,0.039433,1,1,0.00274
+"Fatty acid degradation",39,2.34,1,0.9132,0.039433,1,1,0.00335
+"Valine, leucine and isoleucine degradation",40,2.4,1,0.91855,0.036899,1,1,0.01084
+"Steroid hormone biosynthesis",85,5.1,2,0.96985,0.013296,1,1,0.01703

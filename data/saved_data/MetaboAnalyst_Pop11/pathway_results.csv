@@ -1,0 +1,23 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Phenylalanine metabolism",10,0.56774,2,0.1066,0.97222,1,1,0
+"Glycerophospholipid metabolism",36,2.0439,4,0.14338,0.8435,1,1,0.28885
+"Linoleic acid metabolism",5,0.28387,1,0.25371,0.59567,1,1,0
+"Ubiquinone and other terpenoid-quinone biosynthesis",9,0.51097,1,0.40989,0.38733,1,1,0
+"Vitamin B6 metabolism",9,0.51097,1,0.40989,0.38733,1,1,0.04902
+"Caffeine metabolism",10,0.56774,1,0.44359,0.35302,1,1,0
+"alpha-Linolenic acid metabolism",13,0.73806,1,0.53368,0.27272,1,1,0
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,0.79484,1,0.56038,0.25152,1,1,0.00399
+"Drug metabolism - cytochrome P450",55,3.1226,3,0.61501,0.21111,1,1,0.01449
+"Pantothenate and CoA biosynthesis",19,1.0787,1,0.67282,0.1721,1,1,0.00714
+"Tryptophan metabolism",41,2.3277,2,0.68823,0.16226,1,1,0.02691
+"Ether lipid metabolism",20,1.1355,1,0.69162,0.16013,1,1,0
+"Tyrosine metabolism",42,2.3845,2,0.70113,0.1542,1,1,0.14242
+"Steroid hormone biosynthesis",85,4.8258,4,0.72532,0.13947,1,1,0.0687
+"Primary bile acid biosynthesis",46,2.6116,2,0.74839,0.12587,1,1,0.00758
+"Glutathione metabolism",28,1.5897,1,0.80823,0.092466,1,1,0.08873
+"Porphyrin and chlorophyll metabolism",30,1.7032,1,0.82977,0.081042,1,1,0
+"Glyoxylate and dicarboxylate metabolism",32,1.8168,1,0.84892,0.071135,1,1,0.10582
+"Glycine, serine and threonine metabolism",33,1.8735,1,0.85767,0.066677,1,1,0.24577
+"Arachidonic acid metabolism",36,2.0439,1,0.88105,0.055,1,1,0
+"Pyrimidine metabolism",39,2.2142,1,0.90062,0.045458,1,1,0.01584
+"Aminoacyl-tRNA biosynthesis",48,2.7252,1,0.94217,0.025869,1,1,0

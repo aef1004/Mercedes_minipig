@@ -1,0 +1,37 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Butanoate metabolism",15,1.4903,3,0.18082,0.74276,1,1,0.03175
+"Primary bile acid biosynthesis",46,4.5703,6,0.30353,0.5178,1,1,0.12076
+"Arginine and proline metabolism",38,3.7755,5,0.32403,0.48941,1,1,0.17866
+"D-Arginine and D-ornithine metabolism",4,0.39742,1,0.3423,0.4656,1,1,0
+"Synthesis and degradation of ketone bodies",5,0.49677,1,0.40781,0.38954,1,1,0
+"Linoleic acid metabolism",5,0.49677,1,0.40781,0.38954,1,1,0
+"Glycerophospholipid metabolism",36,3.5768,4,0.48752,0.312,1,1,0.35618
+"Ascorbate and aldarate metabolism",8,0.79484,1,0.56792,0.24571,1,1,0
+"Valine, leucine and isoleucine biosynthesis",8,0.79484,1,0.56792,0.24571,1,1,0
+"Valine, leucine and isoleucine degradation",40,3.9742,4,0.57391,0.24115,1,1,0.03795
+"Vitamin B6 metabolism",9,0.89419,1,0.61107,0.21391,1,1,0.04902
+"Steroid hormone biosynthesis",85,8.4452,8,0.62246,0.20589,1,1,0.13678
+"Glycine, serine and threonine metabolism",33,3.2787,3,0.65254,0.18539,1,1,0.0726
+"alpha-Linolenic acid metabolism",13,1.2916,1,0.74486,0.12792,1,1,0
+"Pyrimidine metabolism",39,3.8748,3,0.76178,0.11817,1,1,0.02264
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,1.391,1,0.77043,0.11327,1,1,0.00399
+"Alanine, aspartate and glutamate metabolism",28,2.7819,2,0.78438,0.10547,1,1,0.08654
+"Nicotinate and nicotinamide metabolism",15,1.4903,1,0.79344,0.10048,1,1,0
+"Glycerolipid metabolism",16,1.5897,1,0.81417,0.089287,1,1,0.01246
+"Pentose and glucuronate interconversions",18,1.7884,1,0.84962,0.070777,1,1,0
+"Pantothenate and CoA biosynthesis",19,1.8877,1,0.86473,0.063118,1,1,0
+"Citrate cycle (TCA cycle)",20,1.9871,1,0.87834,0.056338,1,1,0.04412
+"Ether lipid metabolism",20,1.9871,1,0.87834,0.056338,1,1,0.14458
+"Pyruvate metabolism",22,2.1858,1,0.90161,0.044984,1,1,0.0311
+"Purine metabolism",65,6.4581,4,0.90249,0.044558,1,1,0.04677
+"Propanoate metabolism",23,2.2852,1,0.91152,0.040233,1,1,0
+"Tryptophan metabolism",41,4.0735,2,0.92698,0.032928,1,1,0.07848
+"Steroid biosynthesis",42,4.1729,2,0.93308,0.030082,1,1,0.00344
+"Phosphatidylinositol signaling system",28,2.7819,1,0.94804,0.023174,1,1,0.00152
+"Porphyrin and chlorophyll metabolism",30,2.9806,1,0.95803,0.018623,1,1,0.02799
+"Glyoxylate and dicarboxylate metabolism",32,3.1794,1,0.9661,0.014977,1,1,0
+"Cysteine and methionine metabolism",33,3.2787,1,0.96954,0.013434,1,1,0.04179
+"Arachidonic acid metabolism",36,3.5768,1,0.97791,0.0096999,1,1,0
+"Fatty acid elongation",39,3.8748,1,0.98399,0.0070076,1,1,0.00274
+"Fatty acid degradation",39,3.8748,1,0.98399,0.0070076,1,1,0.00335
+"Drug metabolism - cytochrome P450",55,5.4645,1,0.99716,0.0012353,1,1,0.04348

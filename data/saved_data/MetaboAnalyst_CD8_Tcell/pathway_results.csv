@@ -1,0 +1,4 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Phenylalanine metabolism",10,0.16129,1,0.15048,0.82252,1,1,0
+"Tyrosine metabolism",42,0.67742,1,0.49953,0.30144,1,1,0.0127
+"Primary bile acid biosynthesis",46,0.74194,1,0.53194,0.27414,1,1,0.00977

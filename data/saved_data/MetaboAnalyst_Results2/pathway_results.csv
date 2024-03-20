@@ -1,0 +1,66 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Arachidonic acid metabolism",36,22.808,35,1.2998e-06,5.8861,0.00010918,0.00010918,1
+"Valine, leucine and isoleucine biosynthesis",8,5.0684,8,0.025685,1.5903,1,1,1
+"Linoleic acid metabolism",5,3.1677,5,0.10169,0.99273,1,1,1
+"Phenylalanine metabolism",10,6.3355,8,0.2267,0.64455,1,1,0.77777
+"Phenylalanine, tyrosine and tryptophan biosynthesis",4,2.5342,3,0.5338,0.27262,1,1,1
+"D-Arginine and D-ornithine metabolism",4,2.5342,2,0.85756,0.066737,1,1,0.5
+"D-Glutamine and D-glutamate metabolism",6,3.8013,3,0.86433,0.063318,1,1,0.5
+"Arginine biosynthesis",14,8.8697,7,0.90474,0.043476,1,1,0.5
+"Synthesis and degradation of ketone bodies",5,3.1677,2,0.93658,0.028457,1,1,0.28572
+"Butanoate metabolism",15,9.5032,7,0.94463,0.024739,1,1,0.40002
+"Nitrogen metabolism",6,3.8013,2,0.9727,0.012022,1,1,0.25
+"Retinol metabolism",17,10.77,7,0.98302,0.0074361,1,1,0.375
+"Ubiquinone and other terpenoid-quinone biosynthesis",9,5.7019,3,0.98545,0.0063672,1,1,0.375
+"Vitamin B6 metabolism",9,5.7019,3,0.98545,0.0063672,1,1,0.50001
+"Tyrosine metabolism",42,26.609,19,0.99511,0.0021283,1,1,0.55817
+"Tryptophan metabolism",41,25.975,18,0.99683,0.0013785,1,1,0.56408
+"Phosphonate and phosphinate metabolism",6,3.8013,1,0.99762,0.0010354,1,1,0.25
+"Alanine, aspartate and glutamate metabolism",28,17.739,10,0.99929,0.0003078,1,1,0.28125
+"Primary bile acid biosynthesis",46,29.143,19,0.9994,0.00026266,1,1,0.34697
+"alpha-Linolenic acid metabolism",13,8.2361,3,0.99948,0.00022793,1,1,0.25
+"Citrate cycle (TCA cycle)",20,12.671,6,0.99949,0.00022162,1,1,0.24138
+"Ascorbate and aldarate metabolism",8,5.0684,1,0.99968,0.00013688,1,1,0.2
+"Taurine and hypotaurine metabolism",8,5.0684,1,0.99968,0.00013688,1,1,0.33333
+"Sphingolipid metabolism",21,13.305,6,0.99976,0.00010392,1,1,0.3125
+"Arginine and proline metabolism",38,24.075,14,0.99979,9.1674e-05,1,1,0.375
+"One carbon pool by folate",9,5.7019,1,0.99989,4.9705e-05,1,1,0.11111
+"Glycine, serine and threonine metabolism",33,20.907,11,0.9999,4.3437e-05,1,1,0.43589
+"Lysine degradation",25,15.839,7,0.99994,2.7259e-05,1,1,0.3
+"Biotin metabolism",10,6.3355,1,0.99996,1.803e-05,1,1,0.125
+"Caffeine metabolism",10,6.3355,1,0.99996,1.803e-05,1,1,0.14286
+"Pantothenate and CoA biosynthesis",19,12.037,4,0.99997,1.1261e-05,1,1,0.22223
+"Valine, leucine and isoleucine degradation",40,25.342,12,1,1.4243e-06,1,1,0.22644
+"Histidine metabolism",16,10.137,2,1,1.1796e-06,1,1,0.06667
+"Glycerolipid metabolism",16,10.137,2,1,1.1796e-06,1,1,0.0909
+"Glyoxylate and dicarboxylate metabolism",32,20.274,8,1,6.9805e-07,1,1,0.3846
+"Ether lipid metabolism",20,12.671,3,1,4.2933e-07,1,1,0.15789
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,8.8697,1,1,3.0864e-07,1,1,0.125
+"Glycerophospholipid metabolism",36,22.808,9,1,1.8492e-07,1,1,0.40383
+"Terpenoid backbone biosynthesis",18,11.404,2,1,1.7158e-07,1,1,0.05
+"Pentose and glucuronate interconversions",18,11.404,2,1,1.7158e-07,1,1,0.07143
+"Nicotinate and nicotinamide metabolism",15,9.5032,1,1,1.1132e-07,1,1,0.04762
+"Pyruvate metabolism",22,13.938,3,1,6.6984e-08,1,1,0.14815
+"Propanoate metabolism",23,14.572,3,1,2.6245e-08,1,1,0.11538
+"Porphyrin and chlorophyll metabolism",30,19.006,5,1,7.0978e-09,1,1,0.1923
+"Starch and sucrose metabolism",18,11.404,1,1,5.1869e-09,1,1,0.04
+"Biosynthesis of unsaturated fatty acids",36,22.808,7,1,3.4596e-09,1,1,0
+"Pyrimidine metabolism",39,24.708,8,1,2.2487e-09,1,1,0.22035
+"Fructose and mannose metabolism",20,12.671,1,1,6.6775e-10,1,1,0.04762
+"Aminoacyl-tRNA biosynthesis",48,30.41,11,1,5.2171e-10,1,1,0.3448
+"Cysteine and methionine metabolism",33,20.907,5,1,4.7456e-10,1,1,0.12121
+"Glutathione metabolism",28,17.739,3,1,2.2637e-10,1,1,0.08109
+"Steroid hormone biosynthesis",85,53.852,27,1,1.2395e-10,1,1,0.33331
+"Pentose phosphate pathway",22,13.938,1,1,8.5562e-11,1,1,0.03448
+"Galactose metabolism",27,17.106,2,1,2.459e-11,1,1,0.09375
+"Folate biosynthesis",27,17.106,2,1,2.459e-11,1,1,0.13334
+"Phosphatidylinositol signaling system",28,17.739,1,1,1.7498e-13,1,1,0.02128
+"Fatty acid degradation",39,24.708,4,1,1.1061e-13,1,1,0.04082
+"Steroid biosynthesis",42,26.609,5,1,1.1013e-13,1,1,0.10256
+"Fatty acid elongation",39,24.708,3,1,4.8216e-15,1,1,0.04652
+"Purine metabolism",65,41.181,12,1,2.218e-15,1,1,0.16282
+"Drug metabolism - other enzymes",39,24.708,2,1,1.4465e-16,1,1,0.04762
+"Drug metabolism - cytochrome P450",55,34.845,7,1,9.6433e-17,1,1,0.13955
+"Fatty acid biosynthesis",47,29.777,3,1,0,1,1,0.01449
+"Amino sugar and nucleotide sugar metabolism",37,23.441,1,1,0,1,1,0.02564
+"Metabolism of xenobiotics by cytochrome P450",68,43.081,6,1,0,1,1,0.14815

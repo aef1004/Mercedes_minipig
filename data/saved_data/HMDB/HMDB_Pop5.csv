@@ -1,0 +1,2 @@
+query_mass,compound_id,compound_name,kegg_id,formula,monoisotopic_mass,adduct,adduct_type,adduct_m/z,delta(ppm)
+232.0358733,HMDB0001319,Pyridoxine 5'-phosphate,C00627,C8H12NO6P,249.040223633,M+H-H2O,+,232.037524,7

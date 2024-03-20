@@ -1,0 +1,27 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Linoleic acid metabolism",5,0.39677,2,0.053286,1.2734,1,1,0
+"Citrate cycle (TCA cycle)",20,1.5871,4,0.067689,1.1695,1,1,0.24395
+"alpha-Linolenic acid metabolism",13,1.0316,2,0.27608,0.55897,1,1,0.33333
+"Alanine, aspartate and glutamate metabolism",28,2.2219,3,0.38589,0.41354,1,1,0.04808
+"D-Glutamine and D-glutamate metabolism",6,0.47613,1,0.3916,0.40716,1,1,0
+"Glyoxylate and dicarboxylate metabolism",32,2.5394,3,0.47317,0.32498,1,1,0.05556
+"Valine, leucine and isoleucine biosynthesis",8,0.63484,1,0.4847,0.31453,1,1,0
+"Biosynthesis of unsaturated fatty acids",36,2.8568,3,0.55453,0.25608,1,1,0
+"Glycerophospholipid metabolism",36,2.8568,3,0.55453,0.25608,1,1,0.0655
+"Lysine degradation",25,1.9839,2,0.6028,0.21983,1,1,0.02347
+"Arginine biosynthesis",14,1.111,1,0.68733,0.16283,1,1,0
+"Butanoate metabolism",15,1.1903,1,0.71237,0.14729,1,1,0
+"Nicotinate and nicotinamide metabolism",15,1.1903,1,0.71237,0.14729,1,1,0
+"Fatty acid biosynthesis",47,3.7297,3,0.7358,0.13324,1,1,0.01473
+"Pantothenate and CoA biosynthesis",19,1.5077,1,0.79413,0.10011,1,1,0
+"Fructose and mannose metabolism",20,1.5871,1,0.81067,0.091155,1,1,0
+"Ether lipid metabolism",20,1.5871,1,0.81067,0.091155,1,1,0
+"Fatty acid elongation",39,3.0948,2,0.83014,0.08085,1,1,0.00274
+"Fatty acid degradation",39,3.0948,2,0.83014,0.08085,1,1,0.00335
+"Pyrimidine metabolism",39,3.0948,2,0.83014,0.08085,1,1,0.01185
+"Tryptophan metabolism",41,3.2535,2,0.85081,0.070169,1,1,0.04081
+"Amino sugar and nucleotide sugar metabolism",37,2.9361,1,0.95481,0.020084,1,1,0
+"Valine, leucine and isoleucine degradation",40,3.1742,1,0.96496,0.015489,1,1,0.01084
+"Drug metabolism - cytochrome P450",55,4.3645,1,0.99027,0.0042483,1,1,0
+"Purine metabolism",65,5.1581,1,0.99589,0.0017904,1,1,0.01217
+"Steroid hormone biosynthesis",85,6.7452,1,0.99928,0.00031344,1,1,0

@@ -1,0 +1,399 @@
+{
+ "nodes": [
+ {
+ "id": "Homocysteine Degradation",
+"label": "Homocysteine Degradation",
+"size": 3.289855,
+"color": "#FF0000",
+"x": 24.99348,
+"y": 24.51916 
+},
+{
+ "id": "D-Arginine and D-Ornithine Metabolism",
+"label": "D-Arginine and D-Ornithine Metabolism",
+"size": 3.236967,
+"color": "#FF0A00",
+"x": 23.23077,
+"y": 22.02274 
+},
+{
+ "id": "Ketone Body Metabolism",
+"label": "Ketone Body Metabolism",
+"size": 3.200401,
+"color": "#FF1400",
+"x": 21.37271,
+"y": 19.74106 
+},
+{
+ "id": "Threonine and 2-Oxobutanoate Degradation",
+"label": "Threonine and 2-Oxobutanoate Degradation",
+"size": 3.260417,
+"color": "#FF1D00",
+"x": 23.71209,
+"y": 19.66095 
+},
+{
+ "id": "Beta Oxidation of Very Long Chain Fatty Acids",
+"label": "Beta Oxidation of Very Long Chain Fatty Acids",
+"size": 3.153374,
+"color": "#FF2700",
+"x": 26.35271,
+"y": 23.75443 
+},
+{
+ "id": "Spermidine and Spermine Biosynthesis",
+"label": "Spermidine and Spermine Biosynthesis",
+"size": 3.144718,
+"color": "#FF3100",
+"x": 25.14494,
+"y": 16.44231 
+},
+{
+ "id": "Androstenedione Metabolism",
+"label": "Androstenedione Metabolism",
+"size": 3.217155,
+"color": "#FF3B00",
+"x": 21.01409,
+"y": 21.78908 
+},
+{
+ "id": "Butyrate Metabolism",
+"label": "Butyrate Metabolism",
+"size": 3.137174,
+"color": "#FF4500",
+"x": 20.44982,
+"y": 19.23469 
+},
+{
+ "id": "Catecholamine Biosynthesis",
+"label": "Catecholamine Biosynthesis",
+"size": 3.130208,
+"color": "#FF4E00",
+"x": 22.31968,
+"y": 23.59037 
+},
+{
+ "id": "Vitamin B6 Metabolism",
+"label": "Vitamin B6 Metabolism",
+"size": 3.130208,
+"color": "#FF5800",
+"x": 28.54993,
+"y": 18.99635 
+},
+{
+ "id": "Pantothenate and CoA Biosynthesis",
+"label": "Pantothenate and CoA Biosynthesis",
+"size": 3.124069,
+"color": "#FF6200",
+"x": 27.86376,
+"y": 17.80234 
+},
+{
+ "id": "Androgen and Estrogen Metabolism",
+"label": "Androgen and Estrogen Metabolism",
+"size":  3.23622,
+"color": "#FF6C00",
+"x": 20.56029,
+"y": 22.53805 
+},
+{
+ "id": "Sulfate/Sulfite Metabolism",
+"label": "Sulfate/Sulfite Metabolism",
+"size": 3.118483,
+"color": "#FF7600",
+"x": 26.55704,
+"y": 19.13128 
+},
+{
+ "id": "Carnitine Synthesis",
+"label": "Carnitine Synthesis",
+"size": 3.118483,
+"color": "#FF8000",
+"x": 21.58893,
+"y": 24.03456 
+},
+{
+ "id": "Selenoamino Acid Metabolism",
+"label": "Selenoamino Acid Metabolism",
+"size": 3.186916,
+"color": "#FF8900",
+"x": 28.05173,
+"y": 20.21084 
+},
+{
+ "id": "Fatty Acid Biosynthesis",
+"label": "Fatty Acid Biosynthesis",
+"size": 3.223881,
+"color": "#FF9300",
+"x": 26.79169,
+"y": 21.21687 
+},
+{
+ "id": "Estrone Metabolism",
+"label": "Estrone Metabolism",
+"size": 3.108578,
+"color": "#FF9D00",
+"x": 20.09582,
+"y": 21.82237 
+},
+{
+ "id": "Oxidation of Branched Chain Fatty Acids",
+"label": "Oxidation of Branched Chain Fatty Acids",
+"size":   3.1002,
+"color": "#FFA700",
+"x": 28.36933,
+"y": 21.62172 
+},
+{
+ "id": "Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",
+"label": "Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",
+"size": 3.096154,
+"color": "#FFB100",
+"x": 19.64333,
+"y": 19.49711 
+},
+{
+ "id": "Phenylalanine and Tyrosine Metabolism",
+"label": "Phenylalanine and Tyrosine Metabolism",
+"size": 3.093458,
+"color": "#FFBA00",
+"x": 26.72576,
+"y": 16.15892 
+},
+{
+ "id": "Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",
+"label": "Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",
+"size": 3.093458,
+"color": "#FFC400",
+"x": 20.08104,
+"y": 18.45425 
+},
+{
+ "id": "Urea Cycle",
+"label": "Urea Cycle",
+"size":  3.09009,
+"color": "#FFCE00",
+"x": 21.49949,
+"y": 16.24844 
+},
+{
+ "id": "Lysine Degradation",
+"label": "Lysine Degradation",
+"size": 3.086957,
+"color": "#FFD800",
+"x": 24.78266,
+"y": 23.01574 
+},
+{
+ "id": "Starch and Sucrose Metabolism",
+"label": "Starch and Sucrose Metabolism",
+"size": 3.084034,
+"color": "#FFE200",
+"x": 27.38182,
+"y": 22.83453 
+},
+{
+ "id": "Valine, Leucine and Isoleucine Degradation",
+"label": "Valine, Leucine and Isoleucine Degradation",
+"size":  3.26087,
+"color": "#FFEB00",
+"x": 24.56215,
+"y": 19.91873 
+},
+{
+ "id": "Propanoate Metabolism",
+"label": "Propanoate Metabolism",
+"size": 3.124224,
+"color": "#FFF500",
+"x": 24.42314,
+"y": 19.03425 
+},
+{
+ "id": "Methionine Metabolism",
+"label": "Methionine Metabolism",
+"size": 3.121212,
+"color": "#FFFF00",
+"x": 24.44759,
+"y": 15.82803 
+},
+{
+ "id": "Arginine and Proline Metabolism",
+"label": "Arginine and Proline Metabolism",
+"size": 3.147783,
+"color": "#FFFF10",
+"x": 22.34618,
+"y":  15.7183 
+},
+{
+ "id": "Glutamate Metabolism",
+"label": "Glutamate Metabolism",
+"size": 3.106383,
+"color": "#FFFF30",
+"x": 22.47615,
+"y": 16.57962 
+},
+{
+ "id": "Fatty acid Metabolism",
+"label": "Fatty acid Metabolism",
+"size": 3.060606,
+"color": "#FFFF50",
+"x": 19.41693,
+"y": 18.77914 
+},
+{
+ "id": "Glycine and Serine Metabolism",
+"label": "Glycine and Serine Metabolism",
+"size": 3.132743,
+"color": "#FFFF70",
+"x":  23.3575,
+"y": 15.89922 
+},
+{
+ "id": "Tryptophan Metabolism",
+"label": "Tryptophan Metabolism",
+"size": 3.086957,
+"color": "#FFFF8F",
+"x": 25.35378,
+"y": 21.66346 
+},
+{
+ "id": "Arachidonic Acid Metabolism",
+"label": "Arachidonic Acid Metabolism",
+"size": 3.113208,
+"color": "#FFFFAF",
+"x": 23.53766,
+"y": 24.43375 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size": 3.105634,
+"color": "#FFFFCF",
+"x": 22.59094,
+"y": 17.61929 
+},
+{
+ "id": "Tyrosine Metabolism",
+"label": "Tyrosine Metabolism",
+"size": 3.072464,
+"color": "#FFFFEF",
+"x": 26.70175,
+"y": 17.01837 
+} 
+],
+"edges": [ {
+ "id": "1",
+"source": "Ketone Body Metabolism",
+"target": "Butyrate Metabolism" 
+},
+{
+ "id": "2",
+"source": "Androstenedione Metabolism",
+"target": "Androgen and Estrogen Metabolism" 
+},
+{
+ "id": "3",
+"source": "Catecholamine Biosynthesis",
+"target": "Carnitine Synthesis" 
+},
+{
+ "id": "4",
+"source": "Androstenedione Metabolism",
+"target": "Estrone Metabolism" 
+},
+{
+ "id": "5",
+"source": "Androgen and Estrogen Metabolism",
+"target": "Estrone Metabolism" 
+},
+{
+ "id": "6",
+"source": "Butyrate Metabolism",
+"target": "Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids" 
+},
+{
+ "id": "7",
+"source": "Butyrate Metabolism",
+"target": "Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids" 
+},
+{
+ "id": "8",
+"source": "Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",
+"target": "Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids" 
+},
+{
+ "id": "9",
+"source": "Threonine and 2-Oxobutanoate Degradation",
+"target": "Valine, Leucine and Isoleucine Degradation" 
+},
+{
+ "id": "10",
+"source": "Threonine and 2-Oxobutanoate Degradation",
+"target": "Propanoate Metabolism" 
+},
+{
+ "id": "11",
+"source": "Valine, Leucine and Isoleucine Degradation",
+"target": "Propanoate Metabolism" 
+},
+{
+ "id": "12",
+"source": "Spermidine and Spermine Biosynthesis",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "13",
+"source": "Urea Cycle",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "14",
+"source": "Urea Cycle",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "15",
+"source": "Arginine and Proline Metabolism",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "16",
+"source": "Butyrate Metabolism",
+"target": "Fatty acid Metabolism" 
+},
+{
+ "id": "17",
+"source": "Mitochondrial Beta-Oxidation of Short Chain Saturated Fatty Acids",
+"target": "Fatty acid Metabolism" 
+},
+{
+ "id": "18",
+"source": "Mitochondrial Beta-Oxidation of Long Chain Saturated Fatty Acids",
+"target": "Fatty acid Metabolism" 
+},
+{
+ "id": "19",
+"source": "Methionine Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "20",
+"source": "Arginine and Proline Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "21",
+"source": "Glutamate Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "22",
+"source": "Glutamate Metabolism",
+"target": "Purine Metabolism" 
+},
+{
+ "id": "23",
+"source": "Phenylalanine and Tyrosine Metabolism",
+"target": "Tyrosine Metabolism" 
+} ] 
+}

@@ -1,0 +1,33 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Arachidonic acid metabolism",36,3.5071,15,3.1622e-07,6.5,2.6562e-05,2.6562e-05,0.43488
+"Linoleic acid metabolism",5,0.4871,3,0.0078268,2.1064,0.64963,0.32873,1
+"D-Glutamine and D-glutamate metabolism",6,0.58452,3,0.014541,1.8374,1,0.40715,1
+"Biosynthesis of unsaturated fatty acids",36,3.5071,7,0.053825,1.269,1,1,0
+"Sphingolipid metabolism",21,2.0458,3,0.33604,0.47361,1,1,0.27383
+"Arginine biosynthesis",14,1.3639,2,0.4025,0.39524,1,1,0.11675
+"Butanoate metabolism",15,1.4613,2,0.43774,0.35878,1,1,0
+"Nitrogen metabolism",6,0.58452,1,0.45992,0.33732,1,1,0
+"Primary bile acid biosynthesis",46,4.4813,5,0.47015,0.32776,1,1,0.1206
+"Lysine degradation",25,2.4355,2,0.7172,0.14436,1,1,0.00469
+"alpha-Linolenic acid metabolism",13,1.2665,1,0.73761,0.13217,1,1,0.33333
+"Alanine, aspartate and glutamate metabolism",28,2.7277,2,0.77465,0.1109,1,1,0.2452
+"Histidine metabolism",16,1.5587,1,0.80764,0.092784,1,1,0
+"Glycerolipid metabolism",16,1.5587,1,0.80764,0.092784,1,1,0.09346
+"Glyoxylate and dicarboxylate metabolism",32,3.1174,2,0.83532,0.078147,1,1,0.07937
+"Glycine, serine and threonine metabolism",33,3.2148,2,0.848,0.071603,1,1,0.05034
+"Fatty acid biosynthesis",47,4.5787,3,0.85313,0.068985,1,1,0.01473
+"Fructose and mannose metabolism",20,1.9484,1,0.87297,0.059003,1,1,0
+"Citrate cycle (TCA cycle)",20,1.9484,1,0.87297,0.059003,1,1,0.05856
+"Pentose phosphate pathway",22,2.1432,1,0.89681,0.0473,1,1,0
+"Arginine and proline metabolism",38,3.7019,2,0.89909,0.046195,1,1,0.086
+"Steroid hormone biosynthesis",85,8.2806,5,0.93133,0.030895,1,1,0.06454
+"Glutathione metabolism",28,2.7277,1,0.94479,0.024666,1,1,0.01966
+"Porphyrin and chlorophyll metabolism",30,2.9226,1,0.9552,0.019904,1,1,0
+"Glycerophospholipid metabolism",36,3.5071,1,0.97611,0.010499,1,1,0
+"Amino sugar and nucleotide sugar metabolism",37,3.6045,1,0.9785,0.0094406,1,1,0
+"Fatty acid elongation",39,3.7994,1,0.98258,0.0076338,1,1,0
+"Fatty acid degradation",39,3.7994,1,0.98258,0.0076338,1,1,0
+"Pyrimidine metabolism",39,3.7994,1,0.98258,0.0076338,1,1,0.08886
+"Steroid biosynthesis",42,4.0916,1,0.9873,0.0055518,1,1,0.00344
+"Aminoacyl-tRNA biosynthesis",48,4.6761,1,0.99326,0.0029357,1,1,0
+"Drug metabolism - cytochrome P450",55,5.3581,1,0.9968,0.0013937,1,1,0

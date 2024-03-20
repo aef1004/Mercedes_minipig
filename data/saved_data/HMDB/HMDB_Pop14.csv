@@ -1,0 +1,21 @@
+query_mass,compound_id,compound_name,kegg_id,formula,monoisotopic_mass,adduct,adduct_type,adduct_m/z,delta(ppm)
+360.3236337,HMDB0035516,5-Decanoyl-2-nonylpyridine,n/a,C24H41NO,359.318814939,M+H,+,360.326091,7
+360.3236337,HMDB0094683,trimethylsilyl heptadecanoate,n/a,C20H42O2Si,342.295407127,M+NH4,+,360.32923,16
+642.492139,HMDB0038619,Acidissiminin,n/a,C43H65NO4,659.491359573,M+H-H2O,+,642.48866,5
+642.492139,HMDB0010698,CerP(d18:0/16:0),n/a,C34H70NO6P,619.494075489,M+Na,+,642.483293,14
+659.2872269,HMDB0143644,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(4-{4-[2-(dimethylamino)ethoxy]phenyl}-3,4-diphenylbut-3-en-1-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C36H44N4O7S,676.293070947,M+H-H2O,+,659.290371,5
+660.2895569,HMDB0173692,"4-{[2-({14-acetyl-13-hydroxy-2,15-dimethyl-5-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-14-yl}sulfanyl)-1-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl]-C-hydroxycarbonimidoyl}-2-aminobutanoic acid",n/a,C31H47N3O9S,637.303301279,M+Na,+,660.292519,4
+660.2895569,HMDB0173693,"4-{[2-({14-acetyl-14-hydroxy-2,15-dimethyl-5-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-13-yl}sulfanyl)-1-[(carboxymethyl)-C-hydroxycarbonimidoyl]ethyl]-C-hydroxycarbonimidoyl}-2-aminobutanoic acid",n/a,C31H47N3O9S,637.303301279,M+Na,+,660.292519,4
+660.2895569,HMDB0041431,"(E,E)-4,4''-Bi(N-4-hydroxycinnamoylserotonin)",n/a,C38H34N4O6,642.24783484,M+NH4,+,660.281658,12
+700.3147983,HMDB0036529,Myricanol 5-beta-sophoroside,n/a,C33H46O15,682.283670802,M+NH4,+,700.317494,4
+700.3147983,HMDB0036528,3-trans-p-Coumaroylrotundic acid,n/a,C33H46O15,682.283670802,M+NH4,+,700.317494,4
+736.4075678,HMDB0014454,Vindesine,n/a,C43H55N5O7,753.410149139,M+H-H2O,+,736.407449,0
+736.4075678,HMDB0116519,PGP(a-13:0/i-13:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0116569,PGP(i-14:0/i-12:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0116555,PGP(i-13:0/i-13:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0116549,PGP(i-13:0/a-13:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0116538,PGP(i-12:0/i-14:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0116512,PGP(a-13:0/a-13:0),n/a,C32H64O13P2,718.382216117,M+NH4,+,736.416039,12
+736.4075678,HMDB0176104,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[(3E)-5,6-dimethylhept-3-en-2-yl]-5,7,9-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-1(10)-en-8-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H61N3O9S,735.41285173,M+H,+,736.420128,17
+736.4075678,HMDB0173004,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-[(3-hydroxy-6-{8-hydroxy-2,11,15-trimethyl-5-oxotetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-1(10)-en-14-yl}-2-methylheptan-2-yl)sulfanyl]ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H61N3O9S,735.41285173,M+H,+,736.420128,17
+736.4075678,HMDB0176105,"2-amino-4-({1-[(carboxymethyl)-C-hydroxycarbonimidoyl]-2-({14-[(3E)-5,6-dimethylhept-3-en-2-yl]-5,8,9-trihydroxy-2,15-dimethyltetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadec-1(10)-en-7-yl}sulfanyl)ethyl}-C-hydroxycarbonimidoyl)butanoic acid",n/a,C38H61N3O9S,735.41285173,M+H,+,736.420128,17

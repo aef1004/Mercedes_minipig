@@ -1,0 +1,38 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Linoleic acid metabolism",5,0.75806,2,0.16753,0.7759,1,1,0
+"Tyrosine metabolism",42,6.3677,9,0.17389,0.75973,1,1,0.21708
+"Valine, leucine and isoleucine biosynthesis",8,1.2129,2,0.34799,0.45844,1,1,0
+"Vitamin B6 metabolism",9,1.3645,2,0.40634,0.39112,1,1,0.56863
+"Tryptophan metabolism",41,6.2161,7,0.43113,0.3654,1,1,0.13992
+"Phenylalanine metabolism",10,1.5161,2,0.46205,0.33531,1,1,0
+"Synthesis and degradation of ketone bodies",5,0.75806,1,0.561,0.25104,1,1,0.6
+"Alanine, aspartate and glutamate metabolism",28,4.2452,4,0.6337,0.19811,1,1,0.06971
+"Butanoate metabolism",15,2.2742,2,0.68888,0.16186,1,1,0.14286
+"Taurine and hypotaurine metabolism",8,1.2129,1,0.73249,0.1352,1,1,0.42857
+"Retinol metabolism",17,2.5774,2,0.75486,0.12213,1,1,0.21649
+"Glycerophospholipid metabolism",36,5.4581,4,0.81962,0.086388,1,1,0.11285
+"Ether lipid metabolism",20,3.0323,2,0.83114,0.080328,1,1,0
+"alpha-Linolenic acid metabolism",13,1.971,1,0.88311,0.053987,1,1,0.33333
+"Propanoate metabolism",23,3.4871,2,0.88539,0.052863,1,1,0.04061
+"Arginine biosynthesis",14,2.1226,1,0.90098,0.045286,1,1,0.11675
+"Lysine degradation",25,3.7903,2,0.9121,0.039959,1,1,0.15023
+"Nicotinate and nicotinamide metabolism",15,2.2742,1,0.91613,0.038044,1,1,0
+"Biosynthesis of unsaturated fatty acids",36,5.4581,3,0.92826,0.03233,1,1,0
+"Pentose and glucuronate interconversions",18,2.729,1,0.94907,0.022701,1,1,0.14062
+"Valine, leucine and isoleucine degradation",40,6.0645,3,0.95593,0.019575,1,1,0.04094
+"Sphingolipid metabolism",21,3.1839,1,0.96911,0.013628,1,1,0
+"Glycine, serine and threonine metabolism",33,5.0032,2,0.97085,0.012847,1,1,0
+"Cysteine and methionine metabolism",33,5.0032,2,0.97085,0.012847,1,1,0.05983
+"Steroid hormone biosynthesis",85,12.887,7,0.98282,0.0075241,1,1,0.16692
+"Primary bile acid biosynthesis",46,6.9742,2,0.99563,0.0019027,1,1,0.00758
+"Fatty acid biosynthesis",47,7.1258,2,0.99624,0.0016373,1,1,0.01473
+"Arachidonic acid metabolism",36,5.4581,1,0.9975,0.0010855,1,1,0.07615
+"Arginine and proline metabolism",38,5.7613,1,0.99822,0.00077431,1,1,0
+"Purine metabolism",65,9.8548,3,0.99846,0.00066837,1,1,0.11468
+"Fatty acid elongation",39,5.9129,1,0.9985,0.00065387,1,1,0
+"Fatty acid degradation",39,5.9129,1,0.9985,0.00065387,1,1,0
+"Pyrimidine metabolism",39,5.9129,1,0.9985,0.00065387,1,1,0.0068
+"Steroid biosynthesis",42,6.3677,1,0.99909,0.00039352,1,1,0.06602
+"Aminoacyl-tRNA biosynthesis",48,7.2774,1,0.99967,0.0001421,1,1,0
+"Drug metabolism - cytochrome P450",55,8.3387,1,0.9999,4.3069e-05,1,1,0
+"Metabolism of xenobiotics by cytochrome P450",68,10.31,1,0.99999,4.6172e-06,1,1,0

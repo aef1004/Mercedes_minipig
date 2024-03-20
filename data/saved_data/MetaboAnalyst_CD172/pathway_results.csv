@@ -1,0 +1,32 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Arachidonic acid metabolism",36,3.809,14,6.1083e-06,5.2141,0.0005131,0.0005131,0.28139
+"Linoleic acid metabolism",5,0.52903,3,0.0099081,2.004,0.82238,0.41614,0
+"D-Glutamine and D-glutamate metabolism",6,0.63484,3,0.018286,1.7379,1,0.512,1
+"Primary bile acid biosynthesis",46,4.8671,7,0.20652,0.68504,1,1,0.19094
+"Citrate cycle (TCA cycle)",20,2.1161,3,0.35627,0.44822,1,1,0.19392
+"alpha-Linolenic acid metabolism",13,1.3755,2,0.4073,0.39008,1,1,0.33333
+"Glyoxylate and dicarboxylate metabolism",32,3.3858,4,0.44386,0.35275,1,1,0.11112
+"Arginine biosynthesis",14,1.4813,2,0.44552,0.35113,1,1,0.11675
+"Butanoate metabolism",15,1.5871,2,0.48235,0.31664,1,1,0
+"Nitrogen metabolism",6,0.63484,1,0.48939,0.31035,1,1,0
+"Alanine, aspartate and glutamate metabolism",28,2.9626,3,0.5825,0.23471,1,1,0.2452
+"Biosynthesis of unsaturated fatty acids",36,3.809,3,0.75205,0.12375,1,1,0
+"Lysine degradation",25,2.6452,2,0.76072,0.11877,1,1,0.00469
+"Histidine metabolism",16,1.6929,1,0.83446,0.078593,1,1,0
+"Glycerolipid metabolism",16,1.6929,1,0.83446,0.078593,1,1,0.09346
+"Fatty acid biosynthesis",47,4.9729,3,0.89054,0.050345,1,1,0.01473
+"Fructose and mannose metabolism",20,2.1161,1,0.89474,0.048305,1,1,0
+"Steroid hormone biosynthesis",85,8.9935,6,0.90355,0.044047,1,1,0.06454
+"Sphingolipid metabolism",21,2.2219,1,0.90602,0.042862,1,1,0
+"Glycerophospholipid metabolism",36,3.809,2,0.90874,0.041561,1,1,0.01736
+"Pentose phosphate pathway",22,2.3277,1,0.9161,0.038057,1,1,0
+"Arginine and proline metabolism",38,4.0206,2,0.92407,0.034294,1,1,0.086
+"Pyrimidine metabolism",39,4.1265,2,0.9308,0.031143,1,1,0.09391
+"Glutathione metabolism",28,2.9626,1,0.9576,0.018817,1,1,0.01966
+"Porphyrin and chlorophyll metabolism",30,3.1742,1,0.96625,0.014912,1,1,0
+"Glycine, serine and threonine metabolism",33,3.4916,1,0.97604,0.010532,1,1,0.0242
+"Amino sugar and nucleotide sugar metabolism",37,3.9148,1,0.98485,0.0066314,1,1,0
+"Fatty acid elongation",39,4.1265,1,0.98795,0.005263,1,1,0
+"Fatty acid degradation",39,4.1265,1,0.98795,0.005263,1,1,0
+"Steroid biosynthesis",42,4.4439,1,0.99147,0.0037211,1,1,0.00344
+"Aminoacyl-tRNA biosynthesis",48,5.0787,1,0.99573,0.0018587,1,1,0

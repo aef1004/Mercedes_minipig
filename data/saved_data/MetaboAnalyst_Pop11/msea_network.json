@@ -1,0 +1,274 @@
+{
+ "nodes": [
+ {
+ "id": "Phenylacetate Metabolism",
+"label": "Phenylacetate Metabolism",
+"size": 3.436681,
+"color": "#FF0000",
+"x": 29.99624,
+"y": 28.55478 
+},
+{
+ "id": "Androstenedione Metabolism",
+"label": "Androstenedione Metabolism",
+"size": 3.326797,
+"color": "#FF0E00",
+"x": 32.44597,
+"y": 21.32817 
+},
+{
+ "id": "Alanine Metabolism",
+"label": "Alanine Metabolism",
+"size": 3.230947,
+"color": "#FF1C00",
+"x": 29.29996,
+"y": 23.75566 
+},
+{
+ "id": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"label": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"size": 3.206612,
+"color": "#FF2A00",
+"x": 28.62833,
+"y": 27.73945 
+},
+{
+ "id": "Catecholamine Biosynthesis",
+"label": "Catecholamine Biosynthesis",
+"size": 3.196078,
+"color": "#FF3900",
+"x": 27.34749,
+"y": 25.72986 
+},
+{
+ "id": "Vitamin B6 Metabolism",
+"label": "Vitamin B6 Metabolism",
+"size": 3.196078,
+"color": "#FF4700",
+"x":  32.0874,
+"y": 28.51672 
+},
+{
+ "id": "Glutathione Metabolism",
+"label": "Glutathione Metabolism",
+"size": 3.186916,
+"color": "#FF5500",
+"x": 30.27192,
+"y": 23.64734 
+},
+{
+ "id": "Pantothenate and CoA Biosynthesis",
+"label": "Pantothenate and CoA Biosynthesis",
+"size": 3.186916,
+"color": "#FF6300",
+"x": 33.43595,
+"y": 25.19092 
+},
+{
+ "id": "Carnitine Synthesis",
+"label": "Carnitine Synthesis",
+"size": 3.178253,
+"color": "#FF7100",
+"x": 27.89512,
+"y": 26.38057 
+},
+{
+ "id": "Caffeine Metabolism",
+"label": "Caffeine Metabolism",
+"size": 3.163399,
+"color": "#FF8000",
+"x": 34.36859,
+"y": 22.87853 
+},
+{
+ "id": "Androgen and Estrogen Metabolism",
+"label": "Androgen and Estrogen Metabolism",
+"size": 3.237812,
+"color": "#FF8E00",
+"x": 33.16756,
+"y": 21.79484 
+},
+{
+ "id": "Phospholipid Biosynthesis",
+"label": "Phospholipid Biosynthesis",
+"size": 3.135318,
+"color": "#FF9C00",
+"x": 31.69896,
+"y": 25.38337 
+},
+{
+ "id": "Ammonia Recycling",
+"label": "Ammonia Recycling",
+"size": 3.122549,
+"color": "#FFAA00",
+"x": 29.61527,
+"y": 22.48059 
+},
+{
+ "id": "Beta-Alanine Metabolism",
+"label": "Beta-Alanine Metabolism",
+"size":  3.11534,
+"color": "#FFB800",
+"x": 34.82492,
+"y": 24.35392 
+},
+{
+ "id": "Fatty Acid Biosynthesis",
+"label": "Fatty Acid Biosynthesis",
+"size": 3.112108,
+"color": "#FFC600",
+"x": 29.77387,
+"y": 26.26271 
+},
+{
+ "id": "Porphyrin Metabolism",
+"label": "Porphyrin Metabolism",
+"size": 3.098039,
+"color": "#FFD500",
+"x": 32.46567,
+"y": 26.91262 
+},
+{
+ "id": "Methionine Metabolism",
+"label": "Methionine Metabolism",
+"size": 3.090909,
+"color": "#FFE300",
+"x": 30.30995,
+"y": 21.53097 
+},
+{
+ "id": "Bile Acid Biosynthesis",
+"label": "Bile Acid Biosynthesis",
+"size": 3.180723,
+"color": "#FFF100",
+"x": 33.76344,
+"y": 27.47525 
+},
+{
+ "id": "Glutamate Metabolism",
+"label": "Glutamate Metabolism",
+"size":     3.08,
+"color": "#FFFF00",
+"x": 28.97645,
+"y": 23.02451 
+},
+{
+ "id": "Tryptophan Metabolism",
+"label": "Tryptophan Metabolism",
+"size": 3.130719,
+"color": "#FFFF15",
+"x": 34.64031,
+"y": 26.06751 
+},
+{
+ "id": "Arginine and Proline Metabolism",
+"label": "Arginine and Proline Metabolism",
+"size": 3.074074,
+"color": "#FFFF40",
+"x": 28.55219,
+"y": 22.14153 
+},
+{
+ "id": "Glycine and Serine Metabolism",
+"label": "Glycine and Serine Metabolism",
+"size": 3.066667,
+"color": "#FFFF6A",
+"x": 29.33683,
+"y": 21.75302 
+},
+{
+ "id": "Pyrimidine Metabolism",
+"label": "Pyrimidine Metabolism",
+"size": 3.066667,
+"color": "#FFFF95",
+"x": 32.78504,
+"y": 23.56851 
+},
+{
+ "id": "Tyrosine Metabolism",
+"label": "Tyrosine Metabolism",
+"size": 3.054348,
+"color": "#FFFFBF",
+"x": 30.87819,
+"y": 27.48018 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size":  3.05291,
+"color": "#FFFFEA",
+"x": 27.85148,
+"y": 23.71617 
+} 
+],
+"edges": [ {
+ "id": "1",
+"source": "Catecholamine Biosynthesis",
+"target": "Carnitine Synthesis" 
+},
+{
+ "id": "2",
+"source": "Androstenedione Metabolism",
+"target": "Androgen and Estrogen Metabolism" 
+},
+{
+ "id": "3",
+"source": "Alanine Metabolism",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "4",
+"source": "Ammonia Recycling",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "5",
+"source": "Alanine Metabolism",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "6",
+"source": "Glutathione Metabolism",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "7",
+"source": "Ammonia Recycling",
+"target": "Glutamate Metabolism" 
+},
+{
+ "id": "8",
+"source": "Ammonia Recycling",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "9",
+"source": "Glutamate Metabolism",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "10",
+"source": "Ammonia Recycling",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "11",
+"source": "Methionine Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "12",
+"source": "Glutamate Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "13",
+"source": "Arginine and Proline Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "14",
+"source": "Glutamate Metabolism",
+"target": "Purine Metabolism" 
+} ] 
+}

@@ -1,0 +1,6 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Lysine degradation",25,0.66129,2,0.13984,0.85436,1,1,0.14554
+"Fatty acid biosynthesis",47,1.2432,2,0.3553,0.44941,1,1,0
+"Fructose and mannose metabolism",20,0.52903,1,0.41697,0.3799,1,1,0
+"Glycerophospholipid metabolism",36,0.95226,1,0.6233,0.20531,1,1,0
+"Amino sugar and nucleotide sugar metabolism",37,0.97871,1,0.6335,0.19825,1,1,0

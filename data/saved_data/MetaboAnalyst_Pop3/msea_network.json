@@ -1,0 +1,674 @@
+{
+ "nodes": [
+ {
+ "id": "Malate-Aspartate Shuttle",
+"label": "Malate-Aspartate Shuttle",
+"size":  3.44843,
+"color": "#FF0000",
+"x": 5.605601,
+"y": 13.62682 
+},
+{
+ "id": "Homocysteine Degradation",
+"label": "Homocysteine Degradation",
+"size": 3.166113,
+"color": "#FF0700",
+"x":  9.16453,
+"y": 18.27128 
+},
+{
+ "id": "Catecholamine Biosynthesis",
+"label": "Catecholamine Biosynthesis",
+"size": 3.373134,
+"color": "#FF0E00",
+"x": 11.07518,
+"y": 13.90856 
+},
+{
+ "id": "Glucose-Alanine Cycle",
+"label": "Glucose-Alanine Cycle",
+"size": 3.229885,
+"color": "#FF1500",
+"x": 5.112038,
+"y": 12.36555 
+},
+{
+ "id": "Taurine and Hypotaurine Metabolism",
+"label": "Taurine and Hypotaurine Metabolism",
+"size": 3.124533,
+"color": "#FF1C00",
+"x": 11.91087,
+"y": 17.52822 
+},
+{
+ "id": "Ketone Body Metabolism",
+"label": "Ketone Body Metabolism",
+"size": 3.114943,
+"color": "#FF2200",
+"x": 11.45732,
+"y": 15.54352 
+},
+{
+ "id": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"label": "Alpha Linolenic Acid and Linoleic Acid Metabolism",
+"size":  3.23622,
+"color": "#FF2900",
+"x": 7.500944,
+"y": 18.28686 
+},
+{
+ "id": "Beta Oxidation of Very Long Chain Fatty Acids",
+"label": "Beta Oxidation of Very Long Chain Fatty Acids",
+"size": 3.175439,
+"color": "#FF3000",
+"x": 10.47561,
+"y": 17.23884 
+},
+{
+ "id": "Alanine Metabolism",
+"label": "Alanine Metabolism",
+"size": 3.175439,
+"color": "#FF3700",
+"x": 3.781858,
+"y": 12.46848 
+},
+{
+ "id": "Betaine Metabolism",
+"label": "Betaine Metabolism",
+"size": 3.142857,
+"color": "#FF3E00",
+"x": 7.381278,
+"y": 9.131411 
+},
+{
+ "id": "Citric Acid Cycle",
+"label": "Citric Acid Cycle",
+"size": 3.280374,
+"color": "#FF4500",
+"x":  3.83567,
+"y": 14.79398 
+},
+{
+ "id": "Transfer of Acetyl Groups into Mitochondria",
+"label": "Transfer of Acetyl Groups into Mitochondria",
+"size": 3.136054,
+"color": "#FF4C00",
+"x": 4.027086,
+"y": 13.92882 
+},
+{
+ "id": "Phenylalanine and Tyrosine Metabolism",
+"label": "Phenylalanine and Tyrosine Metabolism",
+"size": 3.213904,
+"color": "#FF5300",
+"x":  7.82196,
+"y": 13.26929 
+},
+{
+ "id": "Mitochondrial Electron Transport Chain",
+"label": "Mitochondrial Electron Transport Chain",
+"size":  3.07874,
+"color": "#FF5A00",
+"x":  3.65013,
+"y": 16.48003 
+},
+{
+ "id": "Vitamin B6 Metabolism",
+"label": "Vitamin B6 Metabolism",
+"size": 3.074627,
+"color": "#FF6000",
+"x": 9.325682,
+"y":  19.7327 
+},
+{
+ "id": "Ubiquinone Biosynthesis",
+"label": "Ubiquinone Biosynthesis",
+"size": 3.074627,
+"color": "#FF6700",
+"x": 9.834315,
+"y": 15.73269 
+},
+{
+ "id": "Retinol Metabolism",
+"label": "Retinol Metabolism",
+"size": 3.282258,
+"color": "#FF6E00",
+"x": 7.837178,
+"y": 19.96237 
+},
+{
+ "id": "Glutathione Metabolism",
+"label": "Glutathione Metabolism",
+"size": 3.071429,
+"color": "#FF7500",
+"x": 12.69006,
+"y":  16.0891 
+},
+{
+ "id": "Pantothenate and CoA Biosynthesis",
+"label": "Pantothenate and CoA Biosynthesis",
+"size": 3.071429,
+"color": "#FF7C00",
+"x": 3.489339,
+"y": 19.14055 
+},
+{
+ "id": "Glycerolipid Metabolism",
+"label": "Glycerolipid Metabolism",
+"size":  3.11976,
+"color": "#FF8300",
+"x": 3.466586,
+"y": 17.60272 
+},
+{
+ "id": "Carnitine Synthesis",
+"label": "Carnitine Synthesis",
+"size": 3.068027,
+"color": "#FF8A00",
+"x": 11.44065,
+"y": 13.14422 
+},
+{
+ "id": "Urea Cycle",
+"label": "Urea Cycle",
+"size": 3.154639,
+"color": "#FF9100",
+"x": 4.615779,
+"y": 12.91346 
+},
+{
+ "id": "Cysteine Metabolism",
+"label": "Cysteine Metabolism",
+"size": 3.114943,
+"color": "#FF9800",
+"x": 4.033527,
+"y": 11.80474 
+},
+{
+ "id": "Lysine Degradation",
+"label": "Lysine Degradation",
+"size": 3.149254,
+"color": "#FF9F00",
+"x": 8.461717,
+"y": 10.95077 
+},
+{
+ "id": "Bile Acid Biosynthesis",
+"label": "Bile Acid Biosynthesis",
+"size": 3.390805,
+"color": "#FFA500",
+"x": 12.89298,
+"y":  14.3332 
+},
+{
+ "id": "Fatty Acid Biosynthesis",
+"label": "Fatty Acid Biosynthesis",
+"size":  3.17094,
+"color": "#FFAC00",
+"x": 6.365141,
+"y": 20.22658 
+},
+{
+ "id": "Oxidation of Branched Chain Fatty Acids",
+"label": "Oxidation of Branched Chain Fatty Acids",
+"size": 3.057471,
+"color": "#FFB300",
+"x": 1.931251,
+"y":  16.1685 
+},
+{
+ "id": "Phytanic Acid Peroxisomal Oxidation",
+"label": "Phytanic Acid Peroxisomal Oxidation",
+"size": 3.057471,
+"color": "#FFBA00",
+"x": 2.833589,
+"y":  15.2096 
+},
+{
+ "id": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"label": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"size": 3.055249,
+"color": "#FFC100",
+"x": 11.47236,
+"y": 10.58336 
+},
+{
+ "id": "Aspartate Metabolism",
+"label": "Aspartate Metabolism",
+"size": 3.128205,
+"color": "#FFC800",
+"x": 6.258905,
+"y": 12.46712 
+},
+{
+ "id": "Ammonia Recycling",
+"label": "Ammonia Recycling",
+"size": 3.093458,
+"color": "#FFCF00",
+"x": 5.157133,
+"y":  11.1886 
+},
+{
+ "id": "Phospholipid Biosynthesis",
+"label": "Phospholipid Biosynthesis",
+"size": 3.051546,
+"color": "#FFD600",
+"x": 8.362806,
+"y": 16.74159 
+},
+{
+ "id": "Folate Metabolism",
+"label": "Folate Metabolism",
+"size": 3.051546,
+"color": "#FFDD00",
+"x": 4.368838,
+"y": 10.82741 
+},
+{
+ "id": "Beta-Alanine Metabolism",
+"label": "Beta-Alanine Metabolism",
+"size": 3.088106,
+"color": "#FFE300",
+"x": 6.931317,
+"y": 11.36255 
+},
+{
+ "id": "Starch and Sucrose Metabolism",
+"label": "Starch and Sucrose Metabolism",
+"size": 3.048309,
+"color": "#FFEA00",
+"x": 5.144434,
+"y": 19.26709 
+},
+{
+ "id": "Gluconeogenesis",
+"label": "Gluconeogenesis",
+"size":  3.08547,
+"color": "#FFF100",
+"x": 3.047746,
+"y": 13.78167 
+},
+{
+ "id": "Fructose and Mannose Degradation",
+"label": "Fructose and Mannose Degradation",
+"size": 3.046729,
+"color": "#FFF800",
+"x": 1.649331,
+"y": 13.85426 
+},
+{
+ "id": "Glycine and Serine Metabolism",
+"label": "Glycine and Serine Metabolism",
+"size": 3.101266,
+"color": "#FFFF00",
+"x": 6.582447,
+"y": 10.18313 
+},
+{
+ "id": "Tyrosine Metabolism",
+"label": "Tyrosine Metabolism",
+"size": 3.290456,
+"color": "#FFFF0B",
+"x": 8.894992,
+"y": 13.81104 
+},
+{
+ "id": "Propanoate Metabolism",
+"label": "Propanoate Metabolism",
+"size": 3.071174,
+"color": "#FFFF20",
+"x": 4.810283,
+"y": 15.42639 
+},
+{
+ "id": "Arginine and Proline Metabolism",
+"label": "Arginine and Proline Metabolism",
+"size": 3.112676,
+"color": "#FFFF35",
+"x": 5.765213,
+"y": 11.32792 
+},
+{
+ "id": "Steroid Biosynthesis",
+"label": "Steroid Biosynthesis",
+"size": 3.031153,
+"color": "#FFFF4A",
+"x": 10.60093,
+"y": 11.68963 
+},
+{
+ "id": "Valine, Leucine and Isoleucine Degradation",
+"label": "Valine, Leucine and Isoleucine Degradation",
+"size": 3.049875,
+"color": "#FFFF60",
+"x": 5.713928,
+"y": 16.45799 
+},
+{
+ "id": "Methionine Metabolism",
+"label": "Methionine Metabolism",
+"size": 3.034722,
+"color": "#FFFF75",
+"x": 6.259702,
+"y": 9.481286 
+},
+{
+ "id": "Galactose Metabolism",
+"label": "Galactose Metabolism",
+"size":  3.07874,
+"color": "#FFFF8A",
+"x": 5.830039,
+"y": 18.73203 
+},
+{
+ "id": "Histidine Metabolism",
+"label": "Histidine Metabolism",
+"size": 3.034722,
+"color": "#FFFF9F",
+"x": 5.653392,
+"y": 10.47795 
+},
+{
+ "id": "Amino Sugar Metabolism",
+"label": "Amino Sugar Metabolism",
+"size": 3.045249,
+"color": "#FFFFB5",
+"x": 12.65777,
+"y": 12.41148 
+},
+{
+ "id": "Nicotinate and Nicotinamide Metabolism",
+"label": "Nicotinate and Nicotinamide Metabolism",
+"size": 3.080645,
+"color": "#FFFFCA",
+"x": 4.977128,
+"y": 10.00193 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size": 3.080808,
+"color": "#FFFFDF",
+"x": 10.78137,
+"y": 18.84171 
+},
+{
+ "id": "Fatty acid Metabolism",
+"label": "Fatty acid Metabolism",
+"size": 3.069444,
+"color": "#FFFFF4",
+"x": 10.77808,
+"y": 10.02275 
+} 
+],
+"edges": [ {
+ "id": "1",
+"source": "Malate-Aspartate Shuttle",
+"target": "Glucose-Alanine Cycle" 
+},
+{
+ "id": "2",
+"source": "Glucose-Alanine Cycle",
+"target": "Transfer of Acetyl Groups into Mitochondria" 
+},
+{
+ "id": "3",
+"source": "Alanine Metabolism",
+"target": "Transfer of Acetyl Groups into Mitochondria" 
+},
+{
+ "id": "4",
+"source": "Citric Acid Cycle",
+"target": "Transfer of Acetyl Groups into Mitochondria" 
+},
+{
+ "id": "5",
+"source": "Citric Acid Cycle",
+"target": "Mitochondrial Electron Transport Chain" 
+},
+{
+ "id": "6",
+"source": "Mitochondrial Electron Transport Chain",
+"target": "Glycerolipid Metabolism" 
+},
+{
+ "id": "7",
+"source": "Catecholamine Biosynthesis",
+"target": "Carnitine Synthesis" 
+},
+{
+ "id": "8",
+"source": "Malate-Aspartate Shuttle",
+"target": "Urea Cycle" 
+},
+{
+ "id": "9",
+"source": "Glucose-Alanine Cycle",
+"target": "Urea Cycle" 
+},
+{
+ "id": "10",
+"source": "Alanine Metabolism",
+"target": "Urea Cycle" 
+},
+{
+ "id": "11",
+"source": "Citric Acid Cycle",
+"target": "Urea Cycle" 
+},
+{
+ "id": "12",
+"source": "Transfer of Acetyl Groups into Mitochondria",
+"target": "Urea Cycle" 
+},
+{
+ "id": "13",
+"source": "Glucose-Alanine Cycle",
+"target": "Cysteine Metabolism" 
+},
+{
+ "id": "14",
+"source": "Alanine Metabolism",
+"target": "Cysteine Metabolism" 
+},
+{
+ "id": "15",
+"source": "Urea Cycle",
+"target": "Cysteine Metabolism" 
+},
+{
+ "id": "16",
+"source": "Citric Acid Cycle",
+"target": "Phytanic Acid Peroxisomal Oxidation" 
+},
+{
+ "id": "17",
+"source": "Transfer of Acetyl Groups into Mitochondria",
+"target": "Phytanic Acid Peroxisomal Oxidation" 
+},
+{
+ "id": "18",
+"source": "Oxidation of Branched Chain Fatty Acids",
+"target": "Phytanic Acid Peroxisomal Oxidation" 
+},
+{
+ "id": "19",
+"source": "Phenylalanine and Tyrosine Metabolism",
+"target": "Aspartate Metabolism" 
+},
+{
+ "id": "20",
+"source": "Urea Cycle",
+"target": "Aspartate Metabolism" 
+},
+{
+ "id": "21",
+"source": "Alanine Metabolism",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "22",
+"source": "Urea Cycle",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "23",
+"source": "Cysteine Metabolism",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "24",
+"source": "Aspartate Metabolism",
+"target": "Ammonia Recycling" 
+},
+{
+ "id": "25",
+"source": "Glucose-Alanine Cycle",
+"target": "Folate Metabolism" 
+},
+{
+ "id": "26",
+"source": "Ammonia Recycling",
+"target": "Folate Metabolism" 
+},
+{
+ "id": "27",
+"source": "Glucose-Alanine Cycle",
+"target": "Beta-Alanine Metabolism" 
+},
+{
+ "id": "28",
+"source": "Lysine Degradation",
+"target": "Beta-Alanine Metabolism" 
+},
+{
+ "id": "29",
+"source": "Citric Acid Cycle",
+"target": "Gluconeogenesis" 
+},
+{
+ "id": "30",
+"source": "Transfer of Acetyl Groups into Mitochondria",
+"target": "Gluconeogenesis" 
+},
+{
+ "id": "31",
+"source": "Urea Cycle",
+"target": "Gluconeogenesis" 
+},
+{
+ "id": "32",
+"source": "Gluconeogenesis",
+"target": "Fructose and Mannose Degradation" 
+},
+{
+ "id": "33",
+"source": "Betaine Metabolism",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "34",
+"source": "Ammonia Recycling",
+"target": "Glycine and Serine Metabolism" 
+},
+{
+ "id": "35",
+"source": "Phenylalanine and Tyrosine Metabolism",
+"target": "Tyrosine Metabolism" 
+},
+{
+ "id": "36",
+"source": "Citric Acid Cycle",
+"target": "Propanoate Metabolism" 
+},
+{
+ "id": "37",
+"source": "Transfer of Acetyl Groups into Mitochondria",
+"target": "Propanoate Metabolism" 
+},
+{
+ "id": "38",
+"source": "Urea Cycle",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "39",
+"source": "Aspartate Metabolism",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "40",
+"source": "Ammonia Recycling",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "41",
+"source": "Glycine and Serine Metabolism",
+"target": "Arginine and Proline Metabolism" 
+},
+{
+ "id": "42",
+"source": "Propanoate Metabolism",
+"target": "Valine, Leucine and Isoleucine Degradation" 
+},
+{
+ "id": "43",
+"source": "Betaine Metabolism",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "44",
+"source": "Ammonia Recycling",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "45",
+"source": "Glycine and Serine Metabolism",
+"target": "Methionine Metabolism" 
+},
+{
+ "id": "46",
+"source": "Starch and Sucrose Metabolism",
+"target": "Galactose Metabolism" 
+},
+{
+ "id": "47",
+"source": "Ammonia Recycling",
+"target": "Histidine Metabolism" 
+},
+{
+ "id": "48",
+"source": "Folate Metabolism",
+"target": "Histidine Metabolism" 
+},
+{
+ "id": "49",
+"source": "Beta-Alanine Metabolism",
+"target": "Histidine Metabolism" 
+},
+{
+ "id": "50",
+"source": "Arginine and Proline Metabolism",
+"target": "Histidine Metabolism" 
+},
+{
+ "id": "51",
+"source": "Ammonia Recycling",
+"target": "Nicotinate and Nicotinamide Metabolism" 
+},
+{
+ "id": "52",
+"source": "Arginine and Proline Metabolism",
+"target": "Nicotinate and Nicotinamide Metabolism" 
+},
+{
+ "id": "53",
+"source": "Histidine Metabolism",
+"target": "Nicotinate and Nicotinamide Metabolism" 
+},
+{
+ "id": "54",
+"source": "Mitochondrial Beta-Oxidation of Medium Chain Saturated Fatty Acids",
+"target": "Fatty acid Metabolism" 
+} ] 
+}
