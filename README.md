@@ -2,7 +2,7 @@
 
 This repository contains the code to analyze the data and create the plots for my fourth chapter on my dissertation, "Novel technique to study immunometabolism during *Mycobacterium tuberculosis* infection", R Code and data released under an MIT License. To use the R code and/or data in this repository, please cite [insert citation]
 
-This repository contains data from a ?2015? experiment which involved evaluating the immune response (flow cytometry) and induced metabolites (LC-MS) to BCG in minpigs before and after infection with Mycobacterium tuberculosis. 
+This repository contains data from a 2015 experiment which involved evaluating the immune response (flow cytometry) and induced metabolites (LC-MS) to BCG in minpigs before and after infection with Mycobacterium tuberculosis. 
 
 Repository Directory
 
@@ -14,4 +14,4 @@ Repository Directory
 - flow_tables.Rmd : code to create the tables to describe the flow cytometry markers and the vaccination status for the minpigs
 
 
-Note: The .fcs files are too large to push to Github. The data can be obtained from Amy Fox (amyfox@colostate.edu). 
+Note: The .fcs files are too large to push to Github. The data can be obtained from Marcela Henao-Tamayo (Marcela.Henao_Tamayo@colostate.edu). 
