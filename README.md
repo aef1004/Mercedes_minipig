@@ -14,4 +14,4 @@ Repository Directory
 - flow_tables.Rmd : code to create the tables to describe the flow cytometry markers and the vaccination status for the minpigs
 
 
-Note: The .fcs files are too large to push to Github. The data can be obtained from Amy Fox (amyfox@colostate.edu). 
+Note: The .fcs files are too large to push to Github. The data can be obtained from Marcela Henao-Tamayo (Marcela.Henao_Tamayo@colostate.edu). 
