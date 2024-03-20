@@ -84,12 +84,59 @@ grViz(diagram = "digraph flowchart {
       tab9 -> tab10
       tab9 -> tab11
       }
-[1]: 'Experiment'
+      [1]: 'Perform Experiment'
+      [2]: 'Acquire flow cytometry data'
+      [3]: 'Pre-processes data and perform initial exploration'
+      [4]: 'Acquire metabolomics data'
+      [5]: 'Pre-processes data and perform initial exploration'
+      [6]: 'Start integrated analysis'
+      [7]: 'Reduce data to principal components'
+      [8]: 'Regression modeling'
+      [9]: 'Identify High-importance metabolites'
+      [10]: 'Pathway analysis'
+      [11]: 'Targeted analysis'
+      [12]: 'P-value histograms'
+      ")
+```
+
+
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]   
+
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
+      tab7 [label = '@@7']
+      tab8 [label = '@@8']
+      tab9 [label = '@@9']
+      tab10 [label = '@@10']
+      tab11 [label = '@@11']
+      tab12 [label = '@@12']
+# set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab1 -> tab4;
+      tab4 -> tab5;
+      tab3 -> tab6;
+      tab5 -> tab7;
+      tab7 -> tab6;
+      tab6 -> tab8;
+      tab8 -> tab9;
+      tab9 -> tab10
+      tab9 -> tab11
+      }
+      [1]: 'Experiment'
       [2]: 'Flow cytometry data acquisition'
       [3]: 'Pre-processing and data exploration'
       [4]: 'Metabolomics data acquisition'
       [5]: 'Pre-processing and data exploration'
-      [6]: 'Start integrated analysis'
+      [6]: 'Integrated analysis'
       [7]: 'PCA dimension reduction'
       [8]: 'Regression modeling'
       [9]: 'High-importance metabolites'
@@ -98,3 +145,5 @@ grViz(diagram = "digraph flowchart {
       [12]: 'P-value histograms'
       ")
 ```
+
+

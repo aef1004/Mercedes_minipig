@@ -108,9 +108,9 @@ metabolites <- read.csv("../data/peakTable_Minipig_Vaccinated_Unvaccinated_QC.cs
   filter(!grepl("Pooled", full_name))
 
 
-load("../data/flow_predefined_phenotypes")
-load("../data/flow_single_expression")
-load("../data/flow_fe")
+load("../data/flow_predefined_phenotypes.gz")
+load("../data/flow_single_expression.gz")
+load("../data/flow_fe.gz")
 
 flow_metab1 <- left_join(flow_predefined_phenotypes, metabolites, by = "full_name") %>%
   dplyr::rename(percent = marker_percent,
@@ -158,8 +158,7 @@ df %>%
   filter(flow == flow_pop & metaboliteID == metab_pick) %>%
   left_join(step1, by = c("flow", "metaboliteID")) %>%
 ggplot(aes(x = metabolite_expression, y = percent, color = factor(timepoint))) +
-  geom_point(aes(shape = vaccine_status), size = 3) +
-  scale_shape_manual(values = c(21,19)) +
+  geom_point(size = 3) +
   geom_smooth(aes(x = metabolite_expression, y = percent), method = "lm", se = FALSE, color = "#3F4788FF") +
   scale_x_continuous(labels = scales::scientific) +
   ggtitle(metab_pick) +
@@ -477,4 +476,32 @@ ggarrange(p1 + rremove("legend") + rremove("xylab"),
                   bottom = text_grob("Metabolite Expression", size = 15))
 ```
 
+
+For paper
+```{r fig.width = 3, fig.height = 3}
+p1 <- arrange_plot(flow_metab, "Pop19", "metab_1223",  25, 1.5E4, 1E4)
+p2 <- arrange_plot(flow_metab, "Pop19", "metab_1280",  25, 2E4, 1E4)
+p3 <- arrange_plot(flow_metab, "Pop19", "metab_1287",  25, 2E4, 1E4)
+p4 <- arrange_plot(flow_metab, "Pop19", "metab_1289",  25, 2E4, 1E4)
+p5 <- arrange_plot(flow_metab, "Pop19", "metab_1342",  25, 2E4, 1E4)
+p6 <- arrange_plot(flow_metab, "Pop19", "metab_2958",  25, 2E4, 1E4)
+p7 <- arrange_plot(flow_metab, "Pop19", "metab_3072",  25, 2E4, 1E4)
+p8 <- arrange_plot(flow_metab, "Pop19", "metab_3602",  25, 2E4, 1E4)
+
+ggarrange(p1 + rremove("legend") + rremove("xylab"), 
+          p2+ rremove("legend") + rremove("xylab"), 
+          p3+ rremove("legend") + rremove("xylab"), 
+          p4+ rremove("legend") + rremove("xylab"), 
+          p5+ rremove("legend")+ rremove("xylab"), 
+          p6+ rremove("legend")+ rremove("xylab"), 
+          p7+ rremove("legend") + rremove("xylab"), 
+          p8+ rremove("legend") + rremove("xylab"), 
+          legend.grob = get_legend(p1), legend = "right", 
+          ncol = 2, nrow = 4) %>%
+  annotate_figure(top = text_grob("PC4 Arachadonic acid metabolism and Pop19: CD3+ CD4+ CD8-CD45RA+ SLADQ- CD172-", size = 12),
+                  left = text_grob("Pop19 Percentage of cells", size = 12, rot = 90),
+                  bottom = text_grob("Metabolite Expression", size = 12))
+
+
+```
 

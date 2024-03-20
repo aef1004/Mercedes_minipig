@@ -68,7 +68,13 @@ all_flow <- flow_metab %>%
   select(-metaboliteID, -metabolite_expression) %>%
   unique() %>%
   pivot_wider(names_from = flow, values_from = percent)
+
+all_flow
 ```
+```{r}
+res_pca_importance
+```
+
 
 
 PCA and proportion of variance
@@ -139,6 +145,10 @@ minipig_PCA <- PCA_minipig %>%
          timepoint = str_replace(timepoint, "30DPI", "post-infection"))  %>%
   mutate(pig_name = str_extract(full_name, "Minipig_[0-9]*"))
 ```
+```{r}
+pops_list_lmer_remove 
+```
+
 
 Need to transition to lmer model and pull out data
 ```{r}
@@ -148,11 +158,12 @@ inter_formula <- flow_percent ~ PC_value *timepoint + (1 |pig_name)
 
 # these are gong to be the ones that remove in further analysis because timepoint makes a difference 
 # 10 correlations to remove
+library(broom.mixed)
 pops_list_lmer_remove <- minipig_PCA %>%
   group_by(PC, flow) %>%
   nest() %>%
   mutate(model = map(data, ~lmer(inter_formula, data = .)),
-         summary_model = map(model, tidy)) %>%
+         summary_model = map(model, broom.mixed::tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value) %>%
   filter(term == "PC_value:timepointpre-infection") %>%
@@ -167,33 +178,70 @@ pops_list_lmer_remove
 
 
 # Remove 10 correlations where the interaction with PC and timepoint was not significant (p>0.05)t 
-# 15 significant correlations after this
+# 9 significant correlations after this
 add_formula <- flow_percent ~ PC_value + timepoint + (1 |pig_name)
 
 pops_list_lmer_final <- minipig_PCA %>%
   group_by(PC, flow) %>%
    filter(flow != "CD45RA" & PC != "PC11") %>%
-   filter(flow != "CD8_Tcell" & PC != "PC6") %>%
-   filter(flow != "Pop12" & PC != "PC2") %>%
-   filter(flow != "Pop15" & PC != "PC2") %>%
-   filter(flow != "Pop16" & PC != "PC19") %>%
-   filter(flow != "Pop5" | PC != "PC15") %>%
-   filter(flow != "Pop7" | PC != "PC2") %>%
-   filter(flow != "Pop7" | PC != "PC20") %>%
-   filter(flow != "Pop8" | PC != "PC2") %>%
-   filter(flow != "Pop8" | PC != "PC20") %>%
+    filter(flow != "CD8_Tcell" & PC != "PC6") %>%
+    filter(flow != "Pop12" & PC != "PC2") %>%
+    filter(flow != "Pop15" & PC != "PC2") %>%
+    filter(flow != "Pop16" & PC != "PC19") %>%
+    filter(flow != "Pop5" | PC != "PC15") %>%
+    filter(flow != "Pop7" | PC != "PC2") %>%
+    filter(flow != "Pop7" | PC != "PC20") %>%
+    filter(flow != "Pop8" | PC != "PC2") %>%
+    filter(flow != "Pop8" | PC != "PC20") %>%
   nest() %>%
   mutate(model = map(data, ~lmer(add_formula, data = .)),
-         summary_model = map(model, tidy)) %>%
+         summary_model = map(model, broom.mixed::tidy)) %>%
   unnest(summary_model) %>%
   select(flow, PC, term, p.value, estimate) %>%
-  filter(term == "PC_value" & p.value < 0.01, .preserve = TRUE) %>%
+  #filter(term = "timepoint", flow == "CD45RA", .preserve = TRUE) %>%
+  filter(term == "PC_value") %>%
+  filter(p.value < 0.01) %>%
   arrange(flow, PC)
 
-# see final list
-pops_list_lmer_final 
+pops_list_lmer_final
 
-plot_complex <- function(df, flow_pop, metab_pick) 
+pops_list_lmer_final%>%
+  select(PC, flow,  p.value) %>%
+  mutate(p.value = format(p.value, scientific = TRUE, digits = 2)) %>%
+  mutate(flow = factor(flow, levels = c("CD8", "CD45RA", "CD172", "Pop2",
+                                        "Pop7", "Pop8", "Pop10",
+                                        "Pop11","Pop12", "Pop15", "Pop16", "Pop19",
+                                        "Pop20", "Pop22", "Pop23"))) %>%
+  arrange(PC, flow) %>%
+  rename(Flow = flow,
+         `P value` = p.value) %>%
+  mutate(Flow = str_replace(Flow, "Pop10", "Pop10: CD3+CD4-CD8+CD45RA-SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop19", "Pop19: CD3+CD4+CD8-CD45RA+SLADQ-CD172-"),
+         Flow = str_replace(Flow, "Pop20", "Pop20: CD3+CD4+CD8-CD45RA+SLADQ+CD172+"),
+         Flow = str_replace(Flow, "Pop22", "Pop22: CD3+CD4+CD8-CD45RA+SLADQ-CD172+"),
+         Flow = str_replace(Flow, "Pop7", "Pop7: CD3+CD4-CD8-CD45RA+SLADQ-CD172+"),
+         Flow = str_replace(Flow, "Pop8", "Pop8: CD3+CD4-CD8-CD45RA+SLADQ+CD172+"),
+         Flow = str_replace(Flow, "Pop2\\b", "Pop2: CD3+CD4-CD8-CD45RA-SLADQ+CD172-")) %>%
+  rename(`Immune Cells` = Flow,
+         `Principal Components` = PC) %>%
+  kable(align = c("l", "l", "l", "l")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+
+minipig_PCA %>%
+  group_by(PC, flow) %>%
+   filter(flow == "CD45RA") %>%
+  nest() %>%
+  mutate(model = map(data, ~lmer(add_formula, data = .)),
+         summary_model = map(model, broom.mixed::tidy)) %>%
+  unnest(summary_model) %>%
+  select(flow, PC, term, p.value, estimate) %>%
+  #filter(term = "timepoint", flow == "CD45RA", .preserve = TRUE) %>%
+  arrange(flow, PC)
+
+
+
+plot_complex <- function(df, flow_pop, metab_pick)
   {
 fm1 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
@@ -202,19 +250,69 @@ fm1 <- df %>%
 df3 <- df %>%
   filter(flow == flow_pop & PC == metab_pick) %>%
   cbind(pred = predict(fm1))
-  
-ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) + 
-  geom_point() + 
+
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) +
+  geom_point() +
   geom_line(mapping=aes(y=pred))  +
   ggtitle(paste(flow_pop, "&", metab_pick)) +
-  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"), 
-       fill = "Timepoint") 
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "Percentage of Cells"),
+       fill = "Timepoint")
 }
 
 
-cell <- list(flow_x = pops_list_lmer_final$flow, 
+cell <- list(flow_x = pops_list_lmer_final$flow,
              PC_n = pops_list_lmer_final$PC)
 pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+
+
+# above looks bad with lmer formula so do normal formula
+
+add_formula_lm <- flow_percent ~ PC_value + timepoint
+
+plot_complex <- function(df, flow_pop, metab_pick)
+  {
+fm1 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  lm(add_formula_lm, data = .)
+
+df3 <- df %>%
+  filter(flow == flow_pop & PC == metab_pick) %>%
+  cbind(pred = predict(fm1))
+
+ggplot(data=df3, aes(x = PC_value, y = flow_percent, color = factor(timepoint))) +
+  geom_point() +
+  geom_line(mapping=aes(y=pred))  +
+  ggtitle(paste(flow_pop, "&", metab_pick)) +
+  labs(color = "Timepoint", x = "PC Value", y = paste(flow_pop, "% of Cells"),
+       fill = "Timepoint")
+}
+
+
+cell <- list(flow_x = pops_list_lmer_final$flow,
+             PC_n = pops_list_lmer_final$PC)
+pmap(cell, function(flow_x, PC_n) plot_complex(minipig_PCA, flow_x, PC_n))
+
+
+p1 <- plot_complex(minipig_PCA, "Pop10", "PC4")
+p2 <- plot_complex(minipig_PCA, "Pop19", "PC4")
+p3 <- plot_complex(minipig_PCA, "Pop2", "PC9")
+p4 <- plot_complex(minipig_PCA, "CD8", "PC9")
+
+
+ggarrange(p1 + rremove("legend") + rremove("xlab"),
+          p2+ rremove("legend") + rremove("xlab"),
+          p3+ rremove("legend"),
+          p4+ rremove("legend"),
+          legend.grob = get_legend(p1), legend = "right",
+          ncol = 2, nrow = 2)
+
+
+minipig_PCA %>%
+  filter(flow== "CD45RA" & PC == "PC4") %>%
+ggplot(aes(x = PC_value, y = flow_percent, color = pig_name, shape = timepoint)) +
+  geom_point() +
+  labs(color = "Timepoint", x = "PC Value", y = paste("Percentage of Cells"),
+       fill = "Timepoint")
 ```
 
 
