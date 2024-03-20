@@ -1,0 +1,24 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Caffeine metabolism",10,0.52903,2,0.094423,1.0249,1,1,0.69231
+"Glycolysis / Gluconeogenesis",26,1.3755,3,0.15503,0.80959,1,1,0.00105
+"Galactose metabolism",27,1.4284,3,0.16811,0.77442,1,1,0.08212
+"Folate biosynthesis",27,1.4284,3,0.16811,0.77442,1,1,0.09924
+"Glycerolipid metabolism",16,0.84645,2,0.20595,0.68624,1,1,0.01402
+"Linoleic acid metabolism",5,0.26452,1,0.23825,0.62298,1,1,0
+"Amino sugar and nucleotide sugar metabolism",37,1.9574,3,0.31108,0.50713,1,1,0
+"Pyruvate metabolism",22,1.1639,2,0.32613,0.48661,1,1,0.08398
+"Ascorbate and aldarate metabolism",8,0.42323,1,0.35328,0.45188,1,1,0
+"alpha-Linolenic acid metabolism",13,0.68774,1,0.50807,0.29407,1,1,0
+"Glycerophospholipid metabolism",36,1.9045,2,0.57743,0.2385,1,1,0.11182
+"Pentose and glucuronate interconversions",18,0.95226,1,0.62616,0.20331,1,1,0.14062
+"Tryptophan metabolism",41,2.169,2,0.64948,0.18743,1,1,0.02735
+"Fructose and mannose metabolism",20,1.0581,1,0.66512,0.1771,1,1,0
+"Ether lipid metabolism",20,1.0581,1,0.66512,0.1771,1,1,0.08434
+"beta-Alanine metabolism",21,1.111,1,0.68307,0.16554,1,1,0
+"Propanoate metabolism",23,1.2168,1,0.71616,0.14499,1,1,0
+"Phosphatidylinositol signaling system",28,1.4813,1,0.7847,0.1053,1,1,0.03736
+"Porphyrin and chlorophyll metabolism",30,1.5871,1,0.80728,0.092977,1,1,0
+"Inositol phosphate metabolism",30,1.5871,1,0.80728,0.092977,1,1,0.12939
+"Arachidonic acid metabolism",36,1.9045,1,0.8619,0.064541,1,1,0
+"Drug metabolism - other enzymes",39,2.0632,1,0.88316,0.053959,1,1,0.06658
+"Purine metabolism",65,3.4387,1,0.97295,0.011908,1,1,0.0054

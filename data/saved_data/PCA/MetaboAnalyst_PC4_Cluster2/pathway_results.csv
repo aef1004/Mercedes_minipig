@@ -1,0 +1,17 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Arachidonic acid metabolism",36,4.5987,29,6.8723e-21,20.163,5.7728e-19,5.7728e-19,0.75196
+"Linoleic acid metabolism",5,0.63871,5,3.2536e-05,4.4876,0.0027005,0.0013665,1
+"alpha-Linolenic acid metabolism",13,1.6606,4,0.072822,1.1377,1,1,0.66666
+"Biosynthesis of unsaturated fatty acids",36,4.5987,8,0.078145,1.1071,1,1,0.09091
+"Sphingolipid metabolism",21,2.6826,3,0.51459,0.28854,1,1,0.27383
+"Glycerophospholipid metabolism",36,4.5987,4,0.69491,0.15807,1,1,0.28998
+"Phenylalanine metabolism",10,1.2774,1,0.74614,0.12718,1,1,0
+"Ether lipid metabolism",20,2.5548,2,0.74654,0.12695,1,1,0
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,1.7884,1,0.85369,0.0687,1,1,0.00399
+"Glycerolipid metabolism",16,2.0439,1,0.88899,0.051103,1,1,0.01402
+"Fructose and mannose metabolism",20,2.5548,1,0.93617,0.028646,1,1,0
+"Fatty acid degradation",39,4.9819,2,0.96898,0.013683,1,1,0.00362
+"Fatty acid elongation",39,4.9819,2,0.96898,0.013683,1,1,0.01085
+"Drug metabolism - cytochrome P450",55,7.0258,3,0.9794,0.0090401,1,1,0.01449
+"Fatty acid biosynthesis",47,6.0039,2,0.98812,0.0051905,1,1,0.01473
+"Amino sugar and nucleotide sugar metabolism",37,4.7265,1,0.99403,0.0026011,1,1,0

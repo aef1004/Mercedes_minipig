@@ -1,0 +1,26 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Primary bile acid biosynthesis",46,3.1161,9,0.0028271,2.5487,0.23747,0.23747,0.16101
+"Butanoate metabolism",15,1.0161,3,0.075729,1.1207,1,1,0.17461
+"Valine, leucine and isoleucine degradation",40,2.7097,5,0.12896,0.88955,1,1,0.04094
+"Glycine, serine and threonine metabolism",33,2.2355,4,0.18032,0.74396,1,1,0.31837
+"Glycerolipid metabolism",16,1.0839,2,0.29605,0.52864,1,1,0.02648
+"Synthesis and degradation of ketone bodies",5,0.33871,1,0.29616,0.52848,1,1,0.6
+"Retinol metabolism",17,1.1516,2,0.32183,0.49237,1,1,0.11856
+"Valine, leucine and isoleucine biosynthesis",8,0.54194,1,0.43021,0.36632,1,1,0
+"Propanoate metabolism",23,1.5581,2,0.46908,0.32875,1,1,0.04061
+"Phosphatidylinositol signaling system",28,1.8968,2,0.57652,0.23918,1,1,0.07626
+"Alanine, aspartate and glutamate metabolism",28,1.8968,2,0.57652,0.23918,1,1,0.13462
+"Cysteine and methionine metabolism",33,2.2355,2,0.66743,0.17559,1,1,0.10162
+"Glycerophospholipid metabolism",36,2.4387,2,0.7141,0.14624,1,1,0.15723
+"Ether lipid metabolism",20,1.3548,1,0.75632,0.12129,1,1,0.14458
+"Steroid biosynthesis",42,2.8452,2,0.79118,0.10172,1,1,0.00344
+"Glutathione metabolism",28,1.8968,1,0.86221,0.064387,1,1,0.08873
+"Inositol phosphate metabolism",30,2.0323,1,0.88057,0.055236,1,1,0
+"Porphyrin and chlorophyll metabolism",30,2.0323,1,0.88057,0.055236,1,1,0
+"Glyoxylate and dicarboxylate metabolism",32,2.1677,1,0.89651,0.047447,1,1,0.10582
+"Arginine and proline metabolism",38,2.5742,1,0.93273,0.030244,1,1,0.02385
+"Pyrimidine metabolism",39,2.6419,1,0.9374,0.028074,1,1,0
+"Tyrosine metabolism",42,2.8452,1,0.94957,0.022471,1,1,0
+"Aminoacyl-tRNA biosynthesis",48,3.2516,1,0.96732,0.014429,1,1,0
+"Steroid hormone biosynthesis",85,5.7581,2,0.98365,0.0071577,1,1,0.01703
+"Purine metabolism",65,4.4032,1,0.99053,0.0041313,1,1,0.00528

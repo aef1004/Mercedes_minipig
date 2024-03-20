@@ -1,0 +1,16 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Folate biosynthesis",27,0.73161,3,0.034437,1.463,1,1,0.02061
+"alpha-Linolenic acid metabolism",13,0.35226,2,0.046287,1.3345,1,1,0
+"Histidine metabolism",16,0.43355,2,0.06767,1.1696,1,1,0.34426
+"D-Arginine and D-ornithine metabolism",4,0.10839,1,0.10416,0.98231,1,1,0
+"Linoleic acid metabolism",5,0.13548,1,0.12849,0.89111,1,1,0
+"Glycerophospholipid metabolism",36,0.97548,2,0.25483,0.59375,1,1,0.19895
+"Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",14,0.37935,1,0.32039,0.49432,1,1,0.00399
+"Glycerolipid metabolism",16,0.43355,1,0.35706,0.44726,1,1,0.01402
+"beta-Alanine metabolism",21,0.56903,1,0.44049,0.35607,1,1,0
+"Arachidonic acid metabolism",36,0.97548,1,0.63228,0.19909,1,1,0
+"Pyrimidine metabolism",39,1.0568,1,0.66206,0.1791,1,1,0.08923
+"Tryptophan metabolism",41,1.111,1,0.6806,0.16711,1,1,0.02735
+"Aminoacyl-tRNA biosynthesis",48,1.3006,1,0.73797,0.13196,1,1,0
+"Drug metabolism - cytochrome P450",55,1.4903,1,0.78524,0.105,1,1,0
+"Purine metabolism",65,1.7613,1,0.83863,0.07643,1,1,0.01217
