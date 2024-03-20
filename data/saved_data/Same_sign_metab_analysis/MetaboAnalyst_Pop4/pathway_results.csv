@@ -1,0 +1,4 @@
+"","Total","Expected","Hits","Raw p","-log10(p)","Holm adjust","FDR","Impact"
+"Fructose and mannose metabolism",20,0.23226,1,0.20948,0.67885,1,1,0
+"Amino sugar and nucleotide sugar metabolism",37,0.42968,1,0.35424,0.45071,1,1,0
+"Purine metabolism",65,0.75484,1,0.53952,0.268,1,1,0.05577

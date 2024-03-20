@@ -1,0 +1,26 @@
+{
+ "nodes": [
+ {
+ "id": "Fructose and Mannose Degradation",
+"label": "Fructose and Mannose Degradation",
+"size":        4,
+"color": "#FF0000",
+"x": 85.92456,
+"y": 97.83318 
+},
+{
+ "id": "Purine Metabolism",
+"label": "Purine Metabolism",
+"size":   3.4329,
+"color": "#FFFF00",
+"x": 84.72861,
+"y": 98.58519 
+} 
+],
+"edges": [ {
+ "id": "1" 
+},
+{
+ "id": "0" 
+} ] 
+}

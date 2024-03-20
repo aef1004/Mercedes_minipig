@@ -1,0 +1,67 @@
+query_mass,compound_id,compound_name,kegg_id,formula,monoisotopic_mass,adduct,adduct_type,adduct_m/z,delta(ppm)
+335.1673731,HMDB0032549,N-Undecylbenzenesulfonic acid,n/a,C17H28O3S,312.175915452,M+Na,+,335.165133,7
+335.1673731,HMDB0171053,"3,4,5-trihydroxy-6-[(9-hydroxynon-1-en-3-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0171052,"3,4,5-trihydroxy-6-[(7-hydroxynon-8-en-1-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0180006,"3,4,5-trihydroxy-6-[(7-methyloctanoyl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0179178,"3,4,5-trihydroxy-6-[(4-oxononyl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0179822,"3,4,5-trihydroxy-6-[(8-oxononan-2-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0179824,"3,4,5-trihydroxy-6-[(8-oxononyl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163506,"3,4,5-trihydroxy-6-{[(2Z)-8-hydroxy-2-methyloct-2-en-1-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0179826,"3,4,5-trihydroxy-6-[(2-oxononyl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0179828,"3,4,5-trihydroxy-6-[(2-oxononan-3-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0171049,"3,4,5-trihydroxy-6-{[1-(oxiran-2-yl)heptyl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0171046,"3,4,5-trihydroxy-6-[(8-hydroxynon-1-en-3-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0040461,"1,5-Dibutyl methyl hydroxycitrate",n/a,C15H26O8,334.162767808,M+H,+,335.170044,8
+335.1673731,HMDB0163490,"6-[(2E)-2-hexylidene-3-hydroxypropoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163491,"6-[(2Z)-2-hexylidene-3-hydroxypropoxy]-3,4,5-trihydroxyoxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163494,"3,4,5-trihydroxy-6-{[(2Z)-1-hydroxy-2-methyloct-2-en-4-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163498,"3,4,5-trihydroxy-6-{[(6Z)-8-hydroxy-7-methyloct-6-en-2-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163499,"3,4,5-trihydroxy-6-{[(2Z)-7-hydroxy-2-methyloct-2-en-1-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163495,"3,4,5-trihydroxy-6-{[(2Z)-4-hydroxy-2-methyloct-2-en-1-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0170942,"3,4,5-trihydroxy-6-(nonanoyloxy)oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163526,"3,4,5-trihydroxy-6-[(2-methyloctanoyl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163505,"3,4,5-trihydroxy-6-{[(6Z)-8-hydroxy-7-methyloct-6-en-1-yl]oxy}oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0163502,"3,4,5-trihydroxy-6-[(2-methyl-3-pentyloxiran-2-yl)methoxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0171045,"3,4,5-trihydroxy-6-[(7-hydroxynon-8-en-2-yl)oxy]oxane-2-carboxylic acid",n/a,C15H26O8,334.162767797,M+H,+,335.170044,8
+335.1673731,HMDB0029084,​Tryptophylhydroxyproline,n/a,C16H19N3O4,317.137556104,M+NH4,+,335.171379,12
+335.1673731,HMDB0181182,"[hydroxy({4-methyl-2-[5-methyl-4-oxo-5-(propan-2-yl)-4,5-dihydro-1H-imidazol-2-yl]phenyl})methylidene]carbamic acid",n/a,C16H19N3O4,317.137556104,M+NH4,+,335.171379,12
+335.1673731,HMDB0028874,Hydroxyprolyl-Tryptophan,n/a,C16H19N3O4,317.137556111,M+NH4,+,335.171379,12
+335.1673731,HMDB0138126,"1-hydroxy-5-methoxy-1,7-diphenylheptan-3-one",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138125,"6-hydroxy-5-methoxy-1,7-diphenylheptan-3-one",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138129,7-(3-hydroxyphenyl)-5-methoxy-1-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138130,1-(4-hydroxyphenyl)-5-methoxy-7-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138127,"7-hydroxy-5-methoxy-1,7-diphenylheptan-3-one",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0179081,"6-hydroxy-1,1,4a-trimethyl-7-(prop-1-en-2-yl)-1,2,3,4,4a,9,10,10a-octahydrophenanthrene-9,10-dione",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138131,"2-hydroxy-5-methoxy-1,7-diphenylheptan-3-one",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138132,"4-hydroxy-5-methoxy-1,7-diphenylheptan-3-one",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138128,1-(3-hydroxyphenyl)-5-methoxy-7-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138133,1-(2-hydroxyphenyl)-5-methoxy-7-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138134,7-(2-hydroxyphenyl)-5-methoxy-1-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0138276,7-(4-hydroxy-3-methoxyphenyl)-1-phenylheptan-3-one,n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0171363,"3-methoxy-8-(3-methoxyphenyl)-6,7-dimethyl-5,6,7,8-tetrahydronaphthalen-2-ol",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0186298,"(2Z,4E,6E,8E)-9-(4-hydroxy-2,3,6-trimethylphenyl)-3,7-dimethylnona-2,4,6,8-tetraenoic acid",n/a,C20H24O3,312.172544633,M+Na,+,335.161763,17
+335.1673731,HMDB0031976,"Methyl (9Z)-10'-oxo-6,10'-diapo-6-carotenoate",n/a,C20H24O3,312.172544634,M+Na,+,335.161763,17
+335.1673731,HMDB0033294,5-Methoxy-7-(4-hydroxyphenyl)-1-phenyl-3-heptanone,n/a,C20H24O3,312.172544634,M+Na,+,335.161763,17
+335.1673731,HMDB0040761,"4'-Hydroxy-5,5'-diisopropyl-2,2'-dimethyl-3,4-biphenylquinone",n/a,C20H24O3,312.172544634,M+Na,+,335.161763,17
+335.1673731,HMDB0061027,2-hydroxyethinylestradiol,n/a,C20H24O3,312.172544634,M+Na,+,335.161763,17
+335.1673731,HMDB0015191,Praziquantel,C07367,C19H24N2O2,312.183778022,M+Na,+,335.172996,17
+447.2222942,HMDB0036571,"Linalool 3,7-oxide beta-primeveroside",n/a,C21H36O11,464.225761994,M+H-H2O,+,447.223062,2
+447.2222942,HMDB0035489,"Linalool 3,6-oxide primeveroside",n/a,C21H36O11,464.225761994,M+H-H2O,+,447.223062,2
+447.2222942,HMDB0031367,Linalool oxide D 3-[apiosyl-(1->6)-glucoside],n/a,C21H36O11,464.225761994,M+H-H2O,+,447.223062,2
+447.2222942,HMDB0182246,"{[(2Z,4E,6E,10Z,12E)-13-{4-hydroxy-2,2,6-trimethyl-7-oxabicyclo[4.1.0]heptan-1-yl}-2,7,11-trimethyltrideca-2,4,6,8,10,12-hexaen-1-yl]oxy}sulfonic acid",n/a,C25H36O6S,464.223260053,M+H-H2O,+,447.22056,4
+447.2222942,HMDB0182247,"{6-[(1E,3Z,7E,9E,11Z)-13-hydroxy-3,7,12-trimethyltrideca-1,3,5,7,9,11-hexaen-1-yl]-1,5,5-trimethyl-7-oxabicyclo[4.1.0]heptan-3-yl}oxidanesulfonic acid",n/a,C25H36O6S,464.223260053,M+H-H2O,+,447.22056,4
+447.2222942,HMDB0182263,"{1,5,5-trimethyl-6-[(1E,3Z,7E,9E)-3,7,12-trimethyl-13-oxotrideca-1,3,5,7,9-pentaen-1-yl]-7-oxabicyclo[4.1.0]heptan-3-yl}oxidanesulfonic acid",n/a,C25H36O6S,464.223260053,M+H-H2O,+,447.22056,4
+447.2222942,HMDB0015631,Alvimopan,n/a,C25H32N2O4,424.236207522,M+Na,+,447.225426,7
+447.2222942,HMDB0061149,Hydroxyfluoroprednisolone butyrate,n/a,C25H33FO7,464.221031566,M+H-H2O,+,447.218332,9
+447.2222942,HMDB0029989,Dulciol B,n/a,C28H32O6,464.219888756,M+H-H2O,+,447.217189,11
+447.2222942,HMDB0033316,Garcinone E,n/a,C28H32O6,464.219888756,M+H-H2O,+,447.217189,11
+447.2222942,HMDB0029990,Dulciol A,n/a,C28H32O6,464.219888756,M+H-H2O,+,447.217189,11
+447.2222942,HMDB0156274,"[(2S,15S)-14-(2-hydroxyacetyl)-2,15-dimethyl-5-(sulfooxy)tetracyclo[8.7.0.0²,⁷.0¹¹,¹⁵]heptadecan-17-yl]oxidanyl",n/a,C21H33O7S,429.194699577,M+NH4,+,447.228523,14
+447.2222942,HMDB0162419,(2-hydroxy-3-{[(9E)-11-hydroxy-11-{3-[(2Z)-pent-2-en-1-yl]oxiran-2-yl}undec-9-enoyl]oxy}propoxy)phosphonic acid,n/a,C21H37O9P,464.217519769,M+H-H2O,+,447.21482,17
+447.2222942,HMDB0177052,"2-oxo-3-(phosphonatooxy)propyl (9Z,12Z,14E)-16-hydroxyoctadeca-9,12,14-trienoate",n/a,C21H33O8P,444.19240218,M+H,+,447.21423,18
+447.2222942,HMDB0040747,Heliocide B2,n/a,C26H32O5,424.224974134,M+Na,+,447.214192,18
+447.2222942,HMDB0148895,AC1NSXJW,n/a,C26H32O5,424.22497413,M+Na,+,447.214192,18
+447.2222942,HMDB0040607,Kanzonol H,n/a,C26H32O5,424.224974134,M+Na,+,447.214192,18
+447.2222942,HMDB0034183,Licoricidin,C16986,C26H32O5,424.224974134,M+Na,+,447.214192,18
+447.2222942,HMDB0014420,Olmesartan,n/a,C24H26N6O3,446.206638728,M+H,+,447.213915,19
+447.2222942,HMDB0060584,Abiraterone sulfate,n/a,C24H31NO4S,429.197379175,M+NH4,+,447.231202,20

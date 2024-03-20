@@ -1,0 +1,26 @@
+{
+ "nodes": [
+ {
+ "id": "Lipids and lipid-like molecules",
+"label": "Lipids and lipid-like molecules",
+"size": 4.644245,
+"color": "#FF0000",
+"x": 42.48193,
+"y": 88.76307 
+},
+{
+ "id": "Glycerophospholipids",
+"label": "Glycerophospholipids",
+"size": 3.921659,
+"color": "#FFFF00",
+"x": 43.18075,
+"y": 89.99455 
+} 
+],
+"edges": [ {
+ "id": "1" 
+},
+{
+ "id": "0" 
+} ] 
+}
